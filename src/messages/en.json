@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "title": "Balsm - Healthcare Made Simple",
+    "description": "Join the waitlist for Balsm - the all-in-one healthcare app for booking appointments, managing prescriptions, and connecting with doctors."
+  },
+  "hero": {
+    "title": "Healthcare Made Simple",
+    "subtitle": "Book appointments, manage prescriptions, and connect with trusted healthcare providers - all in one app.",
+    "comingSoon": "Coming Soon"
+  },
+  "waitlist": {
+    "title": "Join the Waitlist",
+    "subtitle": "Be the first to know when Balsm launches",
+    "placeholder": "Enter your email",
+    "button": "Join Waitlist",
+    "submitting": "Joining...",
+    "success": "You're on the list! We'll notify you when Balsm launches.",
+    "errorDuplicate": "This email is already on the waitlist.",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "errorInvalid": "Please enter a valid email address."
+  },
+  "features": {
+    "title": "What's Coming",
+    "appointments": {
+      "title": "Easy Appointments",
+      "description": "Book appointments with doctors, clinics, and hospitals in seconds."
+    },
+    "prescriptions": {
+      "title": "Smart Prescriptions",
+      "description": "Manage your medications with reminders and easy pharmacy refills."
+    },
+    "records": {
+      "title": "Health Records",
+      "description": "Access your complete medical history anytime, anywhere."
+    },
+    "providers": {
+      "title": "Trusted Providers",
+      "description": "Find verified doctors with ratings, reviews, and real-time availability."
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Balsm. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "language": {
+    "switch": "العربية"
+  }
+}
