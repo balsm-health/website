@@ -55,21 +55,28 @@ export default function WaitlistForm() {
 
   if (status === 'success') {
     return (
-      <div className="w-full max-w-md mx-auto text-center p-8 bg-gradient-to-br from-primary-bg to-white dark:to-slate-800 rounded-3xl border border-primary/20 dark:border-primary/30 shadow-xl shadow-primary/10 fade-in">
-        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-lg shadow-primary/30">
+      <div className="w-full max-w-md mx-auto text-center p-8 bg-gradient-to-br from-primary-bg to-white dark:to-slate-800 rounded-3xl border border-primary/20 dark:border-primary/30 shadow-xl shadow-primary/10 celebrate">
+        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-lg shadow-primary/30 animate-bounce">
           <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
         <h3 className="text-xl font-bold text-text-primary mb-2">{t('success').split('!')[0]}!</h3>
         <p className="text-text-secondary">{t('success').split('!')[1] || ''}</p>
+        {/* Floating particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <span className="absolute top-4 left-1/4 w-2 h-2 bg-primary/40 rounded-full particle" />
+          <span className="absolute top-8 right-1/4 w-3 h-3 bg-primary-light/40 rounded-full particle" />
+          <span className="absolute bottom-8 left-1/3 w-2 h-2 bg-primary/30 rounded-full particle" />
+          <span className="absolute bottom-4 right-1/3 w-2 h-2 bg-primary-light/30 rounded-full particle" />
+        </div>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto" suppressHydrationWarning>
-      <div className="relative flex flex-col sm:flex-row gap-3 p-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-xl shadow-black/5 dark:shadow-black/20 border border-white/50 dark:border-slate-700/50" suppressHydrationWarning>
+      <div className={`relative flex flex-col sm:flex-row gap-3 p-2 bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-black/5 dark:shadow-black/20 border border-slate-200 dark:border-slate-700/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/20 ${status === 'error' ? 'shake' : ''}`} suppressHydrationWarning>
         <input
           type="email"
           value={email}
@@ -82,13 +89,13 @@ export default function WaitlistForm() {
           }}
           placeholder={t('placeholder')}
           disabled={status === 'loading'}
-          className="flex-1 px-5 py-4 rounded-xl bg-transparent text-text-primary placeholder:text-text-muted focus:outline-none focus:bg-primary-bg/30 disabled:opacity-50 transition-all duration-300 input-focus text-base"
+          className="flex-1 px-5 py-4 rounded-xl bg-transparent text-text-secondary dark:text-slate-300 placeholder:text-text-tertiary dark:placeholder:text-slate-400 focus:outline-none focus:bg-primary-bg/30 disabled:opacity-50 transition-all duration-300 input-glow text-base"
           dir="ltr"
         />
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="btn-gradient px-8 py-4 rounded-xl font-bold text-white whitespace-nowrap min-w-[160px] text-base flex items-center justify-center gap-2"
+          className="btn-gradient px-8 py-4 rounded-xl font-bold text-white whitespace-nowrap min-w-[160px] text-base flex items-center justify-center gap-2 ripple"
         >
           {status === 'loading' ? (
             <>

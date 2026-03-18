@@ -29,7 +29,7 @@ export default function ThemeSwitcher() {
   if (!mounted) {
     return (
       <button
-        className="group relative p-3 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-white/50 dark:border-slate-700/50 shadow-lg shadow-black/5 dark:shadow-black/20"
+        className="group relative p-3 rounded-2xl bg-white dark:bg-slate-800/80 backdrop-blur-md border border-slate-200 dark:border-slate-700/50 shadow-lg shadow-black/5 dark:shadow-black/20"
         aria-label="Toggle theme"
         suppressHydrationWarning
       >
@@ -41,7 +41,7 @@ export default function ThemeSwitcher() {
   return (
     <button
       onClick={toggleTheme}
-      className="group relative p-3 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-white/50 dark:border-slate-700/50 shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/20 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden"
+      className="group relative p-3 rounded-2xl bg-white dark:bg-slate-800/80 backdrop-blur-md border border-slate-200 dark:border-slate-700/50 shadow-lg shadow-black/5 dark:shadow-black/20 hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/20 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden hover:border-primary/30"
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       suppressHydrationWarning
     >

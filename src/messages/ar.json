@@ -41,7 +41,9 @@
   "footer": {
     "copyright": "© ٢٠٢٦ بلسم. جميع الحقوق محفوظة.",
     "privacy": "سياسة الخصوصية",
-    "terms": "شروط الخدمة"
+    "terms": "شروط الخدمة",
+    "madeWith": "صُنع بـ",
+    "madeIn": "في مصر"
   },
   "language": {
     "switch": "English"
