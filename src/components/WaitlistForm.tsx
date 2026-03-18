@@ -7,6 +7,7 @@ export default function WaitlistForm() {
   const t = useTranslations('waitlist');
   const locale = useLocale();
   const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -30,7 +31,7 @@ export default function WaitlistForm() {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, locale }),
+        body: JSON.stringify({ email, message: message.trim() || undefined, locale }),
       });
 
       const data = await res.json();
@@ -47,6 +48,7 @@ export default function WaitlistForm() {
 
       setStatus('success');
       setEmail('');
+      setMessage('');
     } catch {
       setStatus('error');
       setErrorMessage(t('errorGeneric'));
@@ -74,28 +76,44 @@ export default function WaitlistForm() {
     );
   }
 
+  const clearError = () => {
+    if (status === 'error') {
+      setStatus('idle');
+      setErrorMessage('');
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto" suppressHydrationWarning>
-      <div className={`relative flex flex-col sm:flex-row gap-3 p-2 bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-black/5 dark:shadow-black/20 border border-slate-200 dark:border-slate-700/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/20 ${status === 'error' ? 'shake' : ''}`} suppressHydrationWarning>
+      <div className={`relative flex flex-col gap-3 p-4 bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-black/5 dark:shadow-black/20 border border-slate-200 dark:border-slate-700/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/20 ${status === 'error' ? 'shake' : ''}`} suppressHydrationWarning>
+        {/* Email input */}
         <input
           type="email"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
-            if (status === 'error') {
-              setStatus('idle');
-              setErrorMessage('');
-            }
+            clearError();
           }}
           placeholder={t('placeholder')}
           disabled={status === 'loading'}
-          className="flex-1 px-5 py-4 rounded-xl bg-transparent text-text-secondary dark:text-slate-300 placeholder:text-text-tertiary dark:placeholder:text-slate-400 focus:outline-none focus:bg-primary-bg/30 disabled:opacity-50 transition-all duration-300 input-glow text-base"
-          dir="ltr"
+          className="w-full px-5 py-3 rounded-xl bg-slate-50 dark:bg-slate-700/50 text-text-secondary dark:text-slate-300 placeholder:text-text-tertiary dark:placeholder:text-slate-400 focus:outline-none focus:bg-primary-bg/30 dark:focus:bg-slate-700 disabled:opacity-50 transition-all duration-300 text-base border border-slate-200 dark:border-slate-600/50"
         />
+
+        {/* Optional message textarea */}
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder={t('messagePlaceholder')}
+          disabled={status === 'loading'}
+          rows={2}
+          className="w-full px-5 py-3 rounded-xl bg-slate-50 dark:bg-slate-700/50 text-text-secondary dark:text-slate-300 placeholder:text-text-tertiary dark:placeholder:text-slate-400 focus:outline-none focus:bg-primary-bg/30 dark:focus:bg-slate-700 disabled:opacity-50 transition-all duration-300 text-base border border-slate-200 dark:border-slate-600/50 resize-none"
+        />
+
+        {/* Submit button */}
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="btn-gradient px-4 py-3 rounded-xl font-bold text-white whitespace-nowrap text-sm flex items-center justify-center gap-2 ripple"
+          className="btn-gradient px-6 py-3 rounded-xl font-bold text-white text-sm flex items-center justify-center gap-2 ripple w-full"
         >
           {status === 'loading' ? (
             <>

@@ -10,7 +10,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { email, locale = 'en' } = await request.json();
+    const { email, message, locale = 'en' } = await request.json();
 
     if (!email || typeof email !== 'string') {
       return NextResponse.json(
@@ -27,9 +27,18 @@ export async function POST(request: Request) {
       );
     }
 
+    const insertData: { email: string; locale: string; message?: string } = {
+      email: email.toLowerCase().trim(),
+      locale,
+    };
+
+    if (message && typeof message === 'string' && message.trim()) {
+      insertData.message = message.trim();
+    }
+
     const { data, error } = await supabase
       .from('waiting_list')
-      .insert([{ email: email.toLowerCase().trim(), locale }])
+      .insert([insertData])
       .select()
       .single();
 

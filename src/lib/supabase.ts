@@ -12,5 +12,6 @@ export type WaitlistEntry = {
   id: string;
   email: string;
   locale: string;
+  message?: string;
   created_at: string;
 };

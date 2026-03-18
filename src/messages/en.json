@@ -12,6 +12,7 @@
     "title": "Join the Movement",
     "subtitle": "Be part of the open healthcare revolution",
     "placeholder": "Enter your email",
+    "messagePlaceholder": "Tell us what you're looking for (optional)",
     "button": "Get Early Access",
     "submitting": "Joining...",
     "success": "Welcome aboard! We'll keep you updated on our progress.",
