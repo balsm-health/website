@@ -1,45 +1,45 @@
 {
   "metadata": {
-    "title": "Balsm - Healthcare Made Simple",
-    "description": "Join the waitlist for Balsm - the all-in-one healthcare app for booking appointments, managing prescriptions, and connecting with doctors."
+    "title": "Balsm - Open Source Healthcare Platform",
+    "description": "Join Balsm - the open source healthcare platform built for providers, patients, and developers. Transparent, community-driven, and accessible to all."
   },
   "hero": {
-    "title": "Healthcare Made Simple",
-    "subtitle": "Book appointments, manage prescriptions, and connect with trusted healthcare providers - all in one app.",
+    "title": "Healthcare, Open for Everyone",
+    "subtitle": "A revolutionary open source platform connecting healthcare professionals, empowering patients, and welcoming contributors to build the future of healthcare together.",
     "comingSoon": "Coming Soon"
   },
   "waitlist": {
-    "title": "Join the Waitlist",
-    "subtitle": "Be the first to know when Balsm launches",
+    "title": "Join the Movement",
+    "subtitle": "Be part of the open healthcare revolution",
     "placeholder": "Enter your email",
-    "button": "Join Waitlist",
+    "button": "Get Early Access",
     "submitting": "Joining...",
-    "success": "You're on the list! We'll notify you when Balsm launches.",
-    "errorDuplicate": "This email is already on the waitlist.",
+    "success": "Welcome aboard! We'll keep you updated on our progress.",
+    "errorDuplicate": "This email is already registered.",
     "errorGeneric": "Something went wrong. Please try again.",
     "errorInvalid": "Please enter a valid email address."
   },
   "features": {
-    "title": "What's Coming",
+    "title": "Built for Everyone",
     "appointments": {
-      "title": "Easy Appointments",
-      "description": "Book appointments with doctors, clinics, and hospitals in seconds."
+      "title": "For Healthcare Professionals",
+      "description": "Streamline your practice with modern tools designed by the community, for the community."
     },
     "prescriptions": {
-      "title": "Smart Prescriptions",
-      "description": "Manage your medications with reminders and easy pharmacy refills."
+      "title": "For Patients",
+      "description": "Take control of your health journey with transparent, accessible healthcare tools."
     },
     "records": {
-      "title": "Health Records",
-      "description": "Access your complete medical history anytime, anywhere."
+      "title": "For Contributors",
+      "description": "All skills welcome. Whether you code, design, write, test, or advocate - everyone is welcome to shape healthcare's future."
     },
     "providers": {
-      "title": "Trusted Providers",
-      "description": "Find verified doctors with ratings, reviews, and real-time availability."
+      "title": "Open & Transparent",
+      "description": "No hidden agendas. Community-driven development with full transparency."
     }
   },
   "footer": {
-    "copyright": "© 2026 Balsm. All rights reserved.",
+    "copyright": "© 2026 Balsm. Open source, built together.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "madeWith": "Made with",

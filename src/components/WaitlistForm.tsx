@@ -75,7 +75,7 @@ export default function WaitlistForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto" suppressHydrationWarning>
+    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto" suppressHydrationWarning>
       <div className={`relative flex flex-col sm:flex-row gap-3 p-2 bg-white dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-black/5 dark:shadow-black/20 border border-slate-200 dark:border-slate-700/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/20 ${status === 'error' ? 'shake' : ''}`} suppressHydrationWarning>
         <input
           type="email"
@@ -95,7 +95,7 @@ export default function WaitlistForm() {
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="btn-gradient px-8 py-4 rounded-xl font-bold text-white whitespace-nowrap min-w-[160px] text-base flex items-center justify-center gap-2 ripple"
+          className="btn-gradient px-4 py-3 rounded-xl font-bold text-white whitespace-nowrap text-sm flex items-center justify-center gap-2 ripple"
         >
           {status === 'loading' ? (
             <>
