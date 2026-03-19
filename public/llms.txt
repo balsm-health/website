@@ -1,0 +1,24 @@
+# Balsm Healthcare Platform
+
+Balsm is a revolutionary open source healthcare platform built for healthcare professionals, patients, and developers. It is designed to be transparent, community-driven, and perfectly accessible to everyone.
+
+## Project Details
+- **Domain**: balsm.health
+- **Contact Email**: info@balsm.health
+- **Core Focus**: Open Source Healthcare, EMR/EHR, Patient/Provider Portal, Telemedicine.
+
+## Core Features & Values
+- **Built on Privacy**: We care about user privacy. Data is secure, encrypted, and never shared.
+- **For Healthcare Professionals**: Streamlined practices with modern clinical tools designed by the community.
+- **For Patients**: Taking control of personal health journeys via transparent scheduling and prescription management.
+- **For Contributors (Open Source)**: All skills are welcome—from coding to medical advocacy.
+
+## Target Audience
+- Patients seeking transparent healthcare management.
+- Doctors, nurses, and clinical staff seeking an open-source, flexible EHR/practice management system.
+- Health tech developers and open-source contributors looking to build the future of medicine.
+
+## Technology
+- Next.js (React) modern web platform.
+- Fully server-side rendered for maximum performance and accessibility.
+- Deployed via Cloudflare for edge-network speed.

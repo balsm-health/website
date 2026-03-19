@@ -1,0 +1,102 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Balsm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm is an open source healthcare platform designed for healthcare providers, patients, and developers. Founded in Cairo, Egypt in 2026, Balsm provides electronic health records (EHR), telemedicine, patient management, and clinical workflow solutions. The platform serves healthcare organizations across Egypt, the MENA region, and globally, with support for both English and Arabic languages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What features does Balsm offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm offers seven core features: (1) Patient Management - comprehensive patient records and scheduling, (2) Appointment Scheduling - efficient calendar management, (3) Electronic Health Records (EHR) - secure digital medical records, (4) Prescription Management - e-prescribing and medication tracking, (5) Telemedicine - remote consultation capabilities, (6) Clinical Workflows - optimized healthcare processes, and (7) Healthcare API - RESTful API for system integrations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Balsm open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Balsm is an open source healthcare platform. The platform emphasizes transparency and community-driven development, making all code publicly available for inspection and contribution. The specific license will be announced before the official launch. This open source approach ensures transparency, security through community review, and accessibility for healthcare organizations of all sizes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What regions does Balsm serve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm primarily serves Egypt (headquartered in Cairo), the MENA region including 22 countries (Saudi Arabia, UAE, Jordan, Lebanon, Kuwait, Qatar, Bahrain, Oman, Palestine, Libya, Sudan, Tunisia, Algeria, Morocco, and others), and international markets. The platform is specifically designed for emerging healthcare markets with bilingual support (English and Arabic) and cultural localization for Arab healthcare systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can use Balsm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm is designed for three primary user groups: (1) Healthcare Professionals - including doctors, nurses, specialists, surgeons, therapists, pharmacists, and allied health professionals across all medical specialties, (2) Patients - individuals managing their health records, appointments, and prescriptions, and (3) Healthcare Developers - software developers building healthcare integrations and extensions using the Balsm API. Healthcare organizations such as hospitals, clinics, urgent care centers, and private practices can also deploy Balsm for their operations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Balsm HIPAA compliant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm is designed with HIPAA compliance in mind, implementing industry-standard security measures including end-to-end encryption, secure data storage, audit trails, and access controls. The platform is also built to support GDPR compliance for European markets and regional healthcare data protection standards in Egypt and MENA countries. Specific compliance certifications will be pursued before launch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What languages does Balsm support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm currently supports two languages: English (en-US) for international markets and Arabic (ar-EG) for the MENA region. The platform implements full right-to-left (RTL) support for Arabic and cultural localization for Arab healthcare systems. Additional languages may be added based on community demand and regional expansion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What technology does Balsm use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm uses modern, proven technologies: Frontend is built with Next.js 15, React 19, and TailwindCSS 4 for responsive web interfaces. Backend uses .NET and ASP.NET Core for robust API services. Database is PostgreSQL for reliable data storage. Mobile apps are built with Flutter for iOS and Android. The platform is deployed on Cloudflare Workers and Azure for global edge distribution and scalability."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Balsm handle patient data privacy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm implements privacy-by-design principles with multiple security layers: all patient data is encrypted at rest and in transit using industry-standard AES-256 encryption, role-based access controls ensure only authorized personnel can access sensitive information, comprehensive audit trails track all data access and modifications, automatic session timeouts prevent unauthorized access, and data sovereignty options allow organizations to control where their data is stored. The platform never shares patient data with third parties without explicit consent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When will Balsm launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Balsm is currently in pre-launch phase and accepting waitlist registrations. The platform was founded in 2026 and is actively developing core features. Healthcare providers, patients, and developers are encouraged to join the waitlist at https://balsm.health to receive early access notifications and updates on the launch timeline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does Balsm cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As an open source platform, Balsm's core software will be available free of charge. Healthcare organizations can self-host the platform or use managed hosting services. Pricing for managed services, premium features, and enterprise support will be announced closer to launch. The open source model ensures accessibility for healthcare organizations of all sizes, from small clinics to large hospital systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Balsm integrate with existing healthcare systems?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Balsm is designed with interoperability as a core principle. The platform provides a comprehensive RESTful Healthcare API that supports integration with existing systems. It implements industry-standard healthcare data exchange protocols including HL7 and FHIR (Fast Healthcare Interoperability Resources). This allows Balsm to connect with laboratory systems, medical devices, pharmacy systems, insurance providers, and other healthcare IT infrastructure."
+      }
+    }
+  ]
+}

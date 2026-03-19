@@ -1,0 +1,23 @@
+/* TEAM */
+Developer: Balsm Team
+Site: https://balsm.health
+Location: Egypt
+
+/* SITE */
+Last update: 2026/03/19
+Standards: HTML5, CSS3, ES2024
+Components: Next.js, React, TailwindCSS
+Software: Visual Studio Code
+Language: English / العربية
+
+/* THANKS */
+To the open source community for making this possible.
+Special thanks to all contributors and early supporters.
+
+/* ABOUT */
+Balsm is an open source healthcare platform built for providers, patients, and developers.
+We believe in transparency, community-driven development, and accessible healthcare for all.
+
+Join us at: https://balsm.health
+GitHub: https://github.com/balsm-health (coming soon)
+Email: support@balsm.io

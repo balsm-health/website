@@ -1,0 +1,22 @@
+Contact: mailto:security@balsm.io
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, ar
+Canonical: https://balsm.health/.well-known/security.txt
+
+# Security Policy
+# Thank you for helping keep Balsm and our users safe!
+
+# If you believe you have found a security vulnerability in Balsm,
+# please report it to us at security@balsm.io
+
+# Please include the following information:
+# - Type of vulnerability
+# - Full paths of source file(s) related to the vulnerability
+# - Location of the affected source code
+# - Any special configuration required to reproduce the issue
+# - Step-by-step instructions to reproduce the issue
+# - Proof-of-concept or exploit code (if possible)
+# - Impact of the issue, including how an attacker might exploit it
+
+Acknowledgments: https://balsm.health/security/hall-of-fame
+Policy: https://balsm.health/security/policy

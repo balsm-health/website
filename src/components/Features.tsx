@@ -43,34 +43,58 @@ const features = [
       </svg>
     ),
   },
+  {
+    key: 'offline',
+    icon: (
+      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Features() {
   const t = useTranslations('features');
 
   return (
-    <section className="w-full max-w-5xl mx-auto px-4 py-20">
+    <section
+      className="w-full max-w-5xl mx-auto px-4 py-20"
+      aria-labelledby="features-heading"
+    >
       <div className="text-center mb-16">
         <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary-bg dark:bg-primary/10 text-primary border border-primary/20 dark:border-primary/30">
           Features
         </span>
-        <h2 className="text-3xl sm:text-4xl font-bold text-text-primary">
+        <h2
+          id="features-heading"
+          className="text-3xl sm:text-4xl font-bold text-text-primary"
+        >
           {t('title')}
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+        role="list"
+      >
         {features.map((feature, index) => (
-          <div
+          <article
             key={feature.key}
             className={`group relative p-8 rounded-3xl bg-white dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700/50 shadow-lg shadow-black/5 dark:shadow-black/20 card-hover fade-in stagger-${index + 1}`}
             style={{ opacity: 0, animationFillMode: 'forwards' }}
+            role="listitem"
           >
             {/* Gradient background on hover */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 to-primary-light/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div
+              className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 to-primary-light/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              aria-hidden="true"
+            />
 
             {/* Icon */}
-            <div className="relative w-14 h-14 rounded-2xl bg-primary-bg dark:bg-primary/20 text-primary flex items-center justify-center mb-6 shadow-lg shadow-primary/10 dark:shadow-primary/20 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+            <div
+              className="relative w-14 h-14 rounded-2xl bg-primary-bg dark:bg-primary/20 text-primary flex items-center justify-center mb-6 shadow-lg shadow-primary/10 dark:shadow-primary/20 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300"
+              aria-hidden="true"
+            >
               {feature.icon}
             </div>
 
@@ -82,7 +106,7 @@ export default function Features() {
               {t(`${feature.key}.description`)}
             </p>
 
-          </div>
+          </article>
         ))}
       </div>
     </section>

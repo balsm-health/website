@@ -29,14 +29,17 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex flex-col items-center justify-center px-4 pt-20 pb-12 min-h-[70vh]">
+    <section
+      className="relative flex flex-col items-center justify-center px-4 pt-20 pb-12 min-h-[70vh]"
+      aria-label="Hero section"
+    >
       {/* Theme Switcher - Fixed in top-right */}
       <div className="fixed top-6 right-6 z-50">
         <ThemeSwitcher />
       </div>
 
       {/* Animated Background */}
-      <div className="animated-bg">
+      <div className="animated-bg" aria-hidden="true">
         <div className="blob blob-1" />
         <div className="blob blob-2" />
         <div className="blob blob-3" />
@@ -53,8 +56,10 @@ export default function Hero() {
           <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 transition-transform duration-300 group-hover:scale-105">
             <img
               src="/balsm-logo.svg"
-              alt="Balsm Logo"
+              alt="Balsm - Open Source Healthcare Platform Logo"
               className="w-full h-full object-contain drop-shadow-lg"
+              width="192"
+              height="192"
             />
           </div>
           {/* Dynamic glow that follows mouse */}
@@ -65,21 +70,33 @@ export default function Hero() {
               opacity: isHovering ? 0.8 : 0.6,
               scale: isHovering ? '1.2' : '1',
             }}
+            aria-hidden="true"
           />
         </div>
         <div className="mt-6 text-center">
-          <div className="text-5xl sm:text-6xl md:text-7xl font-extrabold gradient-text drop-shadow-sm mb-2">
+          <div
+            className="text-5xl sm:text-6xl md:text-7xl font-extrabold gradient-text drop-shadow-sm mb-2"
+            lang="ar"
+            aria-label="Balsm in Arabic"
+          >
             بلسم
           </div>
-          <div className="text-sm text-text-muted tracking-[0.3em] uppercase font-medium transition-all duration-300 hover:tracking-[0.5em] hover:text-primary">
+          <div
+            className="text-sm text-text-muted tracking-[0.3em] uppercase font-medium transition-all duration-300 hover:tracking-[0.5em] hover:text-primary"
+            aria-label="Balsm"
+          >
             Balsm
           </div>
         </div>
       </div>
 
       {/* Coming Soon Badge - interactive */}
-      <span className="inline-flex items-center gap-2 px-5 py-2 mb-8 text-sm font-semibold rounded-full bg-primary-bg text-primary border border-primary/30 pulse-glow fade-in-delay-1 hover:scale-105 hover:bg-primary hover:text-white transition-all duration-300 cursor-default group">
-        <span className="w-2 h-2 bg-primary rounded-full animate-pulse group-hover:bg-white" />
+      <span
+        className="inline-flex items-center gap-2 px-5 py-2 mb-8 text-sm font-semibold rounded-full bg-primary-bg text-primary border border-primary/30 pulse-glow fade-in-delay-1 hover:scale-105 hover:bg-primary hover:text-white transition-all duration-300 cursor-default group"
+        role="status"
+        aria-live="polite"
+      >
+        <span className="w-2 h-2 bg-primary rounded-full animate-pulse group-hover:bg-white" aria-hidden="true" />
         {t('comingSoon')}
       </span>
 
@@ -102,13 +119,22 @@ export default function Hero() {
       </div>
 
       {/* Interactive scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator cursor-pointer hover:opacity-100 transition-opacity"
+      <button
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator cursor-pointer hover:opacity-100 transition-opacity"
         onClick={() => window.scrollBy({ top: window.innerHeight * 0.5, behavior: 'smooth' })}
+        aria-label="Scroll down to features"
+        type="button"
       >
-        <svg className="w-6 h-6 text-text-muted hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-6 h-6 text-text-muted hover:text-primary transition-colors"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
-      </div>
+      </button>
     </section>
   );
 }

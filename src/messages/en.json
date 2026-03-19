@@ -42,6 +42,10 @@
     "privacy": {
       "title": "Built on Privacy",
       "description": "We care about your privacy. Your data is secure, encrypted, and never shared."
+    },
+    "offline": {
+      "title": "Free for Offline Use",
+      "description": "Run Balsm completely free on your local network without internet access."
     }
   },
   "footer": {
