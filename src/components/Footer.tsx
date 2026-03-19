@@ -12,8 +12,15 @@ export default function Footer() {
 
       <div className="max-w-4xl mx-auto">
         {/* Logo with hover effect */}
-        <div className="flex justify-center mb-6">
-          <div className="text-2xl font-bold gradient-text glow-hover cursor-default transition-transform duration-300 hover:scale-110">
+        <div className="flex flex-col items-center justify-center mb-6">
+          <div className="w-12 h-12 transition-transform duration-300 hover:scale-110 cursor-default mb-2">
+            <img
+              src="/balsm-logo.svg"
+              alt="Balsm Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="text-lg font-bold gradient-text glow-hover cursor-default">
             بلسم
           </div>
         </div>

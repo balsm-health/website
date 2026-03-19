@@ -50,8 +50,12 @@ export default function Hero() {
         onMouseLeave={() => setIsHovering(false)}
       >
         <div className="relative group">
-          <div className="text-6xl sm:text-7xl md:text-8xl font-extrabold gradient-text drop-shadow-sm transition-transform duration-300 group-hover:scale-105">
-            بلسم
+          <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 transition-transform duration-300 group-hover:scale-105">
+            <img
+              src="/balsm-logo.svg"
+              alt="Balsm Logo"
+              className="w-full h-full object-contain drop-shadow-lg"
+            />
           </div>
           {/* Dynamic glow that follows mouse */}
           <div
@@ -63,8 +67,13 @@ export default function Hero() {
             }}
           />
         </div>
-        <div className="text-sm text-text-muted text-center mt-3 tracking-[0.3em] uppercase font-medium transition-all duration-300 hover:tracking-[0.5em] hover:text-primary">
-          Balsm
+        <div className="mt-6 text-center">
+          <div className="text-5xl sm:text-6xl md:text-7xl font-extrabold gradient-text drop-shadow-sm mb-2">
+            بلسم
+          </div>
+          <div className="text-sm text-text-muted tracking-[0.3em] uppercase font-medium transition-all duration-300 hover:tracking-[0.5em] hover:text-primary">
+            Balsm
+          </div>
         </div>
       </div>
 
