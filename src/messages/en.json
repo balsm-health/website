@@ -18,7 +18,8 @@
     "success": "Welcome aboard! We'll keep you updated on our progress.",
     "errorDuplicate": "This email is already registered.",
     "errorGeneric": "Something went wrong. Please try again.",
-    "errorInvalid": "Please enter a valid email address."
+    "errorInvalid": "Please enter a valid email address.",
+    "privacyNote": "We care about your privacy. We'll never share your information."
   },
   "features": {
     "title": "Built for Everyone",
@@ -37,6 +38,10 @@
     "providers": {
       "title": "Open & Transparent",
       "description": "No hidden agendas. Community-driven development with full transparency."
+    },
+    "privacy": {
+      "title": "Built on Privacy",
+      "description": "We care about your privacy. Your data is secure, encrypted, and never shared."
     }
   },
   "footer": {

@@ -25,8 +25,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Language switcher */}
-        <div className="flex flex-row items-center justify-center gap-4 mb-8">
+        {/* Links & Contact */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
+          <a
+            href="mailto:info@balsm.health"
+            className="text-sm font-medium text-text-secondary hover:text-primary transition-colors flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span dir="ltr">info@balsm.health</span>
+          </a>
+          <div className="w-1 h-1 rounded-full bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
           <LanguageSwitcher label={tLang('switch')} />
         </div>
 
