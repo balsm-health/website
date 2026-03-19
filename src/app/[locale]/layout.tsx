@@ -233,7 +233,6 @@ export default async function LocaleLayout({ children, params }: Props) {
         '@id': `${siteUrl}#localbusiness`,
         name: 'Balsm',
         image: `${siteUrl}/balsm-logo.svg`,
-        '@id': `${siteUrl}#organization`,
         address: {
           '@type': 'PostalAddress',
           addressCountry: 'EG',
