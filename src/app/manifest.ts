@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Join Balsm - the open source healthcare platform built for providers, patients, and developers.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#10b981',
+    background_color: '#F8FAFC',
+    theme_color: '#01c4a2',
     orientation: 'portrait',
     categories: ['health', 'medical', 'productivity'],
     icons: [

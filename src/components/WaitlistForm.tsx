@@ -57,20 +57,30 @@ export default function WaitlistForm() {
 
   if (status === 'success') {
     return (
-      <div className="w-full max-w-md mx-auto text-center p-8 bg-gradient-to-br from-primary-bg to-white dark:to-slate-800 rounded-3xl border border-primary/20 dark:border-primary/30 shadow-xl shadow-primary/10 celebrate">
-        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-lg shadow-primary/30 animate-bounce">
-          <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-          </svg>
+      <div className="w-full max-w-md mx-auto relative overflow-hidden text-center p-8 bg-white dark:bg-slate-800 rounded-3xl border border-primary/20 dark:border-primary/30 shadow-2xl shadow-primary/10 celebrate">
+        {/* Background Glow */}
+        <div className="absolute -top-24 -left-24 w-48 h-48 bg-primary/10 blur-3xl rounded-full pointer-events-none" />
+        
+        <div className="relative z-10">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shadow-lg shadow-primary/20 animate-bounce">
+            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 className="text-2xl font-bold text-primary mb-3 leading-tight">
+            {t('success').includes('!') ? t('success').split('!')[0].trim() + '!' : t('success')}
+          </h3>
+          <p className="text-text-secondary dark:text-slate-300 leading-relaxed font-medium">
+            {t('success').includes('!') ? t('success').split('!').slice(1).join('!').trim() : ''}
+          </p>
         </div>
-        <h3 className="text-xl font-bold text-text-primary mb-2">{t('success').split('!')[0]}!</h3>
-        <p className="text-text-secondary">{t('success').split('!')[1] || ''}</p>
+
         {/* Floating particles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <span className="absolute top-4 left-1/4 w-2 h-2 bg-primary/40 rounded-full particle" />
-          <span className="absolute top-8 right-1/4 w-3 h-3 bg-primary-light/40 rounded-full particle" />
-          <span className="absolute bottom-8 left-1/3 w-2 h-2 bg-primary/30 rounded-full particle" />
-          <span className="absolute bottom-4 right-1/3 w-2 h-2 bg-primary-light/30 rounded-full particle" />
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+          <span className="absolute top-4 left-1/4 w-2 h-2 bg-primary/30 rounded-full particle" />
+          <span className="absolute top-12 right-1/8 w-3 h-3 bg-primary-light/30 rounded-full particle" />
+          <span className="absolute bottom-12 left-1/5 w-2 h-2 bg-primary/20 rounded-full particle" />
+          <span className="absolute bottom-6 right-1/4 w-2 h-2 bg-primary-light/20 rounded-full particle" />
         </div>
       </div>
     );
