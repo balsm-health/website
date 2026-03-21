@@ -308,8 +308,15 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: '/balsm-logo.svg',
-    apple: '/balsm-logo.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+      { url: '/balsm-logo.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
   },
   manifest: '/manifest.json',
   openGraph: {
@@ -322,10 +329,11 @@ export const metadata: Metadata = {
     siteName: 'Balsm',
     images: [
       {
-        url: `${siteUrl}/og-image.png`,
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Balsm - Open Source Healthcare Platform',
+        type: 'image/png',
       },
     ],
   },
