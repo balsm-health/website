@@ -48,6 +48,11 @@
       "description": "Run Balsm completely free on your local network without internet access."
     }
   },
+  "contacts": {
+    "title": "Contact Us",
+    "description": "Have questions or want to get involved? Reach out to us anytime via email or social media.",
+    "viewAllLinks": "View All Links"
+  },
   "footer": {
     "copyright": "© 2026 Balsm. Open source, built together.",
     "privacy": "Privacy Policy",
