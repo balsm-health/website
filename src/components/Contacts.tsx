@@ -27,7 +27,7 @@ const contacts: ContactItem[] = [
   },
   {
     key: 'github',
-    href: 'https://github.com/balsm-io',
+    href: 'https://github.com/balsm-health',
     labelEn: 'GitHub',
     labelAr: 'جيت هب',
     toneClass: 'text-slate-900 dark:text-slate-100',

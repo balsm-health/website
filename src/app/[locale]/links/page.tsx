@@ -67,7 +67,7 @@ const links: LinkItem[] = [
     key: 'github',
     label: { en: 'GitHub', ar: 'جيت هب' },
     description: { en: 'View our GitHub organization', ar: 'شاهد مشاريعنا على جيت هب' },
-    url: 'https://github.com/balsm-io',
+    url: 'https://github.com/balsm-health',
   },
   {
     key: 'qabilah',
