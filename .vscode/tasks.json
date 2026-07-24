@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "clear-next-cache",
+      "type": "shell",
+      "command": "rm -rf .next",
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "reveal": "silent", "panel": "shared" }
+    }
+  ]
+}

@@ -3,9 +3,18 @@
   "configurations": [
     {
       "name": "Next.js: debug server-side",
-      "type": "node-terminal",
+      "type": "node",
       "request": "launch",
-      "command": "npm run dev"
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal",
+      "preLaunchTask": "clear-next-cache",
+      "serverReadyAction": {
+        "pattern": "- Local:.+(https?://localhost:\\d+)",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      }
     },
     {
       "name": "Next.js: debug client-side",
@@ -15,9 +24,13 @@
     },
     {
       "name": "Next.js: debug full stack",
-      "type": "node-terminal",
+      "type": "node",
       "request": "launch",
-      "command": "npm run dev",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal",
+      "preLaunchTask": "clear-next-cache",
       "serverReadyAction": {
         "pattern": "- Local:.+(https?://localhost:\\d+)",
         "uriFormat": "%s",
