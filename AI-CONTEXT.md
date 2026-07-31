@@ -278,8 +278,8 @@ All contributions welcome:
 ## Contact
 
 - **Website**: https://balsm.health
-- **Email**: support@balsm.io
-- **Security**: security@balsm.io
+- **Email**: support@balsm.health
+- **Security**: security@balsm.health
 
 ## Project Structure
 

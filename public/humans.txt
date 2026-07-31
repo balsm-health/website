@@ -20,4 +20,4 @@ We believe in transparency, community-driven development, and accessible healthc
 
 Join us at: https://balsm.health
 GitHub: https://github.com/balsm-health (coming soon)
-Email: support@balsm.io
+Email: support@balsm.health

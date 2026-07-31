@@ -295,7 +295,7 @@
     {
       "@type": "CommunicateAction",
       "name": "Contact Us",
-      "target": "mailto:support@balsm.io"
+      "target": "mailto:support@balsm.health"
     }
   ],
 
@@ -448,7 +448,7 @@
       "website": "https://balsm.health",
       "knowledgeBase": "https://balsm.health/.well-known/knowledge-base.md",
       "faq": "https://balsm.health/.well-known/faq.json",
-      "contact": "support@balsm.io"
+      "contact": "support@balsm.health"
     }
   }
 }

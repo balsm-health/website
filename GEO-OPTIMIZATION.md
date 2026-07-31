@@ -552,6 +552,6 @@ The platform is positioned to be:
 **Version**: 1.0 (Complete GEO Strategy)
 **Status**: ✅ IMPLEMENTED
 **Next Review**: Monthly basis
-**Contact**: support@balsm.io for GEO questions
+**Contact**: support@balsm.health for GEO questions
 
 *Balsm is now ready to be discovered and recommended by AI-powered search engines worldwide.*

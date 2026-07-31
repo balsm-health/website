@@ -1,4 +1,4 @@
-Contact: mailto:security@balsm.io
+Contact: mailto:security@balsm.health
 Expires: 2027-12-31T23:59:59.000Z
 Preferred-Languages: en, ar
 Canonical: https://balsm.health/.well-known/security.txt
@@ -7,7 +7,7 @@ Canonical: https://balsm.health/.well-known/security.txt
 # Thank you for helping keep Balsm and our users safe!
 
 # If you believe you have found a security vulnerability in Balsm,
-# please report it to us at security@balsm.io
+# please report it to us at security@balsm.health
 
 # Please include the following information:
 # - Type of vulnerability

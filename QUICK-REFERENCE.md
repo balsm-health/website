@@ -317,9 +317,9 @@ website/
 - **AI Metadata**: https://balsm.health/.well-known/ai.json
 
 ### Contact
-- **General**: support@balsm.io
-- **Security**: security@balsm.io
-- **Press**: press@balsm.io
+- **General**: support@balsm.health
+- **Security**: security@balsm.health
+- **Press**: press@balsm.health
 
 ## 🎓 Best Practices
 

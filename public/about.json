@@ -155,10 +155,10 @@
     "Healthcare data security standards"
   ],
   "contact": {
-    "email": "support@balsm.io",
+    "email": "support@balsm.health",
     "website": "https://balsm.health",
-    "security": "security@balsm.io",
-    "press": "press@balsm.io"
+    "security": "security@balsm.health",
+    "press": "press@balsm.health"
   },
   "expertise": {
     "healthcareTechnology": "Open source healthcare platform development",
