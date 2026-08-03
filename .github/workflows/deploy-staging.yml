@@ -27,7 +27,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # Node 24 ships npm 11, matching the lockfile's resolver (npm 10
+          # on Node 20 re-resolves an optional @swc/helpers peer and breaks
+          # `npm ci`). Node 20 is also deprecated on GitHub runners.
+          node-version: '24'
           cache: 'npm'
           cache-dependency-path: package-lock.json
 
