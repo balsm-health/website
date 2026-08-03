@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.17.1",
+    "@sentry/cloudflare": "^10.69.0",
+    "@sentry/nextjs": "^10.69.0",
     "@supabase/supabase-js": "^2.99.2",
     "next": "16.1.7",
     "next-intl": "^4.8.3",

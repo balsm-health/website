@@ -1,20 +1,28 @@
+import { getTranslations } from 'next-intl/server';
+import SiteShell from '@/components/cloud/SiteShell';
+import HomeSections from '@/components/cloud/HomeSections';
 
-import Hero from '@/components/Hero';
-import Features from '@/components/Features';
-import Contacts from '@/components/Contacts';
-import Footer from '@/components/Footer';
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'homeMeta' });
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://balsm.health';
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: {
+      canonical: `${siteUrl}/${locale}`,
+      languages: { en: `${siteUrl}/en`, ar: `${siteUrl}/ar` },
+    },
+    openGraph: { title: t('title'), description: t('description'), locale: locale === 'ar' ? 'ar_EG' : 'en_US', url: `${siteUrl}/${locale}` },
+  };
+}
 
 export default function Home() {
   return (
-    <>
-      <div className="flex flex-col min-h-screen">
-        <main className="flex-1" role="main">
-          <Hero />
-          <Features />
-          <Contacts />
-        </main>
-        <Footer />
-      </div>
-    </>
+    <SiteShell active="home">
+      <HomeSections />
+    </SiteShell>
   );
 }

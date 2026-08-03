@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import * as Sentry from '@sentry/cloudflare';
 import { supabase } from '@/lib/supabase';
 
 export async function POST(request: Request) {
@@ -58,6 +59,10 @@ export async function POST(request: Request) {
         );
       }
 
+      // Capture the DB failure (no PII — email is not attached to the event).
+      Sentry.captureException(new Error(`waitlist insert failed: ${error.code || 'unknown'}`), {
+        extra: { code: error.code, locale },
+      });
       return NextResponse.json(
         { error: error.message || 'Failed to register', code: error.code || 'server_error', details: error.details },
         { status: 500 }
@@ -70,6 +75,7 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error('API error:', error);
+    Sentry.captureException(error);
     return NextResponse.json(
       { error: 'Internal server error', code: 'server_error' },
       { status: 500 }

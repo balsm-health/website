@@ -18,7 +18,7 @@
 
   /* ── Surfaces ── */
   --color-surface:          #FFFFFF;
-  --color-bg:               #FAFAF7;
+  --color-bg:               #FFFFFF;
   --color-bg-page:          #F4F3EC;
 
   /* ── Borders ── */
@@ -462,4 +462,56 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ── Balsm Cloud page (light-only marketing surface) ── */
+@keyframes balsm-spin { to { transform: rotate(360deg); } }
+@keyframes balsm-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes balsm-map-pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(2.4); opacity: 0; } }
+
+/* Cloud nav responsive: hide desktop links/CTAs below 1040px, show burger */
+.cloudnav-burger { display: none; }
+@media (max-width: 1040px) {
+  .cloudnav-links { display: none !important; }
+  .cloudnav-cta { display: none !important; }
+  .cloudnav-burger { display: inline-flex !important; }
+}
+@media (min-width: 1041px) {
+  .cloudnav-panel { display: none !important; }
+}
+
+/* Card hover-lift for the design pages (replaces the design's data-lift) */
+.balsm-lift { transition: transform .2s cubic-bezier(0.16,1,0.3,1), box-shadow .2s cubic-bezier(0.16,1,0.3,1); }
+.balsm-lift:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(43,43,37,.08); }
+
+/* Footer social chips */
+.balsm-social { background: rgba(255,255,255,.07); color: rgba(255,255,255,.66); transition: background .15s ease, color .15s ease; }
+.balsm-social:hover { background: rgba(255,255,255,.16); color: #fff; }
+
+/* Cloud page is light-only by design — lock the theme tokens light even when
+   the site-wide dark toggle has set `.dark` on <html>. Custom properties set on
+   this closer ancestor win for the whole subtree, including the shared Footer. */
+.cloud-light {
+  color-scheme: light;
+  --color-primary:        #1283FF;
+  --color-primary-light:  #02BBB5;
+  --color-primary-dark:   #0F6BCC;
+  --color-primary-bg:     #E4F0FF;
+  --color-accent:         #724DD0;
+  --color-secondary:      #02BBB5;
+  --color-surface:        #FFFFFF;
+  --color-bg:             #FAFAF7;
+  --color-bg-page:        #F4F3EC;
+  --color-border:         #E1E1D9;
+  --color-border-light:   #EEEEE8;
+  --color-text-primary:   #2B2B25;
+  --color-text-secondary: #56564C;
+  --color-text-tertiary:  #6B6B60;
+  --color-text-muted:     #ADAEA4;
+  --color-wordmark:       #6B6B60;
+  --color-success:        #55D77F;
+  --color-warning:        #E5B428;
+  --color-danger:         #D44A3C;
+  --color-info:           #1283FF;
+  background: #FAFAF7;
 }

@@ -1,7 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
+  "main": "worker.ts",
   "name": "balsm-website",
+  // Sentry DSN is publishable (not a secret) — it already ships in the client
+  // bundle. Local dev reads it from .dev.vars instead.
+  "vars": {
+    "SENTRY_DSN": "https://8707a04c749b5681c94611c67c5267a8@o4511072882851841.ingest.de.sentry.io/4511840420560976",
+    "SENTRY_ENV": "production"
+  },
   "compatibility_date": "2025-09-27",
   "compatibility_flags": [
     "nodejs_compat"

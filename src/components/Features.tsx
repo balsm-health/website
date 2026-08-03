@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useRef, useEffect, useState } from 'react';
 
 const features = [
   {
@@ -65,68 +66,101 @@ const rows = [
   features.slice(4, 6),
 ];
 
+function useVisible(threshold = 0.12) {
+  const ref = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
+
 export default function Features() {
   const t = useTranslations('features');
+  const { ref, visible } = useVisible();
 
   return (
     <section
-      className="w-full max-w-5xl mx-auto px-4 py-24"
+      ref={ref as React.RefObject<HTMLElement>}
+      className="w-full px-6 py-24 dark:bg-[#1e1e18]"
+      style={{ background: 'var(--color-bg-page)' }}
       aria-labelledby="features-heading"
     >
-      <h2
-        id="features-heading"
-        className="text-4xl sm:text-5xl font-bold text-text-primary text-center mb-16 leading-tight"
-        style={{ fontFamily: 'var(--font-display)', textWrap: 'balance' } as React.CSSProperties}
-      >
-        {t('title')}
-      </h2>
+      <div className="max-w-5xl mx-auto">
+        <h2
+          id="features-heading"
+          className={`text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 leading-tight will-change-transform transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-primary)', textWrap: 'balance' } as React.CSSProperties}
+        >
+          {t('title')}
+        </h2>
 
-      <div role="list">
-        {rows.map((row, rowIndex) => (
-          <div
-            key={rowIndex}
-            className={`grid grid-cols-1 sm:grid-cols-2 sm:gap-x-14 ${
-              rowIndex < rows.length - 1 ? 'border-b border-border' : ''
-            }`}
-            role="presentation"
-          >
-            {row.map((feature, featureIndex) => (
-              <article
-                key={feature.key}
-                className={`flex gap-4 items-start py-11 ${
-                  featureIndex === 0 && row.length === 2
-                    ? 'border-b sm:border-b-0 border-border'
-                    : ''
-                }`}
-                role="listitem"
-              >
-                {/* Petal-colored icon — no background container */}
-                <div
-                  className="mt-0.5 flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
-                  style={{ color: feature.petalColor }}
-                  aria-hidden="true"
+        <div role="list">
+          {rows.map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              className={`grid grid-cols-1 sm:grid-cols-2 sm:gap-x-14 ${
+                rowIndex < rows.length - 1 ? 'border-b' : ''
+              }`}
+              style={{ borderColor: 'var(--color-border)' }}
+              role="presentation"
+            >
+              {row.map((feature, featureIndex) => (
+                <article
+                  key={feature.key}
+                  className={`flex gap-4 items-start py-10 will-change-transform transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                  } ${
+                    featureIndex === 0 && row.length === 2
+                      ? 'border-b sm:border-b-0'
+                      : ''
+                  }`}
+                  style={{
+                    borderColor: 'var(--color-border)',
+                    transitionDelay: `${(rowIndex * 2 + featureIndex) * 60 + 100}ms`,
+                  }}
+                  role="listitem"
                 >
-                  {feature.icon}
-                </div>
+                  {/* Petal icon — no container */}
+                  <div
+                    className="mt-0.5 flex-shrink-0"
+                    style={{ color: feature.petalColor }}
+                    aria-hidden="true"
+                  >
+                    {feature.icon}
+                  </div>
 
-                <div>
-                  <h3
-                    className="text-lg font-semibold text-text-primary mb-1.5 leading-snug"
-                    style={{ fontFamily: 'var(--font-display)' }}
-                  >
-                    {t(`${feature.key}.title`)}
-                  </h3>
-                  <p
-                    className="text-text-secondary leading-relaxed text-base"
-                    style={{ fontFamily: 'var(--font-body)', maxWidth: '42ch' } as React.CSSProperties}
-                  >
-                    {t(`${feature.key}.description`)}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        ))}
+                  <div>
+                    <h3
+                      className="text-base font-semibold mb-1.5 leading-snug"
+                      style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-primary)' }}
+                    >
+                      {t(`${feature.key}.title`)}
+                    </h3>
+                    <p
+                      className="text-sm leading-relaxed"
+                      style={{
+                        fontFamily: 'var(--font-body)',
+                        color: 'var(--color-text-secondary)',
+                        maxWidth: '42ch',
+                        textWrap: 'pretty',
+                      } as React.CSSProperties}
+                    >
+                      {t(`${feature.key}.description`)}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

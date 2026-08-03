@@ -1,0 +1,10 @@
+# Local Cloudflare Workers vars for `opennextjs-cloudflare preview` / `wrangler dev`.
+# Copy to .dev.vars and fill in. DO NOT commit .dev.vars (it is gitignored).
+
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# Sentry — publishable DSN, same value for client + worker.
+NEXT_PUBLIC_SENTRY_DSN=
+SENTRY_DSN=
+SENTRY_ENV=development
