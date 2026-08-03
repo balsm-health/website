@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 56" role="img" aria-label="AWS logo">
+  <title>AWS logo</title>
+  <text x="45" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="31" letter-spacing="0.5" fill="#232F3E">aws</text>
+  <path d="M17 41 C 32 50, 58 50, 73 41" fill="none" stroke="#FF9900" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M73 41 l -8.5 -1 l 3.2 6.8 z" fill="#FF9900"/>
+</svg>

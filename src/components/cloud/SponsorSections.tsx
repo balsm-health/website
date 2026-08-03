@@ -14,7 +14,7 @@ const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', paddi
 const eyebrow = (color: string, center = false): React.CSSProperties => ({ fontFamily: FONT.display, fontWeight: 700, fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color, textAlign: center ? 'center' : 'start' });
 
 // logo image per sponsor (index-aligned with i18n sponsor.tech.sponsors); null → wordmark text
-const LOGOS: (string | null)[] = [null, null, '/sponsor-sentry.svg', '/sponsor-kiro.svg', null];
+const LOGOS: (string | null)[] = ['/sponsor-mosalam.svg', '/sponsor-aws.svg', '/sponsor-sentry.svg', '/sponsor-kiro.svg', null];
 const WHERE_ICONS = [
   { Icon: CodeXml, bg: C.violetBg, color: C.violet },
   { Icon: Languages, bg: C.aquaBg, color: C.aqua },
