@@ -27,5 +27,37 @@
   },
   "observability": {
     "enabled": true
+  },
+  // Staging environment — deployed by .github/workflows/deploy-staging.yml
+  // on push to the `staging` branch. Worker: balsm-website-staging,
+  // served at https://stg.balsm.health. Non-inheritable keys (vars,
+  // services, assets, images) are redeclared here per wrangler rules.
+  "env": {
+    "staging": {
+      "name": "balsm-website-staging",
+      "vars": {
+        "SENTRY_DSN": "https://8707a04c749b5681c94611c67c5267a8@o4511072882851841.ingest.de.sentry.io/4511840420560976",
+        "SENTRY_ENV": "staging"
+      },
+      "routes": [
+        {
+          "pattern": "stg.balsm.health",
+          "custom_domain": true
+        }
+      ],
+      "assets": {
+        "directory": ".open-next/assets",
+        "binding": "ASSETS"
+      },
+      "services": [
+        {
+          "binding": "WORKER_SELF_REFERENCE",
+          "service": "balsm-website-staging"
+        }
+      ],
+      "images": {
+        "binding": "IMAGES"
+      }
+    }
   }
 }
