@@ -95,7 +95,7 @@
   },
   "cloud": {
     "hero": {
-      "badge": "Balsm Cloud · Slice 3",
+      "badge": "Balsm Cloud",
       "roadmap": "On the roadmap",
       "titleLine1": "Balsm Cloud —",
       "titleLine2": "when you choose to connect.",
@@ -135,16 +135,15 @@
     },
     "map": {
       "eyebrow": "Geographic vision",
-      "title": "From Alexandria to Aswan, and from the ocean to the Gulf.",
+      "title": "From Egypt first, to the ocean and the Gulf.",
       "desc": "Balsm starts in Egypt first. Balsm Cloud is designed to grow with it across the Arab world — country by country, when the time is right, not before.",
       "note": "Illustrative growth map — Egypt is the first launch market; the rest is a future vision that hasn't started yet.",
       "seaRed": "Red Sea",
-      "gulf": "Gulf",
       "gccLabel": "Gulf states",
       "egyptFocus": "Launch focus",
       "launch": {
         "title": "Launch",
-        "desc": "Balsm starts in Egypt — from Alexandria to Aswan, all at once.",
+        "desc": "Balsm starts in Egypt — across 27 governorates, all at once.",
         "tag": "Egypt"
       },
       "phase3": {
@@ -196,11 +195,13 @@
         "lebanon": "Lebanon",
         "syria": "Syria",
         "iraq": "Iraq",
-        "yemen": "Yemen"
-      }
+        "yemen": "Yemen",
+        "somalia": "Somalia",
+        "djibouti": "Djibouti"
+      },
+      "mapLabel": "Schematic map of the Arab world: Egypt as the launch focus, the Gulf states in the Phase 3 vision, and the remaining Arab countries in the long-term vision."
     },
     "invest": {
-      "eyebrow": "For investors",
       "title": "Not a product vision. A civilizational one — with a clear business model.",
       "desc": "The infrastructure is open and free, so it spreads on patient demand. Revenue comes from the optional cloud layer — a network effect that's hard to displace.",
       "stats": [
@@ -210,11 +211,7 @@
         },
         {
           "value": "27",
-          "label": "governorates — simultaneous Alexandria→Aswan launch"
-        },
-        {
-          "value": "+12",
-          "label": "clinics and pharmacies in the pilot program"
+          "label": "governorates — simultaneous launch across all of Egypt"
         },
         {
           "value": "GCC",
@@ -286,7 +283,7 @@
     },
     "copyright": "© 2026 Balsm",
     "pdpl": "PDPL-compliant",
-    "tagline": "From Alexandria to Aswan — the same Balsm, the same reliability."
+    "tagline": "Wherever you are — the same Balsm, the same reliability."
   },
   "homeMeta": {
     "title": "Balsm — the community-owned healthcare OS",

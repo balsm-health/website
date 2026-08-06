@@ -13,7 +13,7 @@ type Step = { num: string; title: string; desc: string };
 type Issue = { text: string; tag: string; tag2: string };
 
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
-const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.display, fontWeight: 700, fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color, textAlign: 'start' });
+const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: 'start' });
 
 const WHY_ICONS = [
   { Icon: GitBranch, bg: C.violetBg, color: C.violet },
@@ -43,7 +43,7 @@ export default function ContributorsSections() {
         <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', ...container }}>
           <Reveal style={{ maxWidth: 780 }}>
-            <div dir="ltr" style={eyebrow('#5C3AB0')}>{t('hero.eyebrow')}</div>
+            <div style={eyebrow('#5C3AB0')}>{t('hero.eyebrow')}</div>
             <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(34px,5.6vw,64px)', lineHeight: 1.12, color: C.ink, margin: '14px 0 18px' }}>
               {t('hero.title1')}<br />{t('hero.title2')}
             </h1>
@@ -79,7 +79,7 @@ export default function ContributorsSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.bg }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 700, marginBottom: 46 }}>
-            <div dir="ltr" style={eyebrow(C.violet)}>{t('why.eyebrow')}</div>
+            <div style={eyebrow(C.violet)}>{t('why.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('why.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(280px,100%),1fr))', gap: 20 }}>
@@ -103,7 +103,7 @@ export default function ContributorsSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 700, marginBottom: 46 }}>
-            <div dir="ltr" style={eyebrow(C.emerald)}>{t('how.eyebrow')}</div>
+            <div style={eyebrow(C.emerald)}>{t('how.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('how.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(240px,100%),1fr))', gap: 20 }}>

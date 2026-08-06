@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { C, FONT, EASE } from './theme';
+import { C, FONT, MOTION } from './theme';
 import { useInView } from './useReveal';
 import { RefreshCw, DatabaseBackup, FlaskConical, LineChart, Headset, LogOut } from './CloudIcons';
 
@@ -19,7 +19,7 @@ const STYLES = [
 export default function CloudFeatures() {
   const t = useTranslations('cloud.adds');
   const items = t.raw('items') as Item[];
-  const { ref, inView } = useInView(0.12);
+  const { ref, inView } = useInView(MOTION.threshold, MOTION.rootMargin);
 
   return (
     <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
@@ -28,25 +28,12 @@ export default function CloudFeatures() {
           style={{
             maxWidth: 700,
             marginBottom: 46,
-            transition: `opacity .7s ${EASE}, transform .7s ${EASE}`,
+            transition: MOTION.revealTransition,
             opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(16px)',
+            transform: inView ? 'translateY(0)' : `translateY(${MOTION.revealY}px)`,
           }}
         >
-          <div
-            dir="ltr"
-            style={{
-              fontFamily: FONT.display,
-              fontWeight: 700,
-              fontSize: 12,
-              letterSpacing: '.16em',
-              textTransform: 'uppercase',
-              color: C.emerald,
-              textAlign: 'start',
-            }}
-          >
-            {t('eyebrow')}
-          </div>
+          <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: C.emerald }}>{t('eyebrow')}</div>
           <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>
             {t('title')}
           </h2>
@@ -65,15 +52,18 @@ export default function CloudFeatures() {
             return (
               <div
                 key={i}
+                className="balsm-lift"
                 style={{
                   background: C.bg,
                   border: `1px solid ${C.border}`,
                   borderRadius: 20,
                   padding: 28,
-                  transition: `opacity .6s ${EASE}, transform .6s ${EASE}`,
-                  transitionDelay: `${i * 70}ms`,
+                  transition: MOTION.revealTransition,
+                  transitionDelay: `${i * MOTION.staggerStep}ms`,
                   opacity: inView ? 1 : 0,
-                  transform: inView ? 'translateY(0)' : 'translateY(20px)',
+                  // Leave `transform` unset once revealed so the .balsm-lift hover
+                  // rule can take effect — an inline transform would outrank it.
+                  transform: inView ? undefined : `translateY(${MOTION.revealY}px)`,
                 }}
               >
                 <div

@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { C, FONT, EASE } from './theme';
+import { C, FONT, MOTION } from './theme';
 import { useInView } from './useReveal';
 import { Check, AlertCircle } from './CloudIcons';
+import AnimatedLogo from './AnimatedLogo';
 import { captureError } from '@/lib/observability';
 
 export default function CloudWaitlist() {
@@ -59,22 +60,18 @@ export default function CloudWaitlist() {
   };
 
   const reveal: React.CSSProperties = {
-    transition: `opacity .7s ${EASE}, transform .7s ${EASE}`,
+    transition: MOTION.revealTransition,
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0)' : 'translateY(16px)',
+    transform: inView ? 'translateY(0)' : `translateY(${MOTION.revealY}px)`,
   };
 
   return (
     <section id="join" style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.bg, borderTop: `1px solid ${C.borderHair}` }}>
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)', textAlign: 'center' }} ref={ref}>
         <div style={reveal}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/balsm-logo.svg"
-            alt=""
-            aria-hidden
-            style={{ width: 60, height: 60, margin: '0 auto 22px', display: 'block', animation: 'balsm-float 6s ease-in-out infinite' }}
-          />
+          <div style={{ width: 60, height: 60, margin: '0 auto 22px', animation: 'balsm-float 6s ease-in-out infinite' }}>
+            <AnimatedLogo size={60} idle="breathe" />
+          </div>
           <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.6vw,52px)', lineHeight: 1.14, color: C.ink, margin: '0 0 14px' }}>
             {t('title')}
           </h2>

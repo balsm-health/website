@@ -41,3 +41,18 @@ export const FONT = {
 } as const;
 
 export const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+// Motion values lifted from the design's balsm-motion.js, so the React port
+// feels identical to the design file: a [data-reveal] element fades over .6s
+// while its 20px rise settles faster, in .35s; direct children of a
+// [data-stagger] container cascade at 80ms; the observer fires at 8% visibility
+// with a -6% bottom margin so nothing reveals while still below the fold.
+export const MOTION = {
+  // One string covers both reveal and hover-lift, exactly as balsm-motion.js does
+  // (attachLift reuses REVEAL_TRANSITION), so a lifting card also eases its shadow.
+  revealTransition: `opacity .6s ${EASE}, transform .35s ${EASE}, box-shadow .35s ${EASE}`,
+  revealY: 20,
+  staggerStep: 80,
+  threshold: 0.08,
+  rootMargin: '0px 0px -6% 0px',
+} as const;

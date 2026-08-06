@@ -15,7 +15,7 @@ type Card = { title: string; desc: string };
 type Trust = { title: string; sub: string };
 
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
-const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.display, fontWeight: 700, fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color, textAlign: 'start' });
+const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: 'start' });
 
 const TRUST_ICONS = [
   { Icon: Server, bg: C.aquaBg, color: C.aqua },
@@ -49,7 +49,7 @@ export default function ProvidersSections() {
         <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', ...container }}>
           <Reveal style={{ maxWidth: 760 }}>
-            <div dir="ltr" style={eyebrow('#019A7F')}>{t('hero.eyebrow')}</div>
+            <div style={eyebrow('#019A7F')}>{t('hero.eyebrow')}</div>
             <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(34px,5.6vw,64px)', lineHeight: 1.12, color: C.ink, margin: '14px 0 18px' }}>
               {t('hero.title1')}<br />{t('hero.title2')}
             </h1>
@@ -90,7 +90,7 @@ export default function ProvidersSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.bg }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 700, marginBottom: 46 }}>
-            <div dir="ltr" style={eyebrow(C.emerald)}>{t('features.eyebrow')}</div>
+            <div style={eyebrow(C.emerald)}>{t('features.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('features.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(280px,100%),1fr))', gap: 20 }}>
@@ -125,7 +125,7 @@ export default function ProvidersSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
           <Reveal style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 46px' }}>
-            <div dir="ltr" style={{ ...eyebrow(C.emerald), textAlign: 'center' }}>{t('pricing.eyebrow')}</div>
+            <div style={{ ...eyebrow(C.emerald), textAlign: 'center' }}>{t('pricing.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('pricing.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(300px,100%),1fr))', gap: 22, maxWidth: 880, margin: '0 auto' }}>

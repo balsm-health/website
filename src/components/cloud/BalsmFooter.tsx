@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { C, FONT } from './theme';
 import { AtSign, Globe, Mail } from './CloudIcons';
+import AnimatedLogo from './AnimatedLogo';
 
 const linkStyle: React.CSSProperties = { color: 'rgba(255,255,255,.66)', textDecoration: 'none' };
 const colTitle: React.CSSProperties = { fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, marginBottom: 14, color: '#fff' };
@@ -67,8 +68,7 @@ export default function BalsmFooter() {
         >
           <div style={{ gridColumn: '1 / -1', maxWidth: 340 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 11, marginBottom: 14 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/balsm-logo.svg" alt="" style={{ width: 38, height: 38 }} />
+              <AnimatedLogo size={38} idle="breathe" />
               <span style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 24 }}>بَلسَم</span>
             </div>
             <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(255,255,255,.66)', margin: '0 0 16px' }}>{t('blurb')}</p>

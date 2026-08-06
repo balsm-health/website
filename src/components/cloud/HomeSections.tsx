@@ -21,8 +21,7 @@ type Stat = { value: string; label: string };
 type PathCard = { title: string; desc: string; cta: string };
 
 const eyebrow = (color: string): React.CSSProperties => ({
-  fontFamily: FONT.display, fontWeight: 700, fontSize: 12, letterSpacing: '.16em',
-  textTransform: 'uppercase', color, textAlign: 'start',
+  fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: 'start',
 });
 const h2 = (color = C.ink): React.CSSProperties => ({
   fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.4vw,52px)', lineHeight: 1.15, color, margin: '12px 0 14px',
@@ -124,7 +123,7 @@ export default function HomeSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.bg }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 720, marginBottom: 48 }}>
-            <div dir="ltr" style={eyebrow(C.danger)}>{t('problem.eyebrow')}</div>
+            <div style={eyebrow(C.danger)}>{t('problem.eyebrow')}</div>
             <h2 style={h2()}>{t('problem.title')}</h2>
             <p style={{ fontFamily: FONT.arabic, fontSize: 'clamp(16px,1.7vw,19px)', lineHeight: 1.85, color: C.ink2, margin: 0 }}>{t('problem.desc')}</p>
           </Reveal>
@@ -149,7 +148,7 @@ export default function HomeSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 720, marginBottom: 48 }}>
-            <div dir="ltr" style={eyebrow(C.emerald)}>{t('how.eyebrow')}</div>
+            <div style={eyebrow(C.emerald)}>{t('how.eyebrow')}</div>
             <h2 style={h2()}>{t('how.title')}</h2>
             <p style={{ fontFamily: FONT.arabic, fontSize: 'clamp(16px,1.7vw,19px)', lineHeight: 1.85, color: C.ink2, margin: 0 }}>{t('how.desc')}</p>
           </Reveal>
@@ -197,7 +196,7 @@ export default function HomeSections() {
         <div style={{ ...container, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(36px,6vw,80px)' }}>
           <Reveal style={{ flex: '1 1 380px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div dir="ltr" style={eyebrow(C.blue)}>{t('app.eyebrow')}</div>
+              <div style={eyebrow(C.blue)}>{t('app.eyebrow')}</div>
               <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: C.blue, color: '#fff' }}>{t('app.badge')}</span>
             </div>
             <h2 style={{ ...h2(), fontSize: 'clamp(28px,4vw,46px)', margin: '12px 0 16px' }}>{t('app.title')}</h2>
@@ -308,7 +307,7 @@ export default function HomeSections() {
       <section style={{ padding: 'clamp(60px,9vw,112px) 0', background: C.dark }}>
         <div style={container}>
           <Reveal style={{ textAlign: 'center', marginBottom: 52 }}>
-            <div dir="ltr" style={{ ...eyebrow('rgba(255,255,255,.6)'), textAlign: 'center' }}>{t('values.eyebrow')}</div>
+            <div style={{ ...eyebrow('rgba(255,255,255,.6)'), textAlign: 'center' }}>{t('values.eyebrow')}</div>
             <div style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(40px,7vw,80px)', lineHeight: 1.1, color: '#fff', marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: '18px 32px', justifyContent: 'center' }}>
               <span style={{ color: C.mint }}>{valueWords[0]}</span>
               <span style={{ color: C.aqua }}>{valueWords[1]}</span>
@@ -334,7 +333,7 @@ export default function HomeSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white }}>
         <div style={container}>
           <Reveal style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 48px' }}>
-            <div dir="ltr" style={{ ...eyebrow(C.emerald), textAlign: 'center' }}>{t('paths.eyebrow')}</div>
+            <div style={{ ...eyebrow(C.emerald), textAlign: 'center' }}>{t('paths.eyebrow')}</div>
             <h2 style={{ ...h2(), margin: '12px 0 0' }}>{t('paths.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: 18 }}>

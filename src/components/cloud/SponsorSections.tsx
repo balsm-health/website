@@ -11,7 +11,7 @@ type OtherCard = { title: string; desc: string; cta: string };
 type Sponsor = { name: string; desc: string; href: string };
 
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
-const eyebrow = (color: string, center = false): React.CSSProperties => ({ fontFamily: FONT.display, fontWeight: 700, fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color, textAlign: center ? 'center' : 'start' });
+const eyebrow = (color: string, center = false): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: center ? 'center' : 'start' });
 
 // logo image per sponsor (index-aligned with i18n sponsor.tech.sponsors); null → wordmark text
 const LOGOS: (string | null)[] = ['/sponsor-mosalam.svg', '/sponsor-aws.svg', '/sponsor-sentry.svg', '/sponsor-kiro.svg', null];
@@ -40,7 +40,7 @@ export default function SponsorSections() {
         <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 980, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)', textAlign: 'center' }}>
           <Reveal>
-            <div dir="ltr" style={eyebrow('#D9A020', true)}>{t('hero.eyebrow')}</div>
+            <div style={eyebrow('#D9A020', true)}>{t('hero.eyebrow')}</div>
             <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(34px,5.6vw,64px)', lineHeight: 1.12, color: C.ink, margin: '14px 0 18px' }}>
               {t('hero.title1')}<br />{t('hero.title2')}
             </h1>
@@ -53,7 +53,7 @@ export default function SponsorSections() {
       <section style={{ padding: 'clamp(48px,8vw,100px) 0', background: C.dark }}>
         <div style={container}>
           <Reveal style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 46px' }}>
-            <div dir="ltr" style={{ ...eyebrow(C.mint, true) }}>{t('tech.eyebrow')}</div>
+            <div style={{ ...eyebrow(C.mint, true) }}>{t('tech.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: '#fff', margin: '12px 0 14px' }}>{t('tech.title')}</h2>
             <p style={{ fontSize: 'clamp(15px,1.6vw,18px)', lineHeight: 1.8, color: 'rgba(255,255,255,.66)', margin: 0 }}>{t('tech.desc')}</p>
           </Reveal>
@@ -93,7 +93,7 @@ export default function SponsorSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
           <Reveal style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 46px' }}>
-            <div dir="ltr" style={eyebrow(C.emerald, true)}>{t('where.eyebrow')}</div>
+            <div style={eyebrow(C.emerald, true)}>{t('where.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('where.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(280px,100%),1fr))', gap: 20 }}>

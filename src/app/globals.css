@@ -1,12 +1,53 @@
 @import "tailwindcss";
 
-@theme {
-  /* ── Brand petals (five-petal flower mark) ── */
+/* ============================================================
+   Balsm Design System — ported from Balsm-Core/brand/colors_and_type.css
+   and the "Balsm Design System" Claude Design project (2026-08-05).
+
+   Two blocks, split by whether Tailwind should generate a utility:
+     @theme  → tokens Tailwind should turn into utility classes.
+     :root   → tokens consumed via var() only (motion, elevation,
+               component sizing, breakpoint values, gradients).
+
+   NAMING: upstream names are preserved verbatim EXCEPT where they
+   collide with a Tailwind v4 theme namespace. Tailwind resolves
+   `rounded-lg` to `var(--radius-lg)`, `ease-out` to `var(--ease-out)`,
+   `max-w-md` to `var(--container-md)`, `tracking-tight` to
+   `var(--tracking-tight)`, `shadow-md` to `var(--shadow-md)` — so
+   redefining those names would silently restyle every existing
+   utility on shipped pages. Those five families carry a `--balsm-`
+   prefix instead. See DESIGN.md § "Token names that differ from
+   upstream" for the mapping.
+   ============================================================ */
+
+/* `static` — emit every token, not only the ones backing a utility
+   Tailwind can see. This codebase reads tokens as inline
+   `style={{ color: 'var(--color-wordmark)' }}`, which the class
+   scanner cannot detect; without `static`, tokens like
+   --color-cream-100 are tree-shaken and resolve to nothing. */
+@theme static {
+  /* ── Brand petals (five-petal flower mark) ──────────────────
+     No single primary. Categorical palette; reach for one petal
+     per category, all five only in brand moments. */
   --color-petal-aqua:       #02BBB5;
   --color-petal-emerald:    #01C4A2;
   --color-petal-blue:       #1283FF;
   --color-petal-mint:       #55D77F;
   --color-petal-violet:     #724DD0;
+
+  /* Hover / pressed step (≈ −8% L) */
+  --color-petal-aqua-600:    #029E99;
+  --color-petal-emerald-600: #019A7F;
+  --color-petal-blue-600:    #0F6BCC;
+  --color-petal-mint-600:    #3FC366;
+  --color-petal-violet-600:  #5C3AB0;
+
+  /* Soft wash surface (≈ +50% L) — chips, tinted backgrounds */
+  --color-petal-aqua-50:     #E2F8F6;
+  --color-petal-emerald-50:  #E1F8F1;
+  --color-petal-blue-50:     #E4F0FF;
+  --color-petal-mint-50:     #E8F9EE;
+  --color-petal-violet-50:   #ECE6FA;
 
   /* ── Primary = blue, secondary/light = aqua ── */
   --color-primary:          #1283FF;
@@ -18,30 +59,285 @@
 
   /* ── Surfaces ── */
   --color-surface:          #FFFFFF;
+  --color-surface-alt:      #F4F3EC;
+  --color-surface-muted:    #F6F6F2;
+  --color-surface-inverse:  #2B2B25;
   --color-bg:               #FFFFFF;
   --color-bg-page:          #F4F3EC;
 
   /* ── Borders ── */
   --color-border:           #E1E1D9;
   --color-border-light:     #EEEEE8;
+  --color-border-strong:    #C9C9C0;
+  --color-border-focus:     #1283FF;
 
-  /* ── Text — warm olive-gray ink scale ── */
+  /* ── Ink — warm olive-gray neutral scale (never cool slate) ── */
+  --color-ink-900:          #2B2B25;
+  --color-ink-800:          #3D3D34;
+  --color-ink-700:          #56564C;
+  --color-ink-600:          #6B6B60;
+  --color-ink-500:          #8C8C82;
+  --color-ink-400:          #ADAEA4;
+  --color-ink-300:          #C9C9C0;
+  --color-ink-200:          #E1E1D9;
+  --color-ink-100:          #EEEEE8;
+  --color-ink-50:           #F6F6F2;
+
+  /* ── Cream — warm DOCUMENT surface only, never the page bg ── */
+  --color-cream-50:         #FAFAF7;
+  --color-cream-100:        #F4F3EC;
+  --color-cream-200:        #EAE9DD;
+
+  /* ── Sun — tiny accent, never a surface ── */
+  --color-sun-400:          #F5C842;
+  --color-sun-500:          #E5B428;
+  --color-sun-600:          #D9A020;
+
+  /* ── Text ── */
   --color-text-primary:     #2B2B25;
   --color-text-secondary:   #56564C;
   --color-text-tertiary:    #6B6B60;
   --color-text-muted:       #ADAEA4;
-  --color-wordmark:         #6B6B60;
 
-  /* ── Semantic ── */
+  /* Wordmark — deep pine green. Matches brand/logo-*.svg.
+     Was #6B6B60 (warm olive gray); the brand moved. */
+  --color-wordmark:         #254B45;
+  --color-wordmark-tld:     #98A2B3;
+
+  /* ── Semantic clinical state ── */
   --color-success:          #55D77F;
+  --color-success-bg:       #E8F9EE;
   --color-warning:          #E5B428;
+  --color-warning-bg:       #FDF5DC;
   --color-danger:           #D44A3C;
+  --color-danger-bg:        #FBEBE7;
   --color-info:             #1283FF;
+  --color-info-bg:          #E4F0FF;
+
+  /* Clinical / pharma flags */
+  --color-controlled:       #724DD0;
+  --color-controlled-bg:    #ECE6FA;
+  --color-expiring:         #D97A20;
+  --color-expiring-bg:      #FBEEDC;
+
+  /* Eyebrow — a DIVERGENCE from upstream, on purpose.
+     The design system sets .eyebrow to --petal-emerald #01C4A2, which
+     at 12px scores 2.23:1 on white and 2.00:1 on cream — well under
+     the 4.5:1 this project commits to. This is the same emerald,
+     darkened until it clears AA on white (5.65), cream (5.08) and
+     #FAFAF7 (5.41). The bright petal returns on dark, where it
+     scores 7.68 and the darkened one would fail. */
+  --color-eyebrow:          #017560;
 
   /* ── Fonts ── */
   --font-display: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-body:    'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-arabic:  'IBM Plex Sans Arabic', 'Cairo', 'Geeza Pro', 'Noto Naskh Arabic', sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── Breakpoints ────────────────────────────────────────────
+     Only `xs` is added. md/lg/xl/2xl already match the design
+     system exactly (768 / 1024 / 1280 / 1536). `sm` is left at
+     Tailwind's 640px — the design system specifies 480px, but 28
+     existing `sm:` utilities are authored against 640. Migrate
+     deliberately, not as a side effect of this port. */
+  --breakpoint-xs: 375px;
+}
+
+/* ============================================================
+   var()-only tokens. Not in @theme: these should not each spawn
+   a utility class, and several would collide (see header note).
+   ============================================================ */
+:root {
+  /* ── Type scale (16px base, ~1.25 modular) ──────────────────
+     Consumed through the .h-display / .h1–.h5 roles below.
+     NOT mapped to Tailwind's --text-* namespace: the two scales
+     diverge from `sm` upward and remapping would resize existing
+     text-* utilities across the site. */
+  --fs-xs:   12px;
+  --fs-sm:   13px;
+  --fs-base: 14px;
+  --fs-md:   16px;
+  --fs-lg:   18px;
+  --fs-xl:   22px;
+  --fs-2xl:  28px;
+  --fs-3xl:  34px;
+  --fs-4xl:  44px;
+  --fs-5xl:  56px;
+  --fs-6xl:  72px;
+
+  --lh-tight:   1.15;
+  --lh-snug:    1.3;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.65;
+
+  /* Prefixed — Tailwind owns --tracking-* */
+  --balsm-tracking-tighter: -0.02em;
+  --balsm-tracking-tight:   -0.01em;
+  --balsm-tracking-normal:   0;
+  --balsm-tracking-wide:     0.04em;
+  --balsm-tracking-widest:   0.16em;   /* eyebrows, all-caps labels */
+
+  /* ── Spacing (4px base) ─────────────────────────────────────
+     Identical to Tailwind's default scale — `p-6` is already
+     24px. Exposed as vars for inline-style consumers only. */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── Radii — prefixed, Tailwind owns --radius-* ─────────────
+     lg (14px) is the card default. */
+  --balsm-radius-xs:   4px;
+  --balsm-radius-sm:   6px;
+  --balsm-radius-md:   10px;
+  --balsm-radius-lg:   14px;
+  --balsm-radius-xl:   20px;
+  --balsm-radius-2xl:  28px;
+  --balsm-radius-pill: 999px;
+
+  /* ── Shadows — warm, soft, never crisp. Prefixed. ── */
+  --balsm-shadow-xs: 0 1px 2px rgba(43, 43, 37, 0.06);
+  --balsm-shadow-sm: 0 2px 6px rgba(43, 43, 37, 0.06), 0 1px 2px rgba(43, 43, 37, 0.04);
+  --balsm-shadow-md: 0 8px 20px rgba(43, 43, 37, 0.08), 0 2px 6px rgba(43, 43, 37, 0.04);
+  --balsm-shadow-lg: 0 18px 40px rgba(43, 43, 37, 0.10), 0 4px 12px rgba(43, 43, 37, 0.06);
+  --balsm-shadow-brand: 0 8px 24px rgba(18, 131, 255, 0.22);
+  --balsm-shadow-petal: 0 8px 24px rgba(114, 77, 208, 0.18);
+  --balsm-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* ── Elevation — prefer these over ad-hoc shadows ── */
+  --elev-0: none;
+  --elev-1: rgba(43,43,37,.04) 0px 4px 4px 0px;
+  --elev-2: rgba(43,43,37,.04) 0px 1px 1px -.5px,
+            rgba(43,43,37,.04) 0px 3px 3px -1.5px;
+  --elev-3: rgba(43,43,37,.04) 0px 1px 1px -.5px,
+            rgba(43,43,37,.04) 0px 3px 3px -1.5px,
+            rgba(43,43,37,.04) 0px 6px 6px -3px,
+            rgba(43,43,37,.04) 0px 12px 12px -6px;
+  --elev-4: rgba(43,43,37,.20) 0px 20px 40px;
+
+  /* ── Motion — calm, never bouncy. Prefixed: Tailwind owns
+        --ease-in / --ease-out / --ease-in-out. ── */
+  --balsm-ease-out:    cubic-bezier(0.16, 1, 0.3, 1);   /* default */
+  --balsm-ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --balsm-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+
+  /* ── Gradients (signature). Never on text. ── */
+  --grad-petal:  linear-gradient(135deg, #02BBB5 0%, #1283FF 60%, #724DD0 100%);
+  --grad-mint:   linear-gradient(135deg, #55D77F 0%, #01C4A2 100%);
+  --grad-sky:    linear-gradient(135deg, #1283FF 0%, #0F6BCC 100%);
+  --grad-violet: linear-gradient(135deg, #8E6FE0 0%, #724DD0 100%);
+  --grad-ink:    linear-gradient(135deg, #3D3D34 0%, #2B2B25 100%);
+  --grad-cream:  linear-gradient(180deg, #FAFAF7 0%, #F4F3EC 100%);
+
+  /* ── Breakpoint values for JS consumption (px, unitless) ──
+        Custom properties can't be used inside @media. */
+  --bp-xs:  375;
+  --bp-sm:  480;
+  --bp-md:  768;
+  --bp-lg:  1024;
+  --bp-xl:  1280;
+  --bp-2xl: 1536;
+
+  /* ── Container widths — prefixed, Tailwind owns --container-* ── */
+  --balsm-container-xs:  480px;
+  --balsm-container-sm:  640px;
+  --balsm-container-md:  768px;
+  --balsm-container-lg:  1024px;
+  --balsm-container-xl:  1200px;
+  --balsm-container-2xl: 1440px;
+
+  /* ── Adaptive gutters & grid columns ── */
+  --gutter:      16px;
+  --gutter-md:   24px;
+  --gutter-lg:   48px;
+  --cols-mobile:   4;
+  --cols-tablet:   8;
+  --cols-desktop: 12;
+
+  /* ── Foreground semantics ── */
+  --fg1: var(--color-text-primary);
+  --fg2: var(--color-text-secondary);
+  --fg3: var(--color-text-tertiary);
+  --fg4: var(--color-text-muted);
+  --fg-on-brand: #FFFFFF;
+  --fg-link: var(--color-primary);
+
+  /* ── Component tokens ── */
+  --row-h-compact:     32px;
+  --row-h-default:     40px;
+  --row-h-comfortable: 52px;
+
+  --btn-h-sm:  30px;
+  --btn-h-md:  38px;
+  --btn-h-lg:  46px;
+  --btn-px-sm: 12px;
+  --btn-px-md: 16px;
+  --btn-px-lg: 22px;
+  --btn-fs-sm: 13px;
+  --btn-fs-md: 14px;
+  --btn-fs-lg: 15px;
+  --btn-fw:    600;
+  --btn-gap:   8px;
+  --btn-disabled-opacity: .42;
+
+  --input-h-sm:      32px;
+  --input-h-md:      40px;
+  --input-h-lg:      48px;
+  --input-px:        12px;
+  --input-fs:        14px;
+  --input-radius:    var(--balsm-radius-md);
+  --input-leading-w: 36px;
+  --input-label-fs:  12px;
+  --input-label-fw:  600;
+  --input-label-fg:  var(--color-ink-700);
+
+  --badge-px:     10px;
+  --badge-py:     3px;
+  --badge-fs:     12px;
+  --badge-fw:     600;
+  --badge-gap:    6px;
+  --badge-dot:    6px;
+  --badge-radius: var(--balsm-radius-pill);
+
+  --select-h-sm:     32px;
+  --select-h-md:     40px;
+  --select-h-lg:     48px;
+  --select-px:       12px;
+  --select-option-h: 36px;
+
+  --toast-min-w:  300px;
+  --toast-max-w:  440px;
+  --toast-px:     16px;
+  --toast-py:     14px;
+  --toast-radius: var(--balsm-radius-lg);
+
+  --modal-radius:   var(--balsm-radius-xl);
+  --modal-padding:  32px;
+  --modal-shadow:   var(--elev-4);
+  --modal-overlay:  rgba(43, 43, 37, .50);
+  --modal-max-w-sm: 480px;
+  --modal-max-w-md: 600px;
+  --modal-max-w-lg: 800px;
+
+  /* ── z-index scale — semantic, never arbitrary ── */
+  --z-dropdown:       100;
+  --z-sticky:         500;
+  --z-modal-backdrop: 7900;
+  --z-modal:          8000;
+  --z-toast:          9000;
+  --z-tooltip:        9500;
 }
 
 /* Dark mode — warm ink-based, not cool slate */
@@ -53,21 +349,64 @@
   --color-accent:           #9F7AEA;
 
   --color-surface:          rgba(61, 61, 52, 0.9);
+  --color-surface-alt:      #26261F;
+  --color-surface-muted:    #232319;
+  --color-surface-inverse:  #F6F6F2;
   --color-bg:               #1C1C16;
   --color-bg-page:          #2B2B25;
 
   --color-border:           rgba(201, 201, 192, 0.15);
   --color-border-light:     rgba(201, 201, 192, 0.08);
+  --color-border-strong:    rgba(201, 201, 192, 0.28);
+  --color-border-focus:     #60A5FA;
 
   --color-text-primary:     #F6F6F2;
   --color-text-secondary:   #E1E1D9;
   --color-text-tertiary:    #ADAEA4;
   --color-text-muted:       #8C8C82;
 
+  /* Reverse lockup — the pine-green wordmark is unreadable on ink
+     (≈1.5:1). Design system §7 specifies an all-white knockout on
+     dark surfaces. The previous #6B6B60 also failed here (≈3.1:1). */
+  --color-wordmark:         #FAFAF7;
+  --color-wordmark-tld:     #ADAEA4;
+
   --color-success:          #4CC36E;
+  --color-success-bg:       rgba(85, 215, 127, 0.14);
   --color-warning:          #FCD34D;
+  --color-warning-bg:       rgba(229, 180, 40, 0.14);
   --color-danger:           #E87068;
+  --color-danger-bg:        rgba(212, 74, 60, 0.16);
   --color-info:             #60A5FA;
+  --color-info-bg:          rgba(18, 131, 255, 0.14);
+
+  --color-controlled:       #9F7AEA;
+  --color-controlled-bg:    rgba(114, 77, 208, 0.18);
+  --color-expiring:         #E8944A;
+  --color-expiring-bg:      rgba(217, 122, 32, 0.16);
+
+  /* On ink, the full-strength petal is the accessible one (7.68:1);
+     the darkened light-mode eyebrow would score 3.03 here. */
+  --color-eyebrow:          #01C4A2;
+
+  /* Warm-ink shadows vanish on a dark ground — go to true black. */
+  --balsm-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --balsm-shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.34), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --balsm-shadow-md: 0 8px 20px rgba(0, 0, 0, 0.40), 0 2px 6px rgba(0, 0, 0, 0.26);
+  --balsm-shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.48), 0 4px 12px rgba(0, 0, 0, 0.32);
+  --balsm-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  --elev-1: rgba(0,0,0,.28) 0px 4px 4px 0px;
+  --elev-2: rgba(0,0,0,.28) 0px 1px 1px -.5px,
+            rgba(0,0,0,.28) 0px 3px 3px -1.5px;
+  --elev-3: rgba(0,0,0,.28) 0px 1px 1px -.5px,
+            rgba(0,0,0,.28) 0px 3px 3px -1.5px,
+            rgba(0,0,0,.28) 0px 6px 6px -3px,
+            rgba(0,0,0,.28) 0px 12px 12px -6px;
+  --elev-4: rgba(0,0,0,.60) 0px 20px 40px;
+
+  --modal-overlay: rgba(0, 0, 0, .62);
+  --input-label-fg: var(--color-text-secondary);
 }
 
 * {
@@ -90,6 +429,137 @@ body {
 
 [dir="rtl"] body {
   font-family: var(--font-arabic);
+}
+
+/* ============================================================
+   Semantic type roles — the design system's API for the --fs-*
+   scale. Deliberately opt-in classes: no bare `p` / `h1` element
+   selectors, which would restyle every existing page.
+   Arabic swaps to the RTL stack and drops negative tracking
+   (Arabic letterforms connect; tightening breaks the join).
+   ============================================================ */
+.h-display,
+.h1, .h2, .h3, .h4, .h5 {
+  font-family: var(--font-display);
+  color: var(--fg1);
+  text-wrap: balance;
+}
+[dir="rtl"] .h-display,
+[dir="rtl"] .h1, [dir="rtl"] .h2, [dir="rtl"] .h3,
+[dir="rtl"] .h4, [dir="rtl"] .h5 {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+}
+
+.h-display {
+  font-size: var(--fs-6xl);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--balsm-tracking-tighter);
+}
+.h1 {
+  font-size: var(--fs-4xl);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--balsm-tracking-tight);
+}
+.h2 {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--balsm-tracking-tight);
+}
+.h3 {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+}
+.h4 {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+}
+.h5 {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: var(--lh-normal);
+}
+
+/* Eyebrow — emerald, all-caps, wide tracking.
+   One named kicker per surface. Not above every section. */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--balsm-tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-eyebrow);
+}
+/* Arabic has no uppercase, and tracking breaks the cursive joins —
+   drop both, and swap to the RTL stack (the explicit font-family
+   above would otherwise beat the inherited one). */
+[dir="rtl"] .eyebrow {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.meta {
+  font-size: var(--fs-xs);
+  color: var(--fg3);
+}
+
+/* Fluid display — scales with viewport, caps at 72px */
+.fluid-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--balsm-tracking-tighter);
+  font-size: clamp(var(--fs-3xl), 4.5vw, var(--fs-6xl));
+  color: var(--fg1);
+  text-wrap: balance;
+}
+[dir="rtl"] .fluid-display {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+}
+
+/* Fluid body — comfortable measure at any width */
+.fluid-body {
+  font-size: clamp(var(--fs-sm), 1.5vw, var(--fs-lg));
+  line-height: var(--lh-relaxed);
+  max-width: 68ch;
+  text-wrap: pretty;
+  color: var(--fg2);
+}
+
+/* Wordmark — Balsm.health, solid color, never a gradient */
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--balsm-tracking-tight);
+  color: var(--color-wordmark);
+}
+.wordmark .tld {
+  font-weight: 500;
+  color: var(--color-wordmark-tld);
+}
+.wordmark-ar {
+  font-family: var(--font-arabic);
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--color-wordmark);
+}
+
+/* RTL mirror helpers — logical, so gutters flip automatically */
+[dir="rtl"] .chevron-end { transform: scaleX(-1); }
+.mis-auto { margin-inline-start: auto; }
+.mie-auto { margin-inline-end: auto; }
+
+/* Touch targets — §6.5 requires ≥44px, 48px on coarse pointers */
+.touch-target { min-height: 44px; min-width: 44px; }
+@media (pointer: coarse) {
+  .touch-target { min-height: 48px; min-width: 48px; }
 }
 
 /* ── Petal-bloom hero background ── */
@@ -469,6 +939,18 @@ body {
 @keyframes balsm-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @keyframes balsm-map-pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(2.4); opacity: 0; } }
 
+/* AnimatedLogo — design-system reveal + idle, values taken from the DS stylesheet */
+@keyframes balsm-logo-bloom {
+  0%   { opacity: 0; transform: rotate(-38deg) scale(.26); }
+  50%  { opacity: 1; }
+  76%  { transform: rotate(2.6deg) scale(1.05); }  /* soft overshoot */
+  100% { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+@keyframes balsm-logo-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.028); }
+}
+
 /* Cloud nav responsive: hide desktop links/CTAs below 1040px, show burger */
 .cloudnav-burger { display: none; }
 @media (max-width: 1040px) {
@@ -480,9 +962,10 @@ body {
   .cloudnav-panel { display: none !important; }
 }
 
-/* Card hover-lift for the design pages (replaces the design's data-lift) */
-.balsm-lift { transition: transform .2s cubic-bezier(0.16,1,0.3,1), box-shadow .2s cubic-bezier(0.16,1,0.3,1); }
-.balsm-lift:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(43,43,37,.08); }
+/* Card hover-lift for the design pages (replaces the design's data-lift).
+   Duration and shadow match balsm-motion.js attachLift(). */
+.balsm-lift { transition: transform .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s cubic-bezier(0.16,1,0.3,1); }
+.balsm-lift:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(43,43,37,.10); }
 
 /* Footer social chips */
 .balsm-social { background: rgba(255,255,255,.07); color: rgba(255,255,255,.66); transition: background .15s ease, color .15s ease; }
@@ -500,18 +983,51 @@ body {
   --color-accent:         #724DD0;
   --color-secondary:      #02BBB5;
   --color-surface:        #FFFFFF;
+  --color-surface-alt:    #F4F3EC;
+  --color-surface-muted:  #F6F6F2;
+  --color-surface-inverse:#2B2B25;
   --color-bg:             #FAFAF7;
   --color-bg-page:        #F4F3EC;
   --color-border:         #E1E1D9;
   --color-border-light:   #EEEEE8;
+  --color-border-strong:  #C9C9C0;
+  --color-border-focus:   #1283FF;
   --color-text-primary:   #2B2B25;
   --color-text-secondary: #56564C;
   --color-text-tertiary:  #6B6B60;
   --color-text-muted:     #ADAEA4;
-  --color-wordmark:       #6B6B60;
+  --color-wordmark:       #254B45;
+  --color-wordmark-tld:   #98A2B3;
   --color-success:        #55D77F;
+  --color-success-bg:     #E8F9EE;
   --color-warning:        #E5B428;
+  --color-warning-bg:     #FDF5DC;
   --color-danger:         #D44A3C;
+  --color-danger-bg:      #FBEBE7;
   --color-info:           #1283FF;
+  --color-info-bg:        #E4F0FF;
+  --color-controlled:     #724DD0;
+  --color-controlled-bg:  #ECE6FA;
+  --color-expiring:       #D97A20;
+  --color-expiring-bg:    #FBEEDC;
+  --color-eyebrow:        #017560;
+
+  /* Re-light the elevation and shadow ramps too — .dark darkened them */
+  --balsm-shadow-xs: 0 1px 2px rgba(43, 43, 37, 0.06);
+  --balsm-shadow-sm: 0 2px 6px rgba(43, 43, 37, 0.06), 0 1px 2px rgba(43, 43, 37, 0.04);
+  --balsm-shadow-md: 0 8px 20px rgba(43, 43, 37, 0.08), 0 2px 6px rgba(43, 43, 37, 0.04);
+  --balsm-shadow-lg: 0 18px 40px rgba(43, 43, 37, 0.10), 0 4px 12px rgba(43, 43, 37, 0.06);
+  --balsm-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --elev-1: rgba(43,43,37,.04) 0px 4px 4px 0px;
+  --elev-2: rgba(43,43,37,.04) 0px 1px 1px -.5px,
+            rgba(43,43,37,.04) 0px 3px 3px -1.5px;
+  --elev-3: rgba(43,43,37,.04) 0px 1px 1px -.5px,
+            rgba(43,43,37,.04) 0px 3px 3px -1.5px,
+            rgba(43,43,37,.04) 0px 6px 6px -3px,
+            rgba(43,43,37,.04) 0px 12px 12px -6px;
+  --elev-4: rgba(43,43,37,.20) 0px 20px 40px;
+  --modal-overlay: rgba(43, 43, 37, .50);
+  --input-label-fg: var(--color-ink-700);
+
   background: #FAFAF7;
 }

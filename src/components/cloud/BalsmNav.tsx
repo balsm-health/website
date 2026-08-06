@@ -76,12 +76,11 @@ export default function BalsmNav({ active }: { active: NavKey }) {
           gap: '12px 24px',
         }}
       >
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 11 }}>
+        {/* Single horizontal lockup, per BalsmNav.dc.html — the wordmark's pine
+            green and slate .health come from the asset, not from local colours. */}
+        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/balsm-logo.svg" alt="Balsm" width={34} height={34} style={{ display: 'block' }} />
-          <span lang="ar" style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 23, color: C.ink, letterSpacing: '-.01em' }}>
-            بَلسَم
-          </span>
+          <img src="/balsm-logo-horizontal.svg" alt="بلسم — Balsm.health" style={{ height: 48, width: 'auto', display: 'block' }} />
         </Link>
 
         <div className="cloudnav-links" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>

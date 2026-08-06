@@ -1,19 +1,19 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { C, FONT, EASE } from './theme';
+import { C, FONT, MOTION } from './theme';
 import { useInView } from './useReveal';
 import { ArrowRight, TrendingUp } from './CloudIcons';
 
 export default function CloudHero() {
   const t = useTranslations('cloud.hero');
   const locale = useLocale();
-  const { ref, inView } = useInView(0.2);
+  const { ref, inView } = useInView(MOTION.threshold, MOTION.rootMargin);
 
   const reveal: React.CSSProperties = {
-    transition: `opacity .7s ${EASE}, transform .7s ${EASE}`,
+    transition: MOTION.revealTransition,
     opacity: inView ? 1 : 0,
-    transform: inView ? 'translateY(0)' : 'translateY(18px)',
+    transform: inView ? 'translateY(0)' : `translateY(${MOTION.revealY}px)`,
   };
 
   return (
@@ -32,7 +32,9 @@ export default function CloudHero() {
         aria-hidden
         style={{
           position: 'absolute',
-          insetInlineStart: -100,
+          // Physical `left`, not `insetInlineStart` — the design is an RTL page and
+          // still anchors the bloom top-left, so it must not flip with direction.
+          left: -100,
           top: -80,
           width: 320,
           opacity: 0.1,
@@ -43,19 +45,7 @@ export default function CloudHero() {
       <div style={{ position: 'relative', maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' }}>
         <div ref={ref} style={{ maxWidth: 780, ...reveal }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <div
-              dir="ltr"
-              style={{
-                fontFamily: FONT.display,
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: '.16em',
-                textTransform: 'uppercase',
-                color: C.blueDark,
-              }}
-            >
-              {t('badge')}
-            </div>
+            <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: C.blueDark }}>{t('badge')}</div>
             <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: '#fff', border: '1px solid #DDD2F4', color: C.violetDark }}>
               {t('roadmap')}
             </span>
