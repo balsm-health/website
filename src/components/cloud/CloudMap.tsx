@@ -41,7 +41,7 @@ export default function CloudMap() {
     fontWeight: 600,
   });
 
-  const phase3Tags = t.raw('phase3.tags') as string[];
+  const phase2Tags = t.raw('phase2.tags') as string[];
   const longTermTags = t.raw('longterm.tags') as string[];
 
   return (
@@ -160,11 +160,11 @@ export default function CloudMap() {
             <div style={cardBase}>
               <div style={dotRow}>
                 <span style={{ width: 12, height: 12, borderRadius: '50%', background: C.violet, flex: 'none' }} />
-                <h3 style={cardTitle}>{t('phase3.title')}</h3>
+                <h3 style={cardTitle}>{t('phase2.title')}</h3>
               </div>
-              <p style={cardDesc}>{t('phase3.desc')}</p>
+              <p style={cardDesc}>{t('phase2.desc')}</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
-                {phase3Tags.map((tag) => (
+                {phase2Tags.map((tag) => (
                   <span key={tag} style={chip(C.violetBg, C.violetDark)}>
                     {tag}
                   </span>

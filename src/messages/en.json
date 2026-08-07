@@ -67,8 +67,8 @@
         "desc": "Balsm starts in Egypt — across 27 governorates, all at once.",
         "tag": "Egypt"
       },
-      "phase3": {
-        "title": "Phase 3 vision — the Cloud",
+      "phase2": {
+        "title": "Phase 2 vision — the Cloud",
         "desc": "As Balsm Cloud expands, the Gulf states are the next destination.",
         "tags": [
           "Saudi Arabia",
@@ -120,7 +120,7 @@
         "somalia": "Somalia",
         "djibouti": "Djibouti"
       },
-      "mapLabel": "Schematic map of the Arab world: Egypt as the launch focus, the Gulf states in the Phase 3 vision, and the remaining Arab countries in the long-term vision."
+      "mapLabel": "Schematic map of the Arab world: Egypt as the launch focus, the Gulf states in the Phase 2 vision, and the remaining Arab countries in the long-term vision."
     },
     "invest": {
       "title": "Not a product vision. A civilizational one — with a clear business model.",
@@ -136,7 +136,7 @@
         },
         {
           "value": "GCC",
-          "label": "Phase 3 expansion — from the ocean to the Gulf"
+          "label": "Phase 2 expansion — from the ocean to the Gulf"
         }
       ],
       "cards": [
