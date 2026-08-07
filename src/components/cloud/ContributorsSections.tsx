@@ -10,10 +10,34 @@ import {
   Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft,
   CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug,
 } from './CloudIcons';
+import { GITHUB_ISSUES_URL, GITHUB_ORG_URL, type GithubIssue } from '@/lib/github';
 
 type Card = { title: string; desc: string };
 type Stat = { value: string; label: string };
-type Issue = { text: string; tag: string; tag2: string };
+
+/**
+ * GitHub label colours are a solid hex meant for a light chip. On the dark
+ * panel we use the colour for text and a translucent wash of it for the
+ * background, which keeps each label recognisably itself while staying legible.
+ */
+function labelChip(hex: string): React.CSSProperties {
+  const c = /^[0-9a-f]{6}$/i.test(hex) ? hex : 'ADACA0';
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(c.slice(i, i + 2), 16));
+  // Lift very dark label colours toward the panel's foreground so they don't
+  // disappear against it.
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  const text = lum < 0.42 ? `rgb(${[r, g, b].map((v) => Math.round(v + (255 - v) * 0.55)).join(',')})` : `#${c}`;
+  return {
+    fontFamily: FONT.mono,
+    fontSize: 12,
+    color: text,
+    background: `rgba(${r},${g},${b},.16)`,
+    border: `1px solid rgba(${r},${g},${b},.28)`,
+    padding: '3px 9px',
+    borderRadius: 999,
+    whiteSpace: 'nowrap',
+  };
+}
 
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: 'start' });
@@ -35,11 +59,10 @@ const WHY_ICONS = [
   { Icon: MapPin, bg: C.blueBg, color: C.blue },
 ];
 
-export default function ContributorsSections() {
+export default function ContributorsSections({ issues = [] }: { issues?: GithubIssue[] }) {
   const t = useTranslations('contributors');
   const stats = t.raw('stats') as Stat[];
   const whyCards = t.raw('why.cards') as Card[];
-  const issues = t.raw('dev.issues') as Issue[];
   const roles = t.raw('roles.cards') as Card[];
   const [copied, setCopied] = useState(false);
 
@@ -162,16 +185,33 @@ export default function ContributorsSections() {
               <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 18, color: '#fff' }}>{t('dev.issuesTitle')}</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {issues.map((issue, i) => (
-                <a key={i} href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexWrap: 'wrap', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.09)', borderRadius: 14, padding: '15px 18px' }}>
-                  <span style={{ fontSize: 15.5, color: '#fff' }}>{issue.text}</span>
-                  <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <span dir="ltr" style={{ fontFamily: FONT.mono, fontSize: 12, color: issue.tag === 'help wanted' ? C.aqua : C.mint, background: issue.tag === 'help wanted' ? 'rgba(2,187,181,.12)' : 'rgba(85,215,127,.12)', padding: '3px 9px', borderRadius: 999 }}>{issue.tag}</span>
-                    <span dir="ltr" style={{ fontFamily: FONT.mono, fontSize: 12, color: C.muted }}>{issue.tag2}</span>
-                  </span>
-                </a>
-              ))}
+              {issues.length === 0 ? (
+                // Every issue is either closed or in a private repo — say so
+                // plainly rather than rendering an empty box.
+                <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.09)', borderRadius: 14, padding: '20px 18px', fontSize: 15, color: 'rgba(255,255,255,.72)', lineHeight: 1.7 }}>
+                  {t('dev.issuesEmpty')}
+                </div>
+              ) : (
+                issues.map((issue) => (
+                  <a key={issue.id} href={issue.url} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexWrap: 'wrap', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.09)', borderRadius: 14, padding: '15px 18px' }}>
+                    {/* Issue titles are written in English in the repos, so this
+                        stays LTR even on the Arabic page. */}
+                    <span dir="ltr" style={{ fontSize: 15.5, color: '#fff', textAlign: 'left', flex: '1 1 260px', minWidth: 0 }}>{issue.title}</span>
+                    <span style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+                      {issue.labels.slice(0, 2).map((label) => (
+                        <span key={label.name} dir="ltr" style={labelChip(label.color)}>{label.name}</span>
+                      ))}
+                      <span dir="ltr" style={{ fontFamily: FONT.mono, fontSize: 12, color: C.muted }}>{issue.repo}#{issue.number}</span>
+                    </span>
+                  </a>
+                ))
+              )}
             </div>
+
+            <a href={issues.length === 0 ? GITHUB_ORG_URL : GITHUB_ISSUES_URL} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 18, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, color: C.mint }}>
+              <Github style={{ width: 16, height: 16 }} />
+              {issues.length === 0 ? t('dev.issuesBrowse') : t('dev.issuesAll')}
+            </a>
           </Reveal>
         </div>
       </section>

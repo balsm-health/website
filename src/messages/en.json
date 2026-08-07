@@ -632,24 +632,10 @@
     "dev": {
       "eyebrow": "For developers specifically",
       "title": "Ready to write code? Start here.",
-      "issuesTitle": "Good first issues",
-      "issues": [
-        {
-          "text": "Support Hijri date formatting in dispensing receipts",
-          "tag": "good first issue",
-          "tag2": "i18n"
-        },
-        {
-          "text": "Improve the waitlist sync error message",
-          "tag": "good first issue",
-          "tag2": "sync"
-        },
-        {
-          "text": "Add tests for pediatric dosage calculation",
-          "tag": "help wanted",
-          "tag2": "tests"
-        }
-      ]
+      "issuesTitle": "Open issues",
+      "issuesEmpty": "No open issues in our public repositories right now. New ones are opened regularly — browse the org to see what we are building.",
+      "issuesAll": "View all open issues on GitHub",
+      "issuesBrowse": "Browse the org on GitHub"
     }
   },
   "donateMeta": {

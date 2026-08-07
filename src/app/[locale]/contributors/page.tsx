@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import SiteShell from '@/components/cloud/SiteShell';
 import ContributorsSections from '@/components/cloud/ContributorsSections';
 import { alternates, openGraph, twitter } from '@/lib/seo';
+import { fetchOrgIssues } from '@/lib/github';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -19,10 +20,15 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default function ContributorsPage() {
+export default async function ContributorsPage() {
+  // Fetched here rather than in the client component so the list is server
+  // rendered (crawlers and no-JS visitors see it) and the hourly cache is
+  // shared across every visitor instead of one request per browser.
+  const issues = await fetchOrgIssues();
+
   return (
     <SiteShell active="contributors">
-      <ContributorsSections />
+      <ContributorsSections issues={issues} />
     </SiteShell>
   );
 }
