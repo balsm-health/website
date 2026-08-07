@@ -12,12 +12,12 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: 'portrait',
     categories: ['health', 'medical', 'productivity'],
     icons: [
-      {
-        src: '/balsm-logo.svg',
-        sizes: 'any',
-        type: 'image/svg+xml',
-        purpose: 'maskable',
-      },
+      { src: '/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+      // The mark sits inside the safe area at these sizes, so the same raster
+      // survives Android's maskable crop.
+      { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+      { src: '/balsm-logo.svg', sizes: 'any', type: 'image/svg+xml' },
     ],
     lang: 'en',
     dir: 'ltr',
