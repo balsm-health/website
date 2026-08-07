@@ -11,6 +11,8 @@
  * the brand SVGs by scripts/generate-brand-assets.mjs.
  */
 
+import { defaultLocale as DEFAULT_LOCALE } from '@/i18n/request';
+
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://balsm.health';
 
 export const OG_IMAGE = {
@@ -22,12 +24,12 @@ export const OG_IMAGE = {
 } as const;
 
 /**
- * Canonical URL for a page. `localePrefix: 'as-needed'` means the default
- * locale is served unprefixed and `/en/...` redirects, so pointing crawlers at
- * the prefixed form would hand them a 307 instead of the page.
+ * Canonical URL for a page. `localePrefix: 'as-needed'` serves the default
+ * locale unprefixed and redirects the prefixed form, so pointing crawlers at
+ * `/ar/...` would hand them a 307 instead of the page.
  */
 export function canonicalUrl(locale: string, path = '') {
-  return locale === 'en' ? `${SITE_URL}${path}` : `${SITE_URL}/${locale}${path}`;
+  return locale === DEFAULT_LOCALE ? `${SITE_URL}${path}` : `${SITE_URL}/${locale}${path}`;
 }
 
 type PageSeo = {
@@ -64,9 +66,11 @@ export function twitter({ title, description }: Omit<PageSeo, 'locale' | 'path'>
 export function alternates(locale: string, path = '') {
   return {
     canonical: canonicalUrl(locale, path),
+    // Built through canonicalUrl so hreflang can't drift from which locale is
+    // the unprefixed one.
     languages: {
-      en: `${SITE_URL}${path}`,
-      ar: `${SITE_URL}/ar${path}`,
+      ar: canonicalUrl('ar', path),
+      en: canonicalUrl('en', path),
     },
   };
 }

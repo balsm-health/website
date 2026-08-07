@@ -3,7 +3,10 @@ import { hasLocale } from 'next-intl';
 
 export const locales = ['en', 'ar'] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = 'en';
+// Arabic is the default: it is served unprefixed at `/`, and English lives
+// under `/en`. `localePrefix: 'as-needed'` (see routing.ts) means `/ar/...`
+// redirects to the unprefixed form.
+export const defaultLocale: Locale = 'ar';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;

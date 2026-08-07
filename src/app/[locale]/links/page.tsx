@@ -158,15 +158,17 @@ function getInitialTheme(): Theme {
 
 export default function LinksPage() {
   const [theme, setTheme] = useState<Theme>('light');
-  const [locale, setLocale] = useState<Locale>('en');
+  // Arabic is the default locale and is served unprefixed, so only an explicit
+  // /en prefix switches this page to English.
+  const [locale, setLocale] = useState<Locale>('ar');
 
   useEffect(() => {
     setTheme(getInitialTheme());
 
     if (typeof window !== 'undefined') {
       const pathLocale = window.location.pathname.split('/')[1];
-      if (pathLocale === 'ar') {
-        setLocale('ar');
+      if (pathLocale === 'en') {
+        setLocale('en');
       }
     }
   }, []);

@@ -325,7 +325,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.webmanifest',
   openGraph: openGraph({
-    locale: 'en',
+    locale: 'ar',
     title: 'Balsm - Open Source Healthcare Platform',
     description: 'Join Balsm - the open source healthcare platform built for providers, patients, and developers. Transparent, community-driven, and accessible to all.',
   }),
@@ -350,7 +350,7 @@ export const metadata: Metadata = {
     // yandex: 'your-yandex-verification-code',
     // bing: 'your-bing-verification-code',
   },
-  alternates: alternates('en'),
+  alternates: alternates('ar'),
   category: 'Healthcare Technology',
 };
 
