@@ -4,7 +4,11 @@ import { useTranslations } from 'next-intl';
 import { C, FONT, MOTION } from './theme';
 import { useInView } from './useReveal';
 import { Info } from './CloudIcons';
-import { MAP_VIEWBOX, MAP_SHAPES, MAP_DOTS, MAP_EGYPT, MAP_RED_SEA, MAP_GULF_LABEL } from './mapData';
+import { MAP_ASSET, MAP_VIEWBOX, MAP_DOTS, MAP_EGYPT, MAP_RED_SEA, MAP_GULF_LABEL } from './mapData';
+
+// The <image> is placed to fill the viewBox exactly, derived from it rather
+// than repeated as literals so the asset and the overlay can't drift apart.
+const [mapX, mapY, mapW, mapH] = MAP_VIEWBOX.split(/\s+/).map(Number);
 
 export default function CloudMap() {
   const t = useTranslations('cloud.map');
@@ -62,17 +66,9 @@ export default function CloudMap() {
               aria-label={t('mapLabel')}
               style={{ display: 'block', overflow: 'visible' }}
             >
-              <defs>
-                <filter id="mapSoft" x="-20%" y="-20%" width="140%" height="140%">
-                  <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#2B2B25" floodOpacity="0.1" />
-                </filter>
-              </defs>
-
-              <g filter="url(#mapSoft)">
-                {MAP_SHAPES.map((s) => (
-                  <path key={s.key} d={s.d} fill="#EFEFE7" stroke="#E2E1D5" strokeWidth={1} />
-                ))}
-              </g>
+              {/* The landmass, fill/stroke and drop shadow all live inside the
+                  asset, so the whole map is one <image> here. */}
+              <image href={MAP_ASSET} x={mapX} y={mapY} width={mapW} height={mapH} aria-hidden="true" />
 
               <text
                 x={MAP_RED_SEA.x}
