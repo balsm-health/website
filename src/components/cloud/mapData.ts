@@ -21,27 +21,29 @@ export const MAP_VIEWBOX = "0 0 860 390";
 export type CountryKey = string;
 
 export const MAP_DOTS: { key: CountryKey; cx: number; cy: number; tier: 'gcc' | 'longterm' }[] = [
-  { key: "kuwait", cx: 643.3, cy: 102.8, tier: 'gcc' },
-  { key: "oman", cx: 712.6, cy: 180.5, tier: 'gcc' },
-  { key: "qatar", cx: 672.5, cy: 139.3, tier: 'gcc' },
-  { key: "saudi", cx: 617.7, cy: 148.6, tier: 'gcc' },
-  { key: "uae", cx: 697.1, cy: 152.2, tier: 'gcc' },
-  { key: "algeria", cx: 277.3, cy: 110.8, tier: 'longterm' },
-  { key: "djibouti", cx: 601.8, cy: 255.9, tier: 'longterm' },
-  { key: "iraq", cx: 611.9, cy: 66.6, tier: 'longterm' },
-  { key: "jordan", cx: 555.4, cy: 84.4, tier: 'longterm' },
-  { key: "lebanon", cx: 547.9, cy: 58.8, tier: 'longterm' },
-  { key: "libya", cx: 402.1, cy: 123, tier: 'longterm' },
-  { key: "mauritania", cx: 172.3, cy: 183.6, tier: 'longterm' },
-  { key: "morocco", cx: 188.7, cy: 95.5, tier: 'longterm' },
-  { key: "palestine", cx: 540.9, cy: 82.1, tier: 'longterm' },
-  { key: "somalia", cx: 628.2, cy: 313.4, tier: 'longterm' },
-  { key: "sudan", cx: 499.2, cy: 219.8, tier: 'longterm' },
-  { key: "syria", cx: 569.8, cy: 47.7, tier: 'longterm' },
-  { key: "tunisia", cx: 333.7, cy: 55.7, tier: 'longterm' },
-  { key: "yemen", cx: 642.9, cy: 221, tier: 'longterm' },
+  { key: "bahrain", cx: 667.3, cy: 133.2, tier: 'gcc' },
+  { key: "kuwait", cx: 641.3, cy: 101.3, tier: 'gcc' },
+  { key: "oman", cx: 723, cy: 167.5, tier: 'gcc' },
+  { key: "qatar", cx: 672.7, cy: 141.1, tier: 'gcc' },
+  { key: "saudi", cx: 619.6, cy: 152, tier: 'gcc' },
+  { key: "uae", cx: 699.5, cy: 155.7, tier: 'gcc' },
+  { key: "algeria", cx: 279.6, cy: 116.5, tier: 'longterm' },
+  { key: "djibouti", cx: 600, cy: 257.6, tier: 'longterm' },
+  { key: "iraq", cx: 606.1, cy: 65.9, tier: 'longterm' },
+  { key: "jordan", cx: 552.1, cy: 89.5, tier: 'longterm' },
+  { key: "lebanon", cx: 549.5, cy: 55.8, tier: 'longterm' },
+  { key: "libya", cx: 374.5, cy: 120.1, tier: 'longterm' },
+  { key: "mauritania", cx: 175.1, cy: 192.6, tier: 'longterm' },
+  { key: "morocco", cx: 199.2, cy: 80.1, tier: 'longterm' },
+  { key: "palestine", cx: 539.7, cy: 84.9, tier: 'longterm' },
+  { key: "somalia", cx: 652.6, cy: 274.6, tier: 'longterm' },
+  { key: "sudan", cx: 500, cy: 217.5, tier: 'longterm' },
+  { key: "syria", cx: 567.4, cy: 46.7, tier: 'longterm' },
+  { key: "tunisia", cx: 334.4, cy: 45.3, tier: 'longterm' },
+  { key: "yemen", cx: 622.5, cy: 226.2, tier: 'longterm' },
 ];
 
-export const MAP_EGYPT = { cx: 498.8, cy: 127.7 };
+export const MAP_EGYPT = { cx: 495.7, cy: 132.4 };
 export const MAP_RED_SEA = { x: 561.2, y: 186.2 };
-export const MAP_GULF_LABEL = { x: 691.3, y: 128 };
+// Nudged clear of the Bahrain dot (667.3,133.2), which the 110m map lacked.
+export const MAP_GULF_LABEL = { x: 700, y: 116 };
