@@ -49,7 +49,12 @@ export default function ProvidersSections() {
         <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', ...container }}>
           <Reveal style={{ maxWidth: 760 }}>
-            <div style={eyebrow('#019A7F')}>{t('hero.eyebrow')}</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              <div style={eyebrow('#019A7F')}>{t('hero.eyebrow')}</div>
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: C.white, border: '1px solid #CDEFEC', color: '#019A7F' }}>
+                {t('hero.roadmap')}
+              </span>
+            </div>
             <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(34px,5.6vw,64px)', lineHeight: 1.12, color: C.ink, margin: '14px 0 18px' }}>
               {t('hero.title1')}<br />{t('hero.title2')}
             </h1>
@@ -145,7 +150,7 @@ export default function ProvidersSections() {
             </Reveal>
             {/* Cloud */}
             <Reveal delay={80} className="balsm-lift" style={{ background: 'linear-gradient(160deg,#E4F0FF,#fff)', border: `1.5px solid ${C.blue}`, borderRadius: 22, padding: 34, position: 'relative', boxShadow: '0 14px 36px rgba(18,131,255,.12)' }}>
-              <span dir="ltr" style={{ position: 'absolute', top: 20, insetInlineEnd: 24, fontFamily: FONT.mono, fontSize: 11, letterSpacing: '.08em', color: C.blueDark, background: '#fff', padding: '4px 10px', borderRadius: 999 }}>{t('pricing.cloud.badge')}</span>
+              <span style={{ position: 'absolute', top: 20, insetInlineEnd: 24, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12, color: C.blueDark, background: '#fff', padding: '4px 10px', borderRadius: 999 }}>{t('pricing.cloud.badge')}</span>
               <div style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 22, marginBottom: 6, color: C.ink }}>{t('pricing.cloud.title')}</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 18 }}>
                 <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 26, color: C.blue }}>{t('pricing.cloud.price')}</span>

@@ -10,9 +10,9 @@ import CountUp from './CountUp';
 import { captureError } from '@/lib/observability';
 import {
   ArrowRight, Smartphone, ArrowUpLeft, FileX, Lock, CloudOff, Pill, HeartPulse, Network,
-  Apple, Play, User, Home as HomeIcon, Bell, PlusCircle, Plus, Flame, Activity, Droplet,
+  Apple, Play, AppGallery, User, Home as HomeIcon, Bell, PlusCircle, Plus, Flame, Activity, Droplet,
   GitBranch, ShieldCheck, Users, Languages, WifiOff, Gem, UserRound, Building2, CodeXml,
-  TrendingUp, HeartHandshake, Check, AlertCircle,
+  HeartHandshake, Check, AlertCircle, Bug, Unplug, LifeBuoy,
 } from './CloudIcons';
 
 type Card = { title: string; desc: string };
@@ -28,23 +28,33 @@ const h2 = (color = C.ink): React.CSSProperties => ({
 });
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 
+// Six failure modes, icons per Home.dc.html (file-x, lock, cloud-off, bug, unplug, life-buoy).
 const PROBLEM_ICONS = [
   { Icon: FileX, bg: '#FBEBE7', color: C.danger },
   { Icon: Lock, bg: C.amberBg, color: C.amber },
   { Icon: CloudOff, bg: C.violetBg, color: C.violet },
+  { Icon: Bug, bg: '#FBEBE7', color: C.danger },
+  { Icon: Unplug, bg: C.amberBg, color: C.amber },
+  { Icon: LifeBuoy, bg: C.violetBg, color: C.violet },
 ];
 const SLICE_STYLES = [
   { Icon: HeartPulse, grad: 'linear-gradient(160deg,#E4F0FF,#fff)', border: '#CFE3FF', chipBorder: '#CFE3FF', chipText: '#0F6BCC', mono: '#0F6BCC', dot: C.blue, badgeFilled: true },
   { Icon: Building2, grad: 'linear-gradient(160deg,#E2F8F6,#fff)', border: '#CDEFEC', chipBorder: '#CDEFEC', chipText: '#019A7F', mono: '#029E99', dot: C.aqua, badgeFilled: false },
   { Icon: Network, grad: 'linear-gradient(160deg,#ECE6FA,#fff)', border: '#DDD2F4', chipBorder: '#DDD2F4', chipText: '#5C3AB0', mono: '#5C3AB0', dot: C.violet, badgeFilled: false },
 ];
+const STORES = [
+  { Icon: Apple, key: 'appStore', size: 24 },
+  { Icon: Play, key: 'play', size: 22 },
+  { Icon: AppGallery, key: 'appGallery', size: 22 },
+] as const;
 const VALUE_ICONS = [GitBranch, ShieldCheck, Users, Languages, WifiOff, Gem];
 const VALUE_COLORS = [C.mint, C.aqua, C.blue, C.violet, C.mint, C.aqua];
+// Four paths — the design dropped the investor card from Home (it lives in the
+// Cloud page's investor section instead).
 const PATH_STYLES = [
   { Icon: UserRound, bg: C.blueBg, color: C.blue, href: '/#app' },
   { Icon: Building2, bg: C.aquaBg, color: C.aqua, href: '/providers' },
   { Icon: CodeXml, bg: C.violetBg, color: C.violet, href: '/contributors' },
-  { Icon: TrendingUp, bg: C.greenBg, color: C.green, href: '/cloud' },
   { Icon: HeartHandshake, bg: C.amberBg, color: C.amber, href: '/sponsor' },
 ];
 
@@ -211,21 +221,22 @@ export default function HomeSections() {
                 </div>
               ))}
             </div>
+            {/* Three store badges, per the design — none of them link out yet,
+                so they all point at the waitlist. */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-              <a href="#join" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, padding: '12px 20px', borderRadius: 14, background: C.ink, color: '#fff' }}>
-                <Apple style={{ width: 24, height: 24 }} />
-                <span dir="ltr" style={{ textAlign: 'left', lineHeight: 1.1 }}>
-                  <span style={{ display: 'block', fontSize: 10, opacity: 0.7, fontFamily: FONT.body }}>{t('app.appStoreSmall')}</span>
-                  <span style={{ display: 'block', fontSize: 17, fontWeight: 600, fontFamily: FONT.display }}>{t('app.appStore')}</span>
-                </span>
-              </a>
-              <a href="#join" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, padding: '12px 20px', borderRadius: 14, background: C.ink, color: '#fff' }}>
-                <Play style={{ width: 22, height: 22 }} />
-                <span dir="ltr" style={{ textAlign: 'left', lineHeight: 1.1 }}>
-                  <span style={{ display: 'block', fontSize: 10, opacity: 0.7, fontFamily: FONT.body }}>{t('app.playSmall')}</span>
-                  <span style={{ display: 'block', fontSize: 17, fontWeight: 600, fontFamily: FONT.display }}>{t('app.play')}</span>
-                </span>
-              </a>
+              {STORES.map(({ Icon, key, size }) => (
+                <a
+                  key={key}
+                  href="#join"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 11, padding: '12px 20px', borderRadius: 14, background: C.ink, color: '#fff' }}
+                >
+                  <Icon style={{ width: size, height: size }} />
+                  <span style={{ textAlign: 'start', lineHeight: 1.1 }}>
+                    <span style={{ display: 'block', fontSize: 10, opacity: 0.7, fontFamily: FONT.arabic }}>{t('app.storeSoon')}</span>
+                    <span dir="ltr" style={{ display: 'block', fontSize: 17, fontWeight: 600, fontFamily: FONT.display, textAlign: 'start' }}>{t(`app.${key}`)}</span>
+                  </span>
+                </a>
+              ))}
             </div>
           </Reveal>
 

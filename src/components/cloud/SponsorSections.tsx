@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { C, FONT } from './theme';
 import Reveal from './Reveal';
-import { CodeXml, Languages, WifiOff, GitPullRequest, Building2, Megaphone, ArrowUpLeft, Mail } from './CloudIcons';
+import { CodeXml, Languages, WifiOff, GitPullRequest, Building2, Megaphone, ArrowUpLeft, Mail, HeartPulse } from './CloudIcons';
 
 type Card = { title: string; desc: string };
 type OtherCard = { title: string; desc: string; cta: string };
@@ -14,7 +14,7 @@ const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', paddi
 const eyebrow = (color: string, center = false): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: center ? 'center' : 'start' });
 
 // logo image per sponsor (index-aligned with i18n sponsor.tech.sponsors); null → wordmark text
-const LOGOS: (string | null)[] = ['/sponsor-mosalam.svg', '/sponsor-aws.svg', '/sponsor-sentry.svg', '/sponsor-kiro.svg', null];
+const LOGOS: (string | null)[] = ['/sponsor-mosalam.svg', '/sponsor-aws.svg', '/sponsor-sentry.svg', '/sponsor-kiro.svg', '/sponsor-github.svg'];
 const WHERE_ICONS = [
   { Icon: CodeXml, bg: C.violetBg, color: C.violet },
   { Icon: Languages, bg: C.aquaBg, color: C.aqua },
@@ -37,7 +37,7 @@ export default function SponsorSections() {
       {/* HERO */}
       <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(44px,7vw,84px) 0 clamp(36px,5vw,60px)', background: 'linear-gradient(180deg,#FDF5DC 0%, #FAFAF7 100%)' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
+        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', left: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 980, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)', textAlign: 'center' }}>
           <Reveal>
             <div style={eyebrow('#D9A020', true)}>{t('hero.eyebrow')}</div>
@@ -45,6 +45,11 @@ export default function SponsorSections() {
               {t('hero.title1')}<br />{t('hero.title2')}
             </h1>
             <p style={{ fontSize: 'clamp(17px,1.9vw,21px)', lineHeight: 1.75, color: C.ink2, margin: '0 auto', maxWidth: 600 }}>{t('hero.subtitle')}</p>
+            {/* "your support may one day reach someone you love" */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 26, padding: '14px 20px', background: C.amberBg, borderRadius: 14, maxWidth: 'fit-content', marginInline: 'auto' }}>
+              <HeartPulse style={{ width: 22, height: 22, color: '#B8791A', flex: 'none' }} />
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: '#8A5A0F' }}>{t('hero.callout')}</span>
+            </div>
           </Reveal>
         </div>
       </section>

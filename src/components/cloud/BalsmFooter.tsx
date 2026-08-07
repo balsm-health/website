@@ -72,8 +72,8 @@ export default function BalsmFooter() {
               <span style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 24 }}>بَلسَم</span>
             </div>
             <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(255,255,255,.66)', margin: '0 0 16px' }}>{t('blurb')}</p>
-            <div dir="ltr" style={{ fontFamily: FONT.display, fontWeight: 700, fontSize: 12, letterSpacing: '.14em', color: 'rgba(255,255,255,.5)', textAlign: 'start', marginBottom: 22 }}>
-              OPEN · ARAB · TRUSTED
+            <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: 'rgba(255,255,255,.5)', marginBottom: 22 }}>
+              {t('motto')}
             </div>
             <div style={colTitle}>{t('follow')}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>

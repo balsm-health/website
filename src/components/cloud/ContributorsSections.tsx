@@ -5,16 +5,30 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { C, FONT } from './theme';
 import Reveal from './Reveal';
-import { Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy } from './CloudIcons';
+import AnimatedLogo from './AnimatedLogo';
+import {
+  Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft,
+  CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug,
+} from './CloudIcons';
 
 type Card = { title: string; desc: string };
 type Stat = { value: string; label: string };
-type Step = { num: string; title: string; desc: string };
 type Issue = { text: string; tag: string; tag2: string };
 
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: 'start' });
 
+// Eight roles, icons per Contributors.dc.html
+const ROLE_ICONS = [
+  { Icon: CodeXml, bg: C.blueBg, color: C.blue },
+  { Icon: BrainCircuit, bg: C.aquaBg, color: C.aqua },
+  { Icon: PenTool, bg: C.violetBg, color: C.violet },
+  { Icon: Megaphone, bg: C.aquaBg, color: C.aqua },
+  { Icon: Scale, bg: C.amberBg, color: C.amber },
+  { Icon: Stethoscope, bg: C.greenBg, color: C.green },
+  { Icon: Kanban, bg: C.blueBg, color: C.blueDark },
+  { Icon: Bug, bg: C.violetBg, color: C.violetDark },
+];
 const WHY_ICONS = [
   { Icon: GitBranch, bg: C.violetBg, color: C.violet },
   { Icon: Users, bg: C.greenBg, color: C.green },
@@ -25,8 +39,8 @@ export default function ContributorsSections() {
   const t = useTranslations('contributors');
   const stats = t.raw('stats') as Stat[];
   const whyCards = t.raw('why.cards') as Card[];
-  const steps = t.raw('how.steps') as Step[];
-  const issues = t.raw('how.issues') as Issue[];
+  const issues = t.raw('dev.issues') as Issue[];
+  const roles = t.raw('roles.cards') as Card[];
   const [copied, setCopied] = useState(false);
 
   const copyCmd = () => {
@@ -40,7 +54,7 @@ export default function ContributorsSections() {
       {/* HERO */}
       <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(44px,7vw,88px) 0 clamp(48px,7vw,92px)', background: 'linear-gradient(180deg,#ECE6FA 0%, #FAFAF7 100%)' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
+        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', left: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', ...container }}>
           <Reveal style={{ maxWidth: 780 }}>
             <div style={eyebrow('#5C3AB0')}>{t('hero.eyebrow')}</div>
@@ -58,6 +72,14 @@ export default function ContributorsSections() {
                   <Copy style={{ width: 16, height: 16 }} /><span>{copied ? t('hero.copied') : t('hero.copy')}</span>
                 </button>
               </div>
+              <a href="#roles" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '16px 8px', color: C.ink2, fontFamily: FONT.cairo, fontWeight: 600, fontSize: 16 }}>
+                {t('hero.ctaRoles')}<ArrowUpLeft style={{ width: 17, height: 17 }} />
+              </a>
+            </div>
+            {/* "every contribution may one day reach someone you love" */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 26, padding: '14px 20px', background: C.violetBg, borderRadius: 14, maxWidth: 'fit-content' }}>
+              <HeartPulse style={{ width: 22, height: 22, color: C.violet, flex: 'none' }} />
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: '#4A2F94' }}>{t('hero.callout')}</span>
             </div>
           </Reveal>
         </div>
@@ -99,27 +121,45 @@ export default function ContributorsSections() {
         </div>
       </section>
 
-      {/* HOW */}
-      <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
+      {/* WAYS TO CONTRIBUTE */}
+      <section id="roles" style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 700, marginBottom: 46 }}>
-            <div style={eyebrow(C.emerald)}>{t('how.eyebrow')}</div>
-            <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('how.title')}</h2>
+            <div style={eyebrow(C.emerald)}>{t('roles.eyebrow')}</div>
+            <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('roles.title')}</h2>
           </Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(240px,100%),1fr))', gap: 20 }}>
-            {steps.map((step, i) => (
-              <Reveal key={i} delay={i * 60} className="balsm-lift" style={{ borderRadius: 20, padding: 28, background: C.bg, border: `1px solid ${C.border}` }}>
-                <div dir="ltr" style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 15, color: C.violet, marginBottom: 14 }}>{step.num}</div>
-                <h3 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: C.ink, margin: '0 0 7px' }}>{step.title}</h3>
-                <p style={{ fontSize: 14.5, lineHeight: 1.7, color: C.ink2, margin: 0 }}>{step.desc}</p>
-              </Reveal>
-            ))}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: 16, marginBottom: 32 }}>
+            {roles.map((role, i) => {
+              const s = ROLE_ICONS[i];
+              return (
+                <Reveal key={i} delay={i * 60} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 26, boxShadow: '0 2px 6px rgba(43,43,37,.05)' }}>
+                  <div style={{ width: 44, height: 44, borderRadius: 13, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: 16 }}>
+                    <s.Icon style={{ width: 22, height: 22 }} />
+                  </div>
+                  <h3 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 18, color: C.ink, margin: '0 0 6px' }}>{role.title}</h3>
+                  <p style={{ fontSize: 14, lineHeight: 1.65, color: C.ink2, margin: 0 }}>{role.desc}</p>
+                </Reveal>
+              );
+            })}
           </div>
 
-          <Reveal style={{ marginTop: 36, background: C.dark, borderRadius: 22, padding: 'clamp(24px,4vw,38px)' }}>
+          {/* "these are only examples" note + contact */}
+          <Reveal style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 14, background: C.bg, border: `1px solid ${C.border}`, borderRadius: 16, padding: '18px 22px', marginBottom: 44 }}>
+            <span style={{ fontSize: 15, color: C.ink2 }}>{t('roles.note')}</span>
+            <a href="mailto:contact@balsm.health" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, background: C.ink, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, flex: 'none' }}>
+              <Mail style={{ width: 16, height: 16 }} />{t('roles.cta')}
+            </a>
+          </Reveal>
+
+          <Reveal style={{ maxWidth: 700, marginBottom: 24 }}>
+            <div style={eyebrow(C.violet)}>{t('dev.eyebrow')}</div>
+            <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(24px,3.4vw,36px)', lineHeight: 1.2, color: C.ink, margin: '10px 0 0' }}>{t('dev.title')}</h2>
+          </Reveal>
+
+          <Reveal style={{ background: C.dark, borderRadius: 22, padding: 'clamp(24px,4vw,38px)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
               <Tag style={{ width: 20, height: 20, color: C.mint }} />
-              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 18, color: '#fff' }}>{t('how.issuesTitle')}</span>
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 18, color: '#fff' }}>{t('dev.issuesTitle')}</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {issues.map((issue, i) => (
@@ -139,8 +179,9 @@ export default function ContributorsSections() {
       {/* CTA */}
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.bg, borderTop: `1px solid ${C.borderHair}` }}>
         <Reveal style={{ maxWidth: 760, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)', textAlign: 'center' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/balsm-logo.svg" alt="" aria-hidden style={{ width: 60, height: 60, margin: '0 auto 22px', display: 'block' }} />
+          <div style={{ width: 60, height: 60, margin: '0 auto 22px' }}>
+            <AnimatedLogo size={60} idle="breathe" />
+          </div>
           <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.6vw,52px)', lineHeight: 1.14, color: C.ink, margin: '0 0 14px' }}>{t('cta.title')}</h2>
           <p style={{ fontSize: 'clamp(16px,1.8vw,20px)', lineHeight: 1.8, color: C.ink2, margin: '0 auto 30px', maxWidth: 540 }}>{t('cta.desc')}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center' }}>
