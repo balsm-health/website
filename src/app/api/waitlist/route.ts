@@ -59,11 +59,13 @@ export async function POST(request: Request) {
       insertData.organization = organization.trim();
     }
 
-    const { data, error } = await supabase
-      .from('waiting_list')
-      .insert([insertData])
-      .select()
-      .single();
+    // No .select() here on purpose. Returning the inserted row sends
+    // `Prefer: return=representation`, and Postgres requires a SELECT policy to
+    // return it — so an insert-only table rejects the whole statement with
+    // 42501. Production only avoided that because it grants anon SELECT, which
+    // also exposes every signup email. Nothing consumes the id, so don't ask
+    // for it.
+    const { error } = await supabase.from('waiting_list').insert([insertData]);
 
     if (error) {
       // Check for duplicate email - PostgreSQL unique constraint violation
@@ -91,10 +93,7 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json(
-      { success: true, id: data.id },
-      { status: 201 }
-    );
+    return NextResponse.json({ success: true }, { status: 201 });
   } catch (error) {
     console.error('API error:', error);
     Sentry.captureException(error);
