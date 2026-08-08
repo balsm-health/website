@@ -195,19 +195,28 @@ function ProvidersDemo() {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: v, message: `[providers] ${c}${message.trim() ? ' — ' + message.trim() : ''}`, locale, source: 'providers' }),
+        // The clinic name goes in its own column rather than being prefixed
+        // onto the message, which used to make it unqueryable and mangled
+        // whatever the person actually wrote.
+        body: JSON.stringify({
+          email: v,
+          organization: c,
+          message: message.trim() || undefined,
+          locale,
+          source: 'providers',
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok && data.code !== 'duplicate') {
         setStatus('error');
-        setError(t('errorInvalid'));
+        setError(t('errorGeneric'));
         captureError(new Error(`providers demo failed: ${res.status}`), { source: 'providers', status: res.status });
         return;
       }
       setStatus('success');
     } catch (err) {
       setStatus('error');
-      setError(t('errorInvalid'));
+      setError(t('errorGeneric'));
       captureError(err, { source: 'providers', phase: 'network' });
     }
   };

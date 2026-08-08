@@ -37,16 +37,16 @@ export default function CloudWaitlist() {
         body: JSON.stringify({ email: v, message: message.trim() || undefined, locale, source: 'cloud' }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
+      // A duplicate means they're already on the list, so it's a success from
+      // the reader's point of view — not a red error telling them off.
+      if (!res.ok && data.code !== 'duplicate') {
         setStatus('error');
-        setError(data.code === 'duplicate' ? t('errorDuplicate') : t('errorGeneric'));
-        if (data.code !== 'duplicate') {
-          // Note: no email/PII in the captured context.
-          captureError(new Error(`waitlist submit failed: ${res.status} ${data.code ?? ''}`), {
-            source: 'cloud',
-            status: res.status,
-          });
-        }
+        setError(t('errorGeneric'));
+        // Note: no email/PII in the captured context.
+        captureError(new Error(`waitlist submit failed: ${res.status} ${data.code ?? ''}`), {
+          source: 'cloud',
+          status: res.status,
+        });
         return;
       }
       setStatus('success');

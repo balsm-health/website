@@ -164,7 +164,6 @@
       "successTitle": "We've registered your interest.",
       "successDesc": "We'll reach out when the cloud launches in your region. Thank you for your trust.",
       "errorInvalid": "Enter a valid email to continue.",
-      "errorDuplicate": "This email is already registered.",
       "errorGeneric": "Something went wrong. Please try again.",
       "privacy": "Your email stays yours. We'll never share it."
     }
@@ -417,7 +416,6 @@
       "successTitle": "Welcome to Balsm.",
       "successDesc": "We've registered your request, and we'll reach out when your region launches.",
       "errorInvalid": "Enter a valid email to continue.",
-      "errorDuplicate": "This email is already registered.",
       "errorGeneric": "Something went wrong. Please try again.",
       "privacy": "Your email stays yours. We'll never share it — a promise, not a policy."
     }
@@ -527,7 +525,8 @@
       "successDesc": "We'll email you when Balsm Pro launches. Thank you for trusting Balsm.",
       "errorClinic": "Enter your pharmacy or clinic name to continue.",
       "errorInvalid": "Enter a valid email to continue.",
-      "privacy": "Your data stays yours. We use it only to contact you."
+      "privacy": "Your data stays yours. We use it only to contact you.",
+      "errorGeneric": "Something went wrong. Please try again."
     }
   },
   "contributorsMeta": {
@@ -791,5 +790,51 @@
         }
       ]
     }
+  },
+  "linksMeta": {
+    "title": "Balsm links — every official account",
+    "description": "Every official Balsm account in one place — GitHub, LinkedIn, X, Instagram, YouTube, TikTok and more. Verify a Balsm account before you follow it."
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "title": "What people ask about Balsm",
+    "items": [
+      {
+        "q": "What is Balsm?",
+        "a": "Balsm is a community-owned healthcare operating system for the Arab world — Arabic-first, offline-ready, and fully open source. It connects the parts of care that usually cannot talk to each other: clinics, pharmacies, and labs. It is being built in Egypt, for the whole Arab region."
+      },
+      {
+        "q": "Is Balsm open source?",
+        "a": "Yes. The code is public for inspection and contribution, and the project is developed in the open on GitHub. The specific licence will be announced before launch."
+      },
+      {
+        "q": "Who owns Balsm?",
+        "a": "The community that uses it. Balsm is built to be governed by its users rather than owned by a vendor — that is the point of the project, and open source is the mechanism that makes it enforceable rather than a promise."
+      },
+      {
+        "q": "Does Balsm work without an internet connection?",
+        "a": "Yes. Balsm is designed offline-first, so a pharmacy on an unreliable connection works the same as one in a capital city. Care does not stop when connectivity does, and data syncs once the connection returns."
+      },
+      {
+        "q": "Which countries does Balsm serve?",
+        "a": "Egypt is the launch market. The Gulf states — Saudi Arabia, the UAE, Qatar, Kuwait, Bahrain and Oman — are the Phase 2 vision, with the rest of the Arab world in the long-term vision."
+      },
+      {
+        "q": "What is Balsm Cloud, and is it required?",
+        "a": "Balsm Cloud is an optional hosted layer that adds branch sync, encrypted backups, lab integration over FHIR, and analytics. It is optional by design: Balsm runs without it, and you can export your data and leave at any time."
+      },
+      {
+        "q": "How is patient data protected?",
+        "a": "Data is encrypted, access is controlled and audited, and the system is built so a practice keeps custody of its own records. Because the code is open, these claims can be inspected rather than taken on trust. No compliance certifications have been announced yet."
+      },
+      {
+        "q": "Has Balsm launched, and what does it cost?",
+        "a": "Not yet — Balsm is pre-launch and is being built in the open. No pricing has been announced. The clearest way to follow progress, or influence it, is the GitHub organisation."
+      },
+      {
+        "q": "How can I contribute?",
+        "a": "Engineering is only one of eight contributor roles. Clinical review, design, translation, legal, project management, advocacy and QA all move the project forward. The Contributors page lists the roles and the currently open issues."
+      }
+    ]
   }
 }

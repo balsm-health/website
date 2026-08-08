@@ -66,3 +66,33 @@
 /apple-icon.png
   Cache-Control: public, max-age=604800
 
+# Content assets. Filenames aren't hashed, so these are deliberately short —
+# long enough to help repeat visitors, short enough that a redeploy of the map
+# or a sponsor logo reaches people the same day.
+/arab-world-map.svg
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/balsm-logo.svg
+  Cache-Control: public, max-age=86400
+
+/balsm-logo-horizontal.svg
+  Cache-Control: public, max-age=86400
+
+/balsm-background.png
+  Cache-Control: public, max-age=86400
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+  Access-Control-Allow-Origin: *
+
+/.well-known/knowledge-base.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=86400
+  Access-Control-Allow-Origin: *
+
+/.well-known/faq.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=86400
+  Access-Control-Allow-Origin: *
+

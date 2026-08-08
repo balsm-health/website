@@ -71,6 +71,10 @@ export function alternates(locale: string, path = '') {
     languages: {
       ar: canonicalUrl('ar', path),
       en: canonicalUrl('en', path),
+      // Neither locale is a safe default for a reader Google can't place, and
+      // without x-default it picks one for them. Point it at the unprefixed
+      // form, which is what a bare balsm.health link already resolves to.
+      'x-default': canonicalUrl(DEFAULT_LOCALE, path),
     },
   };
 }

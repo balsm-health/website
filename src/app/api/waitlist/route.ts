@@ -11,7 +11,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { email, message, locale = 'en' } = await request.json();
+    const { email, message, locale = 'en', source, organization } = await request.json();
 
     if (!email || typeof email !== 'string') {
       return NextResponse.json(
@@ -28,13 +28,29 @@ export async function POST(request: Request) {
       );
     }
 
-    const insertData: { email: string; locale: string; message?: string } = {
+    // Anything not in this list would fail the table's CHECK constraint and
+    // surface as an opaque 500, so an unknown value falls back to the default.
+    const SOURCES = ['home', 'cloud', 'providers'] as const;
+    type Source = (typeof SOURCES)[number];
+
+    const insertData: {
+      email: string;
+      locale: string;
+      message?: string;
+      source: Source;
+      organization?: string;
+    } = {
       email: email.toLowerCase().trim(),
       locale,
+      source: SOURCES.includes(source) ? (source as Source) : 'home',
     };
 
     if (message && typeof message === 'string' && message.trim()) {
       insertData.message = message.trim();
+    }
+
+    if (organization && typeof organization === 'string' && organization.trim()) {
+      insertData.organization = organization.trim();
     }
 
     const { data, error } = await supabase
@@ -61,7 +77,7 @@ export async function POST(request: Request) {
 
       // Capture the DB failure (no PII — email is not attached to the event).
       Sentry.captureException(new Error(`waitlist insert failed: ${error.code || 'unknown'}`), {
-        extra: { code: error.code, locale },
+        extra: { code: error.code, locale, source: insertData.source },
       });
       return NextResponse.json(
         { error: error.message || 'Failed to register', code: error.code || 'server_error', details: error.details },

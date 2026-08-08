@@ -400,10 +400,12 @@ function HomeJoin() {
         body: JSON.stringify({ email: v, message: message.trim() || undefined, locale, source: 'home' }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
+      // A duplicate means they're already on the list, so it's a success from
+      // the reader's point of view — not a red error telling them off.
+      if (!res.ok && data.code !== 'duplicate') {
         setStatus('error');
-        setError(data.code === 'duplicate' ? t('errorDuplicate') : t('errorGeneric'));
-        if (data.code !== 'duplicate') captureError(new Error(`waitlist failed: ${res.status}`), { source: 'home', status: res.status });
+        setError(t('errorGeneric'));
+        captureError(new Error(`waitlist failed: ${res.status}`), { source: 'home', status: res.status });
         return;
       }
       setStatus('success');
