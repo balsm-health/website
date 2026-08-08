@@ -4,6 +4,12 @@
   "name": "balsm-website",
   // Sentry DSN is publishable (not a secret) — it already ships in the client
   // bundle. Local dev reads it from .dev.vars instead.
+  // Supabase for the waitlist. The anon key is publishable and the table is
+  // protected by RLS, but it is NOT committed here — set both on the Worker:
+  //   npx wrangler secret put SUPABASE_URL --env staging
+  //   npx wrangler secret put SUPABASE_ANON_KEY --env staging
+  // (and the same without --env for production). src/lib/supabase.ts reads
+  // these at request time, so a build made without .env.local still works.
   "vars": {
     "SENTRY_DSN": "https://8707a04c749b5681c94611c67c5267a8@o4511072882851841.ingest.de.sentry.io/4511840420560976",
     "SENTRY_ENV": "production"

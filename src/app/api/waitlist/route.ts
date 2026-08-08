@@ -1,10 +1,16 @@
 import { NextResponse } from 'next/server';
 import * as Sentry from '@sentry/cloudflare';
-import { supabase } from '@/lib/supabase';
+import { getSupabase, missingSupabaseConfig } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
+    const supabase = getSupabase();
     if (!supabase) {
+      // Silent misconfiguration is how staging shipped a waitlist that failed
+      // every submit, so name the missing vars in the logs and in Sentry.
+      const missing = missingSupabaseConfig();
+      console.error(`waitlist: Supabase not configured, missing ${missing.join(', ')}`);
+      Sentry.captureException(new Error(`waitlist: Supabase not configured (${missing.join(', ')})`));
       return NextResponse.json(
         { error: 'Database not configured', code: 'server_error' },
         { status: 500 }
