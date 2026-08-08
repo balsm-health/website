@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import * as Sentry from '@sentry/cloudflare';
-import { getSupabase, missingSupabaseConfig } from '@/lib/supabase';
+import { getSupabase, getSupabaseAdmin, missingSupabaseConfig } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
@@ -59,13 +59,23 @@ export async function POST(request: Request) {
       insertData.organization = organization.trim();
     }
 
-    // No .select() here on purpose. Returning the inserted row sends
+    // No .select() on either path. Returning the inserted row sends
     // `Prefer: return=representation`, and Postgres requires a SELECT policy to
     // return it — so an insert-only table rejects the whole statement with
     // 42501. Production only avoided that because it grants anon SELECT, which
     // also exposes every signup email. Nothing consumes the id, so don't ask
     // for it.
-    const { error } = await supabase.from('waiting_list').insert([insertData]);
+    //
+    // Upsert when the service role is configured, so someone who signs up again
+    // can correct their details — a plain insert hits the UNIQUE(email)
+    // constraint and silently discards whatever they just typed. The anon
+    // client can't do this: an upsert needs UPDATE, and granting that to the
+    // publishable key would let anyone overwrite a row by guessing its email.
+    // Without the secret we fall back to insert-only, which still works.
+    const admin = getSupabaseAdmin();
+    const { error } = admin
+      ? await admin.from('waiting_list').upsert([insertData], { onConflict: 'email' })
+      : await supabase.from('waiting_list').insert([insertData]);
 
     if (error) {
       // Check for duplicate email - PostgreSQL unique constraint violation

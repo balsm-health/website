@@ -43,6 +43,37 @@ export function getSupabase(): SupabaseClient | null {
   return cached;
 }
 
+let cachedAdmin: SupabaseClient | null = null;
+
+/**
+ * Service-role client — SERVER ONLY. Never import this into a client component.
+ *
+ * The waitlist upserts on `email`, and an upsert needs UPDATE rights. Granting
+ * those to `anon` would mean the publishable key — which ships in the browser
+ * bundle — could overwrite any row whose email someone knows. The service role
+ * keeps write access on the server instead, so `anon` stays insert-only.
+ *
+ * Deliberately NOT prefixed `NEXT_PUBLIC_`: that would inline it into the
+ * client bundle and leak a key that bypasses RLS entirely.
+ *
+ * Returns null when the secret isn't set, so a deploy without it degrades to
+ * the anon insert-only path rather than failing every submit.
+ */
+export function getSupabaseAdmin(): SupabaseClient | null {
+  if (cachedAdmin) return cachedAdmin;
+
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+  if (!url || !serviceKey) return null;
+
+  // No session persistence or token refresh: this is a stateless request-scoped
+  // server client, and persisting anything would be shared across requests.
+  cachedAdmin = createClient(url, serviceKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+  return cachedAdmin;
+}
+
 /** Which piece of configuration is missing, for logging. Never includes values. */
 export function missingSupabaseConfig(): string[] {
   const missing: string[] = [];
