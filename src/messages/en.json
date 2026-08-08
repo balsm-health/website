@@ -5,7 +5,7 @@
   },
   "cloudMeta": {
     "title": "Balsm Cloud — the optional cloud layer",
-    "description": "Sync, managed backup, and lab integration on top of Balsm — only when you choose. Arabic-first, PDPL-compliant, sovereign by design."
+    "description": "Sync, managed backup, and lab integration on top of Balsm — only when you choose. Arabic-first, PDPL-compliant, you stay in control."
   },
   "cloudNav": {
     "home": "Home",
@@ -20,9 +20,9 @@
       "roadmap": "On the roadmap",
       "titleLine1": "Balsm Cloud —",
       "titleLine2": "when you choose to connect.",
-      "subtitle": "The optional cloud layer on top of Balsm. Your system runs entirely on its own — the cloud adds sync, backup, and lab integration, only when you decide. Your sovereignty stays yours.",
+      "subtitle": "The optional cloud layer on top of Balsm. Your system runs entirely on its own — the cloud adds sync, backup, and lab integration, only when you decide. You stay in control.",
       "ctaJoin": "Join the Cloud",
-      "ctaInvest": "For investors"
+      "ctaInvest": "The vision"
     },
     "adds": {
       "eyebrow": "What the cloud adds",
@@ -124,7 +124,7 @@
     },
     "invest": {
       "title": "Not a product vision. A civilizational one — with a clear business model.",
-      "desc": "The infrastructure is open and free, so it spreads on patient demand. Revenue comes from the optional cloud layer — a network effect that's hard to displace.",
+      "desc": "Balsm is the first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world. The infrastructure is open and free, so it spreads on patient demand — and revenue comes from the optional cloud layer, a network effect that's hard to displace.",
       "stats": [
         {
           "value": "+100M",
@@ -158,12 +158,14 @@
     "join": {
       "title": "Join the cloud early.",
       "desc": "Register your interest in the cloud layer, and we'll email you when sign-ups open in your region.",
+      "entityPlaceholder": "Health facility name",
       "placeholder": "name@email.com",
       "messagePlaceholder": "Message (optional)",
       "button": "Join now",
       "successTitle": "We've registered your interest.",
       "successDesc": "We'll reach out when the cloud launches in your region. Thank you for your trust.",
       "errorInvalid": "Enter a valid email to continue.",
+      "errorEntity": "Enter your health facility name to continue.",
       "errorGeneric": "Something went wrong. Please try again.",
       "privacy": "Your email stays yours. We'll never share it."
     }
@@ -179,7 +181,7 @@
     "menu": "Menu"
   },
   "siteFooter": {
-    "blurb": "The community-owned healthcare OS — for the Arab world.",
+    "blurb": "The first open source healthcare technology ecosystem in Egypt and the Arab world.",
     "motto": "Open · Arab · Trusted",
     "follow": "Follow us",
     "product": {
@@ -215,8 +217,8 @@
       "badge": "Open · Arab · Trusted",
       "title1": "Your care. Your data.",
       "title2": "Your system.",
-      "subtitle": "The first community-owned healthcare OS in the Arab world — Arabic-first, offline-ready, and fully open source. From Egypt, to the whole Arab world.",
-      "tagline": "The community-owned healthcare OS for the Arab world.",
+      "subtitle": "The first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — a community-owned health OS, Arabic-first, and offline-ready.",
+      "tagline": "From Egypt, to the whole Arab world.",
       "ctaJoin": "Join the Cloud",
       "ctaApp": "Join the waitlist",
       "ctaCode": "Explore the code"
@@ -290,9 +292,9 @@
           "slice": "SLICE 2",
           "badge": "On the roadmap",
           "title": "Balsm Pro app",
-          "desc": "For your clinic or pharmacy: dispensing, inventory, patient files, and management — fully offline, and compliant with the controlled-drugs Law 182/1960.",
+          "desc": "For your clinic, hospital, pharmacy, or medical store: dispensing, inventory, patient files, and management — fully offline, and compliant with controlled-drugs regulations.",
           "tags": [
-            "Clinic & pharmacy",
+            "Every health facility",
             "Live inventory",
             "Controlled drugs"
           ]
@@ -392,7 +394,7 @@
         },
         {
           "title": "Provider",
-          "desc": "Run your clinic or pharmacy on a system you own.",
+          "desc": "Run your health facility on a system you own.",
           "cta": "For providers"
         },
         {
@@ -427,9 +429,15 @@
   "providers": {
     "hero": {
       "eyebrow": "Balsm Pro · Slice 2",
-      "title1": "A system for your clinic,",
+      "title1": "A system for your health facility,",
       "title2": "you'll own outright.",
-      "subtitle": "In development now: point of sale, inventory, dispensing and administration — it will be self-hosted, PDPL-compliant, and free to run forever. No middleman, no mandatory subscription, no hold on your data.",
+      "subtitle": "In development now for your clinics, hospitals, pharmacies, and medical equipment and supply stores: point of sale, inventory, dispensing, and management — it will be self-hosted, PDPL-compliant, and free to run forever. No middleman, no forced subscription, no lock-in.",
+      "facilities": [
+        "Clinics",
+        "Hospitals",
+        "Pharmacies",
+        "Medical equipment & supply stores"
+      ],
       "ctaDemo": "Register interest",
       "ctaSelf": "Follow development",
       "roadmap": "On the roadmap"
@@ -454,7 +462,7 @@
     ],
     "features": {
       "eyebrow": "What you run",
-      "title": "Everything a pharmacy and clinic need — in one system.",
+      "title": "Everything your clinic, hospital, pharmacy, or medical store needs — in one system.",
       "cards": [
         {
           "title": "Point of sale",
@@ -470,7 +478,7 @@
         },
         {
           "title": "Controlled drugs",
-          "desc": "Schedule 182/1960 register, mandatory pharmacist signature, and a full audit trail."
+          "desc": "A controlled-drug schedule register, mandatory pharmacist signature, and a full audit trail."
         },
         {
           "title": "Staff & permissions",
@@ -516,14 +524,14 @@
     },
     "demo": {
       "title": "Be the first to try Balsm Pro.",
-      "desc": "Leave your details and we'll email you when Balsm Pro launches for your pharmacy or clinic.",
-      "clinicPlaceholder": "Pharmacy or clinic name",
+      "desc": "Leave your details and we'll write to you when Balsm Pro launches for your health facility.",
+      "clinicPlaceholder": "Health facility name",
       "emailPlaceholder": "name@email.com",
       "messagePlaceholder": "Message (optional)",
       "button": "Register interest",
       "successTitle": "We've registered your interest.",
       "successDesc": "We'll email you when Balsm Pro launches. Thank you for trusting Balsm.",
-      "errorClinic": "Enter your pharmacy or clinic name to continue.",
+      "errorClinic": "Enter your health facility name to continue.",
       "errorInvalid": "Enter a valid email to continue.",
       "privacy": "Your data stays yours. We use it only to contact you.",
       "errorGeneric": "Something went wrong. Please try again."
@@ -538,7 +546,7 @@
       "eyebrow": "Open source · For contributors",
       "title1": "Build the healthcare infrastructure",
       "title2": "for the Arab world.",
-      "subtitle": "Balsm is built by many hands, not one — developers, designers, doctors, pharmacists, marketers, lawyers and product managers. The code is open, and the need is bigger than the code.",
+      "subtitle": "Balsm is the first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — built by many hands, not one: developers, designers, doctors, pharmacists, marketers, lawyers and product managers. The code is open, and the need is bigger than the code.",
       "ctaStar": "Follow on GitHub",
       "command": "gh repo list balsm-health",
       "copy": "Copy",
@@ -584,7 +592,7 @@
     },
     "cta": {
       "title": "The ecosystem outlasts any product.",
-      "desc": "Join the developers, designers, health professionals and everyone who believes in health infrastructure owned by the Arab world.",
+      "desc": "Join the developers, designers, health professionals and everyone who believes in the first open source healthcare technology ecosystem owned by the Arab world.",
       "ctaGit": "Contribute on GitHub",
       "ctaDonate": "Support Balsm"
     },

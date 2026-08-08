@@ -43,9 +43,9 @@ on a single timeline, in Arabic. Works offline; syncs only when the user
 chooses.
 
 ### Balsm Pro app — *on the roadmap*
-For a clinic or pharmacy: dispensing, live inventory, patient files, and
-management. Fully offline-capable, and built around Egypt's controlled-drugs
-regime (Law 182/196).
+For a clinic, hospital, pharmacy, or medical-supply store: dispensing, live
+inventory, patient files, and management. Fully offline-capable, and built
+around Egypt's controlled-drugs regulations.
 
 ### Balsm Cloud — *on the roadmap*
 An optional hosted layer: cross-branch sync, encrypted backups, lab

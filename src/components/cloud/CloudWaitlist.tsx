@@ -13,6 +13,7 @@ export default function CloudWaitlist() {
   const locale = useLocale();
   const { ref, inView } = useInView(0.15);
 
+  const [entity, setEntity] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -22,7 +23,15 @@ export default function CloudWaitlist() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const name = entity.trim();
     const v = email.trim();
+    // Entity is checked first because it's the first field on screen — erroring
+    // on the email while the field above it is still blank reads as a non-sequitur.
+    if (!name) {
+      setStatus('error');
+      setError(t('errorEntity'));
+      return;
+    }
     if (!validate(v)) {
       setStatus('error');
       setError(t('errorInvalid'));
@@ -34,7 +43,9 @@ export default function CloudWaitlist() {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: v, message: message.trim() || undefined, locale, source: 'cloud' }),
+        // `organization` is the column the API already writes (same field the
+        // providers form fills with a clinic name) — no schema change needed.
+        body: JSON.stringify({ email: v, organization: name, message: message.trim() || undefined, locale, source: 'cloud' }),
       });
       const data = await res.json().catch(() => ({}));
       // A duplicate means they're already on the list, so it's a success from
@@ -50,6 +61,7 @@ export default function CloudWaitlist() {
         return;
       }
       setStatus('success');
+      setEntity('');
       setEmail('');
       setMessage('');
     } catch (err) {
@@ -112,56 +124,39 @@ export default function CloudWaitlist() {
           </div>
         ) : (
           <form onSubmit={submit} style={{ maxWidth: 520, margin: '0 auto', ...reveal }} noValidate>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              <input
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (status === 'error') {
-                    setStatus('idle');
-                    setError('');
-                  }
-                }}
-                type="email"
-                dir="ltr"
-                placeholder={t('placeholder')}
-                disabled={status === 'loading'}
-                aria-label={t('placeholder')}
-                style={{
-                  flex: '1 1 240px',
-                  minWidth: 0,
-                  padding: '15px 18px',
-                  borderRadius: 14,
-                  border: `1.5px solid ${C.borderSoft}`,
-                  background: C.white,
-                  fontFamily: FONT.body,
-                  fontSize: 16,
-                  color: C.ink,
-                  textAlign: 'left',
-                  outline: 'none',
-                }}
-              />
-              <button
-                type="submit"
-                disabled={status === 'loading'}
-                style={{
-                  flex: '0 0 auto',
-                  padding: '15px 28px',
-                  borderRadius: 14,
-                  border: 'none',
-                  background: C.blue,
-                  color: C.white,
-                  fontFamily: FONT.cairo,
-                  fontWeight: 700,
-                  fontSize: 16,
-                  cursor: status === 'loading' ? 'wait' : 'pointer',
-                  opacity: status === 'loading' ? 0.7 : 1,
-                  boxShadow: '0 10px 24px rgba(18,131,255,.24)',
-                }}
-              >
-                {t('button')}
-              </button>
-            </div>
+            {/* Stacked, every control full width — the design dropped the
+                email+button row so the facility name reads as the first step. */}
+            <input
+              value={entity}
+              onChange={(e) => {
+                setEntity(e.target.value);
+                if (status === 'error') {
+                  setStatus('idle');
+                  setError('');
+                }
+              }}
+              placeholder={t('entityPlaceholder')}
+              disabled={status === 'loading'}
+              aria-label={t('entityPlaceholder')}
+              style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.arabic, fontSize: 16, color: C.ink, outline: 'none', boxSizing: 'border-box' }}
+            />
+
+            <input
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (status === 'error') {
+                  setStatus('idle');
+                  setError('');
+                }
+              }}
+              type="email"
+              dir="ltr"
+              placeholder={t('placeholder')}
+              disabled={status === 'loading'}
+              aria-label={t('placeholder')}
+              style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.body, fontSize: 16, color: C.ink, textAlign: 'left', outline: 'none', boxSizing: 'border-box' }}
+            />
 
             <textarea
               value={message}
@@ -170,8 +165,29 @@ export default function CloudWaitlist() {
               placeholder={t('messagePlaceholder')}
               disabled={status === 'loading'}
               aria-label={t('messagePlaceholder')}
-              style={{ width: '100%', marginTop: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.arabic, fontSize: 15, color: C.ink, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
+              style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.arabic, fontSize: 15, color: C.ink, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
             />
+
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              style={{
+                width: '100%',
+                padding: '15px 28px',
+                borderRadius: 14,
+                border: 'none',
+                background: C.blue,
+                color: C.white,
+                fontFamily: FONT.cairo,
+                fontWeight: 700,
+                fontSize: 16,
+                cursor: status === 'loading' ? 'wait' : 'pointer',
+                opacity: status === 'loading' ? 0.7 : 1,
+                boxShadow: '0 10px 24px rgba(18,131,255,.24)',
+              }}
+            >
+              {t('button')}
+            </button>
 
             {status === 'error' && error && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 7, justifyContent: 'center', marginTop: 14, color: C.danger, fontSize: 14 }}>

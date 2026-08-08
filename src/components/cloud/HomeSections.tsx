@@ -99,7 +99,10 @@ export default function HomeSections() {
             <p style={{ fontFamily: FONT.arabic, fontSize: 'clamp(17px,2.1vw,22px)', lineHeight: 1.7, color: C.ink2, maxWidth: 680, margin: '24px auto 0' }}>{t('hero.subtitle')}</p>
           </Reveal>
           <Reveal delay={160}>
-            <p dir="ltr" style={{ fontFamily: FONT.display, fontWeight: 500, fontSize: 14, letterSpacing: '.04em', color: C.muted, margin: '14px 0 0' }}>{t('hero.tagline')}</p>
+            {/* No dir override: the tagline is prose in the page's own language now
+                ("من مصر، إلى كل العالم العربي."), so forcing LTR would strand the
+                full stop on the wrong side under RTL. */}
+            <p style={{ fontFamily: FONT.arabic, fontWeight: 500, fontSize: 14, letterSpacing: '.02em', color: C.muted, margin: '14px 0 0' }}>{t('hero.tagline')}</p>
           </Reveal>
           <Reveal delay={220} style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 38 }}>
             <Link href="/cloud" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: C.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(18,131,255,.26)' }}>
@@ -438,21 +441,18 @@ function HomeJoin() {
           </div>
         ) : (
           <form onSubmit={submit} style={{ maxWidth: 520, margin: '0 auto' }} noValidate>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              <input
-                value={email}
-                onChange={(e) => { setEmail(e.target.value); if (status === 'error') { setStatus('idle'); setError(''); } }}
-                type="email"
-                dir="ltr"
-                placeholder={t('placeholder')}
-                disabled={status === 'loading'}
-                aria-label={t('placeholder')}
-                style={{ flex: '1 1 240px', minWidth: 0, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.body, fontSize: 16, color: C.ink, textAlign: 'left', outline: 'none' }}
-              />
-              <button type="submit" disabled={status === 'loading'} style={{ flex: '0 0 auto', padding: '15px 28px', borderRadius: 14, border: 'none', background: C.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.7 : 1, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>
-                {t('button')}
-              </button>
-            </div>
+            {/* Stacked full-width, button last — matches the Cloud waitlist.
+                The email+button row is gone. */}
+            <input
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); if (status === 'error') { setStatus('idle'); setError(''); } }}
+              type="email"
+              dir="ltr"
+              placeholder={t('placeholder')}
+              disabled={status === 'loading'}
+              aria-label={t('placeholder')}
+              style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.body, fontSize: 16, color: C.ink, textAlign: 'left', outline: 'none', boxSizing: 'border-box' }}
+            />
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -460,8 +460,11 @@ function HomeJoin() {
               placeholder={t('messagePlaceholder')}
               disabled={status === 'loading'}
               aria-label={t('messagePlaceholder')}
-              style={{ width: '100%', marginTop: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.arabic, fontSize: 15, color: C.ink, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
+              style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.arabic, fontSize: 15, color: C.ink, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
             />
+            <button type="submit" disabled={status === 'loading'} style={{ width: '100%', padding: '15px 28px', borderRadius: 14, border: 'none', background: C.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.7 : 1, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>
+              {t('button')}
+            </button>
             {status === 'error' && error && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 7, justifyContent: 'center', marginTop: 14, color: C.danger, fontSize: 14 }}>
                 <AlertCircle style={{ width: 16, height: 16 }} /><span>{error}</span>

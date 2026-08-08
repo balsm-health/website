@@ -9,6 +9,7 @@ import { captureError } from '@/lib/observability';
 import {
   ArrowRight, Terminal, Server, ShieldCheck, BadgeDollarSign, WifiOff, ScanBarcode, Package,
   ClipboardList, ShieldAlert, UsersRound, BarChart3, Check, AlertCircle,
+  Stethoscope, Building2, Pill,
 } from './CloudIcons';
 
 type Card = { title: string; desc: string };
@@ -46,7 +47,10 @@ export default function ProvidersSections() {
       {/* HERO */}
       <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(44px,7vw,88px) 0 clamp(48px,7vw,92px)', background: 'linear-gradient(180deg,#E2F8F6 0%, #FAFAF7 100%)' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
+        {/* Physical `left`, matching CloudHero and the design: the bloom stays
+            top-left in both directions. `insetInlineStart` flipped it to the
+            right-hand corner under RTL, which is the locale that actually ships. */}
+        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', left: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', ...container }}>
           <Reveal style={{ maxWidth: 760 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
@@ -58,7 +62,23 @@ export default function ProvidersSections() {
             <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(34px,5.6vw,64px)', lineHeight: 1.12, color: C.ink, margin: '14px 0 18px' }}>
               {t('hero.title1')}<br />{t('hero.title2')}
             </h1>
-            <p style={{ fontSize: 'clamp(17px,1.9vw,21px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 30px', maxWidth: 600 }}>{t('hero.subtitle')}</p>
+            <p style={{ fontSize: 'clamp(17px,1.9vw,21px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 24px', maxWidth: 600 }}>{t('hero.subtitle')}</p>
+            {/* Facility types, spelled out — the page now addresses hospitals and
+                medical-supply stores, not just clinics and pharmacies. */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, margin: '0 0 28px' }}>
+              {(t.raw('hero.facilities') as string[]).map((label, i) => {
+                const Icon = [Stethoscope, Building2, Pill, Package][i] ?? Stethoscope;
+                return (
+                  <span
+                    key={label}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 16px', borderRadius: 999, background: C.white, border: '1.5px solid #CDEFEC', fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14.5, color: '#019A7F' }}
+                  >
+                    <Icon style={{ width: 16, height: 16 }} />
+                    {label}
+                  </span>
+                );
+              })}
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
               <a href="#demo" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: C.aqua, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(2,187,181,.28)' }}>
                 {t('hero.ctaDemo')}<ArrowRight style={{ width: 19, height: 19, transform: arrowFlip }} />
@@ -150,6 +170,11 @@ export default function ProvidersSections() {
             </Reveal>
             {/* Cloud */}
             <Reveal delay={80} className="balsm-lift" style={{ background: 'linear-gradient(160deg,#E4F0FF,#fff)', border: `1.5px solid ${C.blue}`, borderRadius: 22, padding: 34, position: 'relative', boxShadow: '0 14px 36px rgba(18,131,255,.12)' }}>
+              {/* Opposite corner from the title, not the same one. The design
+                  hard-codes `right:24px`, but this page is RTL — so that is the
+                  side the title starts on, and the chip lands on top of
+                  "سحابة بلسم" (measured: 50×17px of glyph overlap).
+                  insetInlineEnd keeps it clear in both directions. */}
               <span style={{ position: 'absolute', top: 20, insetInlineEnd: 24, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12, color: C.blueDark, background: '#fff', padding: '4px 10px', borderRadius: 999 }}>{t('pricing.cloud.badge')}</span>
               <div style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 22, marginBottom: 6, color: C.ink }}>{t('pricing.cloud.title')}</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 18 }}>
