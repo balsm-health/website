@@ -28,9 +28,14 @@ let cached: SupabaseClient | null = null;
 export function getSupabase(): SupabaseClient | null {
   if (cached) return cached;
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
+  // Runtime vars win over the build-time ones deliberately. NEXT_PUBLIC_* is
+  // whatever happened to be in .env.local on the machine that produced the
+  // bundle, so a staging deploy built locally would otherwise carry production
+  // credentials and quietly write real signups to the production table. The
+  // Worker's own secrets are the only per-environment source of truth.
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
   const anonKey =
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || '';
+    process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
   if (!url || !anonKey) return null;
 
