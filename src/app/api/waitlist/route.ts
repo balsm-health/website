@@ -17,11 +17,25 @@ export async function POST(request: Request) {
       );
     }
 
-    const { email, message, locale = 'en', source, organization } = await request.json();
+    const { email, message, locale, source, organization } = await request.json();
 
     if (!email || typeof email !== 'string') {
       return NextResponse.json(
         { error: 'Email is required', code: 'invalid' },
+        { status: 400 }
+      );
+    }
+
+    // Length caps before anything else. This endpoint is public and
+    // unauthenticated, the forms carry no maxLength, and the regex below is
+    // happy to match a megabyte-long address — so without these a single POST
+    // can write an arbitrarily large row. 254 is the RFC 5321 limit for an
+    // address; the other two are generous for what the forms ask for.
+    const LIMITS = { email: 254, organization: 200, message: 2000 } as const;
+
+    if (email.length > LIMITS.email) {
+      return NextResponse.json(
+        { error: 'Invalid email format', code: 'invalid' },
         { status: 400 }
       );
     }
@@ -39,24 +53,31 @@ export async function POST(request: Request) {
     const SOURCES = ['home', 'cloud', 'providers'] as const;
     type Source = (typeof SOURCES)[number];
 
+    // `locale` gets the same allowlist treatment as `source`. It was previously
+    // taken straight from the request body and written to the column, so any
+    // string a caller sent was persisted — the one field on this endpoint with
+    // no validation at all.
+    const LOCALES = ['ar', 'en'] as const;
+    type Locale = (typeof LOCALES)[number];
+
     const insertData: {
       email: string;
-      locale: string;
+      locale: Locale;
       message?: string;
       source: Source;
       organization?: string;
     } = {
       email: email.toLowerCase().trim(),
-      locale,
+      locale: LOCALES.includes(locale) ? (locale as Locale) : 'ar',
       source: SOURCES.includes(source) ? (source as Source) : 'home',
     };
 
     if (message && typeof message === 'string' && message.trim()) {
-      insertData.message = message.trim();
+      insertData.message = message.trim().slice(0, LIMITS.message);
     }
 
     if (organization && typeof organization === 'string' && organization.trim()) {
-      insertData.organization = organization.trim();
+      insertData.organization = organization.trim().slice(0, LIMITS.organization);
     }
 
     // No .select() on either path. Returning the inserted row sends
@@ -97,8 +118,13 @@ export async function POST(request: Request) {
       Sentry.captureException(new Error(`waitlist insert failed: ${error.code || 'unknown'}`), {
         extra: { code: error.code, locale, source: insertData.source },
       });
+      // Generic body. Postgres puts the offending row's values in `details` on
+      // a constraint violation, so returning it echoed the submitter's own
+      // email and organization back in a 500 — and `message` leaks column and
+      // constraint names. Sentry above already has the code and context; the
+      // caller gets nothing it can act on anyway.
       return NextResponse.json(
-        { error: error.message || 'Failed to register', code: error.code || 'server_error', details: error.details },
+        { error: 'Failed to register', code: 'server_error' },
         { status: 500 }
       );
     }
