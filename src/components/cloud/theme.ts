@@ -108,14 +108,10 @@ export const FONT = {
   arabic: "'IBM Plex Sans Arabic', sans-serif",
   display: "'Montserrat', system-ui, sans-serif",
   body: "'IBM Plex Sans', system-ui, sans-serif",
-  // IBM Plex Sans Arabic sits in the mono stack deliberately. Plex Mono has no
-  // Arabic coverage, and font fallback is per-glyph — so without it, Arabic in
-  // a mono slot skips every family here and lands on the browser's last-resort
-  // Arabic face (Geeza Pro on macOS), which is not a brand font. That is what
-  // put `عربي` and `بلا إنترنت` in a different typeface from `AGPL` and `FHIR`
-  // in the /contributors stat row. Latin and digits still resolve to Plex Mono;
-  // only Arabic glyphs reach the second entry.
-  mono: "'IBM Plex Mono', 'IBM Plex Sans Arabic', ui-monospace, monospace",
+  // Bare, matching the designs. Mono is a Latin/numeric role only — where a
+  // design puts Arabic in a stat slot it switches family outright rather than
+  // relying on fallback (see the Contributors stat row).
+  mono: "'IBM Plex Mono', monospace",
 } as const;
 
 export const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';

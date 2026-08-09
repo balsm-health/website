@@ -28,7 +28,7 @@ const eyebrow = (color: string): React.CSSProperties => ({
   fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color, textAlign: 'start',
 });
 const h2 = (color = C.ink): React.CSSProperties => ({
-  fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.4vw,52px)', lineHeight: 1.15, color, margin: '12px 0 14px',
+  fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(30px,4.4vw,52px)', lineHeight: 1.15, color, margin: '12px 0 14px',
 });
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 
@@ -246,7 +246,7 @@ export default function HomeSections() {
                 >
                   <Icon style={{ width: size, height: size }} />
                   <span style={{ textAlign: 'start', lineHeight: 1.1 }}>
-                    <span style={{ display: 'block', fontSize: 10, opacity: 0.7, fontFamily: FONT.arabic }}>{t('app.storeSoon')}</span>
+                    <span style={{ display: 'block', fontSize: 10, opacity: 0.7, fontFamily: FONT.cairo }}>{t('app.storeSoon')}</span>
                     <span dir="ltr" style={{ display: 'block', fontSize: 17, fontWeight: 600, fontFamily: FONT.display, textAlign: 'start' }}>{t(`app.${key}`)}</span>
                   </span>
                 </a>

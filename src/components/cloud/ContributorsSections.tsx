@@ -39,6 +39,22 @@ function labelChip(hex: string): React.CSSProperties {
   };
 }
 
+/**
+ * Contributors.dc.html sets family AND weight per stat, not one rule for the
+ * row: AGPL and FHIR are 'IBM Plex Mono' 600, \u0639\u0631\u0628\u064A and \u0628\u0644\u0627 \u0625\u0646\u062A\u0631\u0646\u062A are 'Cairo'
+ * 800. The split is by slot, not by script. The first two are identifiers and
+ * stay mono in every locale; the last two are prose labels, so their English
+ * values ("Arabic", "Offline") are Cairo too \u2014 Cairo is the display face for
+ * Latin as well as Arabic.
+ */
+const STAT_TYPE = [
+  { family: FONT.mono, weight: 600 },
+  { family: FONT.mono, weight: 600 },
+  { family: FONT.cairo, weight: 800 },
+  { family: FONT.cairo, weight: 800 },
+] as const;
+const STAT_TYPE_DEFAULT = { family: FONT.cairo, weight: 800 } as const;
+
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 // Kickers are 19px bold, not 13px. Bold at >=18.66px is WCAG "large text",
 // where the contrast bar drops from 4.5:1 to 3:1 — which is enough for the
@@ -117,7 +133,16 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
         <div style={{ ...container, padding: 'clamp(28px,4vw,44px) clamp(20px,5vw,56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(170px,100%),1fr))', gap: 24, textAlign: 'center' }}>
           {stats.map((s, i) => (
             <Reveal key={i} delay={i * 50}>
-              <div style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 'clamp(28px,4vw,42px)', color: [DISPLAY.violet, DISPLAY.blue, DISPLAY.aqua, DISPLAY.mint][i] }}>{s.value}</div>
+              <div
+                style={{
+                  fontFamily: (STAT_TYPE[i] ?? STAT_TYPE_DEFAULT).family,
+                  fontWeight: (STAT_TYPE[i] ?? STAT_TYPE_DEFAULT).weight,
+                  fontSize: 'clamp(28px,4vw,42px)',
+                  color: [DISPLAY.violet, DISPLAY.blue, DISPLAY.aqua, DISPLAY.mint][i],
+                }}
+              >
+                {s.value}
+              </div>
               <div style={{ fontSize: 14, color: C.ink2, marginTop: 4 }}>{s.label}</div>
             </Reveal>
           ))}
