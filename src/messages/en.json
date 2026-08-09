@@ -276,9 +276,8 @@
       "eyebrow": "How Balsm works",
       "title": "One system. Two apps, and an optional cloud.",
       "desc": "From Balsm Pro to the patient app to Balsm Cloud — each works on its own, and grows stronger together.",
-      "slices": [
+      "products": [
         {
-          "slice": "SLICE 1",
           "badge": "Building now",
           "title": "Patient app",
           "desc": "Your entire health journey in one place — every prescription, visit, and test. On your device, by a design that never leaves it.",
@@ -289,7 +288,6 @@
           ]
         },
         {
-          "slice": "SLICE 2",
           "badge": "On the roadmap",
           "title": "Balsm Pro app",
           "desc": "For your clinic, hospital, pharmacy, or medical store: dispensing, inventory, patient files, and management — fully offline, and compliant with controlled-drugs regulations.",
@@ -300,7 +298,6 @@
           ]
         },
         {
-          "slice": "SLICE 3",
           "badge": "On the roadmap",
           "title": "Balsm Cloud",
           "desc": "The optional cloud layer — cross-branch sync, backup, and lab integration. You subscribe only when you choose.",
@@ -428,7 +425,7 @@
   },
   "providers": {
     "hero": {
-      "eyebrow": "Balsm Pro · Slice 2",
+      "eyebrow": "Balsm Pro",
       "title1": "A system for your health facility,",
       "title2": "you'll own outright.",
       "subtitle": "In development now for your clinics, hospitals, pharmacies, and medical equipment and supply stores: point of sale, inventory, dispensing, and management — it will be self-hosted, PDPL-compliant, and free to run forever. No middleman, no forced subscription, no lock-in.",

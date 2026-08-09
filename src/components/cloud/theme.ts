@@ -32,6 +32,72 @@ export const C = {
   ltTagText: '#78776C',
 } as const;
 
+/**
+ * Colour roles for text and for labels sitting on a petal.
+ *
+ * ── Why these are the plain petals ──────────────────────────────────────────
+ *
+ * These four groups exist so every call site names the *role* it needs rather
+ * than reaching for a fill. That indirection is worth keeping. What changed is
+ * what they point at.
+ *
+ * An earlier pass pointed them at darkened variants so every petal used as text
+ * would clear WCAG AA. It worked on the meter and failed on the page: the petals
+ * are light by design, so meeting 4.5:1 at label sizes meant dropping OKLCH
+ * lightness from ~0.73 to ~0.55 on every accent, and since a kicker leads each
+ * section, the whole site read flat. Three rounds of narrowing that gap did not
+ * fix it, because the gap is structural rather than a bad value choice.
+ *
+ * The brand owner's call, made explicitly, is that the palette wins. These now
+ * resolve to the design's own values, so the rendered result matches
+ * `Cloud.dc.html` exactly.
+ *
+ * ── The cost, stated plainly ────────────────────────────────────────────────
+ *
+ * Petals used as small text score 1.8–3.4:1 against 4.5:1. That is a real
+ * accessibility regression for low-vision readers, and it is a deliberate,
+ * documented exception rather than an oversight — see the Accessibility section
+ * in PRODUCT.md.
+ *
+ * The AA-safe value for each role is kept in the comments. Anything here can be
+ * dialled back individually by swapping one line; nothing else has to move.
+ */
+export const FILL = {
+  blue: C.blue,        // AA-safe with a white label: '#0C74E5' (4.52:1)
+} as const;
+
+export const ON = {
+  aqua:   '#FFFFFF',   // AA-safe: '#024442' (4.60:1) — white here is 2.39:1
+  mint:   '#1B3B27',   // 6.71:1 — the design's own value, already compliant
+  blue:   '#FFFFFF',   // AA-safe: '#011C41' (4.60:1) — white here is 3.67:1
+  violet: '#FFFFFF',   // 5.69:1 — compliant as-is
+} as const;
+
+export const TEXT = {
+  muted:   C.muted,    // AA-safe: '#6B6B60' (= --color-ink-600, 5.39:1)
+  emerald: C.emerald,  // AA-safe: '#11826C' (4.55:1)
+  aqua:    C.aqua,     // AA-safe: '#11817D' (4.55:1)
+  blue:    C.blue,     // AA-safe: '#0F71DE' (4.54:1)
+  mint:    C.mint,     // AA-safe: '#078540' (4.54:1)
+  amber:   C.amber,    // AA-safe: '#956C0B' (4.55:1)
+  danger:  C.danger,   // AA-safe: '#CE4134' (4.55:1)
+  violet:  C.violet,   // 5.69:1 — compliant as-is
+} as const;
+
+/**
+ * Kept as a distinct role so display-size type can diverge from label-size type
+ * later without touching call sites. Both currently resolve to the petal.
+ */
+export const DISPLAY = {
+  blue:    C.blue,     // 3.51:1 on cream — already clears the 3:1 large-text bar
+  violet:  C.violet,   // 5.45:1 — clears
+  danger:  C.danger,   // 4.15:1 — clears
+  emerald: C.emerald,  // 2.13:1 — AA-safe at this size: '#14A387' (3.03:1)
+  aqua:    C.aqua,     // 2.29:1 — AA-safe at this size: '#15A19C' (3.04:1)
+  mint:    C.mint,     // 1.76:1 — AA-safe at this size: '#01A651' (3.05:1)
+  amber:   C.amber,    // 2.23:1 — AA-safe at this size: '#BA870E' (3.06:1)
+} as const;
+
 export const FONT = {
   cairo: "'Cairo', 'IBM Plex Sans Arabic', sans-serif",
   arabic: "'IBM Plex Sans Arabic', 'Cairo', sans-serif",

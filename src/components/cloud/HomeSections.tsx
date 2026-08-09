@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { C, FONT } from './theme';
+import { C, DISPLAY, FILL, FONT, ON, TEXT } from './theme';
 import { useInView } from './useReveal';
 import Reveal from './Reveal';
 import CountUp from './CountUp';
@@ -16,12 +16,16 @@ import {
 } from './CloudIcons';
 
 type Card = { title: string; desc: string };
-type Slice = { slice: string; badge: string; title: string; desc: string; tags: string[] };
+type Product = { badge: string; title: string; desc: string; tags: string[] };
 type Stat = { value: string; label: string };
 type PathCard = { title: string; desc: string; cta: string };
 
+// Kickers are 19px bold, not 13px. Bold at >=18.66px is WCAG "large text",
+// where the contrast bar drops from 4.5:1 to 3:1 — which is enough for the
+// blue, violet and danger petals to be compliant at full strength. The rest
+// remain part of the documented palette exception. Don't shrink these.
 const eyebrow = (color: string): React.CSSProperties => ({
-  fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: 'start',
+  fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color, textAlign: 'start',
 });
 const h2 = (color = C.ink): React.CSSProperties => ({
   fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.4vw,52px)', lineHeight: 1.15, color, margin: '12px 0 14px',
@@ -37,10 +41,13 @@ const PROBLEM_ICONS = [
   { Icon: Unplug, bg: C.amberBg, color: C.amber },
   { Icon: LifeBuoy, bg: C.violetBg, color: C.violet },
 ];
-const SLICE_STYLES = [
-  { Icon: HeartPulse, grad: 'linear-gradient(160deg,#E4F0FF,#fff)', border: '#CFE3FF', chipBorder: '#CFE3FF', chipText: '#0F6BCC', mono: '#0F6BCC', dot: C.blue, badgeFilled: true },
-  { Icon: Building2, grad: 'linear-gradient(160deg,#E2F8F6,#fff)', border: '#CDEFEC', chipBorder: '#CDEFEC', chipText: '#019A7F', mono: '#029E99', dot: C.aqua, badgeFilled: false },
-  { Icon: Network, grad: 'linear-gradient(160deg,#ECE6FA,#fff)', border: '#DDD2F4', chipBorder: '#DDD2F4', chipText: '#5C3AB0', mono: '#5C3AB0', dot: C.violet, badgeFilled: false },
+// One entry per product card, index-aligned with the `how.products` messages.
+// `badgeInk` is the badge's label colour; it resolves to white, matching the
+// design — the ON group exists so it can be darkened without touching call sites.
+const PRODUCT_STYLES = [
+  { Icon: HeartPulse, grad: 'linear-gradient(160deg,#E4F0FF,#fff)', border: '#CFE3FF', chipBorder: '#CFE3FF', chipText: '#0F6BCC', dot: C.blue, badgeFilled: true, badgeInk: ON.blue },
+  { Icon: Building2, grad: 'linear-gradient(160deg,#E2F8F6,#fff)', border: '#CDEFEC', chipBorder: '#CDEFEC', chipText: '#019A7F', dot: C.aqua, badgeFilled: false, badgeInk: ON.aqua },
+  { Icon: Network, grad: 'linear-gradient(160deg,#ECE6FA,#fff)', border: '#DDD2F4', chipBorder: '#DDD2F4', chipText: '#5C3AB0', dot: C.violet, badgeFilled: false, badgeInk: ON.violet },
 ];
 const STORES = [
   { Icon: Apple, key: 'appStore', size: 24 },
@@ -51,11 +58,14 @@ const VALUE_ICONS = [GitBranch, ShieldCheck, Users, Languages, WifiOff, Gem];
 const VALUE_COLORS = [C.mint, C.aqua, C.blue, C.violet, C.mint, C.aqua];
 // Four paths — the design dropped the investor card from Home (it lives in the
 // Cloud page's investor section instead).
+// `color` paints the icon inside the tinted chip; `text` paints the card's CTA
+// line. They were one field, which is why a 14px CTA was being drawn in a fill
+// colour — 2.2:1 for the amber card. Same hue in both roles, different weight.
 const PATH_STYLES = [
-  { Icon: UserRound, bg: C.blueBg, color: C.blue, href: '/#app' },
-  { Icon: Building2, bg: C.aquaBg, color: C.aqua, href: '/providers' },
-  { Icon: CodeXml, bg: C.violetBg, color: C.violet, href: '/contributors' },
-  { Icon: HeartHandshake, bg: C.amberBg, color: C.amber, href: '/sponsor' },
+  { Icon: UserRound, bg: C.blueBg, color: C.blue, text: TEXT.blue, href: '/#app' },
+  { Icon: Building2, bg: C.aquaBg, color: C.aqua, text: TEXT.aqua, href: '/providers' },
+  { Icon: CodeXml, bg: C.violetBg, color: C.violet, text: TEXT.violet, href: '/contributors' },
+  { Icon: HeartHandshake, bg: C.amberBg, color: C.amber, text: TEXT.amber, href: '/sponsor' },
 ];
 
 export default function HomeSections() {
@@ -63,7 +73,7 @@ export default function HomeSections() {
   const locale = useLocale();
   const stats = t.raw('stats') as Stat[];
   const problemCards = t.raw('problem.cards') as Card[];
-  const slices = t.raw('how.slices') as Slice[];
+  const products = t.raw('how.products') as Product[];
   const bullets = t.raw('app.bullets') as string[];
   const valueWords = t.raw('values.words') as string[];
   const valueCards = t.raw('values.cards') as Card[];
@@ -105,7 +115,7 @@ export default function HomeSections() {
             <p style={{ fontFamily: FONT.arabic, fontWeight: 500, fontSize: 14, letterSpacing: '.02em', color: C.muted, margin: '14px 0 0' }}>{t('hero.tagline')}</p>
           </Reveal>
           <Reveal delay={220} style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 38 }}>
-            <Link href="/cloud" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: C.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(18,131,255,.26)' }}>
+            <Link href="/cloud" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: FILL.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(18,131,255,.26)' }}>
               {t('hero.ctaJoin')}<ArrowRight style={{ width: 19, height: 19, transform: arrowFlip }} />
             </Link>
             <a href="#app" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.white, color: C.ink, border: `1.5px solid ${C.borderSoft}`, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17 }}>
@@ -123,7 +133,9 @@ export default function HomeSections() {
         <div ref={statsRef} style={{ ...container, padding: 'clamp(28px,4vw,44px) clamp(20px,5vw,56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(170px,100%),1fr))', gap: 24, textAlign: 'center' }}>
           {stats.map((s, i) => (
             <div key={i}>
-              <div style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 'clamp(30px,4vw,44px)', color: [C.blue, C.aqua, C.mint, C.violet][i] }}>
+              {/* DISPLAY is the role for large type; it resolves to the petals.
+                  See the contrast exception in theme.ts before changing these. */}
+              <div style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 'clamp(30px,4vw,44px)', color: [DISPLAY.blue, DISPLAY.aqua, DISPLAY.mint, DISPLAY.violet][i] }}>
                 <CountUp value={s.value} inView={statsInView} />
               </div>
               <div style={{ fontSize: 14, color: C.ink2, marginTop: 4 }}>{s.label}</div>
@@ -136,7 +148,7 @@ export default function HomeSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.bg }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 720, marginBottom: 48 }}>
-            <div style={eyebrow(C.danger)}>{t('problem.eyebrow')}</div>
+            <div style={eyebrow(DISPLAY.danger)}>{t('problem.eyebrow')}</div>
             <h2 style={h2()}>{t('problem.title')}</h2>
             <p style={{ fontFamily: FONT.arabic, fontSize: 'clamp(16px,1.7vw,19px)', lineHeight: 1.85, color: C.ink2, margin: 0 }}>{t('problem.desc')}</p>
           </Reveal>
@@ -157,21 +169,20 @@ export default function HomeSections() {
         </div>
       </section>
 
-      {/* HOW / SLICES */}
+      {/* HOW — the three products */}
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 720, marginBottom: 48 }}>
-            <div style={eyebrow(C.emerald)}>{t('how.eyebrow')}</div>
+            <div style={eyebrow(DISPLAY.emerald)}>{t('how.eyebrow')}</div>
             <h2 style={h2()}>{t('how.title')}</h2>
             <p style={{ fontFamily: FONT.arabic, fontSize: 'clamp(16px,1.7vw,19px)', lineHeight: 1.85, color: C.ink2, margin: 0 }}>{t('how.desc')}</p>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(290px,100%),1fr))', gap: 22 }}>
-            {slices.map((sl, i) => {
-              const s = SLICE_STYLES[i];
+            {products.map((pr, i) => {
+              const s = PRODUCT_STYLES[i];
               return (
                 <Reveal key={i} delay={i * 80} className="balsm-lift" style={{ borderRadius: 22, padding: 32, background: s.grad, border: `1px solid ${s.border}` }}>
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-                    <span dir="ltr" style={{ fontFamily: FONT.mono, fontSize: 12, fontWeight: 600, letterSpacing: '.08em', color: s.mono }}>{sl.slice}</span>
                     <span
                       style={{
                         fontFamily: FONT.cairo,
@@ -180,20 +191,20 @@ export default function HomeSections() {
                         padding: '3px 10px',
                         borderRadius: 999,
                         ...(s.badgeFilled
-                          ? { background: s.dot, color: '#fff' }
+                          ? { background: s.dot, color: s.badgeInk }
                           : { background: '#fff', border: `1px solid ${s.chipBorder}`, color: s.chipText }),
                       }}
                     >
-                      {sl.badge}
+                      {pr.badge}
                     </span>
                   </div>
                   <div style={{ width: 52, height: 52, borderRadius: 15, background: s.dot, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', marginBottom: 18, boxShadow: `0 8px 20px ${s.dot}4d` }}>
                     <s.Icon style={{ width: 26, height: 26 }} />
                   </div>
-                  <h3 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 24, color: C.ink, margin: '0 0 8px' }}>{sl.title}</h3>
-                  <p style={{ fontSize: 15.5, lineHeight: 1.75, color: C.ink2, margin: '0 0 16px' }}>{sl.desc}</p>
+                  <h3 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 24, color: C.ink, margin: '0 0 8px' }}>{pr.title}</h3>
+                  <p style={{ fontSize: 15.5, lineHeight: 1.75, color: C.ink2, margin: '0 0 16px' }}>{pr.desc}</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                    {sl.tags.map((tag) => (
+                    {pr.tags.map((tag) => (
                       <span key={tag} style={{ fontSize: 12.5, padding: '5px 11px', borderRadius: 999, background: '#fff', border: `1px solid ${s.chipBorder}`, color: s.chipText }}>{tag}</span>
                     ))}
                   </div>
@@ -209,8 +220,8 @@ export default function HomeSections() {
         <div style={{ ...container, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(36px,6vw,80px)' }}>
           <Reveal style={{ flex: '1 1 380px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div style={eyebrow(C.blue)}>{t('app.eyebrow')}</div>
-              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: C.blue, color: '#fff' }}>{t('app.badge')}</span>
+              <div style={eyebrow(DISPLAY.blue)}>{t('app.eyebrow')}</div>
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: FILL.blue, color: '#fff' }}>{t('app.badge')}</span>
             </div>
             <h2 style={{ ...h2(), fontSize: 'clamp(28px,4vw,46px)', margin: '12px 0 16px' }}>{t('app.title')}</h2>
             <p style={{ fontSize: 'clamp(16px,1.7vw,19px)', lineHeight: 1.85, color: C.ink2, margin: '0 0 24px' }}>{t('app.desc')}</p>
@@ -249,7 +260,7 @@ export default function HomeSections() {
               <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
                 {/* header */}
                 <div style={{ background: '#fff', padding: '16px 16px 12px', borderBottom: '1px solid #EEEEE6', display: 'flex', alignItems: 'center', gap: 10, flex: 'none' }}>
-                  <span style={{ width: 36, height: 36, borderRadius: '50%', background: C.aqua, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, flex: 'none' }}>{t('app.phone.initials')}</span>
+                  <span style={{ width: 36, height: 36, borderRadius: '50%', background: C.aqua, color: ON.aqua, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, flex: 'none' }}>{t('app.phone.initials')}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 11, color: C.muted }}>{t('app.phone.greeting')}</div>
                     <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: C.ink }}>{t('app.phone.name')}</div>
@@ -347,7 +358,7 @@ export default function HomeSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white }}>
         <div style={container}>
           <Reveal style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 48px' }}>
-            <div style={{ ...eyebrow(C.emerald), textAlign: 'center' }}>{t('paths.eyebrow')}</div>
+            <div style={{ ...eyebrow(DISPLAY.emerald), textAlign: 'center' }}>{t('paths.eyebrow')}</div>
             <h2 style={{ ...h2(), margin: '12px 0 0' }}>{t('paths.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: 18 }}>
@@ -361,7 +372,7 @@ export default function HomeSections() {
                     </div>
                     <h3 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 20, color: C.ink, margin: '0 0 6px' }}>{card.title}</h3>
                     <p style={{ fontSize: 14.5, lineHeight: 1.6, color: C.ink2, margin: '0 0 14px' }}>{card.desc}</p>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14, color: s.color }}>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14, color: s.text }}>
                       {card.cta}<ArrowUpLeft style={{ width: 15, height: 15 }} />
                     </span>
                   </Link>
@@ -462,7 +473,7 @@ function HomeJoin() {
               aria-label={t('messagePlaceholder')}
               style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.arabic, fontSize: 15, color: C.ink, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
             />
-            <button type="submit" disabled={status === 'loading'} style={{ width: '100%', padding: '15px 28px', borderRadius: 14, border: 'none', background: C.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.7 : 1, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>
+            <button type="submit" disabled={status === 'loading'} style={{ width: '100%', padding: '15px 28px', borderRadius: 14, border: 'none', background: FILL.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.7 : 1, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>
               {t('button')}
             </button>
             {status === 'error' && error && (

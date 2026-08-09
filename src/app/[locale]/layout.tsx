@@ -226,6 +226,15 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
       </head>
       <body className="min-h-screen" suppressHydrationWarning>
+        {/* Marks the document as scripted before the body below is parsed, so
+            the reveal wrappers can hide themselves without ever having been
+            painted. Nothing else depends on it, and with scripting off the
+            class never lands — which is the point: the page stays readable
+            instead of shipping 47 opacity:0 sections. See .balsm-reveal in
+            globals.css. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
+        />
         {/* JSON-LD lives in the body, not a hand-written <head>. Crawlers read
             it from anywhere in the document, and App Router owns <head> through
             the metadata API. Keeping our own tags out of it also stops browser

@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Make `dark:` follow the .dark class instead of the OS preference.
+   Tailwind v4 defaults `dark:` to `prefers-color-scheme`, but this codebase
+   themes through a `.dark` class — the token block further down is written as
+   `.dark { --color-*: … }`, and /links toggles that class from its own switch.
+   Without this the two disagreed: on an OS set to dark, /links rendered its
+   dark card surfaces while the switch said light, so the toggle changed the
+   text colours and nothing else. /links is the only file using `dark:`
+   utilities and the only one toggling the class, so this aligns them both. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ============================================================
    Balsm Design System — ported from Balsm-Core/brand/colors_and_type.css
    and the "Balsm Design System" Claude Design project (2026-08-05).
@@ -960,6 +970,28 @@ body {
 }
 @media (min-width: 1041px) {
   .cloudnav-panel { display: none !important; }
+}
+
+/* ── Reveal-on-scroll ──────────────────────────────────────────
+   The visible state is the default, so the page reads with scripting off;
+   `.js` is set on <html> by an inline script before first paint, and only
+   then does an un-revealed wrapper hide itself. Keeping opacity/transform
+   here rather than in inline styles is also what lets .balsm-lift:hover
+   animate transform at all — an inline transform outranks any rule. */
+.balsm-reveal {
+  transition: opacity .7s var(--balsm-ease-out), transform .7s var(--balsm-ease-out);
+}
+.js .balsm-reveal[data-inview='false'] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 18px));
+}
+/* The global reduce block below only shortens the transition, which would still
+   flash each section from hidden to shown. Here there is nothing to reveal. */
+@media (prefers-reduced-motion: reduce) {
+  .js .balsm-reveal[data-inview='false'] {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Card hover-lift for the design pages (replaces the design's data-lift).

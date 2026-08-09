@@ -160,23 +160,72 @@ the darkened value would fail there.
 This divergence should be pushed back upstream; the design system's own eyebrow
 spec is not AA-compliant on any of its light surfaces.
 
-### Known contrast debt (pre-existing, not introduced here)
+### Colour roles — `TEXT` / `DISPLAY` / `ON` / `FILL` in `cloud/theme.ts`
 
-A contrast audit of the rendered homepage found **37 text nodes below AA**. None
-originate from the token port — they are color choices inside the shipped
-`cloud/*` components:
+Four named groups so a call site asks for the *role* it needs rather than
+grabbing a fill: `TEXT` for type, `DISPLAY` for large type, `ON` for a label
+sitting on a petal, `FILL` for a petal under a white label.
 
-| Pattern | Example | Ratio | Needs |
-|---|---|---|---|
-| White on `--color-primary` blue | "Join the Cloud" CTA | 3.67 | 4.5 |
-| `--color-text-muted` on cream | hero subhead | 3.24 | 4.5 |
-| Petal colors as large numerals | "100%", "0" stat figures | 1.84–2.39 | 3 |
-| Emerald/aqua micro-labels | "How Balsm works", "SLICE 2" | 2.23–3.31 | 4.5 |
+**They all currently resolve to the design's own petals.** The indirection is
+what's valuable; the values behind it are the brand's.
 
-The petal palette is simply too light to carry text on white. Fixing this means
-either darkening the petals when they are used as *text* (as `--color-eyebrow`
-now does), or reserving petals for fills and drawing text in `ink-*`. That is a
-page migration, out of scope for this port.
+#### The contrast exception — deliberate, not an oversight
+
+The petals are light *because they are fills*. Used as text they score
+**1.8–3.4:1 against AA's 4.5:1**, and a rendered audit found 62 such nodes
+across the six pages.
+
+That was fixed once, properly: each petal darkened to the minimum that clears
+AA. It passed every check and the site came back visibly flat — meeting 4.5:1 at
+label sizes means dropping OKLCH lightness from ~0.73 to ~0.55 on every accent,
+and a kicker leads every section. Three rounds of narrowing the gap (retargeting
+to the true background, splitting large-text from small-text, darkening labels
+instead of fills, sizing kickers up to reach the 3:1 bar) did not resolve it,
+because the conflict is **structural**: this palette cannot be brand-bright and
+AA-legible at label sizes. One of the two has to give.
+
+The brand owner chose the palette. That is a legitimate call on a brand surface
+— and it has a real cost for low-vision readers, which is why it is written down
+here rather than left implicit.
+
+**Every AA-safe value is preserved in a comment beside the live one** in
+`theme.ts`. Any single role can be dialled back by editing one line; no call
+site changes. If contrast becomes a requirement later, the work is already done
+and reversible.
+
+#### Section kickers are 19px bold
+
+Not 13px. Bold at ≥18.66px is WCAG "large text", where the bar drops from 4.5:1
+to 3:1 — and at 3:1 the **blue, violet and danger petals are compliant at full
+strength**, so the size shrinks the exception rather than just decorating it:
+
+| kicker petal | on cream | 3:1 bar |
+|---|---|---|
+| blue `#1283FF` | 3.51 | passes |
+| danger `#D44A3C` | 4.15 | passes |
+| violet `#724DD0` | 5.45 | passes |
+| emerald `#01C4A2` | 2.13 | exception |
+| aqua `#02BBB5` | 2.29 | exception |
+| amber `#D9A020` | 2.23 | exception |
+| mint `#55D77F` | 1.76 | exception |
+
+**Don't shrink them back.** At 13px every one of those falls under the 4.5:1
+bar, which is where the site was before.
+
+Note this also cuts against the usual advice — the shared bans call a tracked
+kicker above every section AI scaffolding. Fewer kickers is the right direction
+here; smaller ones is not.
+
+#### What that means when you add a surface
+
+- Don't "fix" a petal-as-text contrast warning by darkening it ad hoc — that
+  reintroduces the flatness one component at a time. Change the token or leave
+  it.
+- The rest of the palette **is** compliant and should stay that way: `ink-*` on
+  light, white on `C.dark`, `C.violet` anywhere. The exception is the petals as
+  small text, nothing else.
+- If you ever need a compliant accent, `--color-eyebrow` (`#017560`) and the
+  commented AA values are there.
 
 ## Spacing · radii · shadows · motion
 
@@ -192,6 +241,32 @@ page migration, out of scope for this port.
   cross-fade. No slides, no rotations.
 - Every animation needs a `prefers-reduced-motion` alternative. `globals.css`
   ships a global reduce block; anything richer needs its own.
+
+### Reveal-on-scroll: visible is the default
+
+`<Reveal>` puts its hidden state in CSS (`.balsm-reveal[data-inview="false"]`),
+gated on a `.js` class that an inline script in the locale layout sets before
+first paint. It used to write `opacity: 0` inline, which meant the server HTML
+shipped **47 invisible wrappers on the home page alone** — with scripting off,
+or in any renderer that doesn't run IntersectionObserver, the page was blank.
+The gate inverts that: markup is visible by default and only hides itself when
+something is around to un-hide it.
+
+The same move fixed a dead interaction. An inline `transform` outranks every
+stylesheet rule, so `.balsm-lift:hover` — which also animates transform — was
+doing nothing on the 11 cards that are both a Reveal and a lift.
+
+**Never express reveal state as an inline style.** Both failure modes come back
+the moment you do.
+
+### `dark:` follows the class, not the OS
+
+`globals.css` declares `@custom-variant dark (&:where(.dark, .dark *))`.
+Tailwind v4 otherwise resolves `dark:` to `prefers-color-scheme`, which
+disagreed with the `.dark { --color-*: … }` token block this codebase themes
+through: on an OS set to dark, `/links` rendered dark card surfaces while its
+own switch said light. `/links` is the only file using `dark:` utilities and
+the only one toggling the class.
 
 ## Bans
 
@@ -213,7 +288,7 @@ From the brand, on top of the shared frontend bans:
 
 Arabic is first-class, not a translation layer.
 
-- `بَلسَم` **with diacritics** — fatha on ب and on س. Without is incorrect.
+- `بلسم` **with diacritics** — fatha on ب and on س. Without is incorrect.
 - Every surface must work under `dir="rtl"`. Use logical properties
   (`margin-inline`, `padding-inline-start`, `inline-start/end`), never
   `left`/`right`, so gutters and column order mirror automatically.

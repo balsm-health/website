@@ -6,9 +6,18 @@ import { C, FONT } from './theme';
 import { AtSign, Globe, Mail } from './CloudIcons';
 import AnimatedLogo from './AnimatedLogo';
 
-const linkStyle: React.CSSProperties = { color: 'rgba(255,255,255,.66)', textDecoration: 'none' };
+const linkStyle: React.CSSProperties = {
+  color: 'rgba(255,255,255,.66)',
+  textDecoration: 'none',
+  // 23px rows sat well under the 44px floor. The height is taken as a minimum
+  // with the label centred, and colWrap's gap drops to 0 to pay for it — so the
+  // visible spacing between links is what it was, and the target is the row.
+  display: 'flex',
+  alignItems: 'center',
+  minHeight: 44,
+};
 const colTitle: React.CSSProperties = { fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, marginBottom: 14, color: '#fff' };
-const colWrap: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: 11, fontSize: 14.5 };
+const colWrap: React.CSSProperties = { display: 'flex', flexDirection: 'column', fontSize: 14.5 };
 
 const SOCIALS: { label: string; href: string }[] = [
   { label: 'GitHub', href: 'https://github.com/balsm-health' },
@@ -69,7 +78,7 @@ export default function BalsmFooter() {
           <div style={{ gridColumn: '1 / -1', maxWidth: 340 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 11, marginBottom: 14 }}>
               <AnimatedLogo size={38} idle="breathe" />
-              <span style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 24 }}>بَلسَم</span>
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 24 }}>بلسم</span>
             </div>
             <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(255,255,255,.66)', margin: '0 0 16px' }}>{t('blurb')}</p>
             <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: 'rgba(255,255,255,.5)', marginBottom: 22 }}>
@@ -86,7 +95,7 @@ export default function BalsmFooter() {
                   aria-label={s.label}
                   title={s.label}
                   className="balsm-social"
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 42, height: 42, borderRadius: '50%', flex: '0 0 auto', textDecoration: 'none' }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44, borderRadius: '50%', flex: '0 0 auto', textDecoration: 'none' }}
                 >
                   <SocialIcon label={s.label} />
                 </a>

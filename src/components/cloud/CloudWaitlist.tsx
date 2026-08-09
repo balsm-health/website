@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { C, FONT, MOTION } from './theme';
+import { C, FILL, FONT, MOTION } from './theme';
 import { useInView } from './useReveal';
 import { Check, AlertCircle } from './CloudIcons';
 import AnimatedLogo from './AnimatedLogo';
@@ -176,7 +176,7 @@ export default function CloudWaitlist() {
                 padding: '15px 28px',
                 borderRadius: 14,
                 border: 'none',
-                background: C.blue,
+                background: FILL.blue,
                 color: C.white,
                 fontFamily: FONT.cairo,
                 fontWeight: 700,

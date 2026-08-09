@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { C, FONT, MOTION } from './theme';
+import { C, FILL, FONT, MOTION } from './theme';
 import { useInView } from './useReveal';
 import { ArrowRight, TrendingUp } from './CloudIcons';
 
@@ -84,7 +84,7 @@ export default function CloudHero() {
                 gap: 9,
                 padding: '16px 30px',
                 borderRadius: 999,
-                background: C.blue,
+                background: FILL.blue,
                 color: C.white,
                 fontFamily: FONT.cairo,
                 fontWeight: 700,

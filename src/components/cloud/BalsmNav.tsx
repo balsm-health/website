@@ -3,7 +3,7 @@
 import { useEffect, useState, useTransition } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
-import { C, FONT } from './theme';
+import { C, FILL, FONT } from './theme';
 import { Terminal, Menu } from './CloudIcons';
 
 export type NavKey = 'home' | 'providers' | 'contributors' | 'cloud' | 'sponsor';
@@ -38,6 +38,12 @@ export default function BalsmNav({ active }: { active: NavKey }) {
   };
 
   const pill = (isActive: boolean): React.CSSProperties => ({
+    // 9px of padding around a 15.5px line came to 43px — one pixel under the
+    // 44px floor DESIGN.md commits to. Stated as a minimum rather than more
+    // padding, so the pill can't drift back under it when the type scale moves.
+    display: 'inline-flex',
+    alignItems: 'center',
+    minHeight: 44,
     padding: '9px 15px',
     borderRadius: 999,
     fontFamily: FONT.cairo,
@@ -97,7 +103,7 @@ export default function BalsmNav({ active }: { active: NavKey }) {
               onClick={() => setLang('ar')}
               aria-label="العربية"
               style={{
-                minWidth: 38, height: 38, padding: '0 10px', border: 'none', borderRadius: 999,
+                minWidth: 44, height: 44, padding: '0 10px', border: 'none', borderRadius: 999,
                 background: locale === 'ar' ? C.white : 'transparent', color: locale === 'ar' ? C.ink : C.muted,
                 boxShadow: locale === 'ar' ? '0 1px 3px rgba(43,43,37,.14)' : 'none',
                 fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14, lineHeight: 1, cursor: 'pointer',
@@ -109,7 +115,7 @@ export default function BalsmNav({ active }: { active: NavKey }) {
               onClick={() => setLang('en')}
               aria-label="English"
               style={{
-                minWidth: 38, height: 38, padding: '0 10px', border: 'none', borderRadius: 999,
+                minWidth: 44, height: 44, padding: '0 10px', border: 'none', borderRadius: 999,
                 background: locale === 'en' ? C.white : 'transparent', color: locale === 'en' ? C.ink : C.muted,
                 boxShadow: locale === 'en' ? '0 1px 3px rgba(43,43,37,.14)' : 'none',
                 fontFamily: FONT.display, fontWeight: 700, fontSize: 12.5, letterSpacing: '.02em', lineHeight: 1, cursor: 'pointer',
@@ -133,7 +139,7 @@ export default function BalsmNav({ active }: { active: NavKey }) {
           <Link
             href="/cloud"
             className="cloudnav-cta"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, background: C.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, boxShadow: '0 8px 22px rgba(18,131,255,.22)', whiteSpace: 'nowrap' }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, background: FILL.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, boxShadow: '0 8px 22px rgba(18,131,255,.22)', whiteSpace: 'nowrap' }}
           >
             {t('join')}
           </Link>
@@ -166,7 +172,7 @@ export default function BalsmNav({ active }: { active: NavKey }) {
             <Link
               href="/cloud"
               onClick={() => setMobileOpen(false)}
-              style={{ marginTop: 10, textAlign: 'center', padding: 14, borderRadius: 999, background: C.blue, color: C.white, fontWeight: 700 }}
+              style={{ marginTop: 10, textAlign: 'center', padding: 14, borderRadius: 999, background: FILL.blue, color: C.white, fontWeight: 700 }}
             >
               {t('join')}
             </Link>

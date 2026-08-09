@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { C, FONT, MOTION } from './theme';
+import { C, DISPLAY, FONT, MOTION } from './theme';
 import { useInView } from './useReveal';
 import { RefreshCw, DatabaseBackup, FlaskConical, LineChart, Headset, LogOut } from './CloudIcons';
 
@@ -33,7 +33,7 @@ export default function CloudFeatures() {
             transform: inView ? 'translateY(0)' : `translateY(${MOTION.revealY}px)`,
           }}
         >
-          <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: C.emerald }}>{t('eyebrow')}</div>
+          <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: DISPLAY.emerald }}>{t('eyebrow')}</div>
           <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>
             {t('title')}
           </h2>

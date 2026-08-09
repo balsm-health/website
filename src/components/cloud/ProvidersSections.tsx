@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { C, FONT } from './theme';
+import { C, DISPLAY, FILL, FONT, ON } from './theme';
 import Reveal from './Reveal';
 import { captureError } from '@/lib/observability';
 import {
@@ -16,7 +16,11 @@ type Card = { title: string; desc: string };
 type Trust = { title: string; sub: string };
 
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
-const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: 'start' });
+// Kickers are 19px bold, not 13px. Bold at >=18.66px is WCAG "large text",
+// where the contrast bar drops from 4.5:1 to 3:1 — which is enough for the
+// blue, violet and danger petals to be compliant at full strength. The rest
+// remain part of the documented palette exception. Don't shrink these.
+const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color, textAlign: 'start' });
 
 const TRUST_ICONS = [
   { Icon: Server, bg: C.aquaBg, color: C.aqua },
@@ -54,7 +58,7 @@ export default function ProvidersSections() {
         <div style={{ position: 'relative', ...container }}>
           <Reveal style={{ maxWidth: 760 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div style={eyebrow('#019A7F')}>{t('hero.eyebrow')}</div>
+              <div style={eyebrow(DISPLAY.emerald)}>{t('hero.eyebrow')}</div>
               <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: C.white, border: '1px solid #CDEFEC', color: '#019A7F' }}>
                 {t('hero.roadmap')}
               </span>
@@ -80,7 +84,7 @@ export default function ProvidersSections() {
               })}
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
-              <a href="#demo" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: C.aqua, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(2,187,181,.28)' }}>
+              <a href="#demo" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: C.aqua, color: ON.aqua, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(2,187,181,.28)' }}>
                 {t('hero.ctaDemo')}<ArrowRight style={{ width: 19, height: 19, transform: arrowFlip }} />
               </a>
               <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.white, color: C.ink, border: `1.5px solid ${C.borderSoft}`, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17 }}>
@@ -115,7 +119,7 @@ export default function ProvidersSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.bg }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 700, marginBottom: 46 }}>
-            <div style={eyebrow(C.emerald)}>{t('features.eyebrow')}</div>
+            <div style={eyebrow(DISPLAY.emerald)}>{t('features.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('features.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(280px,100%),1fr))', gap: 20 }}>
@@ -150,7 +154,7 @@ export default function ProvidersSections() {
       <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
           <Reveal style={{ textAlign: 'center', maxWidth: 680, margin: '0 auto 46px' }}>
-            <div style={{ ...eyebrow(C.emerald), textAlign: 'center' }}>{t('pricing.eyebrow')}</div>
+            <div style={{ ...eyebrow(DISPLAY.emerald), textAlign: 'center' }}>{t('pricing.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('pricing.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(300px,100%),1fr))', gap: 22, maxWidth: 880, margin: '0 auto' }}>
@@ -185,7 +189,7 @@ export default function ProvidersSections() {
                   <div key={f} style={{ display: 'flex', gap: 9, alignItems: 'center' }}><Check style={{ width: 18, height: 18, color: C.blue }} />{f}</div>
                 ))}
               </div>
-              <Link href="/cloud" style={{ display: 'block', textAlign: 'center', marginTop: 24, padding: 13, borderRadius: 999, background: C.blue, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>{t('pricing.cloud.cta')}</Link>
+              <Link href="/cloud" style={{ display: 'block', textAlign: 'center', marginTop: 24, padding: 13, borderRadius: 999, background: FILL.blue, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>{t('pricing.cloud.cta')}</Link>
             </Reveal>
           </div>
         </div>
@@ -269,7 +273,7 @@ function ProvidersDemo() {
               <input value={clinic} onChange={(e) => { setClinic(e.target.value); clear(); }} placeholder={t('clinicPlaceholder')} disabled={status === 'loading'} aria-label={t('clinicPlaceholder')} style={{ ...inputStyle, fontFamily: FONT.arabic }} />
               <input value={email} onChange={(e) => { setEmail(e.target.value); clear(); }} type="email" dir="ltr" placeholder={t('emailPlaceholder')} disabled={status === 'loading'} aria-label={t('emailPlaceholder')} style={{ ...inputStyle, fontFamily: FONT.body, textAlign: 'left' }} />
               <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder={t('messagePlaceholder')} disabled={status === 'loading'} aria-label={t('messagePlaceholder')} style={{ ...inputStyle, fontFamily: FONT.arabic, resize: 'vertical', boxSizing: 'border-box' }} />
-              <button type="submit" disabled={status === 'loading'} style={{ padding: 16, borderRadius: 14, border: 'none', background: C.aqua, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.7 : 1, boxShadow: '0 10px 24px rgba(2,187,181,.24)' }}>{t('button')}</button>
+              <button type="submit" disabled={status === 'loading'} style={{ padding: 16, borderRadius: 14, border: 'none', background: C.aqua, color: ON.aqua, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.7 : 1, boxShadow: '0 10px 24px rgba(2,187,181,.24)' }}>{t('button')}</button>
             </div>
             {status === 'error' && error && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 7, justifyContent: 'center', marginTop: 14, color: C.danger, fontSize: 14 }}>

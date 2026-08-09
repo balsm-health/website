@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { C, FONT, MOTION } from './theme';
+import { C, DISPLAY, FONT, MOTION } from './theme';
 import Reveal from './Reveal';
 
 type Item = { q: string; a: string };
@@ -30,7 +30,7 @@ export default function FaqSection() {
     >
       <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' }}>
         <Reveal style={{ marginBottom: 38 }}>
-          <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: C.aqua }}>
+          <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: DISPLAY.aqua }}>
             {t('eyebrow')}
           </div>
           <h2
@@ -50,12 +50,15 @@ export default function FaqSection() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {items.map((item, i) => (
             <Reveal key={item.q} delay={i * 50}>
+              {/* The padding lives on the summary, not on the details. With it
+                  on the wrapper the clickable row was only as tall as its own
+                  text — 27px — so most of the card a reader aims at did
+                  nothing. Moving it makes the whole row the hit area (63px). */}
               <details
                 style={{
                   background: C.bg,
                   border: `1px solid ${C.border}`,
                   borderRadius: 16,
-                  padding: '18px 22px',
                 }}
               >
                 <summary
@@ -70,6 +73,8 @@ export default function FaqSection() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     gap: 14,
+                    padding: '18px 22px',
+                    borderRadius: 16,
                   }}
                 >
                   {item.q}
@@ -83,7 +88,10 @@ export default function FaqSection() {
                     fontSize: 15.5,
                     lineHeight: 1.85,
                     color: C.ink2,
-                    margin: '14px 0 0',
+                    // Padding, not margin: the details no longer pads its own
+                    // children, and the answer must still align to the question.
+                    margin: 0,
+                    padding: '0 22px 18px',
                     transition: MOTION.revealTransition,
                   }}
                 >

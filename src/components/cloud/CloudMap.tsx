@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { C, FONT, MOTION } from './theme';
+import { C, DISPLAY, FONT, MOTION } from './theme';
 import { useInView } from './useReveal';
 import { Info } from './CloudIcons';
 import { MAP_ASSET, MAP_VIEWBOX, MAP_DOTS, MAP_EGYPT, MAP_RED_SEA, MAP_GULF_LABEL } from './mapData';
@@ -48,7 +48,7 @@ export default function CloudMap() {
     <section style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.bg, borderTop: `1px solid ${C.borderHair}` }}>
       <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' }} ref={ref}>
         <div style={{ maxWidth: 720, marginBottom: 44, ...reveal() }}>
-          <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: C.blue }}>{t('eyebrow')}</div>
+          <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: DISPLAY.blue }}>{t('eyebrow')}</div>
           <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 14px' }}>
             {t('title')}
           </h2>

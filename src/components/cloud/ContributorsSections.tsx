@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { C, FONT } from './theme';
+import { C, DISPLAY, FONT } from './theme';
 import Reveal from './Reveal';
 import AnimatedLogo from './AnimatedLogo';
 import {
@@ -40,7 +40,11 @@ function labelChip(hex: string): React.CSSProperties {
 }
 
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
-const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color, textAlign: 'start' });
+// Kickers are 19px bold, not 13px. Bold at >=18.66px is WCAG "large text",
+// where the contrast bar drops from 4.5:1 to 3:1 — which is enough for the
+// blue, violet and danger petals to be compliant at full strength. The rest
+// remain part of the documented palette exception. Don't shrink these.
+const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color, textAlign: 'start' });
 
 // Eight roles, icons per Contributors.dc.html
 const ROLE_ICONS = [
@@ -113,7 +117,7 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
         <div style={{ ...container, padding: 'clamp(28px,4vw,44px) clamp(20px,5vw,56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(170px,100%),1fr))', gap: 24, textAlign: 'center' }}>
           {stats.map((s, i) => (
             <Reveal key={i} delay={i * 50}>
-              <div style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 'clamp(28px,4vw,42px)', color: [C.violet, C.blue, C.aqua, C.green][i] }}>{s.value}</div>
+              <div style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 'clamp(28px,4vw,42px)', color: [DISPLAY.violet, DISPLAY.blue, DISPLAY.aqua, DISPLAY.mint][i] }}>{s.value}</div>
               <div style={{ fontSize: 14, color: C.ink2, marginTop: 4 }}>{s.label}</div>
             </Reveal>
           ))}
@@ -148,7 +152,7 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
       <section id="roles" style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
           <Reveal style={{ maxWidth: 700, marginBottom: 46 }}>
-            <div style={eyebrow(C.emerald)}>{t('roles.eyebrow')}</div>
+            <div style={eyebrow(DISPLAY.emerald)}>{t('roles.eyebrow')}</div>
             <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('roles.title')}</h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(220px,100%),1fr))', gap: 16, marginBottom: 32 }}>
@@ -208,7 +212,7 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
               )}
             </div>
 
-            <a href={issues.length === 0 ? GITHUB_ORG_URL : GITHUB_ISSUES_URL} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 18, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, color: C.mint }}>
+            <a href={issues.length === 0 ? GITHUB_ORG_URL : GITHUB_ISSUES_URL} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 18, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, color: C.mint, minHeight: 44 }}>
               <Github style={{ width: 16, height: 16 }} />
               {issues.length === 0 ? t('dev.issuesBrowse') : t('dev.issuesAll')}
             </a>
