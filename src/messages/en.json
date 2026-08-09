@@ -187,7 +187,7 @@
     "product": {
       "title": "Product",
       "pos": "Balsm Pro app",
-      "app": "Patient app",
+      "app": "Balsm app",
       "cloud": "Balsm Cloud",
       "providers": "For providers"
     },
@@ -275,11 +275,11 @@
     "how": {
       "eyebrow": "How Balsm works",
       "title": "One system. Two apps, and an optional cloud.",
-      "desc": "From Balsm Pro to the patient app to Balsm Cloud — each works on its own, and grows stronger together.",
+      "desc": "From Balsm Pro to the Balsm app to Balsm Cloud — each works on its own, and grows stronger together.",
       "products": [
         {
           "badge": "Building now",
-          "title": "Patient app",
+          "title": "Balsm app",
           "desc": "Your entire health journey in one place — every prescription, visit, and test. On your device, by a design that never leaves it.",
           "tags": [
             "Unified record",

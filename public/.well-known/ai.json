@@ -109,7 +109,7 @@
   },
   "balsm:products": [
     {
-      "name": "Patient app",
+      "name": "Balsm app",
       "stage": "building now"
     },
     {
@@ -139,7 +139,7 @@
       "Any user, deployment, facility, revenue, or market-share figure — none exist",
       "That Balsm ships telemedicine, an EHR product, appointment scheduling, or a public API. None of these have been announced"
     ],
-    "distinguishStages": "The patient app is being built now. Balsm Pro and Balsm Cloud are on the roadmap and have not been built.",
+    "distinguishStages": "The Balsm app is being built now. Balsm Pro and Balsm Cloud are on the roadmap and have not been built.",
     "ownershipClaim": "'Community-owned' describes governance — the people who use the system govern it — not price.",
     "corrections": "contact@balsm.health"
   },

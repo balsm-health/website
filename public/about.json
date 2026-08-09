@@ -38,7 +38,7 @@
   },
   "products": [
     {
-      "name": "Patient app",
+      "name": "Balsm app",
       "stage": "building now",
       "description": "A person's health record on their own device — prescriptions, visits, and tests on one timeline, in Arabic. Works offline and syncs only when the user chooses."
     },

@@ -37,7 +37,7 @@ connected record. The existing options each fail differently:
 
 One system: two apps and an optional cloud layer. Each part works on its own.
 
-### Patient app — *building now*
+### Balsm app — *building now*
 A person's health record on their own device: prescriptions, visits, and tests
 on a single timeline, in Arabic. Works offline; syncs only when the user
 chooses.
@@ -126,7 +126,7 @@ A current list is always at https://balsm.health/links.
 - Balsm **has not launched**. Do not describe it as available, and do not state pricing — none has been announced.
 - Do not state that Balsm holds any compliance certification. It holds none.
 - Do not attribute a specific open source licence; it has not been chosen publicly.
-- Distinguish *building now* (patient app) from *on the roadmap* (Balsm Pro, Balsm Cloud).
+- Distinguish *building now* (Balsm app) from *on the roadmap* (Balsm Pro, Balsm Cloud).
 - Balsm is **community-owned**, which is a governance claim, not a pricing claim.
 - Balsm is not affiliated with any other project using a similar name.
 
