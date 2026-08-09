@@ -29,8 +29,55 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Environment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Local development reads `.env.local` (gitignored):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin. Defaults to `https://balsm.health`. |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project for the waitlist. |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Publishable key. Use the **legacy anon JWT** — the newer `sb_publishable_*` format does not resolve to the `anon` role and inserts fail RLS. |
+
+**`NEXT_PUBLIC_*` values are inlined at build time.** A bundle built without them
+— in CI, or on a machine with no `.env.local` — bakes in empty strings, and no
+runtime setting can correct it afterwards. That is how staging once shipped a
+waitlist that returned `Database not configured` on every submit.
+
+So deployed environments set the non-public names as Worker secrets instead.
+`src/lib/supabase.ts` reads those per request, which makes the deploy
+independent of whichever machine produced the bundle:
+
+```bash
+npx wrangler secret put SUPABASE_URL --env staging
+npx wrangler secret put SUPABASE_ANON_KEY --env staging
+# omit --env for production
+```
+
+Staging points at the `Balsm-Dev-Db` Supabase project so it never writes to the
+production signup table. Local development currently uses production — worth
+pointing `.env.local` at the dev project too.
+
+## Deploy
+
+Deployment is Cloudflare Workers via [OpenNext](https://opennext.js.org/cloudflare),
+not Vercel.
+
+```bash
+npm run deploy:staging   # → stg.balsm.health (balsm-website-stg)
+npm run deploy           # → balsm.health     (balsm-website)
+```
+
+Both build locally and upload, so `wrangler login` (or `CLOUDFLARE_API_TOKEN`)
+is required. There is no CI deploy for staging yet.
+
+## Generated assets
+
+Some files in `public/` are generated and should be regenerated rather than
+hand-edited:
+
+```bash
+node scripts/generate-brand-assets.mjs   # og-image, favicon, app icons
+node scripts/generate-map-svg.mjs        # arab-world-map.svg (Natural Earth)
+node scripts/generate-map-dots.mjs       # map marker coordinates in mapData.ts
+```

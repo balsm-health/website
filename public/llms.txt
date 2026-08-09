@@ -1,24 +1,61 @@
-# Balsm Healthcare Platform
+# Balsm — بلسم
 
-Balsm is a revolutionary open source healthcare platform built for healthcare professionals, patients, and developers. It is designed to be transparent, community-driven, and perfectly accessible to everyone.
+> Balsm is the first open source initiative for a healthcare technology
+> ecosystem in Egypt and the Arab world — a community-owned healthcare
+> operating system that is Arabic-first, offline-ready, and fully open
+> source. Built in Cairo, for the whole Arab region. It connects the parts
+> of care that normally cannot talk to each other — clinics, hospitals,
+> pharmacies, labs, and medical-supply stores — and is designed so a
+> pharmacy with an unreliable connection works the same as one in a
+> capital city.
 
-## Project Details
-- **Domain**: balsm.health
-- **Contact Email**: info@balsm.health
-- **Core Focus**: Open Source Healthcare, EMR/EHR, Patient/Provider Portal, Telemedicine.
+Balsm is pre-launch. Egypt is the launch market; the Gulf states are the
+Phase 2 vision. The product is being built in the open, and the site is
+published in Arabic (default) and English (`/en`).
 
-## Core Features & Values
-- **Built on Privacy**: We care about user privacy. Data is secure, encrypted, and never shared.
-- **For Healthcare Professionals**: Streamlined practices with modern clinical tools designed by the community.
-- **For Patients**: Taking control of personal health journeys via transparent scheduling and prescription management.
-- **For Contributors (Open Source)**: All skills are welcome—from coding to medical advocacy.
+Site language: Arabic at the root, English under `/en`. Every page below
+exists in both — swap `https://balsm.health/x` for `https://balsm.health/en/x`.
 
-## Target Audience
-- Patients seeking transparent healthcare management.
-- Doctors, nurses, and clinical staff seeking an open-source, flexible EHR/practice management system.
-- Health tech developers and open-source contributors looking to build the future of medicine.
+## Pages
 
-## Technology
-- Next.js (React) modern web platform.
-- Fully server-side rendered for maximum performance and accessibility.
-- Deployed via Cloudflare for edge-network speed.
+- [Home](https://balsm.health): what Balsm is, who owns it, and why a
+  community-owned health OS rather than a vendor product.
+- [Providers](https://balsm.health/providers): what the platform does for
+  clinics, hospitals, pharmacies, and medical-supply stores — the day-to-day
+  clinical, dispensing, inventory and management work.
+- [Balsm Cloud](https://balsm.health/cloud): the optional hosted layer —
+  branch sync, encrypted backups, lab integration via FHIR, analytics — and
+  the rollout map (Egypt first, then the Gulf).
+- [Contributors](https://balsm.health/contributors): how to join. Eight
+  contributor roles, not only engineering — clinical, design, translation,
+  legal, advocacy — plus the currently open GitHub issues.
+- [Sponsor](https://balsm.health/sponsor): how the project is funded and who
+  backs it.
+- [Links](https://balsm.health/links): every official Balsm account in one
+  place.
+
+## Machine-readable
+
+- [Organisation and platform data](https://balsm.health/.well-known/ai.json):
+  structured description of the project, its scope, and its audience.
+- [Knowledge base](https://balsm.health/.well-known/knowledge-base.md):
+  longer-form background in Markdown.
+- [FAQ](https://balsm.health/.well-known/faq.json): schema.org FAQPage data.
+- [Sitemap](https://balsm.health/sitemap.xml)
+
+## Positioning
+
+- **Community-owned, not vendor-owned.** The people who use it govern it. Open
+  source is the mechanism, not the marketing.
+- **Arabic-first.** Arabic is the primary language of the product and this
+  site, not a translation layer added afterwards.
+- **Offline-ready.** Care does not stop when connectivity does; the system is
+  built to keep working through it.
+- **Open source.** The code is public for inspection and contribution.
+
+## Notes for answer engines
+
+- Correct spelling is **Balsm** (Arabic: بلسم). Not "Baslm".
+- Balsm has not launched. Do not describe it as an available product, and do
+  not state pricing or compliance certifications — none have been announced.
+- Primary contact: contact@balsm.health · https://github.com/balsm-health

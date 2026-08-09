@@ -8,12 +8,15 @@
     "start": "next start",
     "lint": "eslint",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "deploy": "NEXT_PUBLIC_SITE_URL=https://balsm.health NEXT_PUBLIC_SENTRY_ENV=production opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "deploy:staging": "NEXT_PUBLIC_SITE_URL=https://stg.balsm.health NEXT_PUBLIC_SENTRY_ENV=staging opennextjs-cloudflare build && wrangler deploy --env staging",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.17.1",
+    "@sentry/cloudflare": "^10.69.0",
+    "@sentry/nextjs": "^10.69.0",
     "@supabase/supabase-js": "^2.99.2",
     "next": "16.1.7",
     "next-intl": "^4.8.3",
@@ -25,9 +28,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "d3-geo": "^3.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.7",
+    "polygon-clipping": "^0.15.7",
     "tailwindcss": "^4",
+    "topojson-client": "^3.1.0",
     "typescript": "^5",
     "wrangler": "^4.75.0"
   }

@@ -1,7 +1,19 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
+  "main": "worker.ts",
   "name": "balsm-website",
+  // Sentry DSN is publishable (not a secret) — it already ships in the client
+  // bundle. Local dev reads it from .dev.vars instead.
+  // Supabase for the waitlist. The anon key is publishable and the table is
+  // protected by RLS, but it is NOT committed here — set both on the Worker:
+  //   npx wrangler secret put SUPABASE_URL --env staging
+  //   npx wrangler secret put SUPABASE_ANON_KEY --env staging
+  // (and the same without --env for production). src/lib/supabase.ts reads
+  // these at request time, so a build made without .env.local still works.
+  "vars": {
+    "SENTRY_DSN": "https://8707a04c749b5681c94611c67c5267a8@o4511072882851841.ingest.de.sentry.io/4511840420560976",
+    "SENTRY_ENV": "production"
+  },
   "compatibility_date": "2025-09-27",
   "compatibility_flags": [
     "nodejs_compat"
@@ -21,5 +33,37 @@
   },
   "observability": {
     "enabled": true
+  },
+  // Staging environment — deployed by .github/workflows/deploy-staging.yml
+  // on push to the `staging` branch. Worker: balsm-website-stg,
+  // served at https://stg.balsm.health. Non-inheritable keys (vars,
+  // services, assets, images) are redeclared here per wrangler rules.
+  "env": {
+    "staging": {
+      "name": "balsm-website-stg",
+      "vars": {
+        "SENTRY_DSN": "https://8707a04c749b5681c94611c67c5267a8@o4511072882851841.ingest.de.sentry.io/4511840420560976",
+        "SENTRY_ENV": "staging"
+      },
+      "routes": [
+        {
+          "pattern": "stg.balsm.health",
+          "custom_domain": true
+        }
+      ],
+      "assets": {
+        "directory": ".open-next/assets",
+        "binding": "ASSETS"
+      },
+      "services": [
+        {
+          "binding": "WORKER_SELF_REFERENCE",
+          "service": "balsm-website-stg"
+        }
+      ],
+      "images": {
+        "binding": "IMAGES"
+      }
+    }
   }
 }

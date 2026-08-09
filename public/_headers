@@ -43,8 +43,56 @@
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=86400
 
-# Manifest
-/manifest.json
+# Manifest — app/manifest.ts serves it at /manifest.webmanifest
+/manifest.webmanifest
   Content-Type: application/manifest+json
   Cache-Control: public, max-age=86400
+
+# Brand rasters (scripts/generate-brand-assets.mjs). Social crawlers fetch the
+# card cross-origin, so it needs CORS to render in some preview surfaces.
+/og-image.png
+  Cache-Control: public, max-age=86400
+  Access-Control-Allow-Origin: *
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+/icon-192.png
+  Cache-Control: public, max-age=604800
+
+/icon-512.png
+  Cache-Control: public, max-age=604800
+
+/apple-icon.png
+  Cache-Control: public, max-age=604800
+
+# Content assets. Filenames aren't hashed, so these are deliberately short —
+# long enough to help repeat visitors, short enough that a redeploy of the map
+# or a sponsor logo reaches people the same day.
+/arab-world-map.svg
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/balsm-logo.svg
+  Cache-Control: public, max-age=86400
+
+/balsm-logo-horizontal.svg
+  Cache-Control: public, max-age=86400
+
+/balsm-background.png
+  Cache-Control: public, max-age=86400
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+  Access-Control-Allow-Origin: *
+
+/.well-known/knowledge-base.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=86400
+  Access-Control-Allow-Origin: *
+
+/.well-known/faq.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=86400
+  Access-Control-Allow-Origin: *
 
