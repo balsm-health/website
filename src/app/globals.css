@@ -142,7 +142,13 @@
   /* ── Fonts ── */
   --font-display: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-body:    'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-arabic:  'IBM Plex Sans Arabic', 'Cairo', 'Geeza Pro', 'Noto Naskh Arabic', sans-serif;
+  /* Matches Providers.dc.html exactly. The Cairo / Geeza Pro / Noto Naskh
+     fallbacks were removed on purpose: font fallback is per-glyph, so any
+     character Plex Arabic lacks — or lacks at the requested weight, it only
+     loads 400-700 — rendered in Cairo mid-sentence. The design goes straight
+     to generic sans-serif, which every OS resolves to a face with Arabic
+     coverage. */
+  --font-arabic:  'IBM Plex Sans Arabic', sans-serif;
   --font-mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ── Breakpoints ────────────────────────────────────────────

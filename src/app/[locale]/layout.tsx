@@ -220,8 +220,13 @@ export default async function LocaleLayout({ children, params }: Props) {
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* IBM Plex Mono is in this list because FONT.mono in cloud/theme.ts
+            asks for it and nothing was fetching it — every mono usage silently
+            fell back to the OS monospace. Most visible on /contributors, which
+            puts four on one screen: the 42px stat figures, the install command
+            block, the GitHub label chips and the issue refs. */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Cairo:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
