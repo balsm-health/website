@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { defaultLocale, locales } from '@/i18n/request';
-import { canonicalUrl } from '@/lib/seo';
+import { CONTENT_REVISED, canonicalUrl } from '@/lib/seo';
 
 // Path (relative to /<locale>) → sitemap priority.
 const routes: { path: string; priority: number }[] = [
@@ -15,7 +15,10 @@ const routes: { path: string; priority: number }[] = [
 export default function sitemap(): MetadataRoute.Sitemap {
   // Every URL goes through canonicalUrl, which owns SITE_URL and the
   // unprefixed-default-locale rule, so there is no base URL to read here.
-  const lastModified = new Date();
+  //
+  // CONTENT_REVISED, not `new Date()`: lastmod must track content changes, not
+  // deploys, or crawlers learn to ignore it.
+  const lastModified = CONTENT_REVISED;
 
   const urls: MetadataRoute.Sitemap = [];
 

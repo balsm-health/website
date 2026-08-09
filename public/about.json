@@ -2,7 +2,7 @@
   "name": "Balsm",
   "alternateName": "بلسم",
   "spellingNote": "Correct spelling is 'Balsm', not 'Baslm'.",
-  "description": "A community-owned healthcare operating system for the Arab world — Arabic-first, offline-ready, and fully open source. It connects clinics, pharmacies, and labs, and is built so a pharmacy on an unreliable connection works the same as one in a capital city.",
+  "description": "Balsm is the first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — a community-owned healthcare operating system that is Arabic-first, offline-ready, and fully open source. It connects clinics, hospitals, pharmacies, labs, and medical-supply stores.",
   "url": "https://balsm.health",
   "code": "https://github.com/balsm-health",
   "category": "Open source health infrastructure",
@@ -54,8 +54,10 @@
     }
   ],
   "audience": [
-    "Pharmacies",
     "Clinics",
+    "Hospitals",
+    "Pharmacies",
+    "Medical equipment and supply stores",
     "Labs",
     "Patients in the Arab world",
     "Open source contributors"
@@ -118,5 +120,5 @@
     "sitemap": "https://balsm.health/sitemap.xml"
   },
   "noMetricsNote": "Balsm has no deployment, user, facility, revenue, or market-share figures, because nothing has launched. Any such number attributed to Balsm did not come from Balsm.",
-  "lastReviewed": "2026-08-08"
+  "lastReviewed": "2026-08-09"
 }

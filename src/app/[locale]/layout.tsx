@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n/request';
-import { alternates, openGraph, twitter } from '@/lib/seo';
+import { CONTENT_REVISED, alternates, openGraph, twitter } from '@/lib/seo';
 
 type Props = {
   children: React.ReactNode;
@@ -128,7 +128,12 @@ export default async function LocaleLayout({ children, params }: Props) {
         url: siteUrl,
         name: 'Balsm',
         alternateName: 'بلسم',
-        description: 'A community-owned, Arabic-first healthcare operating system for the Arab world.',
+        description:
+          'The first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — a community-owned, Arabic-first healthcare operating system.',
+        // Freshness is a citation signal for AI search, and the graph carried no
+        // date at all, so engines had nothing to age the content by. Tracks
+        // CONTENT_REVISED, so it moves when the copy does — not on every deploy.
+        dateModified: CONTENT_REVISED,
         publisher: {
           '@id': `${siteUrl}#organization`,
         },
@@ -219,12 +224,18 @@ export default async function LocaleLayout({ children, params }: Props) {
           href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Cairo:wght@400;600;700;800&display=swap"
           rel="stylesheet"
         />
+      </head>
+      <body className="min-h-screen" suppressHydrationWarning>
+        {/* JSON-LD lives in the body, not a hand-written <head>. Crawlers read
+            it from anywhere in the document, and App Router owns <head> through
+            the metadata API. Keeping our own tags out of it also stops browser
+            extensions that inject into <head> from shifting the children React
+            hydrates against — which is what produced a hydration mismatch here.
+            page.tsx already emits its FAQ block this way. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className="min-h-screen" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>

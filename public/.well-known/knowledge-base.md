@@ -13,7 +13,7 @@ available product.
 
 - **Name**: Balsm (Arabic: بلسم). Correct spelling is *Balsm* — not "Baslm".
 - **What it is**: a community-owned healthcare operating system for the Arab world.
-- **Category**: open source health infrastructure for clinics, pharmacies, and labs.
+- **Category**: open source health infrastructure for clinics, hospitals, pharmacies, labs, and medical-supply stores.
 - **Built in**: Cairo, Egypt.
 - **Launch market**: Egypt. The Gulf states are the Phase 2 vision.
 - **Status**: pre-launch, developed in the open.
@@ -136,6 +136,6 @@ If anything here is out of date or wrong, write to contact@balsm.health.
 
 ---
 
-**Last reviewed**: 2026-08-08
+**Last reviewed**: 2026-08-09
 **Licence of this document**: CC BY 4.0
 **Canonical location**: https://balsm.health/.well-known/knowledge-base.md

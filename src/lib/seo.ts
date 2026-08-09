@@ -15,6 +15,21 @@ import { defaultLocale as DEFAULT_LOCALE } from '@/i18n/request';
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://balsm.health';
 
+/**
+ * When the site's *content* last changed — not when it was last built.
+ *
+ * The sitemap used to stamp `new Date()`, so every deploy told crawlers all six
+ * pages had changed, including deploys that only touched infrastructure. A
+ * `lastmod` that always says "now" is one Google is entitled to ignore
+ * entirely, which costs the signal for the changes that are real.
+ *
+ * Bump this when page copy changes — same discipline as the `lastReviewed`
+ * field in public/llms.txt and the .well-known files. A build-time git
+ * timestamp would automate it, but only if the deploy has git history, which
+ * the Cloudflare build does not.
+ */
+export const CONTENT_REVISED = '2026-08-09';
+
 export const OG_IMAGE = {
   url: '/og-image.png',
   width: 1200,

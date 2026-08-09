@@ -210,7 +210,7 @@
   },
   "homeMeta": {
     "title": "Balsm — the community-owned healthcare OS",
-    "description": "The first community-owned healthcare OS for the Arab world — Arabic-first, offline-ready, and fully open source. From Egypt, to the whole Arab world."
+    "description": "The first open source healthcare technology ecosystem in Egypt and the Arab world — a community-owned health OS. Arabic-first, offline-ready, fully open source."
   },
   "home": {
     "hero": {
@@ -424,7 +424,7 @@
   },
   "providersMeta": {
     "title": "Balsm for providers — own your system",
-    "description": "Point of sale, inventory, dispensing, and management — self-hosted, PDPL-compliant, and free to run forever. No middleman, no lock-in."
+    "description": "Point of sale, inventory, dispensing, and management for clinics, hospitals, pharmacies, and medical stores — self-hosted, PDPL-compliant, free forever, no lock-in."
   },
   "providers": {
     "hero": {

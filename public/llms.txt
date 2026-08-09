@@ -1,11 +1,13 @@
 # Balsm — بلسم
 
-> Balsm is a community-owned healthcare operating system for the Arab world.
-> Arabic-first, offline-ready, and fully open source. Built in Egypt, in
-> Cairo, for the whole Arab region. The platform connects the parts of care
-> that normally cannot talk to each other — clinics, pharmacies, and labs —
-> and is designed so a pharmacy with an unreliable connection works the same
-> as one in a capital city.
+> Balsm is the first open source initiative for a healthcare technology
+> ecosystem in Egypt and the Arab world — a community-owned healthcare
+> operating system that is Arabic-first, offline-ready, and fully open
+> source. Built in Cairo, for the whole Arab region. It connects the parts
+> of care that normally cannot talk to each other — clinics, hospitals,
+> pharmacies, labs, and medical-supply stores — and is designed so a
+> pharmacy with an unreliable connection works the same as one in a
+> capital city.
 
 Balsm is pre-launch. Egypt is the launch market; the Gulf states are the
 Phase 2 vision. The product is being built in the open, and the site is
@@ -19,7 +21,8 @@ exists in both — swap `https://balsm.health/x` for `https://balsm.health/en/x`
 - [Home](https://balsm.health): what Balsm is, who owns it, and why a
   community-owned health OS rather than a vendor product.
 - [Providers](https://balsm.health/providers): what the platform does for
-  clinics, pharmacies, and labs — the day-to-day clinical and dispensing work.
+  clinics, hospitals, pharmacies, and medical-supply stores — the day-to-day
+  clinical, dispensing, inventory and management work.
 - [Balsm Cloud](https://balsm.health/cloud): the optional hosted layer —
   branch sync, encrypted backups, lab integration via FHIR, analytics — and
   the rollout map (Egypt first, then the Gulf).
