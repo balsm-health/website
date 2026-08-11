@@ -78,6 +78,69 @@ export function twitter({ title, description }: Omit<PageSeo, 'locale' | 'path'>
   };
 }
 
+/**
+ * Per-route structured data.
+ *
+ * The site-level graph (Organization / WebSite / SoftwareApplication) is
+ * emitted once from the locale layout, which deliberately carries no WebPage
+ * node — it has no way to know which route rendered it, so a WebPage there
+ * would hardcode `/` onto every subpage. This builds the missing per-route
+ * pair instead: a WebPage anchored to the actual URL and a BreadcrumbList
+ * (Home → this page), which is what earns breadcrumb rich results in the SERP.
+ *
+ * Both nodes reference the site entities by @id, so a crawler resolves the
+ * whole graph — page, site, and organisation — as one thing rather than
+ * competing fragments. Pass breadcrumb names already localised (the nav
+ * labels are the natural source).
+ */
+type Breadcrumb = { name: string; path: string };
+
+export function pageJsonLd({
+  locale,
+  path,
+  title,
+  description,
+  breadcrumbs,
+}: {
+  locale: string;
+  /** Route below the locale, e.g. '/providers'. */
+  path: string;
+  title: string;
+  description: string;
+  /** Ordered trail from the site root to this page, e.g. Home → Providers. */
+  breadcrumbs: Breadcrumb[];
+}) {
+  const url = canonicalUrl(locale, path);
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name: title,
+        description,
+        inLanguage: locale === 'ar' ? 'ar-EG' : 'en-US',
+        isPartOf: { '@id': `${SITE_URL}#website` },
+        about: { '@id': `${SITE_URL}#organization` },
+        // Tracks content, not deploys — same discipline as the sitemap lastmod.
+        dateModified: CONTENT_REVISED,
+        breadcrumb: { '@id': `${url}#breadcrumb` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
+        itemListElement: breadcrumbs.map((crumb, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: crumb.name,
+          item: canonicalUrl(locale, crumb.path),
+        })),
+      },
+    ],
+  };
+}
+
 export function alternates(locale: string, path = '') {
   return {
     canonical: canonicalUrl(locale, path),

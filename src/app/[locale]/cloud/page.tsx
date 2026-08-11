@@ -5,7 +5,8 @@ import CloudFeatures from '@/components/cloud/CloudFeatures';
 import CloudMap from '@/components/cloud/CloudMap';
 import CloudInvestors from '@/components/cloud/CloudInvestors';
 import CloudWaitlist from '@/components/cloud/CloudWaitlist';
-import { alternates, openGraph, twitter } from '@/lib/seo';
+import JsonLd from '@/components/JsonLd';
+import { alternates, openGraph, pageJsonLd, twitter } from '@/lib/seo';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -23,7 +24,21 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default function CloudPage() {
+export default async function CloudPage({ params }: Props) {
+  const { locale } = await params;
+  const nav = await getTranslations({ locale, namespace: 'nav' });
+  const meta = await getTranslations({ locale, namespace: 'cloudMeta' });
+  const jsonLd = pageJsonLd({
+    locale,
+    path: '/cloud',
+    title: meta('title'),
+    description: meta('description'),
+    breadcrumbs: [
+      { name: nav('home'), path: '' },
+      { name: nav('cloud'), path: '/cloud' },
+    ],
+  });
+
   return (
     <SiteShell active="cloud">
       <CloudHero />
@@ -31,6 +46,7 @@ export default function CloudPage() {
       <CloudMap />
       <CloudInvestors />
       <CloudWaitlist />
+      <JsonLd data={jsonLd} />
     </SiteShell>
   );
 }
