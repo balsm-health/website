@@ -30,13 +30,45 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://balsm.healt
  */
 export const CONTENT_REVISED = '2026-08-09';
 
-export const OG_IMAGE = {
-  url: '/og-image.png',
-  width: 1200,
-  height: 630,
-  alt: 'بلسم — Balsm.health',
-  type: 'image/png',
+/**
+ * The X account. `creator` is who wrote the page, `site` is who publishes it —
+ * X uses `site` for card attribution, and omitting it drops the byline from
+ * the card entirely. Same handle here because they are the same account.
+ */
+const X_HANDLE = '@balsm_health';
+
+/**
+ * Alt text for the preview card, per locale.
+ *
+ * This used to be the wordmark ('بلسم — Balsm.health') on every page, in Arabic
+ * regardless of locale. Alt text describes what the image *shows*, and the card
+ * shows a headline plus three claims — so that is what these say. It matters
+ * more here than on an inline image: on a social timeline the card is the whole
+ * post, and this string is the only version of it a screen reader reaches.
+ *
+ * Keep these in step with the card copy in scripts/generate-brand-assets.mjs.
+ */
+const OG_IMAGE_ALT = {
+  ar: 'بلسم — نظام التشغيل الصحي المملوك للمجتمع. عربيٌّ أولاً، يعمل بلا إنترنت، مفتوح المصدر.',
+  en: 'Balsm — the community-owned healthcare OS. Arabic-first, offline-ready, open source.',
 } as const;
+
+/**
+ * One card for the whole site, in both locales.
+ *
+ * Deliberate: the card is the brand statement, not a per-page illustration, so
+ * every route previews identically and there is exactly one raster to keep
+ * current. Only the alt text follows the reader's language.
+ */
+export function ogImage(locale: string) {
+  return {
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: locale === 'en' ? OG_IMAGE_ALT.en : OG_IMAGE_ALT.ar,
+    type: 'image/png',
+  };
+}
 
 /**
  * Canonical URL for a page. `localePrefix: 'as-needed'` serves the default
@@ -64,17 +96,21 @@ export function openGraph({ locale, title, description, path = '' }: PageSeo) {
     url: canonicalUrl(locale, path),
     title,
     description,
-    images: [OG_IMAGE],
+    images: [ogImage(locale)],
   };
 }
 
-export function twitter({ title, description }: Omit<PageSeo, 'locale' | 'path'>) {
+export function twitter({ locale, title, description }: Omit<PageSeo, 'path'>) {
   return {
     card: 'summary_large_image' as const,
     title,
     description,
-    images: [OG_IMAGE.url],
-    creator: '@balsm_health',
+    // Object form, not a bare URL string, so the card carries twitter:image:alt
+    // as well. X falls back to the og: tags for anything omitted here, but not
+    // for alt — it reads twitter:image:alt or nothing.
+    images: [ogImage(locale)],
+    site: X_HANDLE,
+    creator: X_HANDLE,
   };
 }
 
