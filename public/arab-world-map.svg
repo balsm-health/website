@@ -9,7 +9,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 390" width="860" height="390" aria-hidden="true">
   <defs>
     <filter id="mapSoft" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#2B2B25" flood-opacity="0.1" />
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#14202B" flood-opacity="0.1" />
     </filter>
   </defs>
   <g fill="#EFEFE7" stroke="#E2E1D5" stroke-width="1" filter="url(#mapSoft)">

@@ -66,3 +66,23 @@ supabase/.temp/
 .claude/skills/seo/.setup.lock
 .claude/skills/seo/runtime-state.json
 .claude/skills/seo/scripts/__pycache__/
+
+# design-sync (claude.ai/design ↔ this repo) — removed 2026-08-13.
+# Local-only tooling state for pushing this repo's components into the Claude
+# design project. Nothing here was ever read by `next build`: the site uses no
+# `.b-*` design-system classes, and globals.css declares its own --color-* block
+# rather than importing the brand CSS. Re-created by the design-sync CLI if the
+# push is ever resumed — keep it out of the repo either way.
+#   design-system/  brand CSS, input to the push only (also mirrored in the
+#                   balsm-design skill and Balsm-Core/specs/.../_ds/)
+#   .design-sync/   config, generated entry barrel, caches, snapshots
+#   .ds-sync/       installed CLI + ~27 MB of node_modules
+#   ds-bundle/      generated upload bundle (_ds_bundle.*, vendored react)
+# The hard-won setup notes are kept at docs/design-sync-notes.md.
+design-system/
+.design-sync/
+.ds-sync/
+ds-bundle/
+
+# nested node_modules (the /node_modules rule above is root-anchored only)
+node_modules/

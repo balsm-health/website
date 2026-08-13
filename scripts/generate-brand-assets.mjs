@@ -33,8 +33,8 @@ const LOCKUP = readFileSync(pub('balsm-logo-horizontal.svg'));
 
 // Cloud palette — mirrors src/components/cloud/theme.ts
 const BG = '#FAFAF7';
-const INK = '#2B2B25';
-const MUTED = '#8C8C82';
+const INK = '#14202B';
+const MUTED = '#78838F';
 
 /* ---------------------------------------------------------------- icons -- */
 
@@ -130,7 +130,7 @@ function ogCardHtml() {
     display: flex; gap: 12px; list-style: none; position: relative; margin-top: 6px;
   }
   li {
-    font: 600 21px/1 'IBM Plex Sans Arabic', sans-serif; color: #56564C;
+    font: 600 21px/1 'IBM Plex Sans Arabic', sans-serif; color: #384756;
     background: #FFFFFF; border: 1px solid #E6E5DC; border-radius: 999px;
     padding: 13px 22px;
   }

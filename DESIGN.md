@@ -26,9 +26,10 @@ Ported 2026-08-06 from the design project as of its 2026-08-05 revision.
   (`sm 600 · md 905 · lg 1240 · xl 1640`) that never matched the token file.
   `colors_and_type.css` is authoritative: `xs 375 · sm 480 · md 768 · lg 1024 ·
   xl 1280 · 2xl 1536`. §6.5 now states the token-file values.
-- **Wordmark color.** `design.md` §4 and §7 still said `#6B6B60` (warm olive
-  gray) after the brand moved to `#254B45` (deep pine green). Both now say
-  `#254B45`; `#6B6B60` is documented as surviving only as `--balsm-ink-600`.
+- **Wordmark color.** `design.md` §4 and §7 trailed the brand twice: first at
+  `#6B6B60` (warm olive gray), then `#254B45` (deep pine green). The wordmark is
+  now navy slate `#1F2D3D`, and the whole `ink-*` ramp was re-keyed to it —
+  `ink-800` *is* the wordmark, `ink-600` `#526174` *is* the `.health` TLD.
 - **Gutters.** §6 said 24 (mobile) / 48 (desktop); the token ramp is actually
   16 → 24 (≥768) → 48 (≥1024). §6 now matches.
 - **Eyebrow contrast** and the **RTL eyebrow** rule (below) were added to §5,
@@ -108,20 +109,23 @@ watermark.
 
 Each has a `-600` (hover/pressed) and `-50` (soft wash) sibling.
 
-**Neutrals are warm olive-gray**, never cool slate. `--color-ink-900` `#2B2B25`
-through `--color-ink-50` `#F6F6F2`. Tailwind's own `gray-*` / `slate-*` scales are
-off-brand here — use `ink-*`.
+**Neutrals are cool navy slate**, keyed to the wordmark — the warm olive-gray
+ramp is retired. `--color-ink-900` `#14202B` through `--color-ink-50` `#F5F6F8`.
+Tailwind's own `gray-*` / `slate-*` scales are still off-brand here — they are
+not this ramp — so keep using `ink-*`.
 
 **Cream is a document surface, not a page background.** `--color-cream-*` is for
 receipts, prescriptions, print, and framed panels. The body background is white
 (or `--color-bg` in dark mode). A cream body bg is the AI-default warm-neutral
 tell the brand explicitly rejects.
 
-**Wordmark** is `--color-wordmark` `#254B45` deep pine green on light, knocked out
-to `#FAFAF7` on dark per the reverse-lockup rule. Never gradient.
+**Wordmark** is `--color-wordmark` `#1F2D3D` navy slate on light, knocked out
+to `#FAFAF7` on dark per the reverse-lockup rule. The `.health` TLD is the same
+hue one step lighter (`--color-wordmark-tld` `#526174`) — restate one and you
+restate the other. Never gradient.
 
-Color strategy for this site: **Restrained** — tinted warm neutrals carrying the
-surface, blue as the single action color, petals appearing only in brand
+Color strategy for this site: **Restrained** — cool ink on warm cream carrying
+the surface, blue as the single action color, petals appearing only in brand
 moments. That is a deliberate choice for a clinical brand; "calm, not flashy" is
 a stated design principle.
 
@@ -233,7 +237,7 @@ here; smaller ones is not.
 - **Card padding** 24 standard / 32 hero.
 - **Radii**: `sm` 6 chips · `md` 10 buttons and inputs · `lg` 14 **card default** ·
   `xl` 20 hero and modal · `pill` 999.
-- **Shadows** are warm and soft — `rgba(43,43,37,.06–.10)`. Never crisp. Prefer
+- **Shadows** are warm and soft — `rgba(20, 32, 43,.06–.10)`. Never crisp. Prefer
   `--elev-1..4` over ad-hoc `box-shadow`.
 - **Motion** default ease `cubic-bezier(0.16, 1, 0.3, 1)` — calm, never bouncy.
   Durations 120 / 200 / 320ms. Hover shifts tint one step or drops opacity to
@@ -288,7 +292,8 @@ From the brand, on top of the shared frontend bans:
 
 Arabic is first-class, not a translation layer.
 
-- `بلسم` **with diacritics** — fatha on ب and on س. Without is incorrect.
+- `بلسم` — plain spelling, no diacritics. (Reversed 2026-08-13; the design
+  system previously required fatha on ب and on س.)
 - Every surface must work under `dir="rtl"`. Use logical properties
   (`margin-inline`, `padding-inline-start`, `inline-start/end`), never
   `left`/`right`, so gutters and column order mirror automatically.

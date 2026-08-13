@@ -126,7 +126,7 @@ export default function ProvidersSections() {
             {features.map((card, i) => {
               const s = FEATURE_ICONS[i];
               return (
-                <Reveal key={i} delay={i * 60} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 28, boxShadow: '0 2px 6px rgba(43,43,37,.05)' }}>
+                <Reveal key={i} delay={i * 60} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 28, boxShadow: '0 2px 6px rgba(20, 32, 43,.05)' }}>
                   <div style={{ width: 46, height: 46, borderRadius: 13, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: 16 }}>
                     <s.Icon style={{ width: 23, height: 23 }} />
                   </div>
@@ -165,7 +165,7 @@ export default function ProvidersSections() {
                 <span style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 40, color: C.ink }}>{t('pricing.selfHost.price')}</span>
                 <span style={{ color: C.muted, fontSize: 15 }}>{t('pricing.selfHost.per')}</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 15, color: '#3D3D34' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 15, color: '#1F2D3D' }}>
                 {selfFeatures.map((f) => (
                   <div key={f} style={{ display: 'flex', gap: 9, alignItems: 'center' }}><Check style={{ width: 18, height: 18, color: C.green }} />{f}</div>
                 ))}
@@ -184,7 +184,7 @@ export default function ProvidersSections() {
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 18 }}>
                 <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 26, color: C.blue }}>{t('pricing.cloud.price')}</span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 15, color: '#3D3D34' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 15, color: '#1F2D3D' }}>
                 {cloudFeatures.map((f) => (
                   <div key={f} style={{ display: 'flex', gap: 9, alignItems: 'center' }}><Check style={{ width: 18, height: 18, color: C.blue }} />{f}</div>
                 ))}
@@ -260,7 +260,7 @@ function ProvidersDemo() {
           <p style={{ fontSize: 'clamp(16px,1.8vw,19px)', lineHeight: 1.8, color: C.ink2, margin: '0 auto 30px', maxWidth: 520 }}>{t('desc')}</p>
         </Reveal>
         {status === 'success' ? (
-          <div style={{ background: C.white, border: '1px solid #CDEFEC', borderRadius: 20, padding: 34, boxShadow: '0 8px 24px rgba(43,43,37,.06)', maxWidth: 520, margin: '0 auto' }}>
+          <div style={{ background: C.white, border: '1px solid #CDEFEC', borderRadius: 20, padding: 34, boxShadow: '0 8px 24px rgba(20, 32, 43,.06)', maxWidth: 520, margin: '0 auto' }}>
             <div style={{ width: 56, height: 56, borderRadius: '50%', background: C.aquaBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.aqua, margin: '0 auto 16px' }}>
               <Check style={{ width: 30, height: 30 }} strokeWidth={2.5} />
             </div>
