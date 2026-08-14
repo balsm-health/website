@@ -8,8 +8,8 @@ Read before any design, styling, or copy work:
 
 - **[PRODUCT.md](./PRODUCT.md)** — who/what/why. Register (`brand`), the four peer
   audiences, brand personality, anti-references, and the six design principles.
-- **[DESIGN.md](./DESIGN.md)** — how it looks. Token architecture, the warm `ink-*`
-  scale, the five petals, RTL rules, and the bans.
+- **[DESIGN.md](./DESIGN.md)** — how it looks. Token architecture, the cool
+  navy-slate `ink-*` scale, the five petals, RTL rules, and the bans.
 - **[../Balsm-Core/brand/balsm-brand-canvas.md](../Balsm-Core/brand/balsm-brand-canvas.md)**
   — upstream source of truth for voice and positioning. Pin §6 for copy work.
 

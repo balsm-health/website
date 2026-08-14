@@ -109,9 +109,9 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
               <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(114,77,208,.28)' }}>
                 <Github style={{ width: 20, height: 20 }} /><span dir="ltr">{t('hero.ctaStar')}</span>
               </a>
-              <div style={{ display: 'flex', alignItems: 'stretch', maxWidth: '100%', background: C.ink, borderRadius: 14, overflow: 'hidden', boxShadow: '0 4px 14px rgba(43,43,37,.12)' }}>
+              <div style={{ display: 'flex', alignItems: 'stretch', maxWidth: '100%', background: C.ink, borderRadius: 14, overflow: 'hidden', boxShadow: '0 4px 14px rgba(20, 32, 43,.12)' }}>
                 <code dir="ltr" style={{ display: 'flex', flex: '1 1 auto', minWidth: 0, overflowX: 'auto', whiteSpace: 'nowrap', alignItems: 'center', padding: '0 18px', fontFamily: FONT.mono, fontSize: 14.5, color: C.borderSoft }}>{t('hero.command')}</code>
-                <button onClick={copyCmd} aria-label={t('hero.copy')} style={{ display: 'inline-flex', flex: 'none', alignItems: 'center', gap: 7, padding: '14px 18px', border: 'none', borderInlineStart: '1px solid rgba(255,255,255,.12)', background: '#3D3D34', color: '#fff', cursor: 'pointer', fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14 }}>
+                <button onClick={copyCmd} aria-label={t('hero.copy')} style={{ display: 'inline-flex', flex: 'none', alignItems: 'center', gap: 7, padding: '14px 18px', border: 'none', borderInlineStart: '1px solid rgba(255,255,255,.12)', background: '#1F2D3D', color: '#fff', cursor: 'pointer', fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14 }}>
                   <Copy style={{ width: 16, height: 16 }} /><span>{copied ? t('hero.copied') : t('hero.copy')}</span>
                 </button>
               </div>
@@ -160,7 +160,7 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
             {whyCards.map((card, i) => {
               const s = WHY_ICONS[i];
               return (
-                <Reveal key={i} delay={i * 70} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 30, boxShadow: '0 2px 6px rgba(43,43,37,.05)' }}>
+                <Reveal key={i} delay={i * 70} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 30, boxShadow: '0 2px 6px rgba(20, 32, 43,.05)' }}>
                   <div style={{ width: 48, height: 48, borderRadius: 14, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: 18 }}>
                     <s.Icon style={{ width: 24, height: 24 }} />
                   </div>
@@ -184,7 +184,7 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
             {roles.map((role, i) => {
               const s = ROLE_ICONS[i];
               return (
-                <Reveal key={i} delay={i * 60} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 26, boxShadow: '0 2px 6px rgba(43,43,37,.05)' }}>
+                <Reveal key={i} delay={i * 60} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 26, boxShadow: '0 2px 6px rgba(20, 32, 43,.05)' }}>
                   <div style={{ width: 44, height: 44, borderRadius: 13, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: 16 }}>
                     <s.Icon style={{ width: 22, height: 22 }} />
                   </div>

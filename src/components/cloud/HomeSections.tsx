@@ -91,7 +91,7 @@ export default function HomeSections() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -90, bottom: -110, width: 340, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 980, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)', textAlign: 'center' }}>
-          <Reveal style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '7px 16px', borderRadius: 999, background: C.white, border: `1px solid ${C.border}`, boxShadow: '0 2px 8px rgba(43,43,37,.05)', marginBottom: 26 }}>
+          <Reveal style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '7px 16px', borderRadius: 999, background: C.white, border: `1px solid ${C.border}`, boxShadow: '0 2px 8px rgba(20, 32, 43,.05)', marginBottom: 26 }}>
             <span style={{ display: 'inline-flex', gap: 4 }}>
               {[C.aqua, C.emerald, C.blue, C.mint, C.violet].map((c) => (
                 <span key={c} style={{ width: 9, height: 9, borderRadius: '50%', background: c }} />
@@ -156,7 +156,7 @@ export default function HomeSections() {
             {problemCards.map((card, i) => {
               const s = PROBLEM_ICONS[i];
               return (
-                <Reveal key={i} delay={i * 70} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 30, boxShadow: '0 2px 6px rgba(43,43,37,.05)' }}>
+                <Reveal key={i} delay={i * 70} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 30, boxShadow: '0 2px 6px rgba(20, 32, 43,.05)' }}>
                   <div style={{ width: 48, height: 48, borderRadius: 14, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: 18 }}>
                     <s.Icon style={{ width: 24, height: 24 }} />
                   </div>
@@ -231,7 +231,7 @@ export default function HomeSections() {
                   <span style={{ width: 30, height: 30, borderRadius: 9, background: C.greenBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.green, flex: 'none' }}>
                     <Check style={{ width: 18, height: 18 }} />
                   </span>
-                  <span style={{ fontSize: 16, color: '#3D3D34' }}>{b}</span>
+                  <span style={{ fontSize: 16, color: '#1F2D3D' }}>{b}</span>
                 </div>
               ))}
             </div>
@@ -256,7 +256,7 @@ export default function HomeSections() {
 
           {/* Phone mockup — patient tracking dashboard */}
           <Reveal style={{ flex: '0 0 auto', margin: '0 auto', maxWidth: '100%' }}>
-            <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(43,43,37,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
+            <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20, 32, 43,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
               <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
                 {/* header */}
                 <div style={{ background: '#fff', padding: '16px 16px 12px', borderBottom: '1px solid #EEEEE6', display: 'flex', alignItems: 'center', gap: 10, flex: 'none' }}>
@@ -443,7 +443,7 @@ function HomeJoin() {
         </Reveal>
 
         {status === 'success' ? (
-          <div style={{ background: C.white, border: '1px solid #CDEFEC', borderRadius: 20, padding: 34, boxShadow: '0 8px 24px rgba(43,43,37,.06)', maxWidth: 520, margin: '0 auto' }}>
+          <div style={{ background: C.white, border: '1px solid #CDEFEC', borderRadius: 20, padding: 34, boxShadow: '0 8px 24px rgba(20, 32, 43,.06)', maxWidth: 520, margin: '0 auto' }}>
             <div style={{ width: 56, height: 56, borderRadius: '50%', background: C.greenBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.green, margin: '0 auto 16px' }}>
               <Check style={{ width: 30, height: 30 }} strokeWidth={2.5} />
             </div>

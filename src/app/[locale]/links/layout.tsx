@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
     description,
     alternates: alternates(locale, '/links'),
     openGraph: openGraph({ locale, title, description, path: '/links' }),
-    twitter: twitter({ title, description }),
+    twitter: twitter({ locale, title, description }),
   };
 }
 
