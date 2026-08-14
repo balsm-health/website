@@ -21,7 +21,7 @@ type Stat = { value: string; label: string };
  * background, which keeps each label recognisably itself while staying legible.
  */
 function labelChip(hex: string): React.CSSProperties {
-  const c = /^[0-9a-f]{6}$/i.test(hex) ? hex : 'ADACA0';
+  const c = /^[0-9a-f]{6}$/i.test(hex) ? hex : '9BA4AD';
   const [r, g, b] = [0, 2, 4].map((i) => parseInt(c.slice(i, i + 2), 16));
   // Lift very dark label colours toward the panel's foreground so they don't
   // disappear against it.
@@ -122,7 +122,7 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
             {/* "every contribution may one day reach someone you love" */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 26, padding: '14px 20px', background: C.violetBg, borderRadius: 14, maxWidth: 'fit-content' }}>
               <HeartPulse style={{ width: 22, height: 22, color: C.violet, flex: 'none' }} />
-              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: '#4A2F94' }}>{t('hero.callout')}</span>
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: '#3D2872' }}>{t('hero.callout')}</span>
             </div>
           </Reveal>
         </div>
@@ -138,7 +138,12 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
                   fontFamily: (STAT_TYPE[i] ?? STAT_TYPE_DEFAULT).family,
                   fontWeight: (STAT_TYPE[i] ?? STAT_TYPE_DEFAULT).weight,
                   fontSize: 'clamp(28px,4vw,42px)',
-                  color: [DISPLAY.violet, DISPLAY.blue, DISPLAY.aqua, DISPLAY.mint][i],
+                  // The fourth stat is mint's -600 step (`C.green`) in the
+                  // design, not the base petal — unlike the Home stats strip,
+                  // which does use base mint. Following the design here also
+                  // lifts the weakest stat from 1.84:1 to 2.28:1 on this white
+                  // band — still inside the documented petal exception.
+                  color: [DISPLAY.violet, DISPLAY.blue, DISPLAY.aqua, C.green][i],
                 }}
               >
                 {s.value}
