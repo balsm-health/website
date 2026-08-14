@@ -10,7 +10,7 @@ Four audiences, deliberately **peers rather than a funnel**. The site is not a
 single conversion path with one hero persona; each surface belongs to one of
 these, and none of them is a secondary consideration.
 
-- **Patients** — Alexandria to Aswan, urban and underserved equally. Navigating
+- **Care recipients** — urban and underserved equally, connected or not. Navigating
   fragmented care with no continuous record, no visibility into their own data,
   and no reliable way to connect pharmacy, clinic and lab into one picture.
   Served by `/` and the patient-app section.
@@ -82,8 +82,8 @@ in `../Balsm-Core/brand/balsm-brand-canvas.md` §6. Pin it for any copy work.
   page)
 - Generic medical stock photography / cross / syringe brand symbols
 - Corporate "healthcare software" language
-- Cool blue-gray (Tailwind slate) neutral scale — brand uses warm olive-gray
-  (`ink-*`)
+- Off-brand neutral scales (Tailwind `gray-*` / `slate-*`) — the brand ships its
+  own navy-slate ramp keyed to the wordmark (`ink-*`)
 - **Claiming more than has shipped.** Certifications Balsm doesn't hold, prices
   that don't exist, a licence not yet chosen, user or deployment figures. The
   `doNotClaim` list in `public/.well-known/ai.json` is the enforced version of
@@ -91,7 +91,7 @@ in `../Balsm-Core/brand/balsm-brand-canvas.md` §6. Pin it for any copy work.
 
 ## Design Principles
 
-1. **Arabic is first-class** — بلسم with full diacritics, RTL native, IBM Plex
+1. **Arabic is first-class** — بلسم in plain spelling (no diacritics), RTL native, IBM Plex
    Sans Arabic + Cairo for display, never an afterthought. Arabic is the
    original, not a translation.
 2. **Clinical restraint** — calm, not flashy. Healthcare deserves stillness. No
@@ -100,9 +100,9 @@ in `../Balsm-Core/brand/balsm-brand-canvas.md` §6. Pin it for any copy work.
    is the primary action. Aqua is the healing accent. All five petals appear in
    brand moments. Petals are *fills* and stay at full strength even as text —
    a deliberate contrast exception, see Accessibility below and DESIGN.md.
-4. **Warmth through ink, not background** — warm olive-gray neutral scale (not
-   cool slate), cream for document surfaces only. The page reads warm through
-   typography and color, not a tinted body background.
+4. **Cool ink on warm paper** — the navy-slate `ink-*` scale is keyed to the
+   wordmark; the creams stay warm and are for document surfaces only. Warmth
+   comes from the paper, never from a tinted body background.
 5. **Sovereignty visible** — every touchpoint reinforces "your data, your
    system." Calm confidence, earned trust.
 6. **Practice what you preach** — the marketing site for an offline-first,

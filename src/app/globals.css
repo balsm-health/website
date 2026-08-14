@@ -70,28 +70,28 @@
   /* ── Surfaces ── */
   --color-surface:          #FFFFFF;
   --color-surface-alt:      #F4F3EC;
-  --color-surface-muted:    #F6F6F2;
-  --color-surface-inverse:  #2B2B25;
+  --color-surface-muted:    #F5F6F8;
+  --color-surface-inverse:  #14202B;
   --color-bg:               #FFFFFF;
   --color-bg-page:          #F4F3EC;
 
   /* ── Borders ── */
-  --color-border:           #E1E1D9;
-  --color-border-light:     #EEEEE8;
-  --color-border-strong:    #C9C9C0;
+  --color-border:           #DBDFE3;
+  --color-border-light:     #EBEDF0;
+  --color-border-strong:    #C0C6CC;
   --color-border-focus:     #1283FF;
 
   /* ── Ink — warm olive-gray neutral scale (never cool slate) ── */
-  --color-ink-900:          #2B2B25;
-  --color-ink-800:          #3D3D34;
-  --color-ink-700:          #56564C;
-  --color-ink-600:          #6B6B60;
-  --color-ink-500:          #8C8C82;
-  --color-ink-400:          #ADAEA4;
-  --color-ink-300:          #C9C9C0;
-  --color-ink-200:          #E1E1D9;
-  --color-ink-100:          #EEEEE8;
-  --color-ink-50:           #F6F6F2;
+  --color-ink-900:          #14202B;
+  --color-ink-800:          #1F2D3D;
+  --color-ink-700:          #384756;
+  --color-ink-600:          #526174;
+  --color-ink-500:          #78838F;
+  --color-ink-400:          #9BA4AD;
+  --color-ink-300:          #C0C6CC;
+  --color-ink-200:          #DBDFE3;
+  --color-ink-100:          #EBEDF0;
+  --color-ink-50:           #F5F6F8;
 
   /* ── Cream — warm DOCUMENT surface only, never the page bg ── */
   --color-cream-50:         #FAFAF7;
@@ -104,15 +104,16 @@
   --color-sun-600:          #D9A020;
 
   /* ── Text ── */
-  --color-text-primary:     #2B2B25;
-  --color-text-secondary:   #56564C;
-  --color-text-tertiary:    #6B6B60;
-  --color-text-muted:       #ADAEA4;
+  --color-text-primary:     #14202B;
+  --color-text-secondary:   #384756;
+  --color-text-tertiary:    #526174;
+  --color-text-muted:       #9BA4AD;
 
-  /* Wordmark — deep pine green. Matches brand/logo-*.svg.
-     Was #6B6B60 (warm olive gray); the brand moved. */
-  --color-wordmark:         #254B45;
-  --color-wordmark-tld:     #98A2B3;
+  /* Wordmark — navy slate. Matches brand/logo-*.svg + brand/wordmark.svg.
+     Was pine green #254B45, and before that warm olive gray #6B6B60.
+     The TLD is the same hue one step lighter, so the two move together. */
+  --color-wordmark:         #1F2D3D;
+  --color-wordmark-tld:     #526174;
 
   /* ── Semantic clinical state ── */
   --color-success:          #55D77F;
@@ -221,24 +222,24 @@
   --balsm-radius-pill: 999px;
 
   /* ── Shadows — warm, soft, never crisp. Prefixed. ── */
-  --balsm-shadow-xs: 0 1px 2px rgba(43, 43, 37, 0.06);
-  --balsm-shadow-sm: 0 2px 6px rgba(43, 43, 37, 0.06), 0 1px 2px rgba(43, 43, 37, 0.04);
-  --balsm-shadow-md: 0 8px 20px rgba(43, 43, 37, 0.08), 0 2px 6px rgba(43, 43, 37, 0.04);
-  --balsm-shadow-lg: 0 18px 40px rgba(43, 43, 37, 0.10), 0 4px 12px rgba(43, 43, 37, 0.06);
+  --balsm-shadow-xs: 0 1px 2px rgba(20, 32, 43, 0.06);
+  --balsm-shadow-sm: 0 2px 6px rgba(20, 32, 43, 0.06), 0 1px 2px rgba(20, 32, 43, 0.04);
+  --balsm-shadow-md: 0 8px 20px rgba(20, 32, 43, 0.08), 0 2px 6px rgba(20, 32, 43, 0.04);
+  --balsm-shadow-lg: 0 18px 40px rgba(20, 32, 43, 0.10), 0 4px 12px rgba(20, 32, 43, 0.06);
   --balsm-shadow-brand: 0 8px 24px rgba(18, 131, 255, 0.22);
   --balsm-shadow-petal: 0 8px 24px rgba(114, 77, 208, 0.18);
   --balsm-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
   /* ── Elevation — prefer these over ad-hoc shadows ── */
   --elev-0: none;
-  --elev-1: rgba(43,43,37,.04) 0px 4px 4px 0px;
-  --elev-2: rgba(43,43,37,.04) 0px 1px 1px -.5px,
-            rgba(43,43,37,.04) 0px 3px 3px -1.5px;
-  --elev-3: rgba(43,43,37,.04) 0px 1px 1px -.5px,
-            rgba(43,43,37,.04) 0px 3px 3px -1.5px,
-            rgba(43,43,37,.04) 0px 6px 6px -3px,
-            rgba(43,43,37,.04) 0px 12px 12px -6px;
-  --elev-4: rgba(43,43,37,.20) 0px 20px 40px;
+  --elev-1: rgba(20, 32, 43,.04) 0px 4px 4px 0px;
+  --elev-2: rgba(20, 32, 43,.04) 0px 1px 1px -.5px,
+            rgba(20, 32, 43,.04) 0px 3px 3px -1.5px;
+  --elev-3: rgba(20, 32, 43,.04) 0px 1px 1px -.5px,
+            rgba(20, 32, 43,.04) 0px 3px 3px -1.5px,
+            rgba(20, 32, 43,.04) 0px 6px 6px -3px,
+            rgba(20, 32, 43,.04) 0px 12px 12px -6px;
+  --elev-4: rgba(20, 32, 43,.20) 0px 20px 40px;
 
   /* ── Motion — calm, never bouncy. Prefixed: Tailwind owns
         --ease-in / --ease-out / --ease-in-out. ── */
@@ -254,7 +255,7 @@
   --grad-mint:   linear-gradient(135deg, #55D77F 0%, #01C4A2 100%);
   --grad-sky:    linear-gradient(135deg, #1283FF 0%, #0F6BCC 100%);
   --grad-violet: linear-gradient(135deg, #8E6FE0 0%, #724DD0 100%);
-  --grad-ink:    linear-gradient(135deg, #3D3D34 0%, #2B2B25 100%);
+  --grad-ink:    linear-gradient(135deg, #1F2D3D 0%, #14202B 100%);
   --grad-cream:  linear-gradient(180deg, #FAFAF7 0%, #F4F3EC 100%);
 
   /* ── Breakpoint values for JS consumption (px, unitless) ──
@@ -342,7 +343,7 @@
   --modal-radius:   var(--balsm-radius-xl);
   --modal-padding:  32px;
   --modal-shadow:   var(--elev-4);
-  --modal-overlay:  rgba(43, 43, 37, .50);
+  --modal-overlay:  rgba(20, 32, 43, .50);
   --modal-max-w-sm: 480px;
   --modal-max-w-md: 600px;
   --modal-max-w-lg: 800px;
@@ -367,25 +368,25 @@
   --color-surface:          rgba(61, 61, 52, 0.9);
   --color-surface-alt:      #26261F;
   --color-surface-muted:    #232319;
-  --color-surface-inverse:  #F6F6F2;
+  --color-surface-inverse:  #F5F6F8;
   --color-bg:               #1C1C16;
-  --color-bg-page:          #2B2B25;
+  --color-bg-page:          #14202B;
 
   --color-border:           rgba(201, 201, 192, 0.15);
   --color-border-light:     rgba(201, 201, 192, 0.08);
   --color-border-strong:    rgba(201, 201, 192, 0.28);
   --color-border-focus:     #60A5FA;
 
-  --color-text-primary:     #F6F6F2;
-  --color-text-secondary:   #E1E1D9;
-  --color-text-tertiary:    #ADAEA4;
-  --color-text-muted:       #8C8C82;
+  --color-text-primary:     #F5F6F8;
+  --color-text-secondary:   #DBDFE3;
+  --color-text-tertiary:    #9BA4AD;
+  --color-text-muted:       #78838F;
 
   /* Reverse lockup — the pine-green wordmark is unreadable on ink
      (≈1.5:1). Design system §7 specifies an all-white knockout on
-     dark surfaces. The previous #6B6B60 also failed here (≈3.1:1). */
+     dark surfaces. The previous #526174 also failed here (≈3.1:1). */
   --color-wordmark:         #FAFAF7;
-  --color-wordmark-tld:     #ADAEA4;
+  --color-wordmark-tld:     #9BA4AD;
 
   --color-success:          #4CC36E;
   --color-success-bg:       rgba(85, 215, 127, 0.14);
@@ -800,7 +801,7 @@ body {
 
 .card-hover:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 36px rgba(18, 131, 255, 0.08), 0 4px 12px rgba(43, 43, 37, 0.06);
+  box-shadow: 0 16px 36px rgba(18, 131, 255, 0.08), 0 4px 12px rgba(20, 32, 43, 0.06);
 }
 
 /* ── Input focus ── */
@@ -1003,7 +1004,7 @@ body {
 /* Card hover-lift for the design pages (replaces the design's data-lift).
    Duration and shadow match balsm-motion.js attachLift(). */
 .balsm-lift { transition: transform .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s cubic-bezier(0.16,1,0.3,1); }
-.balsm-lift:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(43,43,37,.10); }
+.balsm-lift:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(20, 32, 43,.10); }
 
 /* Footer social chips */
 .balsm-social { background: rgba(255,255,255,.07); color: rgba(255,255,255,.66); transition: background .15s ease, color .15s ease; }
@@ -1022,20 +1023,20 @@ body {
   --color-secondary:      #02BBB5;
   --color-surface:        #FFFFFF;
   --color-surface-alt:    #F4F3EC;
-  --color-surface-muted:  #F6F6F2;
-  --color-surface-inverse:#2B2B25;
+  --color-surface-muted:  #F5F6F8;
+  --color-surface-inverse:#14202B;
   --color-bg:             #FAFAF7;
   --color-bg-page:        #F4F3EC;
-  --color-border:         #E1E1D9;
-  --color-border-light:   #EEEEE8;
-  --color-border-strong:  #C9C9C0;
+  --color-border:         #DBDFE3;
+  --color-border-light:   #EBEDF0;
+  --color-border-strong:  #C0C6CC;
   --color-border-focus:   #1283FF;
-  --color-text-primary:   #2B2B25;
-  --color-text-secondary: #56564C;
-  --color-text-tertiary:  #6B6B60;
-  --color-text-muted:     #ADAEA4;
-  --color-wordmark:       #254B45;
-  --color-wordmark-tld:   #98A2B3;
+  --color-text-primary:   #14202B;
+  --color-text-secondary: #384756;
+  --color-text-tertiary:  #526174;
+  --color-text-muted:     #9BA4AD;
+  --color-wordmark:       #1F2D3D;
+  --color-wordmark-tld:   #526174;
   --color-success:        #55D77F;
   --color-success-bg:     #E8F9EE;
   --color-warning:        #E5B428;
@@ -1051,20 +1052,20 @@ body {
   --color-eyebrow:        #017560;
 
   /* Re-light the elevation and shadow ramps too — .dark darkened them */
-  --balsm-shadow-xs: 0 1px 2px rgba(43, 43, 37, 0.06);
-  --balsm-shadow-sm: 0 2px 6px rgba(43, 43, 37, 0.06), 0 1px 2px rgba(43, 43, 37, 0.04);
-  --balsm-shadow-md: 0 8px 20px rgba(43, 43, 37, 0.08), 0 2px 6px rgba(43, 43, 37, 0.04);
-  --balsm-shadow-lg: 0 18px 40px rgba(43, 43, 37, 0.10), 0 4px 12px rgba(43, 43, 37, 0.06);
+  --balsm-shadow-xs: 0 1px 2px rgba(20, 32, 43, 0.06);
+  --balsm-shadow-sm: 0 2px 6px rgba(20, 32, 43, 0.06), 0 1px 2px rgba(20, 32, 43, 0.04);
+  --balsm-shadow-md: 0 8px 20px rgba(20, 32, 43, 0.08), 0 2px 6px rgba(20, 32, 43, 0.04);
+  --balsm-shadow-lg: 0 18px 40px rgba(20, 32, 43, 0.10), 0 4px 12px rgba(20, 32, 43, 0.06);
   --balsm-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  --elev-1: rgba(43,43,37,.04) 0px 4px 4px 0px;
-  --elev-2: rgba(43,43,37,.04) 0px 1px 1px -.5px,
-            rgba(43,43,37,.04) 0px 3px 3px -1.5px;
-  --elev-3: rgba(43,43,37,.04) 0px 1px 1px -.5px,
-            rgba(43,43,37,.04) 0px 3px 3px -1.5px,
-            rgba(43,43,37,.04) 0px 6px 6px -3px,
-            rgba(43,43,37,.04) 0px 12px 12px -6px;
-  --elev-4: rgba(43,43,37,.20) 0px 20px 40px;
-  --modal-overlay: rgba(43, 43, 37, .50);
+  --elev-1: rgba(20, 32, 43,.04) 0px 4px 4px 0px;
+  --elev-2: rgba(20, 32, 43,.04) 0px 1px 1px -.5px,
+            rgba(20, 32, 43,.04) 0px 3px 3px -1.5px;
+  --elev-3: rgba(20, 32, 43,.04) 0px 1px 1px -.5px,
+            rgba(20, 32, 43,.04) 0px 3px 3px -1.5px,
+            rgba(20, 32, 43,.04) 0px 6px 6px -3px,
+            rgba(20, 32, 43,.04) 0px 12px 12px -6px;
+  --elev-4: rgba(20, 32, 43,.20) 0px 20px 40px;
+  --modal-overlay: rgba(20, 32, 43, .50);
   --input-label-fg: var(--color-ink-700);
 
   background: #FAFAF7;

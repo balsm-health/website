@@ -2,14 +2,14 @@
 // The Cloud page is intentionally light-only (the design has no dark variant),
 // so these are used directly instead of the theme-reactive CSS vars.
 export const C = {
-  ink: '#2B2B25',
-  ink2: '#56564C',
-  muted: '#8C8C82',
+  ink: '#14202B',
+  ink2: '#384756',
+  muted: '#78838F',
   muted2: '#ADACA0',
   bg: '#FAFAF7',
   white: '#FFFFFF',
   border: '#E6E5DC',
-  borderSoft: '#E1E1D9',
+  borderSoft: '#DBDFE3',
   borderHair: '#ECEBE2',
   blue: '#1283FF',
   blueDark: '#0F6BCC',
@@ -27,7 +27,7 @@ export const C = {
   mint: '#55D77F',
   danger: '#D44A3C',
   dark: '#22221D',
-  grayDot: '#C9C9C0',
+  grayDot: '#C0C6CC',
   ltTagBg: '#F0F0E8',
   ltTagText: '#78776C',
 } as const;
@@ -74,7 +74,7 @@ export const ON = {
 } as const;
 
 export const TEXT = {
-  muted:   C.muted,    // AA-safe: '#6B6B60' (= --color-ink-600, 5.39:1)
+  muted:   C.muted,    // AA-safe: '#526174' (= --color-ink-600, 5.39:1)
   emerald: C.emerald,  // AA-safe: '#11826C' (4.55:1)
   aqua:    C.aqua,     // AA-safe: '#11817D' (4.55:1)
   blue:    C.blue,     // AA-safe: '#0F71DE' (4.54:1)
