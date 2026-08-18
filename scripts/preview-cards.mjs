@@ -29,8 +29,16 @@ import { tmpdir } from 'node:os';
 
 const argv = process.argv.slice(2);
 const baseIdx = argv.indexOf('--base');
+if (baseIdx >= 0 && !argv[baseIdx + 1]) {
+  console.error('--base needs a value, e.g. --base http://localhost:3100');
+  process.exit(1);
+}
 const BASE = (baseIdx >= 0 ? argv[baseIdx + 1] : 'http://localhost:3000').replace(/\/$/, '');
-const routes = argv.filter((a, i) => a.startsWith('/') && i !== baseIdx + 1);
+// Guard on `baseIdx >= 0`: with no --base, indexOf returns -1 and a bare
+// `i !== baseIdx + 1` reads as `i !== 0`, which silently drops the first route
+// argument — so `… /providers` previewed nothing it was asked for and fell
+// through to all twelve defaults.
+const routes = argv.filter((a, i) => a.startsWith('/') && (baseIdx < 0 || i !== baseIdx + 1));
 
 const ROUTES = routes.length
   ? routes
@@ -48,23 +56,30 @@ const TAGS = [
   'og:locale',
   'twitter:card',
   'twitter:site',
+  'twitter:title',
+  'twitter:description',
   'twitter:image',
   'twitter:image:alt',
 ];
 
+// `&amp;` must be decoded LAST. Decoding it first turns a literal `&amp;lt;`
+// into `&lt;`, which the next rule then turns into `<` — one entity too many.
 function decode(s) {
   return s
     .replace(/&#x27;/g, "'")
     .replace(/&#39;/g, "'")
     .replace(/&quot;/g, '"')
-    .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>');
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
 }
+
+/** A dev server that hangs would otherwise stall the whole sequential run. */
+const FETCH_TIMEOUT_MS = 15_000;
 
 async function scrape(route) {
   const url = `${BASE}${route}`;
-  const res = await fetch(url, { redirect: 'follow' });
+  const res = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
   const html = await res.text();
   const meta = {};
   const re = /<meta[^>]*(?:property|name)="([^"]+)"[^>]*content="([^"]*)"/g;
@@ -90,6 +105,15 @@ const clip = (s = '', n) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 
 function card(p, r) {
   const m = r.meta;
+  // X reads the twitter: tags in preference to og:, per field and independently
+  // — so previewing og: for X hides exactly the divergence worth catching. Alt
+  // matters most: X reads twitter:image:alt or shows nothing, it does not fall
+  // back to og:image:alt (see the note in src/lib/seo.ts).
+  const pick = (tw, og) => (p.name === 'X' ? (m[tw] ?? m[og]) : m[og]);
+  const image = pick('twitter:image', 'og:image');
+  const imageAlt = pick('twitter:image:alt', 'og:image:alt');
+  const title = pick('twitter:title', 'og:title');
+  const description = pick('twitter:description', 'og:description');
   const host = (() => {
     try {
       return new URL(m['og:url'] || r.url).host;
@@ -100,11 +124,11 @@ function card(p, r) {
   return `<figure class="card">
   <figcaption>${p.name}</figcaption>
   <div class="frame">
-    ${m['og:image'] ? `<img src="${esc(m['og:image'])}" alt="${esc(m['og:image:alt'])}">` : '<div class="missing">no og:image</div>'}
+    ${image ? `<img src="${esc(image)}" alt="${esc(imageAlt)}">` : '<div class="missing">no image</div>'}
     <div class="meta">
       <div class="host">${esc(host.toUpperCase())}</div>
-      <div class="title">${esc(clip(m['og:title'], p.title))}</div>
-      ${p.showDesc ? `<div class="desc">${esc(clip(m['og:description'], p.desc))}</div>` : ''}
+      <div class="title">${esc(clip(title, p.title))}</div>
+      ${p.showDesc ? `<div class="desc">${esc(clip(description, p.desc))}</div>` : ''}
     </div>
   </div>
 </figure>`;
@@ -117,9 +141,19 @@ function issues(r) {
   for (const t of ['og:title', 'og:description', 'og:image', 'og:image:alt', 'twitter:card']) {
     if (!m[t]) out.push(`missing ${t}`);
   }
-  // The trap this script exists to catch.
-  if (m['og:image'] && !m['og:image'].startsWith(BASE) && BASE.includes('localhost')) {
-    out.push(`og:image points off-host (${new URL(m['og:image']).host}) — set NEXT_PUBLIC_SITE_URL`);
+  // The trap this script exists to catch. Resolve against the page URL rather
+  // than parsing bare: a relative og:image is itself a finding, and throwing
+  // here would take the whole report down with it.
+  if (m['og:image'] && BASE.includes('localhost')) {
+    let host = null;
+    try {
+      host = new URL(m['og:image'], r.url).host;
+    } catch {
+      out.push(`og:image is not a usable URL (${m['og:image']})`);
+    }
+    if (host && !m['og:image'].startsWith(BASE)) {
+      out.push(`og:image points off-host (${host}) — set NEXT_PUBLIC_SITE_URL`);
+    }
   }
   if (m['og:image:alt'] && m['og:image:alt'] === m['og:title']) {
     out.push('og:image:alt duplicates og:title');
@@ -144,7 +178,7 @@ const html = `<!doctype html>
          background: #FAFAF7; color: #14202B; }
   h1 { font-size: 20px; margin: 0 0 4px; }
   .base { color: #78838F; font-size: 13px; margin-bottom: 28px; }
-  section { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid #E6E5DC; }
+  section { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid #EBEDF0; }
   h2 { font-size: 16px; margin: 0 0 4px; font-family: ui-monospace, monospace; }
   .alt { color: #384756; font-size: 13px; margin: 0 0 14px; max-width: 900px; }
   .alt b { color: #14202B; }
