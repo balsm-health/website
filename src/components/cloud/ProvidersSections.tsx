@@ -58,8 +58,13 @@ export default function ProvidersSections() {
         <div style={{ position: 'relative', ...container }}>
           <Reveal style={{ maxWidth: 760 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              <div style={eyebrow(DISPLAY.emerald)}>{t('hero.eyebrow')}</div>
-              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: C.white, border: '1px solid #CDEFEC', color: '#019A7F' }}>
+              {/* Hero kickers take the petal's -600 step, not the base petal —
+                  the rule every design page follows (Cloud #0F6BCC, Contributors
+                  #5C3AB0, here #019A7F). Section kickers further down stay on the
+                  base petal. It also clears the 3:1 large-text bar this kicker
+                  was missing: 2.02:1 → 3.20:1 on the hero gradient's #E2F8F6. */}
+              <div style={eyebrow(C.emeraldDark)}>{t('hero.eyebrow')}</div>
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: C.white, border: `1px solid ${C.aquaBorder}`, color: C.emeraldDark }}>
                 {t('hero.roadmap')}
               </span>
             </div>
@@ -75,7 +80,7 @@ export default function ProvidersSections() {
                 return (
                   <span
                     key={label}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 16px', borderRadius: 999, background: C.white, border: '1.5px solid #CDEFEC', fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14.5, color: '#019A7F' }}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '9px 16px', borderRadius: 999, background: C.white, border: `1.5px solid ${C.aquaBorder}`, fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14.5, color: C.emeraldDark }}
                   >
                     <Icon style={{ width: 16, height: 16 }} />
                     {label}
@@ -260,7 +265,7 @@ function ProvidersDemo() {
           <p style={{ fontSize: 'clamp(16px,1.8vw,19px)', lineHeight: 1.8, color: C.ink2, margin: '0 auto 30px', maxWidth: 520 }}>{t('desc')}</p>
         </Reveal>
         {status === 'success' ? (
-          <div style={{ background: C.white, border: '1px solid #CDEFEC', borderRadius: 20, padding: 34, boxShadow: '0 8px 24px rgba(20, 32, 43,.06)', maxWidth: 520, margin: '0 auto' }}>
+          <div style={{ background: C.white, border: `1px solid ${C.aquaBorder}`, borderRadius: 20, padding: 34, boxShadow: '0 8px 24px rgba(20, 32, 43,.06)', maxWidth: 520, margin: '0 auto' }}>
             <div style={{ width: 56, height: 56, borderRadius: '50%', background: C.aquaBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.aqua, margin: '0 auto 16px' }}>
               <Check style={{ width: 30, height: 30 }} strokeWidth={2.5} />
             </div>

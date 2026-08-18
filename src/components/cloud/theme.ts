@@ -1,23 +1,39 @@
-// Balsm Cloud palette — literal values from the Cloud.dc.html design.
-// The Cloud page is intentionally light-only (the design has no dark variant),
-// so these are used directly instead of the theme-reactive CSS vars.
+// Balsm Cloud palette — literal values from the .dc.html designs, cross-checked
+// against the design system's own `colors_and_type.css`. The Cloud pages are
+// intentionally light-only (the designs have no dark variant), so these are used
+// directly instead of the theme-reactive CSS vars.
+//
+// Every neutral here is a member of the DS cool navy-slate `--balsm-ink-*` ramp.
+// An earlier pass carried six values from the retired warm olive-gray ramp
+// (`#E6E5DC`, `#ECEBE2`, `#22221D`, `#ADACA0`, `#F0F0E8`, `#78776C`). None of
+// them appear in any design file, and DESIGN.md § Color retires that ramp
+// outright — so they read as warm hairlines and a warm-black band sitting under
+// cool ink. Corrected to their `ink-*` siblings; don't reintroduce warm neutrals.
 export const C = {
-  ink: '#14202B',
-  ink2: '#384756',
-  muted: '#78838F',
-  muted2: '#ADACA0',
-  bg: '#FAFAF7',
+  ink: '#14202B',       // ink-900
+  ink2: '#384756',      // ink-700
+  muted: '#78838F',     // ink-500
+  muted2: '#9BA4AD',    // ink-400
+  bg: '#FAFAF7',        // cream-50
   white: '#FFFFFF',
-  border: '#E6E5DC',
-  borderSoft: '#DBDFE3',
-  borderHair: '#ECEBE2',
+  // The designs carry a single border weight (ink-200). `border` and
+  // `borderSoft` therefore resolve to the same value; both names are kept so
+  // call sites that mean "hairline card edge" and "control outline" stay
+  // readable, and so either can diverge later without a sweep.
+  border: '#DBDFE3',    // ink-200 (= --balsm-border)
+  borderSoft: '#DBDFE3',// ink-200
+  borderHair: '#EBEDF0',// ink-100 — section rules, lang-switch track
   blue: '#1283FF',
   blueDark: '#0F6BCC',
   blueBg: '#E4F0FF',
   aqua: '#02BBB5',
   aquaBg: '#E2F8F6',
+  // teal-100. The aqua-tinted chip/card outline the designs use anywhere a soft
+  // aqua wash needs an edge.
+  aquaBorder: '#C9EEEB',
   emerald: '#01C4A2',
-  green: '#3FC366',
+  emeraldDark: '#019A7F',// petal-emerald-600
+  green: '#3FC366',     // petal-mint-600
   greenBg: '#E8F9EE',
   violet: '#724DD0',
   violetDark: '#5C3AB0',
@@ -26,10 +42,12 @@ export const C = {
   amberBg: '#FDF5DC',
   mint: '#55D77F',
   danger: '#D44A3C',
-  dark: '#22221D',
-  grayDot: '#C0C6CC',
-  ltTagBg: '#F0F0E8',
-  ltTagText: '#78776C',
+  // ink-900 (= --balsm-surface-inverse). Same value as `ink`, exactly as the
+  // designs do it: the dark bands, the footer and the ink text are one colour.
+  dark: '#14202B',
+  grayDot: '#C0C6CC',   // ink-300
+  ltTagBg: '#EBEDF0',   // ink-100
+  ltTagText: '#526174', // ink-600 (= the wordmark's ".health" hue)
 } as const;
 
 /**
@@ -68,7 +86,10 @@ export const FILL = {
 
 export const ON = {
   aqua:   '#FFFFFF',   // AA-safe: '#024442' (4.60:1) — white here is 2.39:1
-  mint:   '#1B3B27',   // 6.71:1 — the design's own value, already compliant
+  // The design's own on-mint value is `ink` — Cloud.dc.html and Sponsor.dc.html
+  // both set `background:#55D77F; color:#14202B`. An earlier note here claimed
+  // '#1B3B27' was the design value; it wasn't, and ink scores higher anyway.
+  mint:   '#14202B',   // 8.98:1 — compliant
   blue:   '#FFFFFF',   // AA-safe: '#011C41' (4.60:1) — white here is 3.67:1
   violet: '#FFFFFF',   // 5.69:1 — compliant as-is
 } as const;

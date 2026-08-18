@@ -46,7 +46,7 @@ export default function CloudHero() {
         <div ref={ref} style={{ maxWidth: 780, ...reveal }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: C.blueDark }}>{t('badge')}</div>
-            <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: '#fff', border: '1px solid #DDD2F4', color: C.violetDark }}>
+            <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: '#fff', border: '1px solid rgba(114,77,208,.22)', color: C.violetDark }}>
               {t('roadmap')}
             </span>
           </div>

@@ -38,7 +38,7 @@
         },
         {
           "title": "Lab integration",
-          "desc": "Orders and results over FHIR — landing in the patient record directly and accurately."
+          "desc": "Orders and results over FHIR — landing in the care recipient's record directly and accurately."
         },
         {
           "title": "Ecosystem analytics",
@@ -124,11 +124,11 @@
     },
     "invest": {
       "title": "Not a product vision. A civilizational one — with a clear business model.",
-      "desc": "Balsm is the first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world. The infrastructure is open and free, so it spreads on patient demand — and revenue comes from the optional cloud layer, a network effect that's hard to displace.",
+      "desc": "Balsm is the first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world. The infrastructure is open and free, so it spreads on care recipient demand — and revenue comes from the optional cloud layer, a network effect that's hard to displace.",
       "stats": [
         {
           "value": "+100M",
-          "label": "patients in the target Egyptian market"
+          "label": "care recipients in the target Egyptian market"
         },
         {
           "value": "27",
@@ -142,7 +142,7 @@
       "cards": [
         {
           "title": "Bottom-up adoption",
-          "desc": "Patient demand pulls in providers — adoption is a network effect, not a sales problem."
+          "desc": "Care recipient demand pulls in providers — adoption is a network effect, not a sales problem."
         },
         {
           "title": "Recurring revenue",
@@ -244,7 +244,7 @@
     "problem": {
       "eyebrow": "The problem",
       "title": "A fragmented health system — and your data lost between its cracks.",
-      "desc": "The Arab patient moves between pharmacy, clinic, and lab with no single connected record. And the existing options each fail, in their own way.",
+      "desc": "The Arab care recipient moves between pharmacy, clinic, and lab with no single connected record. And the existing options each fail, in their own way.",
       "cards": [
         {
           "title": "Paper and WhatsApp",
@@ -290,7 +290,7 @@
         {
           "badge": "On the roadmap",
           "title": "Balsm Pro app",
-          "desc": "For your clinic, hospital, pharmacy, or medical store: dispensing, inventory, patient files, and management — fully offline, and compliant with controlled-drugs regulations.",
+          "desc": "For your clinic, hospital, pharmacy, or medical store: dispensing, inventory, care recipient files, and management — fully offline, and compliant with controlled-drugs regulations.",
           "tags": [
             "Every health facility",
             "Live inventory",
@@ -310,7 +310,7 @@
       ]
     },
     "app": {
-      "eyebrow": "For patients",
+      "eyebrow": "For care recipients",
       "badge": "Building now",
       "title": "Your health, finally in its rightful place.",
       "desc": "Carry your complete health record in your pocket — in Arabic, on your device, going nowhere you didn't choose.",
@@ -385,7 +385,7 @@
       "title": "Balsm is built for you — whatever your role.",
       "cards": [
         {
-          "title": "Patient",
+          "title": "Care recipient",
           "desc": "Carry your complete health record in your pocket.",
           "cta": "Join the waitlist"
         },
@@ -471,7 +471,7 @@
         },
         {
           "title": "Dispensing & prescriptions",
-          "desc": "Link prescription to patient, a connected medication history, and drug-interaction alerts."
+          "desc": "Prescriptions linked to the care recipient, a connected medication history, and drug-interaction alerts."
         },
         {
           "title": "Controlled drugs",
@@ -575,7 +575,7 @@
       "cards": [
         {
           "title": "Fully open",
-          "desc": "Code, roadmap, and decisions all in the open. No black box holding patient data."
+          "desc": "Code, roadmap, and decisions all in the open. No black box holding care recipient data."
         },
         {
           "title": "Community-owned",
@@ -607,7 +607,7 @@
         },
         {
           "title": "Design & UX",
-          "desc": "Design genuinely Arabic interfaces that respect right-to-left reading and patient needs."
+          "desc": "Design genuinely Arabic interfaces that respect right-to-left reading and care recipient needs."
         },
         {
           "title": "Marketing & community",
@@ -700,7 +700,7 @@
         },
         {
           "title": "Become a provider",
-          "desc": "Run Balsm in your pharmacy or clinic.",
+          "desc": "Run Balsm in your healthcare facility.",
           "cta": "For providers"
         },
         {
@@ -785,7 +785,7 @@
         },
         {
           "title": "Become a provider",
-          "desc": "Run Balsm in your pharmacy or clinic.",
+          "desc": "Run Balsm in your healthcare facility.",
           "cta": "For providers"
         },
         {
@@ -829,7 +829,7 @@
         "a": "Balsm Cloud is an optional hosted layer that adds branch sync, encrypted backups, lab integration over FHIR, and analytics. It is optional by design: Balsm runs without it, and you can export your data and leave at any time."
       },
       {
-        "q": "How is patient data protected?",
+        "q": "How is care recipient data protected?",
         "a": "Data is encrypted, access is controlled and audited, and the system is built so a practice keeps custody of its own records. Because the code is open, these claims can be inspected rather than taken on trust. No compliance certifications have been announced yet."
       },
       {

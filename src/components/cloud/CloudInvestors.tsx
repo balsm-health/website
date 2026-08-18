@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { C, FONT, MOTION } from './theme';
+import { C, FONT, MOTION, ON } from './theme';
 import { useInView } from './useReveal';
 import CountUp from './CountUp';
 import { Target, Repeat, LockKeyhole, Mail } from './CloudIcons';
@@ -106,7 +106,7 @@ export default function CloudInvestors() {
               padding: '16px 30px',
               borderRadius: 999,
               background: C.mint,
-              color: '#1B3B27',
+              color: ON.mint,
               fontFamily: FONT.cairo,
               fontWeight: 700,
               fontSize: 17,

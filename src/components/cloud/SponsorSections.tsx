@@ -53,8 +53,10 @@ export default function SponsorSections() {
             <p style={{ fontSize: 'clamp(17px,1.9vw,21px)', lineHeight: 1.75, color: C.ink2, margin: '0 auto', maxWidth: 600 }}>{t('hero.subtitle')}</p>
             {/* "your support may one day reach someone you love" */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 26, padding: '14px 20px', background: C.amberBg, borderRadius: 14, maxWidth: 'fit-content', marginInline: 'auto' }}>
-              <HeartPulse style={{ width: 22, height: 22, color: '#B8791A', flex: 'none' }} />
-              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: '#8A5A0F' }}>{t('hero.callout')}</span>
+              {/* Icon and label are one colour in the design, not two — the
+                  split read as a two-tone chip at a glance. */}
+              <HeartPulse style={{ width: 22, height: 22, color: '#7A5A0F', flex: 'none' }} />
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: '#7A5A0F' }}>{t('hero.callout')}</span>
             </div>
           </Reveal>
         </div>

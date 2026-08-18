@@ -46,8 +46,11 @@ const PROBLEM_ICONS = [
 // design — the ON group exists so it can be darkened without touching call sites.
 const PRODUCT_STYLES = [
   { Icon: HeartPulse, grad: 'linear-gradient(160deg,#E4F0FF,#fff)', border: '#CFE3FF', chipBorder: '#CFE3FF', chipText: '#0F6BCC', dot: C.blue, badgeFilled: true, badgeInk: ON.blue },
-  { Icon: Building2, grad: 'linear-gradient(160deg,#E2F8F6,#fff)', border: '#CDEFEC', chipBorder: '#CDEFEC', chipText: '#019A7F', dot: C.aqua, badgeFilled: false, badgeInk: ON.aqua },
-  { Icon: Network, grad: 'linear-gradient(160deg,#ECE6FA,#fff)', border: '#DDD2F4', chipBorder: '#DDD2F4', chipText: '#5C3AB0', dot: C.violet, badgeFilled: false, badgeInk: ON.violet },
+  { Icon: Building2, grad: 'linear-gradient(160deg,#E2F8F6,#fff)', border: C.aquaBorder, chipBorder: C.aquaBorder, chipText: C.emeraldDark, dot: C.aqua, badgeFilled: false, badgeInk: ON.aqua },
+  // The violet card's edge is an alpha, not a hex, in every design that uses it
+  // (Home + CloudHero) — it sits on a gradient, so a flat approximation only
+  // matches at the corner where the gradient happens to be white.
+  { Icon: Network, grad: 'linear-gradient(160deg,#ECE6FA,#fff)', border: 'rgba(114,77,208,.22)', chipBorder: 'rgba(114,77,208,.22)', chipText: C.violetDark, dot: C.violet, badgeFilled: false, badgeInk: ON.violet },
 ];
 const STORES = [
   { Icon: Apple, key: 'appStore', size: 24 },
@@ -259,7 +262,7 @@ export default function HomeSections() {
             <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20, 32, 43,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
               <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
                 {/* header */}
-                <div style={{ background: '#fff', padding: '16px 16px 12px', borderBottom: '1px solid #EEEEE6', display: 'flex', alignItems: 'center', gap: 10, flex: 'none' }}>
+                <div style={{ background: '#fff', padding: '16px 16px 12px', borderBottom: '1px solid #EBEDF0', display: 'flex', alignItems: 'center', gap: 10, flex: 'none' }}>
                   <span style={{ width: 36, height: 36, borderRadius: '50%', background: C.aqua, color: ON.aqua, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, flex: 'none' }}>{t('app.phone.initials')}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 11, color: C.muted }}>{t('app.phone.greeting')}</div>
@@ -300,7 +303,7 @@ export default function HomeSections() {
                   </div>
                   <div style={{ fontFamily: FONT.mono, fontSize: 9.5, letterSpacing: '.08em', color: C.muted, marginBottom: 6 }}>{t('app.phone.medsTitle')}</div>
                   <div style={{ background: '#fff', border: `1px solid ${C.border}`, borderRadius: 14, padding: '2px 12px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '9px 0', borderBottom: '1px solid #EEEEE6' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '9px 0', borderBottom: '1px solid #EBEDF0' }}>
                       <span style={{ width: 28, height: 28, borderRadius: 8, background: C.blueBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.blue, flex: 'none' }}><Pill style={{ width: 14, height: 14 }} /></span>
                       <div style={{ flex: 1, minWidth: 0 }}><div style={{ fontWeight: 600, fontSize: 12.5, color: C.ink }}>{t('app.phone.med1')}</div><div style={{ fontSize: 10, color: C.muted }}>{t('app.phone.med1dose')}</div></div>
                       <Check style={{ width: 14, height: 14, color: C.green }} />
@@ -313,7 +316,7 @@ export default function HomeSections() {
                   </div>
                 </div>
                 {/* bottom nav — raised center "+" FAB between activity and pill */}
-                <div style={{ background: '#fff', borderTop: '1px solid #EEEEE6', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flex: 'none', position: 'relative' }}>
+                <div style={{ background: '#fff', borderTop: '1px solid #EBEDF0', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flex: 'none', position: 'relative' }}>
                   <HomeIcon style={{ width: 19, height: 19, color: C.blue }} />
                   <Activity style={{ width: 19, height: 19, color: C.grayDot }} />
                   <span style={{ width: 38, height: 38, borderRadius: '50%', background: C.blue, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', marginTop: -22, boxShadow: '0 6px 14px rgba(18,131,255,.35)', flex: 'none' }}>
@@ -443,7 +446,7 @@ function HomeJoin() {
         </Reveal>
 
         {status === 'success' ? (
-          <div style={{ background: C.white, border: '1px solid #CDEFEC', borderRadius: 20, padding: 34, boxShadow: '0 8px 24px rgba(20, 32, 43,.06)', maxWidth: 520, margin: '0 auto' }}>
+          <div style={{ background: C.white, border: `1px solid ${C.aquaBorder}`, borderRadius: 20, padding: 34, boxShadow: '0 8px 24px rgba(20, 32, 43,.06)', maxWidth: 520, margin: '0 auto' }}>
             <div style={{ width: 56, height: 56, borderRadius: '50%', background: C.greenBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.green, margin: '0 auto 16px' }}>
               <Check style={{ width: 30, height: 30 }} strokeWidth={2.5} />
             </div>
