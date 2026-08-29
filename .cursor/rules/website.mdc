@@ -1,0 +1,19 @@
+---
+description: Website marketing-site rules — no PHI, brand tokens, WCAG AA
+alwaysApply: true
+---
+
+# website
+
+Marketing / public-facing site. No PHI or clinical data.
+
+- Follow existing styling and component patterns.
+- WCAG AA is a floor: 44px minimum targets. Treat a regression as a bug.
+- Read `PRODUCT.md`, `DESIGN.md`, and `../Balsm-Core/brand/balsm-brand-canvas.md` before design, styling, or copy work.
+- Petal text contrast is a recorded brand-owner exception — do not "fix" by darkening one component.
+- Reveal state belongs in CSS, never in an inline style.
+- `dark:` follows the `.dark` class, not the OS.
+
+@file PRODUCT.md
+@file DESIGN.md
+@file CLAUDE.md
