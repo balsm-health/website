@@ -791,6 +791,11 @@
           "href": ""
         },
         {
+          "name": "Cursor",
+          "desc": "AI-powered, agentic development environment.",
+          "href": "https://cursor.com"
+        },
+        {
           "name": "GitHub",
           "desc": "Code hosting and collaborative development.",
           "href": "https://github.com/balsm-health"

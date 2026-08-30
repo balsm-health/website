@@ -791,6 +791,11 @@
           "href": ""
         },
         {
+          "name": "Cursor",
+          "desc": "بيئة تطوير بالذكاء الاصطناعي.",
+          "href": "https://cursor.com"
+        },
+        {
           "name": "GitHub",
           "desc": "استضافة الكود والتطوير التعاوني.",
           "href": "https://github.com/balsm-health"
