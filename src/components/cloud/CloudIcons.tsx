@@ -160,3 +160,33 @@ export const BrainCircuit = base(<><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-
 export const PenTool = base(<><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z" /><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18" /><path d="m2.3 2.3 7.286 7.286" /><circle cx="11" cy="11" r="2" /></>);
 export const Scale = base(<><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1" /><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1" /><path d="M7 21h10" /><path d="M12 3v18" /><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" /></>);
 export const Kanban = base(<><path d="M6 5v11" /><path d="M12 5v6" /><path d="M18 5v14" /></>);
+export const BadgeCheck = base(
+  <>
+    <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+    <path d="m16 9-5.5 5.5L8 12" />
+  </>
+);
+export const Frame = base(
+  <>
+    <line x1="22" x2="2" y1="6" y2="6" />
+    <line x1="22" x2="2" y1="18" y2="18" />
+    <line x1="6" x2="6" y1="2" y2="22" />
+    <line x1="18" x2="18" y1="2" y2="22" />
+  </>
+);
+export const ImagePlus = base(
+  <>
+    <path d="M16 5h6" />
+    <path d="M19 2v6" />
+    <path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5" />
+    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+    <circle cx="9" cy="9" r="2" />
+  </>
+);
+export const Download = base(
+  <>
+    <path d="M12 15V3" />
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <path d="m7 10 5 5 5-5" />
+  </>
+);

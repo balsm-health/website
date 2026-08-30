@@ -538,6 +538,43 @@
     "title": "Contribute to Balsm — build in the open",
     "description": "Balsm is fully open source — the code, the roadmap, and the decisions. Built in Egypt, for the whole Arab world. Come build in the open."
   },
+  "contributorsFrameMeta": {
+    "title": "Social profile frame — Balsm",
+    "description": "Upload a headshot, drag to reposition, and download a framed PNG with the Balsm mark — sized for LinkedIn, Facebook, X, or Instagram."
+  },
+  "contributorsFrame": {
+    "eyebrow": "Social profile frame",
+    "title": "Frame your profile photo",
+    "subtitle": "Upload a headshot, drag to reposition, and download a framed PNG with the Balsm mark — sized for {platform}.",
+    "platform": "Social platform",
+    "uploadEmpty": "Click to upload a photo",
+    "upload": "Click to upload a photo",
+    "replace": "Replace photo",
+    "zoom": "Zoom",
+    "zoomHint": "Drag the photo to reposition it inside the frame.",
+    "style": "Frame style",
+    "ringColor": "Ring color",
+    "campaign": "Campaign",
+    "download": "Download for {platform}",
+    "privacy": "Your photo never leaves your browser — the frame is composed and downloaded locally.",
+    "styles": {
+      "plate": "Universal",
+      "campaign": "Campaign label",
+      "dual": "Dual ring",
+      "watercolor": "Watercolor",
+      "lockup": "Lockup",
+      "roleplate": "Role plate",
+      "creamplate": "Cream plate",
+      "chord": "Ink chord"
+    },
+    "colors": {
+      "Violet": "Violet",
+      "Blue": "Blue",
+      "Aqua": "Aqua",
+      "Mint": "Mint",
+      "Navy": "Navy"
+    }
+  },
   "contributors": {
     "hero": {
       "eyebrow": "Open source · For contributors",
@@ -632,6 +669,11 @@
       ],
       "note": "These roles are only examples — any skill or passion you bring can find a place in Balsm. Write to us and we will point you in the right direction.",
       "cta": "Email us"
+    },
+    "frame": {
+      "title": "Announce your contribution on social media",
+      "desc": "Create a Balsm profile-photo frame for LinkedIn, Facebook, X, or Instagram in seconds.",
+      "cta": "Create the frame"
     },
     "dev": {
       "eyebrow": "For developers specifically",

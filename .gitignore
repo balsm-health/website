@@ -86,3 +86,4 @@ ds-bundle/
 
 # nested node_modules (the /node_modules rule above is root-anchored only)
 node_modules/
+.gstack/

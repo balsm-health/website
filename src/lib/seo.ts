@@ -28,7 +28,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://balsm.healt
  * timestamp would automate it, but only if the deploy has git history, which
  * the Cloudflare build does not.
  */
-export const CONTENT_REVISED = '2026-08-09';
+export const CONTENT_REVISED = '2026-08-30';
 
 /**
  * The X account. `creator` is who wrote the page, `site` is who publishes it —

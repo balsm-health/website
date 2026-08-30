@@ -9,6 +9,7 @@ import AnimatedLogo from './AnimatedLogo';
 import {
   Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft,
   CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug,
+  BadgeCheck, Frame,
 } from './CloudIcons';
 import { GITHUB_ISSUES_URL, GITHUB_ORG_URL, type GithubIssue } from '@/lib/github';
 
@@ -203,9 +204,24 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
           {/* "these are only examples" note + contact */}
           <Reveal style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 14, background: C.bg, border: `1px solid ${C.border}`, borderRadius: 16, padding: '18px 22px', marginBottom: 44 }}>
             <span style={{ fontSize: 15, color: C.ink2 }}>{t('roles.note')}</span>
-            <a href="mailto:contact@balsm.health" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, background: C.ink, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, flex: 'none' }}>
+            <a href="mailto:contact@balsm.health" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, background: C.ink, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, flex: 'none', minHeight: 44 }}>
               <Mail style={{ width: 16, height: 16 }} />{t('roles.cta')}
             </a>
+          </Reveal>
+
+          <Reveal style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 18, background: C.white, border: `1px solid ${C.border}`, borderRadius: 16, padding: '22px 26px', marginBottom: 44 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <div style={{ width: 48, height: 48, borderRadius: 14, background: C.violetBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.violet, flex: 'none' }}>
+                <BadgeCheck style={{ width: 24, height: 24 }} />
+              </div>
+              <div>
+                <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, color: C.ink }}>{t('frame.title')}</div>
+                <div style={{ fontFamily: FONT.arabic, fontSize: 14, color: C.ink2, marginTop: 2 }}>{t('frame.desc')}</div>
+              </div>
+            </div>
+            <Link href="/contributors/frame" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, flex: 'none', minHeight: 44 }}>
+              <Frame style={{ width: 16, height: 16 }} />{t('frame.cta')}
+            </Link>
           </Reveal>
 
           <Reveal style={{ maxWidth: 700, marginBottom: 24 }}>

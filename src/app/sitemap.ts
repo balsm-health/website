@@ -8,6 +8,7 @@ const routes: { path: string; priority: number }[] = [
   { path: '/cloud', priority: 0.9 },
   { path: '/providers', priority: 0.9 },
   { path: '/contributors', priority: 0.8 },
+  { path: '/contributors/frame', priority: 0.6 },
   { path: '/sponsor', priority: 0.8 },
   { path: '/links', priority: 0.5 },
 ];
