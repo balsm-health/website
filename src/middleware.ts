@@ -22,5 +22,8 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/(ar|en)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)'],
+  // `apps` is the Flutter web shell (public/apps/balsm). Paths without a
+  // file extension (the index, and hash-less deep links) must skip i18n
+  // or next-intl treats them as locale routes and 404s.
+  matcher: ['/', '/(ar|en)/:path*', '/((?!api|_next|_vercel|apps|.*\\..*).*)'],
 };

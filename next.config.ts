@@ -43,11 +43,49 @@ const SECURITY_HEADERS = [
   },
 ];
 
+const FLUTTER_APP_CSP = [
+  "default-src 'self'",
+  [
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval'",
+    'https://static.cloudflareinsights.com',
+    'https://accounts.google.com',
+    'https://browser.sentry-cdn.com',
+  ].join(' '),
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "img-src 'self' data: blob: https:",
+  "connect-src 'self' https: wss:",
+  "frame-src 'self' https://accounts.google.com https://browser.sentry-cdn.com",
+  "worker-src 'self' blob:",
+  "child-src 'self' blob: https://accounts.google.com",
+  "frame-ancestors 'none'",
+].join('; ');
+
 const nextConfig: NextConfig = {
   // Enable strict mode for better error handling
   reactStrictMode: true,
+  async redirects() {
+    return [{ source: '/apps/balsm', destination: '/apps/balsm/', permanent: false }];
+  },
   async headers() {
-    return [{ source: '/:path*', headers: SECURITY_HEADERS }];
+    return [
+      {
+        source: '/apps/balsm/:path*',
+        headers: [
+          { key: 'Content-Security-Policy', value: FLUTTER_APP_CSP },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(self), interest-cohort=()',
+          },
+        ],
+      },
+      // Negative match so the marketing-site CSP is not AND-ed with Flutter's
+      // (browsers enforce every CSP header; the tighter one wins).
+      { source: '/:path((?!apps/balsm).*)', headers: SECURITY_HEADERS },
+    ];
   },
 };
 

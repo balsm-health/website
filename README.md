@@ -72,6 +72,8 @@ npm run deploy:staging   # → stg.balsm.health (balsm-website-stg)
 npm run deploy           # → balsm.health     (balsm-website)
 ```
 
+The patient app web shell is served at `/apps/balsm`. Build it in `balsm_app` (`dart run tool/build.dart web balsm prod`), then `bash scripts/sync-flutter-web.sh` so `public/apps/balsm` is populated before `npm run deploy`. That directory is gitignored (canvaskit).
+
 Both build locally and upload, so `wrangler login` (or `CLOUDFLARE_API_TOKEN`)
 is required. There is no CI deploy for staging yet.
 

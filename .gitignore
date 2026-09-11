@@ -20,6 +20,9 @@
 # production
 /build
 
+# Flutter web shell (generated — canvaskit + dart2js, not source)
+/public/apps/
+
 # misc
 .DS_Store
 *.pem

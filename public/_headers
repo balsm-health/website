@@ -1,18 +1,26 @@
 # https://developers.cloudflare.com/workers/static-assets/headers
 # https://opennext.js.org/cloudflare/caching#static-assets-caching
 
+# Flutter web shell at /apps/balsm — wasm + blob workers, before the site-wide CSP.
+/apps/balsm/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' 'wasm-unsafe-eval' https://static.cloudflareinsights.com https://accounts.google.com https://browser.sentry-cdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss:; frame-src 'self' https://accounts.google.com https://browser.sentry-cdn.com; worker-src 'self' blob:; child-src 'self' blob: https://accounts.google.com; frame-ancestors 'none'
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self), interest-cohort=()
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
 # Static assets caching
 /_next/static/*
   Cache-Control: public,max-age=31536000,immutable
 
-# Security headers for all pages
+# Security headers for all pages (CSP omitted here — /apps/balsm/* has its
+# own, and stacking two CSP headers AND-restricts Flutter wasm).
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none'
 
 # SEO-friendly headers
 /*.html
