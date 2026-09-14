@@ -41,12 +41,13 @@ Balsm is an **open source healthcare platform** designed for healthcare provider
 - **Deployment**: Cloudflare Workers (OpenNext)
 
 ### Backend
-- **.NET**: ASP.NET Core
-- **Database**: PostgreSQL
-- **Storage**: Supabase
+- **.NET 10**: ASP.NET Core modular monolith (`Balsm-API-DotNet`)
+- **Database**: SQLite (embedded default) / PostgreSQL
+- **Object storage**: Cloudflare R2 (map packs, CDN-fronted)
+- **Waitlist only**: Supabase (this website's waitlist form — not part of the platform backend)
 
 ### Mobile
-- **Framework**: Flutter
+- **Framework**: Flutter (melos monorepo; PHI stays on-device, SQLCipher)
 
 ## Features (Planned)
 
