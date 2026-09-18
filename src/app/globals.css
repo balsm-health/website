@@ -132,7 +132,7 @@
   --color-expiring-bg:      #FBEEDC;
 
   /* Eyebrow — a DIVERGENCE from upstream, on purpose.
-     The design system sets .eyebrow to --petal-emerald #01C4A2, which
+     The design system sets .eyebrow to --hue-emerald #01C4A2, which
      at 12px scores 2.23:1 on white and 2.00:1 on cream — well under
      the 4.5:1 this project commits to. This is the same emerald,
      darkened until it clears AA on white (5.65), cream (5.08) and
@@ -251,7 +251,7 @@
   --dur-slow: 320ms;
 
   /* ── Gradients (signature). Never on text. ── */
-  --grad-petal:  linear-gradient(135deg, #02BBB5 0%, #1283FF 60%, #724DD0 100%);
+  --grad-brand:  linear-gradient(135deg, #02BBB5 0%, #1283FF 60%, #724DD0 100%);
   --grad-mint:   linear-gradient(135deg, #55D77F 0%, #01C4A2 100%);
   --grad-sky:    linear-gradient(135deg, #1283FF 0%, #0F6BCC 100%);
   --grad-violet: linear-gradient(135deg, #8E6FE0 0%, #724DD0 100%);

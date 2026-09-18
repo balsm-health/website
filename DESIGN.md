@@ -152,7 +152,7 @@ voice.
 
 ### Deliberate divergence: eyebrow color
 
-Upstream sets `.eyebrow` to `--petal-emerald` `#01C4A2`. At its specified 12px
+Upstream sets `.eyebrow` to `--hue-emerald` `#01C4A2`. At its specified 12px
 that scores **2.23:1 on white** and **2.00:1 on cream** — far below the 4.5:1
 this project commits to in PRODUCT.md.
 
