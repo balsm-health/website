@@ -7,6 +7,7 @@ import { C, DISPLAY, FILL, FONT, ON, TEXT } from './theme';
 import { useInView } from './useReveal';
 import Reveal from './Reveal';
 import AnimatedLogo from './AnimatedLogo';
+import AppHomeScreen from './AppHomeScreen';
 import CountUp from './CountUp';
 import { captureError } from '@/lib/observability';
 import {
@@ -260,18 +261,11 @@ export default function HomeSections() {
             </div>
           </Reveal>
 
-          {/* Phone mockup — the app's real home screen, one capture per locale. */}
+          {/* Phone mockup — the app's home screen, drawn in markup (see AppHomeScreen). */}
           <Reveal style={{ flex: '0 0 auto', margin: '0 auto', maxWidth: '100%' }}>
             <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20, 32, 43,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
               <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={locale === 'ar' ? '/app-home-screen.png' : '/app-home-screen-en.png'}
-                  alt={t('app.screenAlt')}
-                  loading="lazy"
-                  decoding="async"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
-                />
+                <AppHomeScreen label={t('app.screenAlt')} />
               </div>
             </div>
           </Reveal>
