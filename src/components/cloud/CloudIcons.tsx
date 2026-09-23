@@ -158,6 +158,8 @@ export const Puzzle = base(<path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 
 export const ChevronRight = base(<path d="m9 18 6-6-6-6" />);
 export const Clock = base(<><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></>);
 export const FolderHeart = base(<><path d="M11 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v1.5" /><path d="M13.9 17.45c-1.2-1.2-1.14-2.8-.2-3.73a2.43 2.43 0 0 1 3.44 0l.36.34.34-.34a2.43 2.43 0 0 1 3.45-.01c.95.95 1 2.53-.2 3.74L17.5 21Z" /></>);
+export const ArrowUpRight = base(<><path d="M7 7h10v10" /><path d="M7 17 17 7" /></>);
+export const ArrowDownRight = base(<><path d="m7 7 10 10" /><path d="M17 7v10H7" /></>);
 // Huawei AppGallery — the design lists it as a third store badge.
 export const AppGallery = base(<><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20" /><path d="M8 8a4 4 0 0 0 8 0" /></>);
 export const BrainCircuit = base(<><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M9 13a4.5 4.5 0 0 0 3-4" /><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" /><path d="M3.477 10.896a4 4 0 0 1 .585-.396" /><path d="M6 18a4 4 0 0 1-1.967-.516" /><path d="M12 13h4" /><path d="M12 18h6a2 2 0 0 1 2 2v1" /><path d="M12 8h8" /><path d="M16 8V5a2 2 0 0 1 2-2" /><circle cx="16" cy="13" r=".5" /><circle cx="18" cy="3" r=".5" /><circle cx="20" cy="21" r=".5" /><circle cx="20" cy="8" r=".5" /></>);
