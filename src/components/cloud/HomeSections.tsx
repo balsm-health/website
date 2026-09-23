@@ -293,7 +293,7 @@ export default function HomeSections() {
             {valueCards.map((card, i) => {
               const Icon = VALUE_ICONS[i];
               return (
-                <Reveal key={i} delay={i * 60} style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.09)', borderRadius: 18, padding: 24 }}>
+                <Reveal key={i} delay={i * 60} className="balsm-lift" style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.09)', borderRadius: 18, padding: 24 }}>
                   <Icon style={{ width: 24, height: 24, color: VALUE_COLORS[i] }} />
                   <h3 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: '#fff', margin: '14px 0 6px' }}>{card.title}</h3>
                   <p style={{ fontSize: 14.5, lineHeight: 1.65, color: 'rgba(255,255,255,.66)', margin: 0 }}>{card.desc}</p>
@@ -402,38 +402,40 @@ function HomeJoin() {
             <p style={{ fontSize: 16, lineHeight: 1.7, color: C.ink2, margin: 0 }}>{t('successDesc')}</p>
           </div>
         ) : (
-          <form onSubmit={submit} style={{ maxWidth: 520, margin: '0 auto' }} noValidate>
-            {/* Stacked full-width, button last — matches the Cloud waitlist.
-                The email+button row is gone. */}
-            <input
-              value={email}
-              onChange={(e) => { setEmail(e.target.value); if (status === 'error') { setStatus('idle'); setError(''); } }}
-              type="email"
-              dir="ltr"
-              placeholder={t('placeholder')}
-              disabled={status === 'loading'}
-              aria-label={t('placeholder')}
-              style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.body, fontSize: 16, color: C.ink, textAlign: 'left', outline: 'none', boxSizing: 'border-box' }}
-            />
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              rows={3}
-              placeholder={t('messagePlaceholder')}
-              disabled={status === 'loading'}
-              aria-label={t('messagePlaceholder')}
-              style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.arabic, fontSize: 15, color: C.ink, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
-            />
-            <button type="submit" disabled={status === 'loading'} style={{ width: '100%', padding: '15px 28px', borderRadius: 14, border: 'none', background: FILL.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.7 : 1, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>
-              {t('button')}
-            </button>
-            {status === 'error' && error && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 7, justifyContent: 'center', marginTop: 14, color: C.danger, fontSize: 14 }}>
-                <AlertCircle style={{ width: 16, height: 16 }} /><span>{error}</span>
-              </div>
-            )}
-            <p style={{ fontSize: 13, color: C.muted, margin: '16px 0 0' }}>{t('privacy')}</p>
-          </form>
+          <Reveal>
+            <form onSubmit={submit} style={{ maxWidth: 520, margin: '0 auto' }} noValidate>
+              {/* Stacked full-width, button last — matches the Cloud waitlist.
+                  The email+button row is gone. */}
+              <input
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); if (status === 'error') { setStatus('idle'); setError(''); } }}
+                type="email"
+                dir="ltr"
+                placeholder={t('placeholder')}
+                disabled={status === 'loading'}
+                aria-label={t('placeholder')}
+                style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.body, fontSize: 16, color: C.ink, textAlign: 'left', outline: 'none', boxSizing: 'border-box' }}
+              />
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={3}
+                placeholder={t('messagePlaceholder')}
+                disabled={status === 'loading'}
+                aria-label={t('messagePlaceholder')}
+                style={{ width: '100%', marginBottom: 10, padding: '15px 18px', borderRadius: 14, border: `1.5px solid ${C.borderSoft}`, background: C.white, fontFamily: FONT.arabic, fontSize: 15, color: C.ink, outline: 'none', resize: 'vertical', boxSizing: 'border-box' }}
+              />
+              <button type="submit" disabled={status === 'loading'} style={{ width: '100%', padding: '15px 28px', borderRadius: 14, border: 'none', background: FILL.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.7 : 1, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>
+                {t('button')}
+              </button>
+              {status === 'error' && error && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 7, justifyContent: 'center', marginTop: 14, color: C.danger, fontSize: 14 }}>
+                  <AlertCircle style={{ width: 16, height: 16 }} /><span>{error}</span>
+                </div>
+              )}
+              <p style={{ fontSize: 13, color: C.muted, margin: '16px 0 0' }}>{t('privacy')}</p>
+            </form>
+          </Reveal>
         )}
       </div>
     </section>
