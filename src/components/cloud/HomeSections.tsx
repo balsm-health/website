@@ -6,12 +6,13 @@ import { Link } from '@/i18n/navigation';
 import { C, DISPLAY, FILL, FONT, ON, TEXT } from './theme';
 import { useInView } from './useReveal';
 import Reveal from './Reveal';
+import AnimatedLogo from './AnimatedLogo';
 import CountUp from './CountUp';
 import { captureError } from '@/lib/observability';
 import {
-  ArrowRight, Smartphone, ArrowUpLeft, FileX, Lock, CloudOff, Pill, HeartPulse, Network,
-  Apple, Play, AppGallery, User, Home as HomeIcon, Bell, PlusCircle, Plus, Flame, Activity, Droplet,
-  GitBranch, ShieldCheck, Users, Languages, WifiOff, Gem, UserRound, Building2, CodeXml,
+  ArrowRight, Smartphone, ArrowUpLeft, FileX, Lock, CloudOff, HeartPulse, Network,
+  Apple, Play, AppGallery,
+  GitBranch, ShieldCheck, Users, Languages, WifiOff, Gem, UserRound, Building2, Puzzle,
   HeartHandshake, Check, AlertCircle, Bug, Unplug, LifeBuoy,
 } from './CloudIcons';
 
@@ -32,14 +33,16 @@ const h2 = (color = C.ink): React.CSSProperties => ({
 });
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 
-// Six failure modes, icons per Home.dc.html (file-x, lock, cloud-off, bug, unplug, life-buoy).
+// Six failure modes, icons and tints per Home.dc.html — each card gets its own
+// hue (danger, amber, violet, blue, aqua, then neutral ink) rather than the
+// first three repeating.
 const PROBLEM_ICONS = [
   { Icon: FileX, bg: '#FBEBE7', color: C.danger },
   { Icon: Lock, bg: C.amberBg, color: C.amber },
   { Icon: CloudOff, bg: C.violetBg, color: C.violet },
-  { Icon: Bug, bg: '#FBEBE7', color: C.danger },
-  { Icon: Unplug, bg: C.amberBg, color: C.amber },
-  { Icon: LifeBuoy, bg: C.violetBg, color: C.violet },
+  { Icon: Bug, bg: C.blueBg, color: C.blue },
+  { Icon: Unplug, bg: C.aquaBg, color: C.aqua },
+  { Icon: LifeBuoy, bg: C.borderHair, color: C.ink2 },
 ];
 // One entry per product card, index-aligned with the `how.products` messages.
 // `badgeInk` is the badge's label colour; it resolves to white, matching the
@@ -67,7 +70,7 @@ const VALUE_COLORS = [C.mint, C.aqua, C.blue, C.violet, C.mint, C.aqua];
 const PATH_STYLES = [
   { Icon: UserRound, bg: C.blueBg, color: C.blue, text: TEXT.blue, href: '/#app' },
   { Icon: Building2, bg: C.aquaBg, color: C.aqua, text: TEXT.aqua, href: '/providers' },
-  { Icon: CodeXml, bg: C.violetBg, color: C.violet, text: TEXT.violet, href: '/contributors' },
+  { Icon: Puzzle, bg: C.violetBg, color: C.violet, text: TEXT.violet, href: '/contributors' },
   { Icon: HeartHandshake, bg: C.amberBg, color: C.amber, text: TEXT.amber, href: '/sponsor' },
 ];
 
@@ -90,9 +93,9 @@ export default function HomeSections() {
       {/* HERO */}
       <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(48px,8vw,96px) 0 clamp(56px,8vw,104px)' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/balsm-background.png" alt="" aria-hidden style={{ position: 'absolute', inset: '0 auto 0 0', width: '62%', height: '100%', objectFit: 'cover', opacity: 0.9, transform: 'scaleX(-1)', pointerEvents: 'none' }} />
+        <img src="/balsm-background.png" alt="" aria-hidden style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'right top', opacity: 0.9, pointerEvents: 'none' }} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', insetInlineStart: -90, bottom: -110, width: 340, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
+        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', left: -90, bottom: -110, width: 340, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 980, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)', textAlign: 'center' }}>
           <Reveal style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '7px 16px', borderRadius: 999, background: C.white, border: `1px solid ${C.border}`, boxShadow: '0 2px 8px rgba(20, 32, 43,.05)', marginBottom: 26 }}>
             <span style={{ display: 'inline-flex', gap: 4 }}>
@@ -118,9 +121,9 @@ export default function HomeSections() {
             <p style={{ fontFamily: FONT.arabic, fontWeight: 500, fontSize: 14, letterSpacing: '.02em', color: C.muted, margin: '14px 0 0' }}>{t('hero.tagline')}</p>
           </Reveal>
           <Reveal delay={220} style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 38 }}>
-            <Link href="/cloud" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: FILL.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(18,131,255,.26)' }}>
+            <a href="#join" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: FILL.blue, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(18,131,255,.26)' }}>
               {t('hero.ctaJoin')}<ArrowRight style={{ width: 19, height: 19, transform: arrowFlip }} />
-            </Link>
+            </a>
             <a href="#app" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.white, color: C.ink, border: `1.5px solid ${C.borderSoft}`, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17 }}>
               <Smartphone style={{ width: 19, height: 19 }} />{t('hero.ctaApp')}
             </a>
@@ -257,74 +260,18 @@ export default function HomeSections() {
             </div>
           </Reveal>
 
-          {/* Phone mockup — patient tracking dashboard */}
+          {/* Phone mockup — the app's real home screen, one capture per locale. */}
           <Reveal style={{ flex: '0 0 auto', margin: '0 auto', maxWidth: '100%' }}>
             <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20, 32, 43,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
-              <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-                {/* header */}
-                <div style={{ background: '#fff', padding: '16px 16px 12px', borderBottom: '1px solid #EBEDF0', display: 'flex', alignItems: 'center', gap: 10, flex: 'none' }}>
-                  <span style={{ width: 36, height: 36, borderRadius: '50%', background: C.aqua, color: ON.aqua, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, flex: 'none' }}>{t('app.phone.initials')}</span>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 11, color: C.muted }}>{t('app.phone.greeting')}</div>
-                    <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: C.ink }}>{t('app.phone.name')}</div>
-                  </div>
-                  <span style={{ width: 30, height: 30, borderRadius: '50%', background: '#F4F3EC', display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.ink2, flex: 'none' }}>
-                    <Bell style={{ width: 15, height: 15 }} />
-                  </span>
-                </div>
-                {/* body */}
-                <div style={{ padding: 12, overflow: 'hidden', flex: 1 }}>
-                  <div style={{ background: 'linear-gradient(135deg,#1283FF,#0F6BCC)', borderRadius: 16, padding: 14, color: '#fff', marginBottom: 10 }}>
-                    <div style={{ fontSize: 10.5, opacity: 0.85, marginBottom: 4 }}>{t('app.phone.followTitle')}</div>
-                    <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, marginBottom: 10 }}>{t('app.phone.followQ')}</div>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,.18)', padding: '7px 12px', borderRadius: 999, fontSize: 12, fontWeight: 700 }}>
-                      <PlusCircle style={{ width: 14, height: 14 }} />{t('app.phone.followCta')}
-                    </div>
-                  </div>
-                  <div style={{ background: '#fff', border: `1px solid ${C.border}`, borderRadius: 14, padding: '11px 13px', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ width: 34, height: 34, borderRadius: '50%', background: C.amberBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.amber, flex: 'none' }}>
-                      <Flame style={{ width: 17, height: 17 }} />
-                    </span>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontWeight: 700, fontSize: 13, color: C.ink }}>{t('app.phone.streakNum')} <span style={{ fontWeight: 500 }}>{t('app.phone.streakUnit')}</span></div>
-                      <div style={{ fontSize: 10.5, color: C.muted, marginTop: 1 }}>{t('app.phone.streakSub')}</div>
-                    </div>
-                  </div>
-                  <div style={{ fontFamily: FONT.mono, fontSize: 9.5, letterSpacing: '.08em', color: C.muted, marginBottom: 6 }}>{t('app.phone.measures')}</div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 10 }}>
-                    <div style={{ background: '#fff', border: `1px solid ${C.border}`, borderRadius: 12, padding: 10 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 10.5, color: C.muted, marginBottom: 4 }}><Activity style={{ width: 12, height: 12, color: C.violet }} />{t('app.phone.bpLabel')}</div>
-                      <div dir="ltr" style={{ fontWeight: 700, fontSize: 15, color: C.ink }}>{t('app.phone.bpVal')}</div>
-                    </div>
-                    <div style={{ background: '#fff', border: `1px solid ${C.border}`, borderRadius: 12, padding: 10 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 10.5, color: C.muted, marginBottom: 4 }}><Droplet style={{ width: 12, height: 12, color: C.aqua }} />{t('app.phone.sugarLabel')}</div>
-                      <div style={{ fontWeight: 700, fontSize: 15, color: C.ink }}>{t('app.phone.sugarVal')}</div>
-                    </div>
-                  </div>
-                  <div style={{ fontFamily: FONT.mono, fontSize: 9.5, letterSpacing: '.08em', color: C.muted, marginBottom: 6 }}>{t('app.phone.medsTitle')}</div>
-                  <div style={{ background: '#fff', border: `1px solid ${C.border}`, borderRadius: 14, padding: '2px 12px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '9px 0', borderBottom: '1px solid #EBEDF0' }}>
-                      <span style={{ width: 28, height: 28, borderRadius: 8, background: C.blueBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.blue, flex: 'none' }}><Pill style={{ width: 14, height: 14 }} /></span>
-                      <div style={{ flex: 1, minWidth: 0 }}><div style={{ fontWeight: 600, fontSize: 12.5, color: C.ink }}>{t('app.phone.med1')}</div><div style={{ fontSize: 10, color: C.muted }}>{t('app.phone.med1dose')}</div></div>
-                      <Check style={{ width: 14, height: 14, color: C.green }} />
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 9, padding: '9px 0' }}>
-                      <span style={{ width: 28, height: 28, borderRadius: 8, background: C.violetBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.violet, flex: 'none' }}><HeartPulse style={{ width: 14, height: 14 }} /></span>
-                      <div style={{ flex: 1, minWidth: 0 }}><div style={{ fontWeight: 600, fontSize: 12.5, color: C.ink }}>{t('app.phone.med2')}</div><div style={{ fontSize: 10, color: C.muted }}>{t('app.phone.med2dose')}</div></div>
-                      <span style={{ fontSize: 10, fontWeight: 700, color: C.ink, background: C.ltTagBg, padding: '5px 10px', borderRadius: 999, flex: 'none' }}>{t('app.phone.taken')}</span>
-                    </div>
-                  </div>
-                </div>
-                {/* bottom nav — raised center "+" FAB between activity and pill */}
-                <div style={{ background: '#fff', borderTop: '1px solid #EBEDF0', padding: '10px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flex: 'none', position: 'relative' }}>
-                  <HomeIcon style={{ width: 19, height: 19, color: C.blue }} />
-                  <Activity style={{ width: 19, height: 19, color: C.grayDot }} />
-                  <span style={{ width: 38, height: 38, borderRadius: '50%', background: C.blue, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', marginTop: -22, boxShadow: '0 6px 14px rgba(18,131,255,.35)', flex: 'none' }}>
-                    <Plus style={{ width: 18, height: 18 }} />
-                  </span>
-                  <Pill style={{ width: 19, height: 19, color: C.grayDot }} />
-                  <User style={{ width: 19, height: 19, color: C.grayDot }} />
-                </div>
+              <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={locale === 'ar' ? '/app-home-screen.png' : '/app-home-screen-en.png'}
+                  alt={t('app.screenAlt')}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }}
+                />
               </div>
             </div>
           </Reveal>
@@ -439,8 +386,9 @@ function HomeJoin() {
     <section id="join" style={{ padding: 'clamp(60px,9vw,112px) 0', background: C.bg, borderTop: `1px solid ${C.borderHair}` }}>
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)', textAlign: 'center' }}>
         <Reveal>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/balsm-logo.svg" alt="" aria-hidden style={{ width: 64, height: 64, margin: '0 auto 22px', display: 'block', animation: 'balsm-float 6s ease-in-out infinite' }} />
+          <div style={{ width: 64, height: 64, margin: '0 auto 22px', display: 'block', animation: 'balsm-float 6s ease-in-out infinite' }}>
+            <AnimatedLogo size={64} idle="breathe" />
+          </div>
           <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(30px,4.6vw,54px)', lineHeight: 1.12, color: C.ink, margin: '0 0 14px' }}>{t('title')}</h2>
           <p style={{ fontFamily: FONT.arabic, fontSize: 'clamp(16px,1.8vw,20px)', lineHeight: 1.8, color: C.ink2, margin: '0 auto 32px', maxWidth: 540 }}>{t('desc')}</p>
         </Reveal>
