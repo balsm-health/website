@@ -75,7 +75,7 @@ export default function BalsmFooter() {
             borderBottom: '1px solid rgba(255,255,255,.1)',
           }}
         >
-          <div style={{ gridColumn: '1 / -1', maxWidth: 340 }}>
+          <div style={{ gridColumn: '1 / -1', maxWidth: 380 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 11, marginBottom: 14 }}>
               <AnimatedLogo size={38} idle="breathe" />
               <span style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 24 }}>بلسم</span>

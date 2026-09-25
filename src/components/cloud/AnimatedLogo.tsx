@@ -43,8 +43,9 @@ export default function AnimatedLogo({
         width: size,
         height: size,
         // The point the five petals converge on, as a fraction of the asset's
-        // 447x470 viewBox — everything rotates and scales about the hub.
-        transformOrigin: '49% 53%',
+        // 712.52x683.39 viewBox (the ring's rotate centre, 374.5,383) —
+        // everything rotates and scales about the hub.
+        transformOrigin: '50% 54.4%',
         animation: idle === 'breathe' ? 'balsm-logo-breathe 4600ms ease-in-out 1750ms infinite' : undefined,
         ...style,
       }}
@@ -60,7 +61,7 @@ export default function AnimatedLogo({
           display: 'block',
           width: '100%',
           height: '100%',
-          transformOrigin: '49% 53%',
+          transformOrigin: '50% 54.4%',
           animation: 'balsm-logo-bloom 1150ms cubic-bezier(.2,.8,.2,1) both',
         }}
       />

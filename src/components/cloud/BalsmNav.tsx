@@ -65,7 +65,7 @@ export default function BalsmNav({ active }: { active: NavKey }) {
         fontFamily: FONT.arabic,
         transition: 'background .3s ease, box-shadow .3s ease, backdrop-filter .3s ease',
         background: scrolled ? 'rgba(250,250,247,0.9)' : 'rgba(250,250,247,0)',
-        boxShadow: scrolled ? '0 1px 0 rgba(43,43,37,0.07), 0 10px 30px rgba(43,43,37,0.05)' : 'none',
+        boxShadow: scrolled ? '0 1px 0 rgba(20,32,43,0.07), 0 10px 30px rgba(20,32,43,0.05)' : 'none',
         backdropFilter: scrolled ? 'saturate(1.3) blur(12px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'saturate(1.3) blur(12px)' : 'none',
       }}
@@ -105,7 +105,7 @@ export default function BalsmNav({ active }: { active: NavKey }) {
               style={{
                 minWidth: 44, height: 44, padding: '0 10px', border: 'none', borderRadius: 999,
                 background: locale === 'ar' ? C.white : 'transparent', color: locale === 'ar' ? C.ink : C.muted,
-                boxShadow: locale === 'ar' ? '0 1px 3px rgba(43,43,37,.14)' : 'none',
+                boxShadow: locale === 'ar' ? '0 1px 3px rgba(20,32,43,.14)' : 'none',
                 fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14, lineHeight: 1, cursor: 'pointer',
               }}
             >
@@ -117,7 +117,7 @@ export default function BalsmNav({ active }: { active: NavKey }) {
               style={{
                 minWidth: 44, height: 44, padding: '0 10px', border: 'none', borderRadius: 999,
                 background: locale === 'en' ? C.white : 'transparent', color: locale === 'en' ? C.ink : C.muted,
-                boxShadow: locale === 'en' ? '0 1px 3px rgba(43,43,37,.14)' : 'none',
+                boxShadow: locale === 'en' ? '0 1px 3px rgba(20,32,43,.14)' : 'none',
                 fontFamily: FONT.display, fontWeight: 700, fontSize: 12.5, letterSpacing: '.02em', lineHeight: 1, cursor: 'pointer',
               }}
             >
