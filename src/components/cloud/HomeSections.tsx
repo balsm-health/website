@@ -107,9 +107,11 @@ export default function HomeSections() {
             <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14, color: C.ink2 }}>{t('hero.badge')}</span>
           </Reveal>
           <Reveal delay={60}>
-            <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(40px,7.2vw,84px)', lineHeight: 1.08, letterSpacing: '-.01em', color: C.ink, margin: 0 }}>
-              {t('hero.title1')}<br />
-              <span style={{ color: C.blue }}>{t('hero.title2')}</span>
+            {/* Brand line: two staggered lines — the first hugs the start edge,
+                the second the end edge, so the pair reads as one phrase. */}
+            <h1 className="b-brand-line" style={{ fontFamily: FONT.arabic, fontWeight: 700, fontSize: 'clamp(38px,6.6vw,78px)', lineHeight: 1.32, color: C.ink, margin: '0 auto', display: 'flex', flexDirection: 'column', width: 'fit-content', maxWidth: '100%', gap: '.04em' }}>
+              <span style={{ display: 'block', alignSelf: 'flex-start' }}>{t('hero.title1')}</span>
+              <span style={{ display: 'block', alignSelf: 'flex-end', paddingInlineStart: '1.2em', color: C.blue }}>{t('hero.title2')}</span>
             </h1>
           </Reveal>
           <Reveal delay={120}>

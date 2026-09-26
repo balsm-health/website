@@ -182,7 +182,7 @@
   },
   "siteFooter": {
     "blurb": "The first open source healthcare technology ecosystem in Egypt and the Arab world.",
-    "motto": "Open · Arab · Trusted",
+    "motto": "Community-driven. Independent. Trusted.",
     "follow": "Follow us",
     "product": {
       "title": "Product",
@@ -210,14 +210,14 @@
   },
   "homeMeta": {
     "title": "Balsm — the community-owned healthcare OS",
-    "description": "The first open source healthcare technology ecosystem in Egypt and the Arab world — a community-owned health OS. Arabic-first, offline-ready, fully open source."
+    "description": "The first open source healthcare technology ecosystem in Egypt and the Arab world — a community-driven health OS. Arabic-first, offline-ready, fully open source."
   },
   "home": {
     "hero": {
-      "badge": "Open · Arab · Trusted",
-      "title1": "Your care. Your data.",
-      "title2": "Your system.",
-      "subtitle": "The first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — a community-owned health OS, Arabic-first, and offline-ready.",
+      "badge": "Community-driven. Independent. Trusted.",
+      "title1": "Care that reaches ..",
+      "title2": "impact that lasts",
+      "subtitle": "The first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — a community-driven health OS, Arabic-first, and offline-ready.",
       "tagline": "From Egypt, to the whole Arab world.",
       "ctaJoin": "Join the Cloud",
       "ctaApp": "Join the waitlist",
@@ -355,10 +355,10 @@
       "appGallery": "AppGallery"
     },
     "values": {
-      "eyebrow": "Open · Arab · Trusted",
+      "eyebrow": "Open source",
       "words": [
-        "Open.",
-        "Arab.",
+        "Community-driven.",
+        "Independent.",
         "Trusted."
       ],
       "cards": [
@@ -409,14 +409,14 @@
         },
         {
           "title": "Supporter",
-          "desc": "Fund healthcare infrastructure owned by everyone.",
+          "desc": "Fund healthcare infrastructure open to everyone.",
           "cta": "Support Balsm"
         }
       ]
     },
     "join": {
       "title": "Join Balsm Cloud.",
-      "desc": "Be among the first to build, run, or support the first community-owned healthcare OS for the Arab world. We'll email you when your region launches.",
+      "desc": "Be among the first to build, run, or support the first community-driven healthcare OS for the Arab world. We'll email you when your region launches.",
       "placeholder": "name@email.com",
       "messagePlaceholder": "Message (optional)",
       "button": "Join now",
