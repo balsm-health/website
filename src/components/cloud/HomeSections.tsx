@@ -111,7 +111,10 @@ export default function HomeSections() {
                 the second the end edge, so the pair reads as one phrase. */}
             <h1 className="b-brand-line" style={{ fontFamily: FONT.arabic, fontWeight: 700, fontSize: 'clamp(38px,6.6vw,78px)', lineHeight: 1.32, color: C.ink, margin: '0 auto', display: 'flex', flexDirection: 'column', width: 'fit-content', maxWidth: '100%', gap: '.04em' }}>
               <span style={{ display: 'block', alignSelf: 'flex-start' }}>{t('hero.title1')}</span>
-              <span style={{ display: 'block', alignSelf: 'flex-end', paddingInlineStart: '1.2em', color: C.blue }}>{t('hero.title2')}</span>
+              <span style={{ alignSelf: 'flex-end', paddingInlineStart: '1.2em', color: C.blue, display: 'flex', alignItems: 'center', gap: '.25em' }}>
+                <span>{t('hero.title2')}</span>
+                <span className="b-brand-trail" aria-hidden style={{ display: 'block', width: '1.6em', height: '.09em', borderRadius: '1em', flex: 'none' }} />
+              </span>
             </h1>
           </Reveal>
           <Reveal delay={120}>

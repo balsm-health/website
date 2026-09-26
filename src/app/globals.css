@@ -1086,3 +1086,8 @@ body {
 @media (min-width: 480px) {
   .b-brand-line > span { white-space: nowrap; }
 }
+
+/* The trail after the second brand line: solid at the text, fading toward
+   the inline end, so it points the other way in RTL. */
+.b-brand-trail { background: linear-gradient(to right, #1283FF, rgba(18, 131, 255, 0)); }
+[dir="rtl"] .b-brand-trail { background: linear-gradient(to left, #1283FF, rgba(18, 131, 255, 0)); }
