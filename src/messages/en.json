@@ -182,12 +182,12 @@
   },
   "siteFooter": {
     "blurb": "The first open source healthcare technology ecosystem in Egypt and the Arab world.",
-    "motto": "Open · Arab · Trusted",
+    "motto": "Community-driven. Independent. Trusted.",
     "follow": "Follow us",
     "product": {
       "title": "Product",
       "pos": "Balsm Pro app",
-      "app": "Balsm app",
+      "app": "Care recipient app",
       "cloud": "Balsm Cloud",
       "providers": "For providers"
     },
@@ -210,14 +210,14 @@
   },
   "homeMeta": {
     "title": "Balsm — the community-owned healthcare OS",
-    "description": "The first open source healthcare technology ecosystem in Egypt and the Arab world — a community-owned health OS. Arabic-first, offline-ready, fully open source."
+    "description": "The first open source healthcare technology ecosystem in Egypt and the Arab world — a community-driven health OS. Arabic-first, offline-ready, fully open source."
   },
   "home": {
     "hero": {
-      "badge": "Open · Arab · Trusted",
-      "title1": "Your care. Your data.",
-      "title2": "Your system.",
-      "subtitle": "The first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — a community-owned health OS, Arabic-first, and offline-ready.",
+      "badge": "Community-driven. Independent. Trusted.",
+      "title1": "Care that reaches ..",
+      "title2": "impact that lasts",
+      "subtitle": "The first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — a community-driven health OS, Arabic-first, and offline-ready.",
       "tagline": "From Egypt, to the whole Arab world.",
       "ctaJoin": "Join the Cloud",
       "ctaApp": "Join the waitlist",
@@ -275,11 +275,11 @@
     "how": {
       "eyebrow": "How Balsm works",
       "title": "One system. Two apps, and an optional cloud.",
-      "desc": "From Balsm Pro to the Balsm app to Balsm Cloud — each works on its own, and grows stronger together.",
+      "desc": "From Balsm Pro to the care recipient app to Balsm Cloud — each works on its own, and grows stronger together.",
       "products": [
         {
           "badge": "Building now",
-          "title": "Balsm app",
+          "title": "Care recipient app",
           "desc": "Your entire health journey in one place — every prescription, visit, and test. On your device, by a design that never leaves it.",
           "tags": [
             "Unified record",
@@ -319,38 +319,46 @@
         "Works offline — syncs only when you choose",
         "Your data is yours alone — no middleman, no selling, no compromise"
       ],
-      "appStore": "App Store",
-      "play": "Google Play",
-      "phone": {
+      "screenAlt": "Balsm's care recipient app — home screen",
+      "screen": {
         "greeting": "Good morning",
         "name": "Layla",
-        "initials": "L",
-        "followTitle": "Today's tracking",
-        "followQ": "How are you today?",
-        "followCta": "Start tracking",
-        "streakNum": "6",
-        "streakUnit": "day streak",
-        "streakSub": "Tracked 6 of the last 7 days",
-        "measures": "Latest readings",
+        "initials": "LH",
+        "checkinLabel": "Today's check-in",
+        "checkinQuestion": "How are you feeling today?",
+        "checkinNote": "Your own self-report — not a clinical measurement",
+        "checkinCta": "Start check-in",
+        "checkinTime": "About 2 minutes",
+        "streakTitle": "6 day streak",
+        "streakHelp": "Checked in 6 of the last 7 days",
+        "careTitle": "Care team",
+        "careSub": "3 providers following your care",
+        "nearbyTitle": "Nearby care",
+        "nearbySub": "12 places mapped nearby",
+        "recordsTitle": "Health records",
+        "recordsSub": "5 documents",
+        "latest": "Latest readings",
         "bpLabel": "Blood pressure",
-        "bpVal": "128/82",
-        "sugarLabel": "Blood sugar",
-        "sugarVal": "142",
-        "medsTitle": "Today's meds",
-        "med1": "Metformin",
-        "med1dose": "500 mg · with breakfast",
-        "med2": "Amlodipine",
-        "med2dose": "5 mg · once daily",
-        "taken": "Taken"
+        "bpUnit": "mmHg",
+        "bpFoot": "In range",
+        "gluLabel": "Blood glucose",
+        "gluUnit": "mg/dL",
+        "gluFoot": "A little high",
+        "tabHome": "Home",
+        "tabNearby": "Nearby",
+        "tabMeds": "Meds",
+        "tabProfile": "Profile"
       },
+      "appStore": "App Store",
+      "play": "Google Play",
       "storeSoon": "Coming soon on",
       "appGallery": "AppGallery"
     },
     "values": {
-      "eyebrow": "Open · Arab · Trusted",
+      "eyebrow": "Open source",
       "words": [
-        "Open.",
-        "Arab.",
+        "Community-driven.",
+        "Independent.",
         "Trusted."
       ],
       "cards": [
@@ -401,14 +409,14 @@
         },
         {
           "title": "Supporter",
-          "desc": "Fund healthcare infrastructure owned by everyone.",
+          "desc": "Fund healthcare infrastructure open to everyone.",
           "cta": "Support Balsm"
         }
       ]
     },
     "join": {
       "title": "Join Balsm Cloud.",
-      "desc": "Be among the first to build, run, or support the first community-owned healthcare OS for the Arab world. We'll email you when your region launches.",
+      "desc": "Be among the first to build, run, or support the first community-driven healthcare OS for the Arab world. We'll email you when your region launches.",
       "placeholder": "name@email.com",
       "messagePlaceholder": "Message (optional)",
       "button": "Join now",

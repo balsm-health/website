@@ -1079,3 +1079,15 @@ body {
   transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 #faq details[open] .balsm-faq-chevron { transform: rotate(45deg); }
+
+/* Home hero brand line — each half stays on one line so the stagger reads,
+   but only once there's room; on narrow phones it may wrap rather than
+   push the page sideways. */
+@media (min-width: 480px) {
+  .b-brand-line > span { white-space: nowrap; }
+}
+
+/* The trail after the second brand line: solid at the text, fading toward
+   the inline end, so it points the other way in RTL. */
+.b-brand-trail { background: linear-gradient(to right, #1283FF, rgba(18, 131, 255, 0)); }
+[dir="rtl"] .b-brand-trail { background: linear-gradient(to left, #1283FF, rgba(18, 131, 255, 0)); }
