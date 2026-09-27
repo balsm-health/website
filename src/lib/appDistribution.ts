@@ -18,9 +18,9 @@ export const APP_ID = 'app.balsm.health';
 
 export const DISTRIBUTION = {
   /** App Store listing, region-less: 'https://apps.apple.com/app/id6740000000'. */
-  appStore: null as string | null,
+  appStore: 'https://apps.apple.com/sa/app/ynmo-tifli/id6443390362' as string | null, // TEST ONLY — not Balsm
   /** Google Play listing: `https://play.google.com/store/apps/details?id=${APP_ID}`. */
-  play: null as string | null,
+  play: 'https://play.google.com/store/apps/details?id=com.tatralab.ynmo_parent&pli=1' as string | null, // TEST ONLY — not Balsm
   /** AppGallery listing: 'https://appgallery.huawei.com/app/C110000000'. */
   appGallery: null as string | null,
   /**
