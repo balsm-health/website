@@ -46,6 +46,29 @@ npm run cf-typegen       # regenerate CloudflareEnv types after wrangler.jsonc c
 
 Full walkthrough incl. first-time Cloudflare setup: [docs/CLOUDFLARE_DEPLOYMENT.md](docs/CLOUDFLARE_DEPLOYMENT.md).
 
+## App download link (`/download`)
+
+`balsm.health/download` is the one link to share for the patient app. The app's
+own share sheet prints it. Middleware sends phones straight to their store:
+iPhone/iPad to the App Store, Android to Google Play, and Huawei (no Play) to
+AppGallery. Everyone else gets a page that recommends the best option for the
+device and lists the rest. That covers desktop, devices whose store isn't live
+yet, and link-preview bots, so WhatsApp and Telegram still render a card.
+
+| URL | Goes to |
+|---|---|
+| `/download`, `/en/download` | Store for this device, else the chooser page |
+| `/download?choose=1` | Always the chooser page |
+| `/download/ios` · `/android` · `/appgallery` · `/apk` · `/web` | That channel directly (chooser if it isn't live) |
+
+`utm_*` parameters are forwarded to Google Play as the install referrer.
+
+Channels are switched on in `src/lib/appDistribution.ts` (`DISTRIBUTION`) as
+they go live: the App Store ID, Play listing, AppGallery ID, and the first
+**release-signed** production APK on GitHub Releases. Until then the page falls
+back to the web app at `/apps/balsm/`. An APK is never downloaded without the
+user tapping it.
+
 ## More docs
 
 - [PRODUCT.md](PRODUCT.md) — what the site sells and to whom
