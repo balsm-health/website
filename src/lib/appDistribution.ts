@@ -17,12 +17,12 @@
 export const APP_ID = 'app.balsm.health';
 
 export const DISTRIBUTION = {
-  /** Numeric App Store ID from App Store Connect (e.g. '6740000000'). */
-  appStoreId: null as string | null,
-  /** `true` once app.balsm.health is published on Google Play. */
-  playListed: false,
-  /** AppGallery app ID without the leading `C` (e.g. '110000000'). */
-  appGalleryId: null as string | null,
+  /** App Store listing, region-less: 'https://apps.apple.com/app/id6740000000'. */
+  appStore: null as string | null,
+  /** Google Play listing: `https://play.google.com/store/apps/details?id=${APP_ID}`. */
+  play: null as string | null,
+  /** AppGallery listing: 'https://appgallery.huawei.com/app/C110000000'. */
+  appGallery: null as string | null,
   /**
    * `true` once a production tag (vX.Y.Z, no -alpha/-beta) has published
    * `balsm-production.apk` to GitHub Releases, signed with the release key —
@@ -52,11 +52,16 @@ export type ChannelUrls = Partial<Record<Channel, string>>;
 /** Only the channels that are live, with their URLs. */
 export function channelUrls(d: typeof DISTRIBUTION = DISTRIBUTION): ChannelUrls {
   const urls: ChannelUrls = { web: WEB_APP_PATH };
-  if (d.appStoreId) urls.appStore = `https://apps.apple.com/app/id${d.appStoreId}`;
-  if (d.playListed) urls.play = `https://play.google.com/store/apps/details?id=${APP_ID}`;
-  if (d.appGalleryId) urls.appGallery = `https://appgallery.huawei.com/app/C${d.appGalleryId}`;
+  if (d.appStore) urls.appStore = d.appStore;
+  if (d.play) urls.play = d.play;
+  if (d.appGallery) urls.appGallery = d.appGallery;
   if (d.apkReleased) urls.apk = `${RELEASES}/latest/download/balsm-production.apk`;
   return urls;
+}
+
+/** Numeric ID from an App Store URL, for Safari's Smart App Banner. */
+export function appStoreId(url: string | null): string | null {
+  return url?.match(/\/id(\d+)/)?.[1] ?? null;
 }
 
 /** Release page — version, notes and the APK's SHA-256 digest. */
@@ -125,5 +130,7 @@ export function withReferrer(url: string, channel: Channel, search: URLSearchPar
   if (channel !== 'play') return url;
   const utm = [...search].filter(([k]) => k.startsWith('utm_'));
   if (!utm.length) return url;
-  return `${url}&referrer=${encodeURIComponent(new URLSearchParams(utm).toString())}`;
+  const out = new URL(url);
+  out.searchParams.set('referrer', new URLSearchParams(utm).toString());
+  return out.toString();
 }

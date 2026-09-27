@@ -64,7 +64,7 @@ yet, and link-preview bots, so WhatsApp and Telegram still render a card.
 `utm_*` parameters are forwarded to Google Play as the install referrer.
 
 Channels are switched on in `src/lib/appDistribution.ts` (`DISTRIBUTION`) as
-they go live: the App Store ID, Play listing, AppGallery ID, and the first
+they go live: the App Store, Google Play and AppGallery listing URLs, and the first
 **release-signed** production APK on GitHub Releases. Until then the page falls
 back to the web app at `/apps/balsm/`. An APK is never downloaded without the
 user tapping it.
