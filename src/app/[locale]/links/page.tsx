@@ -4,6 +4,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import SocialLogo from '@/components/cloud/SocialLogo';
+import { Globe, MailFilled, MoonFilled, SunFilled, Users } from '@/components/cloud/CloudIcons';
 
 type Locale = 'en' | 'ar';
 type Theme = 'light' | 'dark';
@@ -108,7 +109,7 @@ function getIcon(key: string, theme: Theme): ReactNode {
 
   switch (key) {
     case 'website':
-      return <svg aria-hidden="true" className={theme === 'dark' ? 'h-5 w-5 text-emerald-400' : 'h-5 w-5 text-emerald-600'} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20" /></svg>;
+      return <Globe className={theme === 'dark' ? 'h-5 w-5 text-emerald-400' : 'h-5 w-5 text-emerald-600'} />;
     case 'linkedin':
       return <SocialLogo platform="linkedin" className={theme === 'dark' ? 'h-5 w-5 text-[#7AB7FF]' : 'h-5 w-5 text-[#0A66C2]'} />;
     case 'x':
@@ -128,7 +129,7 @@ function getIcon(key: string, theme: Theme): ReactNode {
     case 'threads':
       return <SocialLogo platform="threads" className={theme === 'dark' ? 'h-5 w-5 text-white' : 'h-5 w-5 text-ink-900'} />;
     case 'email':
-      return <svg aria-hidden="true" className={theme === 'dark' ? 'h-5 w-5 text-[#FCA5A5]' : 'h-5 w-5 text-[#DC2626]'} fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 20V8.99l8 6.99 8-6.99V20H4z" /></svg>;
+      return <MailFilled className={theme === 'dark' ? 'h-5 w-5 text-[#FCA5A5]' : 'h-5 w-5 text-[#DC2626]'} />;
     case 'whatsapp_number':
       return <SocialLogo platform="whatsapp" className={theme === 'dark' ? 'h-5 w-5 text-[#4ADE80]' : 'h-5 w-5 text-[#16A34A]'} />;
     case 'whatsapp_channel':
@@ -138,7 +139,7 @@ function getIcon(key: string, theme: Theme): ReactNode {
       // this used to point at (/qabilah-logo.svg) was never in the repo, so the
       // row rendered a broken image. Swap this back to an <img> once the real
       // asset is available.
-      return <svg aria-hidden="true" className={theme === 'dark' ? 'h-5 w-5 text-[#5EEAD4]' : 'h-5 w-5 text-[#0D9488]'} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>;
+      return <Users className={theme === 'dark' ? 'h-5 w-5 text-[#5EEAD4]' : 'h-5 w-5 text-[#0D9488]'} />;
     default:
       return null;
   }
@@ -208,9 +209,9 @@ export default function LinksPage() {
         className="fixed right-6 top-6 z-50 rounded-full border border-ink-200/80 bg-white/90 p-3 shadow-xl shadow-black/5 backdrop-blur-xl transition-all hover:scale-110 hover:border-primary/40 focus:outline-none dark:border-ink-700/50 dark:bg-ink-900/90 dark:shadow-black/20"
       >
         {theme === 'dark' ? (
-          <svg className="h-5 w-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm5.657 2.343a1 1 0 0 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707zM21 11a1 1 0 1 1 0 2h-1a1 1 0 1 1 0-2h1zm-2.343 7.657a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707zM12 19a1 1 0 0 1-1-1v-1a1 1 0 1 1 2 0v1a1 1 0 0 1-1 1zm-7.657-2.343a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 1 1 1.414 1.414l-.707.707zM4 13a1 1 0 1 1 0-2H3a1 1 0 1 1 0 2h1zm2.343-7.657a1 1 0 0 1 1.414-1.414l.707.707A1 1 0 1 1 7.05 6.464l-.707-.707zM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7z" /></svg>
+          <SunFilled className="h-5 w-5 text-amber-400" />
         ) : (
-          <svg className="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M21.64 13.64A9 9 0 0 1 12 21a9 9 0 0 1 0-18c.34 0 .68.02 1.01.06a1 1 0 0 1 .54 1.7A7 7 0 0 0 19 17.45a1 1 0 0 1 1.7.54c.04.33.06.67.06 1.01a9 9 0 0 1-1.12 4.64z" /></svg>
+          <MoonFilled className="h-5 w-5 text-primary" />
         )}
       </button>
 
