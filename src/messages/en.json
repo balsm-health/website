@@ -206,7 +206,8 @@
     },
     "copyright": "© 2026 Balsm",
     "pdpl": "PDPL-compliant",
-    "tagline": "Wherever you are — the same Balsm, the same reliability."
+    "tagline": "Wherever you are — the same Balsm, the same reliability.",
+    "privacy": "Privacy policy"
   },
   "homeMeta": {
     "title": "Balsm — the community-owned healthcare OS",
@@ -896,5 +897,146 @@
         "a": "Engineering is only one of eight contributor roles. Clinical review, design, translation, legal, project management, advocacy and QA all move the project forward. The Contributors page lists the roles and the currently open issues."
       }
     ]
+  },
+  "privacyMeta": {
+    "title": "Privacy policy — Balsm",
+    "description": "What the balsm.health website collects, why, who handles it, and how to have it corrected or deleted. No health data, no trackers, no selling."
+  },
+  "privacy": {
+    "breadcrumb": "Privacy policy",
+    "hero": {
+      "eyebrow": "Privacy policy",
+      "title": "Your data stays yours.",
+      "subtitle": "What this website collects, why, who handles it, and how to have it removed. Written plainly, so nothing that matters is hidden in legal language.",
+      "updated": "Last updated: 28 September 2026"
+    },
+    "tocLabel": "On this page",
+    "sections": [
+      {
+        "id": "scope",
+        "title": "What this policy covers",
+        "paragraphs": [
+          "This policy covers the balsm.health website, in Arabic and English: its pages, its sign-up forms and the contributor frame tool.",
+          "It does not cover the Balsm apps or Balsm Cloud. Each will publish its own policy before it collects any data. This website collects no health or medical information of any kind."
+        ]
+      },
+      {
+        "id": "collect",
+        "title": "What we collect",
+        "paragraphs": [
+          "We only collect what you type into one of our sign-up forms:"
+        ],
+        "items": [
+          {
+            "term": "Waiting lists",
+            "text": "on the home, Cloud and providers pages: your email address, the language you were reading the site in, and which form you used."
+          },
+          {
+            "term": "Providers form",
+            "text": "if you fill them in: your organisation's name and your message."
+          }
+        ],
+        "after": "That is all. We don't ask for your name, your phone number or an account."
+      },
+      {
+        "id": "not-collect",
+        "title": "What we don't collect",
+        "items": [
+          {
+            "text": "No analytics, advertising or social-media trackers."
+          },
+          {
+            "text": "No session recording. Error reports never include what you typed into a form."
+          },
+          {
+            "text": "Your photo in the contributor frame tool never leaves your browser. The frame is composed and downloaded on your device, and nothing is uploaded."
+          }
+        ]
+      },
+      {
+        "id": "use",
+        "title": "How we use it",
+        "paragraphs": [
+          "We use your email address to tell you about the launch or progress you signed up for, and, on the providers form, to reply to you. We use the language you were reading in to write to you in that language.",
+          "We process this data on the basis of your consent, which you give by submitting the form. You can withdraw it at any time. We never sell your data, and we never share it with anyone for their marketing."
+        ]
+      },
+      {
+        "id": "processors",
+        "title": "Who handles it for us",
+        "paragraphs": [
+          "We rely on a small number of service providers, each handling only what its job needs:"
+        ],
+        "items": [
+          {
+            "term": "Supabase",
+            "text": "stores the sign-up form submissions in our database."
+          },
+          {
+            "term": "Cloudflare",
+            "text": "hosts the website. Like any host, it processes each request, including your IP address, to deliver the page and protect it from abuse."
+          },
+          {
+            "term": "Sentry",
+            "text": "receives error reports so we can fix what breaks. It is configured to exclude your IP address, cookies and form contents, and email addresses are removed before a report is sent."
+          },
+          {
+            "term": "Google Fonts",
+            "text": "serves the site's typefaces. Your browser fetches them from Google's servers, which receive your IP address and browser details as part of that request."
+          }
+        ],
+        "after": "Some of these providers may process data on servers outside Egypt, under their own data-protection terms."
+      },
+      {
+        "id": "browser",
+        "title": "Cookies and your browser",
+        "paragraphs": [
+          "We don't set cookies. Cloudflare may set a strictly necessary security cookie to tell people from bots.",
+          "The links page remembers whether you chose the light or dark theme, in your browser's local storage. That setting never leaves your device, and clearing your browser data removes it."
+        ]
+      },
+      {
+        "id": "retention",
+        "title": "How long we keep it",
+        "paragraphs": [
+          "We keep a sign-up until you ask us to delete it, or until we no longer need it for the purpose you signed up for, whichever comes first. Sentry deletes error reports automatically after its retention period."
+        ]
+      },
+      {
+        "id": "security",
+        "title": "How we protect it",
+        "paragraphs": [
+          "Everything travels over HTTPS. The public side of the website can add a sign-up but cannot read the list back, and access to the list is limited to the Balsm team members who need it."
+        ]
+      },
+      {
+        "id": "rights",
+        "title": "Your rights",
+        "paragraphs": [
+          "Under Egypt's Personal Data Protection Law (Law No. 151 of 2020), and similar laws where you live, you can ask to see the data we hold about you, correct it, delete it, or withdraw your consent.",
+          "To do any of these, email us from the address you signed up with, and we will act on it within 30 days. You can also correct your details at any time by submitting the same form again with the same email address.",
+          "If you believe we have mishandled your data, you have the right to complain to Egypt's Personal Data Protection Center."
+        ]
+      },
+      {
+        "id": "children",
+        "title": "Children",
+        "paragraphs": [
+          "This website is not aimed at children, and we don't knowingly collect data from anyone under 18. If you believe a child has signed up, email us and we will delete it."
+        ]
+      },
+      {
+        "id": "changes",
+        "title": "Changes to this policy",
+        "paragraphs": [
+          "If what we collect or how we use it changes, we will update this page and the date at the top before the change takes effect."
+        ]
+      }
+    ],
+    "contact": {
+      "title": "Questions or requests",
+      "body": "Write to us about anything on this page, or to access, correct or delete your data.",
+      "email": "contact@balsm.health"
+    }
   }
 }

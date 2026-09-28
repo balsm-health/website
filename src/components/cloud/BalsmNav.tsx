@@ -16,7 +16,7 @@ const LINKS: { key: NavKey; href: string }[] = [
   { key: 'sponsor', href: '/sponsor' },
 ];
 
-export default function BalsmNav({ active }: { active: NavKey }) {
+export default function BalsmNav({ active }: { active?: NavKey }) {
   const t = useTranslations('nav');
   const locale = useLocale();
   const router = useRouter();
