@@ -9,13 +9,13 @@ Read before any design, styling, or copy work:
 - **[PRODUCT.md](./PRODUCT.md)** — who/what/why. Register (`brand`), the four peer
   audiences, brand personality, anti-references, and the six design principles.
 - **[DESIGN.md](./DESIGN.md)** — how it looks. Token architecture, the cool
-  navy-slate `ink-*` scale, the five petals, RTL rules, and the bans.
+  navy-slate `ink-*` scale, the five ribbon hues, RTL rules, and the bans.
 - **[../Balsm-Core/brand/balsm-brand-canvas.md](../Balsm-Core/brand/balsm-brand-canvas.md)**
   — upstream source of truth for voice and positioning. Pin §6 for copy work.
 
 Three things that are easy to get wrong and are documented in DESIGN.md:
 
-- **Petals as text are a deliberate contrast exception.** They score 1.8–3.4:1
+- **Hues as text are a deliberate contrast exception.** They score 1.8–3.4:1
   where AA wants 4.5:1. That is a recorded brand-owner decision, not a bug — do
   not "fix" it by darkening one component. Change the token in `cloud/theme.ts`
   (AA-safe values are in the comments) or leave it. See PRODUCT.md § Accessibility.

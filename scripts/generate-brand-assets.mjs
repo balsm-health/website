@@ -38,7 +38,7 @@ const MUTED = '#78838F';
 
 /* ---------------------------------------------------------------- icons -- */
 
-// The mark is rendered at 4x then downscaled, which keeps the petal edges
+// The mark is rendered at 4x then downscaled, which keeps the ribbon edges
 // clean at small sizes where librsvg's own antialiasing gets crunchy.
 async function markPng(size, { background = null, pad = 0 } = {}) {
   const inner = Math.round(size * (1 - pad * 2));

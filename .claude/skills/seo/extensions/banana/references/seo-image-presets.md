@@ -123,7 +123,7 @@ preset format (see `references/presets.md` for schema details).
 
 Users can create their own presets:
 ```bash
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run --extension banana presets.py create my-brand
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run --extension banana presets.py create my-brand
 ```
 
 This creates `~/.banana/presets/my-brand.json` with the full schema.

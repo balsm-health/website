@@ -13,7 +13,7 @@ type Sponsor = { name: string; desc: string; href: string };
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 // Kickers are 19px bold, not 13px. Bold at >=18.66px is WCAG "large text",
 // where the contrast bar drops from 4.5:1 to 3:1 — which is enough for the
-// blue, violet and danger petals to be compliant at full strength. The rest
+// blue, violet and danger hues to be compliant at full strength. The rest
 // remain part of the documented palette exception. Don't shrink these.
 const eyebrow = (color: string, center = false): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color, textAlign: center ? 'center' : 'start' });
 

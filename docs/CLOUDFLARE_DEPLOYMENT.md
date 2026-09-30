@@ -157,14 +157,14 @@ This opens your browser for authentication.
 ### Deploy
 
 ```bash
-cd /Volumes/Code/Balsm/website
+cd "$(git rev-parse --show-toplevel)"
 ./scripts/deploy-cloudflare.sh
 ```
 
 Or manually:
 
 ```bash
-cd /Volumes/Code/Balsm/website
+cd "$(git rev-parse --show-toplevel)"
 npm run build
 wrangler pages deploy .next --project-name=balsm-website
 ```
@@ -352,7 +352,7 @@ export const runtime = 'edge';
 ## Quick Deploy Command
 
 ```bash
-cd /Volumes/Code/Balsm/website
+cd "$(git rev-parse --show-toplevel)"
 ./scripts/deploy-cloudflare.sh
 ```
 

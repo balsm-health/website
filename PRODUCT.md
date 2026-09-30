@@ -76,7 +76,7 @@ in `../Balsm-Core/brand/balsm-brand-canvas.md` §6. Pin it for any copy work.
 
 - SaaS startup gradient-bubble aesthetic (blob backgrounds + glassmorphism cards
   = consumer, not clinical)
-- Teal-dominant palette (previous website mistake — teal is a petal color, not
+- Teal-dominant palette (previous website mistake — teal is a hue, not
   the primary action color)
 - Warm-cream AI default body background (cream is for document surfaces, not the
   page)
@@ -96,9 +96,10 @@ in `../Balsm-Core/brand/balsm-brand-canvas.md` §6. Pin it for any copy work.
    original, not a translation.
 2. **Clinical restraint** — calm, not flashy. Healthcare deserves stillness. No
    bounce, no glass cards, no eyebrow on every section.
-3. **Five petals, one brand** — the flower mark is the identity. Blue (#1283FF)
-   is the primary action. Aqua is the healing accent. All five petals appear in
-   brand moments. Petals are *fills* and stay at full strength even as text —
+3. **Five ribbons, one brand** — the ring mark is the identity: five identical
+   ribbons joined in a circle, each carrying one hue. Blue (#1283FF) is the
+   primary action. Aqua is the healing accent. All five hues appear in brand
+   moments. Hues are *fills* and stay at full strength even as text —
    a deliberate contrast exception, see Accessibility below and DESIGN.md.
 4. **Cool ink on warm paper** — the navy-slate `ink-*` scale is keyed to the
    wordmark; the creams stay warm and are for document surfaces only. Warmth
@@ -116,7 +117,7 @@ in `../Balsm-Core/brand/balsm-brand-canvas.md` §6. Pin it for any copy work.
 
 WCAG AA is the standard, met everywhere **except one documented exception**.
 
-**The exception: petals used as text.** The five brand petals are light by
+**The exception: hues used as text.** The five brand hues are light by
 design — they are fills. Used as small text they score 1.8–3.4:1 against AA's
 4.5:1. Making them compliant was implemented and then reversed by an explicit
 brand-owner decision: at label sizes, compliance costs ~0.18 of OKLCH lightness
@@ -138,6 +139,6 @@ Everything else holds, and regressions in it are bugs:
 - Arabic numerals and Egyptian date/currency formatting for the `ar` locale.
 - Offline-awareness in messaging — the product is offline-first, so the copy
   never assumes connectivity.
-- Don't "fix" a petal-as-text contrast warning by darkening that one component.
+- Don't "fix" a hue-as-text contrast warning by darkening that one component.
   Ad-hoc darkening is how the flatness came back last time. Change the token in
   `cloud/theme.ts` or leave it alone.
