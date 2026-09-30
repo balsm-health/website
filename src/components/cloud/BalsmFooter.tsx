@@ -137,6 +137,8 @@ export default function BalsmFooter() {
             <span>{t('copyright')} · <span dir="ltr">balsm.health</span> · {t('pdpl')} ·</span>
             {/* Sits beside the PDPL claim on purpose: the policy is what backs it. */}
             <Link href="/privacy" style={{ ...linkStyle, textDecoration: 'underline', textUnderlineOffset: 3 }}>{t('privacy')}</Link>
+            <span aria-hidden>·</span>
+            <Link href="/terms" style={{ ...linkStyle, textDecoration: 'underline', textUnderlineOffset: 3 }}>{t('terms')}</Link>
           </div>
           <div style={{ fontFamily: FONT.cairo, fontSize: 13.5, color: 'rgba(255,255,255,.6)' }}>{t('tagline')}</div>
         </div>

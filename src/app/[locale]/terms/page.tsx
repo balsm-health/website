@@ -5,10 +5,10 @@ type Props = { params: Promise<{ locale: string }>; searchParams: LegalSearchPar
 
 export async function generateMetadata({ params, searchParams }: Props) {
   const { locale } = await params;
-  return legalMetadata(locale, 'privacy', await isEmbedded(searchParams));
+  return legalMetadata(locale, 'terms', await isEmbedded(searchParams));
 }
 
-export default async function PrivacyPage({ params, searchParams }: Props) {
+export default async function TermsPage({ params, searchParams }: Props) {
   const { locale } = await params;
-  return <LegalPage locale={locale} ns="privacy" embed={await isEmbedded(searchParams)} />;
+  return <LegalPage locale={locale} ns="terms" embed={await isEmbedded(searchParams)} />;
 }
