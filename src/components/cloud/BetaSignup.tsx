@@ -8,8 +8,10 @@ import { captureError } from '@/lib/observability';
 
 /**
  * Early-access sign-up for the patient app beta, shown on /download while
- * nothing is installable yet. Writes to the same waitlist as Home and Cloud,
- * tagged `app_beta` so these people can be invited on their own.
+ * nothing is installable yet. Makes the same waitlist call as the Home form,
+ * `source: 'home'` included: it is a value the table's CHECK constraint already
+ * accepts. A dedicated source would need a schema change first, and without it
+ * every submit failed.
  */
 export default function BetaSignup() {
   const t = useTranslations('download.beta');
@@ -33,14 +35,14 @@ export default function BetaSignup() {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: v, locale, source: 'app_beta' }),
+        body: JSON.stringify({ email: v, locale, source: 'home' }),
       });
       const data = await res.json().catch(() => ({}));
       // Already on the list is a success from the reader's side.
       if (!res.ok && data.code !== 'duplicate') {
         setStatus('error');
         setError(t('errorGeneric'));
-        captureError(new Error(`beta signup failed: ${res.status} ${data.code ?? ''}`), { source: 'app_beta', status: res.status });
+        captureError(new Error(`beta signup failed: ${res.status} ${data.code ?? ''}`), { source: 'download', status: res.status });
         return;
       }
       setStatus('success');
@@ -48,7 +50,7 @@ export default function BetaSignup() {
     } catch (err) {
       setStatus('error');
       setError(t('errorGeneric'));
-      captureError(err, { source: 'app_beta', phase: 'network' });
+      captureError(err, { source: 'download', phase: 'network' });
     }
   };
 

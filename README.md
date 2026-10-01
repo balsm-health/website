@@ -69,10 +69,9 @@ they go live: the App Store, Google Play and AppGallery listing URLs, the first
 `/apps/balsm/`. An APK is never downloaded without the user tapping it.
 
 **Pre-beta (today):** with nothing live, `/download` announces the beta and
-collects emails for early access. They go to the `waiting_list` table with
-`source = 'app_beta'`, which needs
-`supabase/migrations/20261001_waiting_list_app_beta_source.sql` applied first.
-A device whose own store isn't live yet sees the same sign-up form.
+collects emails for early access, through the same `/api/waitlist` call as the
+Home form (`source = 'home'`). A device whose own store isn't live yet sees the
+same sign-up form.
 
 ## More docs
 
