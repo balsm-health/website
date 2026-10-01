@@ -857,7 +857,9 @@
   },
   "downloadMeta": {
     "title": "Download the Balsm app",
-    "description": "Get Balsm on iPhone, Android, Huawei or in your browser. Your health record goes in your pocket, and this page picks the right download for your device."
+    "description": "Get Balsm on iPhone, Android, Huawei or in your browser. Your health record goes in your pocket, and this page picks the right download for your device.",
+    "betaTitle": "Balsm app beta: get early access",
+    "betaDescription": "The Balsm patient app beta is almost here. Leave your email and we'll send you early access as soon as it opens."
   },
   "download": {
     "eyebrow": "The Balsm app",
@@ -898,7 +900,22 @@
     "apkVerify": "Version and SHA-256 checksum on GitHub",
     "otherTitle": "Other ways to get Balsm",
     "soon": "Coming soon on",
-    "phoneHint": "On your phone? Open balsm.health/download there and it picks the right download for you."
+    "phoneHint": "On your phone? Open balsm.health/download there and it picks the right download for you.",
+    "beta": {
+      "badge": "Beta · coming very soon",
+      "title": "The Balsm beta is almost here.",
+      "subtitle": "Your health record in your pocket: Arabic-first, works offline, and your data stays on your device. Leave your email and we'll send you early access the moment the beta opens.",
+      "label": "Email address",
+      "placeholder": "name@email.com",
+      "button": "Get early access",
+      "sending": "Sending…",
+      "successTitle": "You're on the list.",
+      "successDesc": "We'll email you as soon as the beta opens. Nothing else, no spam.",
+      "errorInvalid": "Enter a valid email to continue.",
+      "errorGeneric": "Something went wrong. Please try again.",
+      "privacy": "Your email stays yours. We use it only to invite you to the beta, and we'll never share it.",
+      "launching": "Launching on"
+    }
   },
   "faq": {
     "eyebrow": "Questions",

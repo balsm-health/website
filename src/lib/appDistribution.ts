@@ -5,9 +5,9 @@
  * link people pass to each other and must always land somewhere useful.
  *
  * Every channel is off until it actually exists. A store badge that 404s, or an
- * APK link before the first production release, is worse than no badge: the
- * page falls back to the web app, which is always there. Flip a channel on here
- * the day it goes live — nothing else has to change.
+ * APK link before the first production release, is worse than no badge. With
+ * nothing live the page is a pre-beta early-access sign-up instead. Flip a
+ * channel on here the day it goes live — nothing else has to change.
  *
  * Pure module: no Next or DOM imports, so middleware (edge), the server page and
  * the client component all share the one resolver.
@@ -31,6 +31,12 @@ export const DISTRIBUTION = {
    * missing; do not flip this for one of those.
    */
   apkReleased: false,
+  /**
+   * `true` once the Flutter web build is deployed at WEB_APP_PATH and ready
+   * for patients to use. It is synced by hand before a deploy, so it is not
+   * assumed to be there.
+   */
+  webApp: false,
 } as const;
 
 const RELEASES = 'https://github.com/balsm-health/balsm_app/releases';
@@ -51,7 +57,8 @@ export type ChannelUrls = Partial<Record<Channel, string>>;
 
 /** Only the channels that are live, with their URLs. */
 export function channelUrls(d: typeof DISTRIBUTION = DISTRIBUTION): ChannelUrls {
-  const urls: ChannelUrls = { web: WEB_APP_PATH };
+  const urls: ChannelUrls = {};
+  if (d.webApp) urls.web = WEB_APP_PATH;
   if (d.appStore) urls.appStore = d.appStore;
   if (d.play) urls.play = d.play;
   if (d.appGallery) urls.appGallery = d.appGallery;
@@ -86,7 +93,11 @@ export function detectPlatform(userAgent: string | null | undefined): Platform {
   return 'desktop';
 }
 
-/** Ordered preference per platform — the first live one is the primary action. */
+/**
+ * Ordered preference per platform — the first live one is the primary action.
+ * None live (the pre-beta state) gives null, and the page shows the early-access
+ * sign-up instead of an install button.
+ */
 const PREFERENCE: Record<Platform, Channel[]> = {
   ios: ['appStore', 'web'],
   android: ['play', 'apk', 'web'],
@@ -96,9 +107,12 @@ const PREFERENCE: Record<Platform, Channel[]> = {
   bot: ['web'],
 };
 
-export function primaryChannel(platform: Platform, urls: ChannelUrls): Channel {
-  return PREFERENCE[platform].find((c) => urls[c]) ?? 'web';
+export function primaryChannel(platform: Platform, urls: ChannelUrls): Channel | null {
+  return PREFERENCE[platform].find((c) => urls[c]) ?? null;
 }
+
+/** True when nothing can be installed yet on any platform. */
+export const isPreBeta = (urls: ChannelUrls) => Object.keys(urls).length === 0;
 
 const STORES: Channel[] = ['appStore', 'play', 'appGallery'];
 
@@ -109,7 +123,7 @@ const STORES: Channel[] = ['appStore', 'play', 'appGallery'];
  */
 export function autoRedirect(platform: Platform, urls: ChannelUrls): Channel | null {
   const channel = primaryChannel(platform, urls);
-  return STORES.includes(channel) ? channel : null;
+  return channel && STORES.includes(channel) ? channel : null;
 }
 
 /** Path segment for a direct link, e.g. `/download/android` → 'play'. */

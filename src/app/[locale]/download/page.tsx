@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import SiteShell from '@/components/cloud/SiteShell';
 import DownloadSections from '@/components/cloud/DownloadSections';
 import JsonLd from '@/components/JsonLd';
-import { DISTRIBUTION, appStoreId, channelUrls, detectPlatform } from '@/lib/appDistribution';
+import { DISTRIBUTION, appStoreId, channelUrls, detectPlatform, isPreBeta } from '@/lib/appDistribution';
 import { alternates, openGraph, pageJsonLd, twitter } from '@/lib/seo';
 
 type Props = {
@@ -15,8 +15,10 @@ export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const appId = appStoreId(DISTRIBUTION.appStore);
   const t = await getTranslations({ locale, namespace: 'downloadMeta' });
-  const title = t('title');
-  const description = t('description');
+  // Pre-beta, the link preview promises early access, not a download.
+  const beta = isPreBeta(channelUrls());
+  const title = t(beta ? 'betaTitle' : 'title');
+  const description = t(beta ? 'betaDescription' : 'description');
   return {
     title,
     description,
@@ -40,20 +42,23 @@ export default async function DownloadPage({ params, searchParams }: Props) {
   const platform = detectPlatform((await headers()).get('user-agent'));
   const nav = await getTranslations({ locale, namespace: 'nav' });
   const meta = await getTranslations({ locale, namespace: 'downloadMeta' });
+  const urls = channelUrls();
+  const beta = isPreBeta(urls);
+  const title = meta(beta ? 'betaTitle' : 'title');
   const jsonLd = pageJsonLd({
     locale,
     path: '/download',
-    title: meta('title'),
-    description: meta('description'),
+    title,
+    description: meta(beta ? 'betaDescription' : 'description'),
     breadcrumbs: [
       { name: nav('home'), path: '' },
-      { name: meta('title'), path: '/download' },
+      { name: title, path: '/download' },
     ],
   });
 
   return (
     <SiteShell>
-      <DownloadSections platform={platform} urls={channelUrls()} choose={choose} />
+      <DownloadSections platform={platform} urls={urls} choose={choose} />
       <JsonLd data={jsonLd} />
     </SiteShell>
   );

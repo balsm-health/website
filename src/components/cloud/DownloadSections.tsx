@@ -3,6 +3,7 @@
 import { useEffect, useSyncExternalStore } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { C, FONT } from './theme';
+import BetaSignup from './BetaSignup';
 import { Apple, AppGallery, ArrowRight, Download, Globe, Play } from './CloudIcons';
 import {
   APK_RELEASE_PAGE,
@@ -86,12 +87,54 @@ export default function DownloadSections({
     </span>
   );
 
+  const section: React.CSSProperties = { padding: 'clamp(44px,7vw,88px) 0 clamp(56px,8vw,104px)', background: 'linear-gradient(180deg,#E4F0FF 0%, #FAFAF7 100%)', minHeight: '70vh' };
+
+  // Pre-beta: nothing installable on this device, so collect emails for early
+  // access instead of offering a button that leads nowhere.
+  if (!primary) {
+    return (
+      <section style={section}>
+        <div style={{ ...container, maxWidth: 820 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <div style={eyebrow}>{t('eyebrow')}</div>
+            <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12.5, padding: '4px 12px', borderRadius: 999, background: C.ink, color: C.white }}>
+              {t('beta.badge')}
+            </span>
+          </div>
+          <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(32px,5.2vw,58px)', lineHeight: 1.15, color: C.ink, margin: '14px 0 16px' }}>
+            {t('beta.title')}
+          </h1>
+          <p style={{ fontSize: 'clamp(17px,1.9vw,20px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 32px', maxWidth: 640 }}>{t('beta.subtitle')}</p>
+
+          <BetaSignup />
+
+          {pending.length > 0 && (
+            <div style={{ marginTop: 44, paddingTop: 28, borderTop: `1px solid ${C.border}` }}>
+              <h2 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: C.ink, margin: '0 0 16px' }}>{t('beta.launching')}</h2>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                {pending.map((c) => {
+                  const { Icon, size } = ICONS[c];
+                  return (
+                    <span key={c} style={{ display: 'inline-flex', alignItems: 'center', gap: 11, minHeight: 52, padding: '10px 20px', borderRadius: 14, color: C.ink2, border: `1.5px dashed ${C.border}` }}>
+                      <Icon style={{ width: size, height: size, flex: 'none' }} />
+                      <span dir="ltr" style={{ fontSize: 17, fontWeight: 600, fontFamily: FONT.display }}>{t(`channels.${c}.name`)}</span>
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+
   // Same tab for every option: on a phone a new tab strands the user, and the
   // store apps intercept their own URLs regardless.
   const PrimaryIcon = ICONS[primary].Icon;
 
   return (
-    <section style={{ padding: 'clamp(44px,7vw,88px) 0 clamp(56px,8vw,104px)', background: 'linear-gradient(180deg,#E4F0FF 0%, #FAFAF7 100%)', minHeight: '70vh' }}>
+    <section style={section}>
       <div style={{ ...container, maxWidth: 820 }}>
         <div style={eyebrow}>{t('eyebrow')}</div>
         <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(32px,5.2vw,58px)', lineHeight: 1.15, color: C.ink, margin: '14px 0 16px' }}>

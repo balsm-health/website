@@ -50,7 +50,9 @@ export async function POST(request: Request) {
 
     // Anything not in this list would fail the table's CHECK constraint and
     // surface as an opaque 500, so an unknown value falls back to the default.
-    const SOURCES = ['home', 'cloud', 'providers'] as const;
+    // 'app_beta' (the /download early-access form) needs the migration in
+    // supabase/migrations/20261001_waiting_list_app_beta_source.sql.
+    const SOURCES = ['home', 'cloud', 'providers', 'app_beta'] as const;
     type Source = (typeof SOURCES)[number];
 
     // `locale` gets the same allowlist treatment as `source`. It was previously
