@@ -17,8 +17,8 @@
  *   breathe 4600ms ease-in-out, starting after the 1750ms settle
  *
  * Trade-off of referencing the file rather than inlining it: the browser can't
- * address individual petals inside an <img>, so the bloom plays on the mark as
- * a whole instead of cascading petal-by-petal at 120ms. The unfurl-from-the-hub
+ * address individual ribbons inside an <img>, so the bloom plays on the mark as
+ * a whole instead of cascading ribbon-by-ribbon at 120ms. The unfurl-from-the-hub
  * motion and its soft overshoot are preserved.
  *
  * Both animations use `fill-mode: both` and rest on the finished mark, so under
@@ -42,9 +42,10 @@ export default function AnimatedLogo({
         display: 'inline-block',
         width: size,
         height: size,
-        // The point the five petals converge on, as a fraction of the asset's
-        // 712.52x683.39 viewBox (the ring's rotate centre, 374.5,383) —
-        // everything rotates and scales about the hub.
+        // The point the five ribbons converge on, as a fraction of the asset's
+        // 712.52x683.39 viewBox: the ring's rotate centre is (374.5, 383), and
+        // (383 - 11.42) / 683.39 = 0.544. Everything turns and scales about
+        // that hub. Retune this if the mark's viewBox changes.
         transformOrigin: '50% 54.4%',
         animation: idle === 'breathe' ? 'balsm-logo-breathe 4600ms ease-in-out 1750ms infinite' : undefined,
         ...style,

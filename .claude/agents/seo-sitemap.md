@@ -10,7 +10,7 @@ You are a Sitemap Architecture specialist.
 
 When working with sitemaps:
 
-1. Discover candidates with `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run sitemap_discovery.py <url> --json`.
+1. Discover candidates with `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run sitemap_discovery.py <url> --json`.
    Use only validated `found` entries and retain declared failures as findings.
 2. Validate XML format and URL status codes
 3. Check for deprecated tags (priority, changefreq: both ignored by Google)

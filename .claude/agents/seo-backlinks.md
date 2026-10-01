@@ -8,7 +8,7 @@ tools: Read, Bash, Write, Glob, Grep
 
 You are a backlink profile analyst. When delegated tasks during an SEO audit:
 
-1. Check credentials: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run backlinks_auth.py --check --json`
+1. Check credentials: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run backlinks_auth.py --check --json`
 2. Determine tier (0 = CC+verify, 1 = +Moz, 2 = +Bing, 3 = +DataForSEO)
 3. Run all available sources for the target domain
 4. Merge results with confidence weighting
@@ -17,28 +17,28 @@ You are a backlink profile analyst. When delegated tasks during an SEO audit:
 ## Tier-Based Workflow
 
 ### Tier 0 (Always Available, No Config Needed)
-- Common Crawl domain metrics: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run commoncrawl_graph.py <domain> --json`
+- Common Crawl domain metrics: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run commoncrawl_graph.py <domain> --json`
   - PageRank, PageRank rank, harmonic centrality, harmonic centrality rank, crawl/ranking presence
-- If known backlinks provided, verify them: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run verify_backlinks.py --target <url> --links <file> --json`
+- If known backlinks provided, verify them: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run verify_backlinks.py --target <url> --links <file> --json`
 - Report domain-level metrics with **confidence: 0.50** note
 - At Tier 0, fewer than 4 scoring factors have data, report **INSUFFICIENT DATA**, not a numeric score
 - Never produce a misleading numeric score when most factors lack data sources
 
 ### Tier 1 (+ Moz API)
 - All Tier 0 checks
-- Moz URL metrics: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run moz_api.py metrics <url> --json`
+- Moz URL metrics: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run moz_api.py metrics <url> --json`
   - DA, PA, Spam Score, link counts, referring domains
-- Moz referring domains: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run moz_api.py domains <url> --json`
-- Moz anchor text: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run moz_api.py anchors <url> --json`
-- Moz top pages: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run moz_api.py pages <domain> --json`
+- Moz referring domains: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run moz_api.py domains <url> --json`
+- Moz anchor text: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run moz_api.py anchors <url> --json`
+- Moz top pages: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run moz_api.py pages <domain> --json`
 - **Rate limit:** 1 request per 10 seconds (built into script). Plan calls carefully.
 - Report metrics with **confidence: 0.85** note
 
 ### Tier 2 (+ Bing Webmaster)
 - All Tier 1 checks
-- Bing inbound links: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run bing_webmaster.py links <url> --json`
+- Bing inbound links: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run bing_webmaster.py links <url> --json`
 - For comparison between two properties registered to the same Bing account:
-  `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run bing_webmaster.py compare <url1> <url2> --json`
+  `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run bing_webmaster.py compare <url1> <url2> --json`
 - Report with **confidence: 0.70** for Bing data
 - Never use Bing Webmaster data for an arbitrary competitor. Use Moz,
   DataForSEO, or Common Crawl when the second property is not registered.
@@ -89,7 +89,7 @@ Before returning results, run the automated validator AND manual checks.
 ### Step 1: Automated validation
 Save all collected data to a JSON file and run:
 ```bash
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run validate_backlink_report.py --report report_data.json --json
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run validate_backlink_report.py --report report_data.json --json
 ```
 The validator checks: schema claims, JS false negatives, H1 accuracy, reciprocal links,
 CC interpretation, and health score sufficiency. If status is "FAIL", fix errors before proceeding.
@@ -112,7 +112,7 @@ If any check fails, fix the report before returning it.
 
 ## Fetching pages (v2.0.0)
 
-Use `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `raw_content` (pre-JS), `content` (post-JS), `is_spa`, `extracted_text` (boilerplate-stripped via trafilatura), and `publication_date` (htmldate). SSRF and DNS-rebinding protection live in `scripts/url_safety.py`, never call `requests.get` directly on user-supplied URLs.
+Use `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run render_page.py <URL> --mode auto --json` for page HTML. `auto` does a raw fetch and only spins up Playwright when an SPA shell is detected; use `--mode always` to force a render or `--mode never` to skip Playwright entirely. The JSON exposes `raw_content` (pre-JS), `content` (post-JS), `is_spa`, `extracted_text` (boilerplate-stripped via trafilatura), and `publication_date` (htmldate). SSRF and DNS-rebinding protection live in `scripts/url_safety.py`, never call `requests.get` directly on user-supplied URLs.
 
 Backlink verification (`/seo backlinks verify`) primarily reads outbound `<a>` tags, which are reliably present in raw HTML. `--mode never` is the right choice for speed on bulk verification jobs.
 

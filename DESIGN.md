@@ -94,18 +94,19 @@ Do not do all five at once.
 
 ## Color
 
-**No single primary.** The mark is five petals in five hues; the palette is
-categorical. Reach for one petal when you need a category (module, department,
+**No single primary.** The mark is five ribbons joined in a ring, each carrying
+one of five hues; the palette is
+categorical. Reach for one hue when you need a category (module, department,
 chart series). Reach for all five only in brand moments — hero, loader,
 watermark.
 
 | Token | Hex | Role |
 |---|---|---|
-| `--color-petal-aqua` | `#02BBB5` | Accent · healing surfaces |
-| `--color-petal-emerald` | `#01C4A2` | Eyebrow labels · success-adjacent |
-| `--color-petal-blue` | `#1283FF` | **Primary action** — CTAs, links, focus rings |
-| `--color-petal-mint` | `#55D77F` | **Success** |
-| `--color-petal-violet` | `#724DD0` | **Controlled substance** |
+| `--color-hue-aqua` | `#02BBB5` | Accent · healing surfaces |
+| `--color-hue-emerald` | `#01C4A2` | Eyebrow labels · success-adjacent |
+| `--color-hue-blue` | `#1283FF` | **Primary action** — CTAs, links, focus rings |
+| `--color-hue-mint` | `#55D77F` | **Success** |
+| `--color-hue-violet` | `#724DD0` | **Controlled substance** |
 
 Each has a `-600` (hover/pressed) and `-50` (soft wash) sibling.
 
@@ -125,7 +126,7 @@ hue one step lighter (`--color-wordmark-tld` `#526174`) — restate one and you
 restate the other. Never gradient.
 
 Color strategy for this site: **Restrained** — cool ink on warm cream carrying
-the surface, blue as the single action color, petals appearing only in brand
+the surface, blue as the single action color, hues appearing only in brand
 moments. That is a deliberate choice for a clinical brand; "calm, not flashy" is
 a stated design principle.
 
@@ -168,18 +169,18 @@ spec is not AA-compliant on any of its light surfaces.
 
 Four named groups so a call site asks for the *role* it needs rather than
 grabbing a fill: `TEXT` for type, `DISPLAY` for large type, `ON` for a label
-sitting on a petal, `FILL` for a petal under a white label.
+sitting on a hue, `FILL` for a hue under a white label.
 
-**They all currently resolve to the design's own petals.** The indirection is
+**They all currently resolve to the design's own hues.** The indirection is
 what's valuable; the values behind it are the brand's.
 
 #### The contrast exception — deliberate, not an oversight
 
-The petals are light *because they are fills*. Used as text they score
+The hues are light *because they are fills*. Used as text they score
 **1.8–3.4:1 against AA's 4.5:1**, and a rendered audit found 62 such nodes
 across the six pages.
 
-That was fixed once, properly: each petal darkened to the minimum that clears
+That was fixed once, properly: each hue darkened to the minimum that clears
 AA. It passed every check and the site came back visibly flat — meeting 4.5:1 at
 label sizes means dropping OKLCH lightness from ~0.73 to ~0.55 on every accent,
 and a kicker leads every section. Three rounds of narrowing the gap (retargeting
@@ -200,10 +201,10 @@ and reversible.
 #### Section kickers are 19px bold
 
 Not 13px. Bold at ≥18.66px is WCAG "large text", where the bar drops from 4.5:1
-to 3:1 — and at 3:1 the **blue, violet and danger petals are compliant at full
+to 3:1 — and at 3:1 the **blue, violet and danger hues are compliant at full
 strength**, so the size shrinks the exception rather than just decorating it:
 
-| kicker petal | on cream | 3:1 bar |
+| kicker hue | on cream | 3:1 bar |
 |---|---|---|
 | blue `#1283FF` | 3.51 | passes |
 | danger `#D44A3C` | 4.15 | passes |
@@ -222,11 +223,11 @@ here; smaller ones is not.
 
 #### What that means when you add a surface
 
-- Don't "fix" a petal-as-text contrast warning by darkening it ad hoc — that
+- Don't "fix" a hue-as-text contrast warning by darkening it ad hoc — that
   reintroduces the flatness one component at a time. Change the token or leave
   it.
 - The rest of the palette **is** compliant and should stay that way: `ink-*` on
-  light, white on `C.dark`, `C.violet` anywhere. The exception is the petals as
+  light, white on `C.dark`, `C.violet` anywhere. The exception is the hues as
   small text, nothing else.
 - If you ever need a compliant accent, `--color-eyebrow` (`#017560`) and the
   commented AA values are there.
@@ -282,9 +283,9 @@ From the brand, on top of the shared frontend bans:
 - **No gradient text.** `--grad-*` is for surfaces. The wordmark is always solid.
 - **No medical-cliché iconography** as brand symbols — no cross, syringe, heart.
   Lucide `pill` / `stethoscope` is fine *inside* the product, never as a logo.
-- **No emoji in product UI.** The flower is the emoji.
+- **No emoji in product UI.** The mark is the emoji.
 - **No cool blue-gray (Tailwind slate) neutrals.** Use `ink-*`.
-- **No teal-dominant palette.** Teal is a petal, not the action color. Blue is.
+- **No teal-dominant palette.** Teal is a hue, not the action color. Blue is.
 - **No cream body background.**
 - **No stock medical photography.**
 

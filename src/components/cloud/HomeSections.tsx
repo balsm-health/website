@@ -24,7 +24,7 @@ type PathCard = { title: string; desc: string; cta: string };
 
 // Kickers are 19px bold, not 13px. Bold at >=18.66px is WCAG "large text",
 // where the contrast bar drops from 4.5:1 to 3:1 — which is enough for the
-// blue, violet and danger petals to be compliant at full strength. The rest
+// blue, violet and danger hues to be compliant at full strength. The rest
 // remain part of the documented palette exception. Don't shrink these.
 const eyebrow = (color: string): React.CSSProperties => ({
   fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color, textAlign: 'start',
@@ -145,7 +145,7 @@ export default function HomeSections() {
         <div ref={statsRef} style={{ ...container, padding: 'clamp(28px,4vw,44px) clamp(20px,5vw,56px)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(170px,100%),1fr))', gap: 24, textAlign: 'center' }}>
           {stats.map((s, i) => (
             <div key={i}>
-              {/* DISPLAY is the role for large type; it resolves to the petals.
+              {/* DISPLAY is the role for large type; it resolves to the hues.
                   See the contrast exception in theme.ts before changing these. */}
               <div style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 'clamp(30px,4vw,44px)', color: [DISPLAY.blue, DISPLAY.aqua, DISPLAY.mint, DISPLAY.violet][i] }}>
                 <CountUp value={s.value} inView={statsInView} />

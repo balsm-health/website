@@ -29,7 +29,7 @@ service account -- run `/seo google setup` for step-by-step instructions.
 
 Before executing any command, check credentials:
 ```bash
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run google_auth.py --check --json
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run google_auth.py --check --json
 ```
 
 Config file: `~/.config/claude-seo/google-api.json`
@@ -89,7 +89,7 @@ Always communicate the detected tier before running commands.
 
 Combined Lighthouse lab data + CrUX field data.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run pagespeed_check.py <url> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run pagespeed_check.py <url> --json`
 **Reference:** `references/pagespeed-crux-api.md`
 **Default:** Both mobile + desktop strategies, all Lighthouse categories.
 
@@ -100,13 +100,13 @@ Chrome user metrics). CrUX tries URL-level first, falls back to origin-level.
 
 CrUX field data only (no Lighthouse run). Faster.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run pagespeed_check.py <url> --crux-only --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run pagespeed_check.py <url> --crux-only --json`
 
 ### `/seo google crux-history <url>`
 
 25-week CrUX History trends. Shows whether CWV metrics are improving, stable, or degrading.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run crux_history.py <url> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run crux_history.py <url> --json`
 **Reference:** `references/pagespeed-crux-api.md`
 
 Output includes per-metric trend direction, percentage change, and weekly p75 values.
@@ -119,7 +119,7 @@ Output includes per-metric trend direction, percentage change, and weekly p75 va
 
 Search Analytics: clicks, impressions, CTR, position for last 28 days.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run gsc_query.py --property <property> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run gsc_query.py --property <property> --json`
 **Reference:** `references/search-console-api.md`
 **Default:** 28 days, dimensions=query,page, type=web, limit=1000.
 
@@ -138,7 +138,7 @@ dimension rows, not the size of every pagination request.
 
 URL Inspection: real indexation status from Google.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run gsc_inspect.py <url> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run gsc_inspect.py <url> --json`
 
 Returns: verdict (PASS/FAIL), coverage state, robots.txt status, indexing state,
 page fetch state, canonical selection, mobile usability, rich results.
@@ -147,7 +147,7 @@ page fetch state, canonical selection, mobile usability, rich results.
 
 Batch inspection from a file (one URL per line). Rate limited to 2,000/day per site.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run gsc_inspect.py --batch <file> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run gsc_inspect.py --batch <file> --json`
 
 ### `/seo google sitemaps <property>`
 
@@ -155,7 +155,7 @@ List submitted sitemaps with status, errors, warnings. Sitemap contents report
 submitted counts only; URL Inspection API is the indexation truth for whether
 specific URLs are indexed.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run gsc_query.py sitemaps --property <property> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run gsc_query.py sitemaps --property <property> --json`
 
 ---
 
@@ -165,7 +165,7 @@ specific URLs are indexed.
 
 Notify Google of a URL update.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run indexing_notify.py <url> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run indexing_notify.py <url> --json`
 **Reference:** `references/indexing-api.md`
 
 The Indexing API is officially for JobPosting and BroadcastEvent/VideoObject pages.
@@ -175,7 +175,7 @@ Always inform the user of this restriction. Daily quota: 200 publish requests.
 
 Batch submit URLs from a file. Tracks quota usage.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run indexing_notify.py --batch <file> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run indexing_notify.py --batch <file> --json`
 
 ---
 
@@ -185,7 +185,7 @@ Batch submit URLs from a file. Tracks quota usage.
 
 Organic traffic report: daily sessions, users, pageviews, bounce rate, engagement.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run ga4_report.py --property <id> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run ga4_report.py --property <id> --json`
 **Reference:** `references/ga4-data-api.md`
 **Default:** 28 days, filtered to Organic Search channel group.
 
@@ -195,7 +195,7 @@ Organic traffic report: daily sessions, users, pageviews, bounce rate, engagemen
 
 Top organic landing pages ranked by sessions.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run ga4_report.py --property <id> --report top-pages --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run ga4_report.py --property <id> --report top-pages --json`
 
 ---
 
@@ -207,7 +207,7 @@ Some third-party studies report a 0.737 correlation between YouTube mentions and
 
 Search YouTube for videos. Returns title, channel, views, likes, duration.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run youtube_search.py search "<query>" --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run youtube_search.py search "<query>" --json`
 **Reference:** `references/youtube-api.md`
 **Quota:** 100 units per search (10,000 units/day free).
 
@@ -215,7 +215,7 @@ Search YouTube for videos. Returns title, channel, views, likes, duration.
 
 Detailed video info + tags + top 10 comments.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run youtube_search.py video <video_id> --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run youtube_search.py video <video_id> --json`
 **Quota:** 2 units (video details + comments).
 
 ---
@@ -228,7 +228,7 @@ Google NLP entity/sentiment output for internal content-quality checks. Do not t
 
 Full NLP analysis: entities, sentiment, content classification.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run nlp_analyze.py --url <url> --json` or `--text "..."`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run nlp_analyze.py --url <url> --json` or `--text "..."`
 **Reference:** `references/nlp-api.md`
 **Free tier:** 5,000 units/month. Requires billing enabled on GCP project.
 
@@ -236,7 +236,7 @@ Full NLP analysis: entities, sentiment, content classification.
 
 Entity extraction only (faster, less quota).
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run nlp_analyze.py --url <url> --features entities --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run nlp_analyze.py --url <url> --features entities --json`
 
 ---
 
@@ -248,7 +248,7 @@ Gold-standard keyword volume data. Requires Google Ads account.
 
 Generate keyword ideas from seed terms.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run keyword_planner.py ideas "<seed>" --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run keyword_planner.py ideas "<seed>" --json`
 **Reference:** `references/keyword-planner-api.md`
 **Requires:** Ads developer token + customer ID in config (Tier 3).
 
@@ -256,7 +256,7 @@ Generate keyword ideas from seed terms.
 
 Search volume for specific keywords (comma-separated).
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run keyword_planner.py volume "<kw1>,<kw2>" --json`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run keyword_planner.py volume "<kw1>,<kw2>" --json`
 
 ---
 
@@ -289,7 +289,7 @@ After any analysis command, offer to generate a PDF/HTML report.
 
 Generate a professional PDF report with charts and analytics.
 
-**Script:** `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run google_report.py --type <type> --data <json> --domain <domain> --format pdf`
+**Script:** `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run google_report.py --type <type> --data <json> --domain <domain> --format pdf`
 
 | Type | Input | Output |
 |------|-------|--------|
@@ -300,8 +300,8 @@ Generate a professional PDF report with charts and analytics.
 
 **Workflow:**
 1. Run data collection commands (pagespeed, gsc, inspect-batch, etc.)
-2. Save JSON output to file: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run pagespeed_check.py <url> --json > data.json`
-3. Generate report: `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run google_report.py --type cwv-audit --data data.json --domain <domain>`
+2. Save JSON output to file: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run pagespeed_check.py <url> --json > data.json`
+3. Generate report: `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run google_report.py --type cwv-audit --data data.json --domain <domain>`
 
 **Convention:** After completing analysis, suggest: "Generate a report? Use `/seo google report <type>`"
 

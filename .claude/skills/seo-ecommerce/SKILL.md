@@ -42,8 +42,8 @@ Fetch and parse any product page for on-page SEO quality.
 ### Workflow
 
 ```
-1. "/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run render_page.py <url> --mode auto → raw/rendered HTML
-2. "/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run parse_html.py --url <url>   → SEO elements
+1. "$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run render_page.py <url> --mode auto → raw/rendered HTML
+2. "$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run parse_html.py --url <url>   → SEO elements
 3. Analyze product-specific signals (below)
 ```
 
@@ -107,7 +107,7 @@ Live competitive analysis from Google Shopping results.
 
 Before EVERY Merchant API call:
 ```bash
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py check merchant_google_products_search
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py check merchant_google_products_search
 ```
 
 - `"status": "approved"` -- proceed
@@ -116,20 +116,20 @@ Before EVERY Merchant API call:
 
 After each call:
 ```bash
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py log merchant_google_products_search <cost>
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py log merchant_google_products_search <cost>
 ```
 
 ### Workflow
 
 ```bash
 # Product search: who sells what at what price
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_merchant.py search "<keyword>" --marketplace google
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_merchant.py search "<keyword>" --marketplace google
 
 # Seller analysis: merchant ratings and dominance
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_merchant.py sellers "<keyword>"
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_merchant.py sellers "<keyword>"
 
 # Normalize results for analysis
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_normalize.py results.json --module merchant
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_normalize.py results.json --module merchant
 ```
 
 ### Analysis Outputs
@@ -163,7 +163,7 @@ Cross-marketplace intelligence comparing Google Shopping and Amazon.
 ### Cost Guardrail (MANDATORY)
 
 ```bash
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py check merchant_amazon_products_search
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py check merchant_amazon_products_search
 ```
 
 Amazon endpoints are in the `warn_endpoints` set -- always requires user approval.
@@ -172,10 +172,10 @@ Amazon endpoints are in the `warn_endpoints` set -- always requires user approva
 
 ```bash
 # Amazon product search
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_merchant.py search "<keyword>" --marketplace amazon
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_merchant.py search "<keyword>" --marketplace amazon
 
 # Cross-marketplace comparison
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_merchant.py compare "<keyword>"
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_merchant.py compare "<keyword>"
 ```
 
 ### Cross-Marketplace Report
@@ -321,10 +321,10 @@ capability examples, and the relationship to AP2 (Agent Payments Protocol).
 
 ```bash
 # Discover and validate the UCP profile
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run ucp_check.py https://store.example.com --json
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run ucp_check.py https://store.example.com --json
 
 # With endpoint reachability probes (HEAD each declared capability)
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run ucp_check.py https://store.example.com --probe-endpoints --json
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run ucp_check.py https://store.example.com --probe-endpoints --json
 ```
 
 The script returns: profile presence, version, declared capabilities,

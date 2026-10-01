@@ -17,10 +17,10 @@ elements by comparing current page state against stored baselines.
 ## Tools
 
 All page fetching goes through the project's existing scripts with SSRF protection:
-- `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run drift_baseline.py <url>` -- capture a new baseline
-- `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run drift_compare.py <url>` -- compare current state to baseline
-- `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run drift_history.py <url>` -- show change history
-- `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run drift_report.py <file> --output report.html` -- generate HTML report
+- `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run drift_baseline.py <url>` -- capture a new baseline
+- `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run drift_compare.py <url>` -- compare current state to baseline
+- `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run drift_history.py <url>` -- show change history
+- `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run drift_report.py <file> --output report.html` -- generate HTML report
 
 Never use curl, wget, or raw HTTP requests. All fetching is handled by
 `scripts/fetch_page.py` internally, which validates URLs against private/loopback

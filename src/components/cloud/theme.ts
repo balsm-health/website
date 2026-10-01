@@ -32,8 +32,8 @@ export const C = {
   // aqua wash needs an edge.
   aquaBorder: '#C9EEEB',
   emerald: '#01C4A2',
-  emeraldDark: '#019A7F',// petal-emerald-600
-  green: '#3FC366',     // petal-mint-600
+  emeraldDark: '#019A7F',// hue-emerald-600
+  green: '#3FC366',     // hue-mint-600
   greenBg: '#E8F9EE',
   violet: '#724DD0',
   violetDark: '#5C3AB0',
@@ -51,16 +51,16 @@ export const C = {
 } as const;
 
 /**
- * Colour roles for text and for labels sitting on a petal.
+ * Colour roles for text and for labels sitting on a hue.
  *
- * ── Why these are the plain petals ──────────────────────────────────────────
+ * ── Why these are the plain hues ────────────────────────────────────────────
  *
  * These four groups exist so every call site names the *role* it needs rather
  * than reaching for a fill. That indirection is worth keeping. What changed is
  * what they point at.
  *
- * An earlier pass pointed them at darkened variants so every petal used as text
- * would clear WCAG AA. It worked on the meter and failed on the page: the petals
+ * An earlier pass pointed them at darkened variants so every hue used as text
+ * would clear WCAG AA. It worked on the meter and failed on the page: the hues
  * are light by design, so meeting 4.5:1 at label sizes meant dropping OKLCH
  * lightness from ~0.73 to ~0.55 on every accent, and since a kicker leads each
  * section, the whole site read flat. Three rounds of narrowing that gap did not
@@ -72,7 +72,7 @@ export const C = {
  *
  * ── The cost, stated plainly ────────────────────────────────────────────────
  *
- * Petals used as small text score 1.8–3.4:1 against 4.5:1. That is a real
+ * Hues used as small text score 1.8–3.4:1 against 4.5:1. That is a real
  * accessibility regression for low-vision readers, and it is a deliberate,
  * documented exception rather than an oversight — see the Accessibility section
  * in PRODUCT.md.
@@ -107,7 +107,7 @@ export const TEXT = {
 
 /**
  * Kept as a distinct role so display-size type can diverge from label-size type
- * later without touching call sites. Both currently resolve to the petal.
+ * later without touching call sites. Both currently resolve to the hue.
  */
 export const DISPLAY = {
   blue:    C.blue,     // 3.51:1 on cream — already clears the 3:1 large-text bar
