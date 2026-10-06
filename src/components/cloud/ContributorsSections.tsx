@@ -11,7 +11,7 @@ import {
   CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug,
   BadgeCheck, Frame,
 } from './CloudIcons';
-import { GITHUB_ISSUES_URL, GITHUB_ORG_URL, type GithubIssue } from '@/lib/github';
+import { FILTER_LABELS, GITHUB_ORG_URL, githubIssuesUrl, type GithubIssue, type IssueFilter } from '@/lib/github';
 
 type Card = { title: string; desc: string };
 type Stat = { value: string; label: string };
@@ -80,7 +80,13 @@ const WHY_ICONS = [
   { Icon: MapPin, bg: C.blueBg, color: C.blue },
 ];
 
-export default function ContributorsSections({ issues = [] }: { issues?: GithubIssue[] }) {
+export default function ContributorsSections({
+  issues = [],
+  issueFilter = 'goodFirst',
+}: {
+  issues?: GithubIssue[];
+  issueFilter?: IssueFilter;
+}) {
   const t = useTranslations('contributors');
   const stats = t.raw('stats') as Stat[];
   const whyCards = t.raw('why.cards') as Card[];
@@ -232,11 +238,11 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
           <Reveal style={{ background: C.dark, borderRadius: 22, padding: 'clamp(24px,4vw,38px)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
               <Tag style={{ width: 20, height: 20, color: C.mint }} />
-              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 18, color: '#fff' }}>{t('dev.issuesTitle')}</span>
+              <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 18, color: '#fff' }}>{t(`dev.issuesTitle.${issueFilter}`)}</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {issues.length === 0 ? (
-                // Every issue is either closed or in a private repo — say so
+                // Neither good first issues nor starter bugs are open — say so
                 // plainly rather than rendering an empty box.
                 <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.09)', borderRadius: 14, padding: '20px 18px', fontSize: 15, color: 'rgba(255,255,255,.72)', lineHeight: 1.7 }}>
                   {t('dev.issuesEmpty')}
@@ -248,7 +254,9 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
                         stays LTR even on the Arabic page. */}
                     <span dir="ltr" style={{ fontSize: 15.5, color: '#fff', textAlign: 'left', flex: '1 1 260px', minWidth: 0 }}>{issue.title}</span>
                     <span style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                      {issue.labels.slice(0, 2).map((label) => (
+                      {/* Every row shares the filter's label, so that chip says
+                          nothing here — show the labels that tell them apart. */}
+                      {issue.labels.filter((l) => !FILTER_LABELS[issueFilter].includes(l.name.toLowerCase())).slice(0, 2).map((label) => (
                         <span key={label.name} dir="ltr" style={labelChip(label.color)}>{label.name}</span>
                       ))}
                       <span dir="ltr" style={{ fontFamily: FONT.mono, fontSize: 12, color: C.muted }}>{issue.repo}#{issue.number}</span>
@@ -258,9 +266,9 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
               )}
             </div>
 
-            <a href={issues.length === 0 ? GITHUB_ORG_URL : GITHUB_ISSUES_URL} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 18, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, color: C.mint, minHeight: 44 }}>
+            <a href={issues.length === 0 ? GITHUB_ORG_URL : githubIssuesUrl(issueFilter)} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginTop: 18, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, color: C.mint, minHeight: 44 }}>
               <Github style={{ width: 16, height: 16 }} />
-              {issues.length === 0 ? t('dev.issuesBrowse') : t('dev.issuesAll')}
+              {issues.length === 0 ? t('dev.issuesBrowse') : t(`dev.issuesAll.${issueFilter}`)}
             </a>
           </Reveal>
         </div>

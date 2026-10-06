@@ -26,7 +26,7 @@ export default async function ContributorsPage({ params }: Props) {
   // Fetched here rather than in the client component so the list is server
   // rendered (crawlers and no-JS visitors see it) and the hourly cache is
   // shared across every visitor instead of one request per browser.
-  const issues = await fetchOrgIssues();
+  const { filter, issues } = await fetchOrgIssues();
 
   const nav = await getTranslations({ locale, namespace: 'nav' });
   const meta = await getTranslations({ locale, namespace: 'contributorsMeta' });
@@ -43,7 +43,7 @@ export default async function ContributorsPage({ params }: Props) {
 
   return (
     <SiteShell active="contributors">
-      <ContributorsSections issues={issues} />
+      <ContributorsSections issues={issues} issueFilter={filter} />
       <JsonLd data={jsonLd} />
     </SiteShell>
   );
