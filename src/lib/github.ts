@@ -1,5 +1,6 @@
 /**
- * Open issues from the Balsm GitHub org, for the Contributors page.
+ * Open `good-first-issue` issues from the Balsm GitHub org, for the
+ * Contributors page.
  *
  * Fetched on the server at render time and cached for an hour, so the page
  * stays static-ish and a GitHub outage or rate limit never blocks a render —
@@ -15,9 +16,18 @@
 export const GITHUB_ORG = 'balsm-health';
 export const GITHUB_ORG_URL = `https://github.com/${GITHUB_ORG}`;
 
+/**
+ * The label that puts an issue on the Contributors page. The repos also carry
+ * GitHub's default `good first issue` (spaces); this one, with hyphens, is the
+ * label the team curates for the site.
+ */
+export const GOOD_FIRST_ISSUE_LABEL = 'good-first-issue';
+
+const ISSUES_QUERY =
+  `org:${GITHUB_ORG} is:issue is:open is:public label:"${GOOD_FIRST_ISSUE_LABEL}"`;
+
 /** Issue-search URL a visitor can open to see the same list on GitHub. */
-export const GITHUB_ISSUES_URL =
-  `https://github.com/issues?q=${encodeURIComponent('org:balsm-health is:issue is:open is:public')}`;
+export const GITHUB_ISSUES_URL = `https://github.com/issues?q=${encodeURIComponent(ISSUES_QUERY)}`;
 
 export type GithubLabel = { name: string; color: string };
 
@@ -31,9 +41,6 @@ export type GithubIssue = {
   comments: number;
   createdAt: string;
 };
-
-/** Labels that mark an issue as newcomer-friendly, best first. */
-const ONBOARDING_LABELS = ['good first issue', 'help wanted'];
 
 type SearchItem = {
   id: number;
@@ -59,21 +66,10 @@ function normalize(item: SearchItem): GithubIssue {
   };
 }
 
-/** Newcomer-friendly issues first, then most recently opened. */
-function rank(a: GithubIssue, b: GithubIssue) {
-  const score = (i: GithubIssue) => {
-    const idx = i.labels.findIndex((l) => ONBOARDING_LABELS.includes(l.name.toLowerCase()));
-    return idx === -1 ? ONBOARDING_LABELS.length : idx;
-  };
-  const diff = score(a) - score(b);
-  return diff !== 0 ? diff : b.createdAt.localeCompare(a.createdAt);
-}
-
 export async function fetchOrgIssues(limit = 6): Promise<GithubIssue[]> {
-  const q = `org:${GITHUB_ORG} is:issue is:open is:public`;
   const url =
-    `https://api.github.com/search/issues?q=${encodeURIComponent(q)}` +
-    `&sort=created&order=desc&per_page=${Math.min(limit * 3, 50)}`;
+    `https://api.github.com/search/issues?q=${encodeURIComponent(ISSUES_QUERY)}` +
+    `&sort=created&order=desc&per_page=${limit}`;
 
   const headers: HeadersInit = {
     Accept: 'application/vnd.github+json',
@@ -90,7 +86,7 @@ export async function fetchOrgIssues(limit = 6): Promise<GithubIssue[]> {
     const res = await fetch(url, { headers, next: { revalidate: 3600 } });
     if (!res.ok) return [];
     const data = (await res.json()) as { items?: SearchItem[] };
-    return (data.items ?? []).map(normalize).sort(rank).slice(0, limit);
+    return (data.items ?? []).map(normalize);
   } catch {
     return [];
   }

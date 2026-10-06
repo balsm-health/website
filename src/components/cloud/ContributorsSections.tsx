@@ -11,7 +11,7 @@ import {
   CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug,
   BadgeCheck, Frame,
 } from './CloudIcons';
-import { GITHUB_ISSUES_URL, GITHUB_ORG_URL, type GithubIssue } from '@/lib/github';
+import { GITHUB_ISSUES_URL, GITHUB_ORG_URL, GOOD_FIRST_ISSUE_LABEL, type GithubIssue } from '@/lib/github';
 
 type Card = { title: string; desc: string };
 type Stat = { value: string; label: string };
@@ -236,7 +236,7 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {issues.length === 0 ? (
-                // Every issue is either closed or in a private repo — say so
+                // No open good-first-issue in a public repo — say so
                 // plainly rather than rendering an empty box.
                 <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.09)', borderRadius: 14, padding: '20px 18px', fontSize: 15, color: 'rgba(255,255,255,.72)', lineHeight: 1.7 }}>
                   {t('dev.issuesEmpty')}
@@ -248,7 +248,9 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
                         stays LTR even on the Arabic page. */}
                     <span dir="ltr" style={{ fontSize: 15.5, color: '#fff', textAlign: 'left', flex: '1 1 260px', minWidth: 0 }}>{issue.title}</span>
                     <span style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                      {issue.labels.slice(0, 2).map((label) => (
+                      {/* Every row is a good-first-issue, so that chip says
+                          nothing here — show the labels that tell them apart. */}
+                      {issue.labels.filter((l) => l.name !== GOOD_FIRST_ISSUE_LABEL).slice(0, 2).map((label) => (
                         <span key={label.name} dir="ltr" style={labelChip(label.color)}>{label.name}</span>
                       ))}
                       <span dir="ltr" style={{ fontFamily: FONT.mono, fontSize: 12, color: C.muted }}>{issue.repo}#{issue.number}</span>

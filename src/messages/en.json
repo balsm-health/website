@@ -688,9 +688,9 @@
     "dev": {
       "eyebrow": "For developers specifically",
       "title": "Ready to write code? Start here.",
-      "issuesTitle": "Open issues",
-      "issuesEmpty": "No open issues in our public repositories right now. New ones are opened regularly — browse the org to see what we are building.",
-      "issuesAll": "View all open issues on GitHub",
+      "issuesTitle": "Good first issues",
+      "issuesEmpty": "No good first issues open in our public repositories right now. New ones are opened regularly — browse the org to see what we are building.",
+      "issuesAll": "View all good first issues on GitHub",
       "issuesBrowse": "Browse the org on GitHub"
     }
   },
