@@ -111,6 +111,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         // them to one entity instead of several. Mirrors /links.
         sameAs: [
           'https://github.com/balsm-health',
+          'https://discord.gg/cNd7QBU26a',
           'https://www.linkedin.com/company/balsm-health',
           'https://x.com/balsm_health',
           'https://facebook.com/balsm.health',
