@@ -1,11 +1,12 @@
 /**
- * Open `good-first-issue` issues from the Balsm GitHub org, for the
- * Contributors page.
+ * Newcomer-friendly open issues from the Balsm GitHub org, for the
+ * Contributors page: `good-first-issue` issues, or — when there are none —
+ * bugs marked easy or medium priority.
  *
  * Fetched on the server at render time and cached for an hour, so the page
  * stays static-ish and a GitHub outage or rate limit never blocks a render —
- * `fetchOrgIssues` returns [] on any failure and the UI falls back to a
- * "browse the org" state.
+ * `fetchOrgIssues` returns an empty list on any failure and the UI falls back
+ * to a "browse the org" state.
  *
  * Scope is deliberately `is:public`: the search API returns private-repo
  * issues to an authenticated token, and this list is shown to anonymous
@@ -23,11 +24,27 @@ export const GITHUB_ORG_URL = `https://github.com/${GITHUB_ORG}`;
  */
 export const GOOD_FIRST_ISSUE_LABEL = 'good-first-issue';
 
-const ISSUES_QUERY =
-  `org:${GITHUB_ORG} is:issue is:open is:public label:"${GOOD_FIRST_ISSUE_LABEL}"`;
+/**
+ * Fallback when no good-first-issue is open: `bug` plus an easy or
+ * medium-priority label. No repo defines these yet, so the common spellings
+ * are all accepted — whichever the team creates will match. Easy first.
+ */
+const EASY_LABELS = ['easy', 'difficulty: easy', 'difficulty:easy', 'difficulty/easy'];
+const MEDIUM_PRIORITY_LABELS = ['priority: medium', 'priority:medium', 'priority/medium', 'medium priority', 'P2'];
+
+const BASE_QUERY = `org:${GITHUB_ORG} is:issue is:open is:public`;
+const anyOf = (labels: string[]) => `label:${labels.map((l) => `"${l}"`).join(',')}`;
+
+export type IssueFilter = 'goodFirst' | 'starterBugs';
+
+const QUERIES: Record<IssueFilter, string> = {
+  goodFirst: `${BASE_QUERY} label:"${GOOD_FIRST_ISSUE_LABEL}"`,
+  starterBugs: `${BASE_QUERY} label:bug ${anyOf([...EASY_LABELS, ...MEDIUM_PRIORITY_LABELS])}`,
+};
 
 /** Issue-search URL a visitor can open to see the same list on GitHub. */
-export const GITHUB_ISSUES_URL = `https://github.com/issues?q=${encodeURIComponent(ISSUES_QUERY)}`;
+export const githubIssuesUrl = (filter: IssueFilter) =>
+  `https://github.com/issues?q=${encodeURIComponent(QUERIES[filter])}`;
 
 export type GithubLabel = { name: string; color: string };
 
@@ -66,9 +83,18 @@ function normalize(item: SearchItem): GithubIssue {
   };
 }
 
-export async function fetchOrgIssues(limit = 6): Promise<GithubIssue[]> {
+const isEasy = (i: GithubIssue) =>
+  i.labels.some((l) => EASY_LABELS.includes(l.name.toLowerCase()));
+
+/** Labels on every row of a list, so the UI can skip chips that say nothing. */
+export const FILTER_LABELS: Record<IssueFilter, string[]> = {
+  goodFirst: [GOOD_FIRST_ISSUE_LABEL],
+  starterBugs: ['bug'],
+};
+
+async function searchIssues(q: string, limit: number): Promise<GithubIssue[]> {
   const url =
-    `https://api.github.com/search/issues?q=${encodeURIComponent(ISSUES_QUERY)}` +
+    `https://api.github.com/search/issues?q=${encodeURIComponent(q)}` +
     `&sort=created&order=desc&per_page=${limit}`;
 
   const headers: HeadersInit = {
@@ -90,4 +116,16 @@ export async function fetchOrgIssues(limit = 6): Promise<GithubIssue[]> {
   } catch {
     return [];
   }
+}
+
+export async function fetchOrgIssues(
+  limit = 6,
+): Promise<{ filter: IssueFilter; issues: GithubIssue[] }> {
+  const goodFirst = await searchIssues(QUERIES.goodFirst, limit);
+  if (goodFirst.length > 0) return { filter: 'goodFirst', issues: goodFirst };
+
+  // Over-fetch so easy bugs aren't crowded out by newer medium-priority ones.
+  const bugs = await searchIssues(QUERIES.starterBugs, Math.min(limit * 3, 50));
+  const ranked = [...bugs.filter(isEasy), ...bugs.filter((i) => !isEasy(i))];
+  return { filter: 'starterBugs', issues: ranked.slice(0, limit) };
 }
