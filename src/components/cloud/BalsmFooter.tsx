@@ -22,6 +22,7 @@ const colWrap: React.CSSProperties = { display: 'flex', flexDirection: 'column',
 
 const SOCIALS: { label: string; href: string }[] = [
   { label: 'GitHub', href: 'https://github.com/balsm-health' },
+  { label: 'Discord', href: 'https://discord.gg/cNd7QBU26a' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/balsm-health' },
   { label: 'X', href: 'https://x.com/balsm_health' },
   { label: 'Facebook', href: 'https://facebook.com/balsm.health' },
@@ -40,6 +41,7 @@ const SOCIALS: { label: string; href: string }[] = [
 // icons, as in the design.
 const PLATFORM: Record<string, SocialPlatform> = {
   GitHub: 'github',
+  Discord: 'discord',
   LinkedIn: 'linkedin',
   X: 'x',
   Facebook: 'facebook',

@@ -59,7 +59,7 @@ const STAT_TYPE_DEFAULT = { family: FONT.cairo, weight: 800 } as const;
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 // Kickers are 19px bold, not 13px. Bold at >=18.66px is WCAG "large text",
 // where the contrast bar drops from 4.5:1 to 3:1 — which is enough for the
-// blue, violet and danger petals to be compliant at full strength. The rest
+// blue, violet and danger hues to be compliant at full strength. The rest
 // remain part of the documented palette exception. Don't shrink these.
 const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color, textAlign: 'start' });
 
@@ -140,10 +140,10 @@ export default function ContributorsSections({ issues = [] }: { issues?: GithubI
                   fontWeight: (STAT_TYPE[i] ?? STAT_TYPE_DEFAULT).weight,
                   fontSize: 'clamp(28px,4vw,42px)',
                   // The fourth stat is mint's -600 step (`C.green`) in the
-                  // design, not the base petal — unlike the Home stats strip,
+                  // design, not the base hue — unlike the Home stats strip,
                   // which does use base mint. Following the design here also
                   // lifts the weakest stat from 1.84:1 to 2.28:1 on this white
-                  // band — still inside the documented petal exception.
+                  // band — still inside the documented hue exception.
                   color: [DISPLAY.violet, DISPLAY.blue, DISPLAY.aqua, C.green][i],
                 }}
               >

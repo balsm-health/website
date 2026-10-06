@@ -17,6 +17,7 @@ export type SocialPlatform =
   | 'tiktok'
   | 'whatsapp'
   | 'patreon'
+  | 'discord'
   | 'threads';
 
 export default function SocialLogo({

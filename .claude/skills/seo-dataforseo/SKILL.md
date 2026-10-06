@@ -48,7 +48,7 @@ DataForSEO charges per API call. Be efficient:
 
 **Before every DataForSEO MCP call**, run cost estimation:
 ```
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py check <endpoint> [--count N]
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py check <endpoint> [--count N]
 ```
 
 - If `"status": "approved"` → proceed with the API call
@@ -57,7 +57,7 @@ DataForSEO charges per API call. Be efficient:
 
 **After each API call completes**, log the cost:
 ```
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py log <endpoint> <actual_cost>
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run dataforseo_costs.py log <endpoint> <actual_cost>
 ```
 
 **User commands for cost management:**

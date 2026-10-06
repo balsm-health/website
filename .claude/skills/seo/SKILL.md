@@ -14,7 +14,7 @@ metadata:
 
 **Invocation:** `/seo $1 $2` where `$1` is the command and `$2` is the URL or argument.
 
-**Runtime:** Run bundled Python tools through `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run <script.py>`. Plugin
+**Runtime:** Run bundled Python tools through `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run <script.py>`. Plugin
 installs expose this command automatically. Repository users run
 `./bin/claude-seo`; manual installers rewrite the command to the isolated
 launcher path. Never invoke bundled scripts with a bare Python interpreter.
@@ -61,10 +61,10 @@ extension is also installable (see "Optional Extensions" below).
 ## Runtime Setup
 
 Run setup only when the user explicitly invokes `/seo setup` or explicitly asks
-to repair dependencies. Execute `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" setup`, report core and Chromium
+to repair dependencies. Execute `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" setup`, report core and Chromium
 status separately, and do not fall back to global or user package installation.
-For diagnosis, execute `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" doctor --json`; its output intentionally omits
-absolute paths and environment values. If any `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run` command reports
+For diagnosis, execute `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" doctor --json`; its output intentionally omits
+absolute paths and environment values. If any `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run` command reports
 that setup is required, suggest `/seo setup` and do not improvise a `pip install`.
 
 ## Orchestration Logic
@@ -72,14 +72,14 @@ that setup is required, suggest `/seo setup` and do not improvise a `pip install
 When the user invokes `/seo audit`, delegate to subagents in parallel:
 1. Detect business type (SaaS, local, ecommerce, publisher, agency, other)
 2. Spawn subagents: seo-technical, seo-content, seo-schema, seo-sitemap, seo-performance, seo-visual, seo-geo
-3. If Google API credentials detected (`"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run google_auth.py --check`), also spawn seo-google agent
+3. If Google API credentials detected (`"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run google_auth.py --check`), also spawn seo-google agent
 4. If local business detected, also spawn seo-local agent
 5. If local business detected AND DataForSEO MCP available, also spawn seo-maps agent
-6. If backlink APIs detected (`"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run backlinks_auth.py --check`), also spawn seo-backlinks agent
+6. If backlink APIs detected (`"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run backlinks_auth.py --check`), also spawn seo-backlinks agent
 7. If Firecrawl MCP available, use `firecrawl_map` to discover all site URLs before analysis
 8. If content strategy signals detected (blog, pillar pages, topic clusters), also spawn seo-cluster agent
 9. If e-commerce detected, also spawn seo-ecommerce agent
-10. If drift baseline exists for this URL (`"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run drift_history.py <url>`), also spawn seo-drift agent
+10. If drift baseline exists for this URL (`"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run drift_history.py <url>`), also spawn seo-drift agent
 11. Always include seo-sxo in full audits (search experience applies to all sites)
 12. Collect results and generate unified report with SEO Health Score (0-100)
 13. **Synthesize via the 10-principle framework** (see "Synthesis Methodology" below), walk PERCEIVE → ANALYZE → VALIDATE → ACT before bucketing findings into Critical / High / Medium / Low

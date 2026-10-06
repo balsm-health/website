@@ -321,13 +321,13 @@ https://support.google.com/merchants/answer/14743464
 
 ```bash
 # Audit a directory for the IPTC label (counts: missing, ai, captured, etc.)
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run iptc_ai_label.py audit ./images/ --json
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run iptc_ai_label.py audit ./images/ --json
 
 # Audit a single image
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run iptc_ai_label.py audit ./hero.webp --json
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run iptc_ai_label.py audit ./hero.webp --json
 
 # Inject the AI label into an image
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run iptc_ai_label.py inject ./ai-hero.webp \
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run iptc_ai_label.py inject ./ai-hero.webp \
     --source-type trainedAlgorithmicMedia
 
 # Other vocabulary values:

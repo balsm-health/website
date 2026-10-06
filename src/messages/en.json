@@ -778,7 +778,7 @@
     "tech": {
       "eyebrow": "Tech sponsors",
       "title": "Sponsorship in service, not just cash.",
-      "desc": "Balsm is looking for technical partners who sponsor it with their services — hosting, dev tools, performance monitoring — instead of cash donations.",
+      "desc": "Balsm is looking for technical partners who sponsor it with their services — hosting, dev tools, analytics, performance monitoring — instead of cash donations.",
       "sponsors": [
         {
           "name": "Mosalam",
@@ -794,6 +794,11 @@
           "name": "Sentry",
           "desc": "Error and performance monitoring.",
           "href": ""
+        },
+        {
+          "name": "PostHog",
+          "desc": "Product analytics and session replay.",
+          "href": "https://posthog.com"
         },
         {
           "name": "Kiro",
@@ -856,6 +861,68 @@
   "linksMeta": {
     "title": "Balsm links — every official account",
     "description": "Every official Balsm account in one place — GitHub, LinkedIn, X, Instagram, YouTube, TikTok and more. Verify a Balsm account before you follow it."
+  },
+  "downloadMeta": {
+    "title": "Download the Balsm app",
+    "description": "Get Balsm on iPhone, Android, Huawei or in your browser. Your health record goes in your pocket, and this page picks the right download for your device.",
+    "betaTitle": "Balsm app beta: get early access",
+    "betaDescription": "The Balsm patient app beta is almost here. Leave your email and we'll send you early access as soon as it opens."
+  },
+  "download": {
+    "eyebrow": "The Balsm app",
+    "title": "Take your health record with you.",
+    "subtitle": "Arabic-first, works offline, and your data stays on your device. This page picks the right download for the device you are on.",
+    "for": {
+      "ios": "Recommended for your iPhone or iPad",
+      "android": "Recommended for your Android phone",
+      "huawei": "Recommended for your Huawei phone",
+      "harmony": "Recommended for your HarmonyOS phone",
+      "desktop": "Recommended on this computer"
+    },
+    "channels": {
+      "appStore": {
+        "kicker": "Download on the",
+        "name": "App Store"
+      },
+      "play": {
+        "kicker": "Get it on",
+        "name": "Google Play"
+      },
+      "appGallery": {
+        "kicker": "Explore it on",
+        "name": "AppGallery"
+      },
+      "apk": {
+        "kicker": "Direct download",
+        "name": "Android APK"
+      },
+      "web": {
+        "kicker": "Open in your browser",
+        "name": "Web app"
+      }
+    },
+    "webNote": "The full app, right in your browser. No install needed.",
+    "storesPending": "Store releases are on the way.",
+    "apkNote": "Android will ask you to allow installs from your browser. Only install Balsm from balsm.health or our GitHub releases.",
+    "apkVerify": "Version and SHA-256 checksum on GitHub",
+    "otherTitle": "Other ways to get Balsm",
+    "soon": "Coming soon on",
+    "phoneHint": "On your phone? Open balsm.health/download there and it picks the right download for you.",
+    "beta": {
+      "badge": "Beta · coming very soon",
+      "title": "The Balsm beta is almost here.",
+      "subtitle": "Your health record in your pocket: Arabic-first, works offline, and your data stays on your device. Leave your email and we'll send you early access the moment the beta opens.",
+      "label": "Email address",
+      "placeholder": "name@email.com",
+      "button": "Get early access",
+      "sending": "Sending…",
+      "successTitle": "You're on the list.",
+      "successDesc": "We'll email you as soon as the beta opens. Nothing else, no spam.",
+      "errorInvalid": "Enter a valid email to continue.",
+      "errorGeneric": "Something went wrong. Please try again.",
+      "privacy": "Your email stays yours. We use it only to invite you to the beta, and we'll never share it.",
+      "launching": "Launching on"
+    }
   },
   "faq": {
     "eyebrow": "Questions",

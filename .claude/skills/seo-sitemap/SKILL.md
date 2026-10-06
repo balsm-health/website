@@ -20,7 +20,7 @@ metadata:
 Discover candidates before reporting a sitemap missing:
 
 ```bash
-"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run sitemap_discovery.py <url> --json
+"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run sitemap_discovery.py <url> --json
 ```
 
 The helper reads every bounded `Sitemap:` declaration in robots.txt, validates

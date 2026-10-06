@@ -24,11 +24,11 @@ specifically for **Amazon/Bing/Naver/Seznam.cz/Yandex/Yep indexing** and
 
 | Command | Underlying script |
 |---|---|
-| `/seo bing links <url>` | `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run bing_webmaster.py links <url>` |
-| `/seo bing compare <urlA> <urlB>` | `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run bing_webmaster.py compare <urlA> <urlB>`; both properties must be registered to the API account |
-| `/seo bing submit <url>` (single URL) | `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run indexnow_submit.py --host ... --urls <url>` |
-| `/seo bing submit-batch <file>` | `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run indexnow_submit.py --host ... --urls-file <file>` |
-| `/seo bing verify-indexnow` | `"/Volumes/Dev/Balsm/website/.claude/skills/seo/bin/claude-seo" run indexnow_submit.py --host ... --verify-only` |
+| `/seo bing links <url>` | `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run bing_webmaster.py links <url>` |
+| `/seo bing compare <urlA> <urlB>` | `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run bing_webmaster.py compare <urlA> <urlB>`; both properties must be registered to the API account |
+| `/seo bing submit <url>` (single URL) | `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run indexnow_submit.py --host ... --urls <url>` |
+| `/seo bing submit-batch <file>` | `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run indexnow_submit.py --host ... --urls-file <file>` |
+| `/seo bing verify-indexnow` | `"$(git rev-parse --show-toplevel)/.claude/skills/seo/bin/claude-seo" run indexnow_submit.py --host ... --verify-only` |
 
 ## When this skill applies
 

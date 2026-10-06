@@ -18,7 +18,7 @@ type Trust = { title: string; sub: string };
 const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
 // Kickers are 19px bold, not 13px. Bold at >=18.66px is WCAG "large text",
 // where the contrast bar drops from 4.5:1 to 3:1 — which is enough for the
-// blue, violet and danger petals to be compliant at full strength. The rest
+// blue, violet and danger hues to be compliant at full strength. The rest
 // remain part of the documented palette exception. Don't shrink these.
 const eyebrow = (color: string): React.CSSProperties => ({ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color, textAlign: 'start' });
 
@@ -58,10 +58,10 @@ export default function ProvidersSections() {
         <div style={{ position: 'relative', ...container }}>
           <Reveal style={{ maxWidth: 760 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-              {/* Hero kickers take the petal's -600 step, not the base petal —
+              {/* Hero kickers take the hue's -600 step, not the base hue —
                   the rule every design page follows (Cloud #0F6BCC, Contributors
                   #5C3AB0, here #019A7F). Section kickers further down stay on the
-                  base petal. It also clears the 3:1 large-text bar this kicker
+                  base hue. It also clears the 3:1 large-text bar this kicker
                   was missing: 2.02:1 → 3.20:1 on the hero gradient's #E2F8F6. */}
               <div style={eyebrow(C.emeraldDark)}>{t('hero.eyebrow')}</div>
               <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 11.5, padding: '3px 10px', borderRadius: 999, background: C.white, border: `1px solid ${C.aquaBorder}`, color: C.emeraldDark }}>
