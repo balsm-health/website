@@ -206,7 +206,9 @@
     },
     "copyright": "© 2026 Balsm",
     "pdpl": "PDPL-compliant",
-    "tagline": "Wherever you are — the same Balsm, the same reliability."
+    "tagline": "Wherever you are — the same Balsm, the same reliability.",
+    "privacy": "Privacy policy",
+    "terms": "Terms"
   },
   "homeMeta": {
     "title": "Balsm — the community-owned healthcare OS",
@@ -963,5 +965,302 @@
         "a": "Engineering is only one of eight contributor roles. Clinical review, design, translation, legal, project management, advocacy and QA all move the project forward. The Contributors page lists the roles and the currently open issues."
       }
     ]
+  },
+  "privacyMeta": {
+    "title": "Privacy policy — Balsm",
+    "description": "What the balsm.health website collects, why, who handles it, and how to have it corrected or deleted. No health data, no trackers, no selling."
+  },
+  "privacy": {
+    "breadcrumb": "Privacy policy",
+    "hero": {
+      "eyebrow": "Privacy policy",
+      "title": "Your data stays yours.",
+      "subtitle": "What this website collects, why, who handles it, and how to have it removed. Written plainly, so nothing that matters is hidden in legal language.",
+      "updated": "Last updated: 28 September 2026"
+    },
+    "tocLabel": "On this page",
+    "sections": [
+      {
+        "id": "scope",
+        "title": "What this policy covers",
+        "paragraphs": [
+          "This policy covers the balsm.health website, in Arabic and English: its pages, its sign-up forms and the contributor frame tool.",
+          "It does not cover the Balsm apps or Balsm Cloud. Each will publish its own policy before it collects any data. This website collects no health or medical information of any kind."
+        ]
+      },
+      {
+        "id": "collect",
+        "title": "What we collect",
+        "paragraphs": [
+          "We only collect what you type into one of our sign-up forms:"
+        ],
+        "items": [
+          {
+            "term": "Waiting lists",
+            "text": "on the home, Cloud and providers pages: your email address, the language you were reading the site in, and which form you used."
+          },
+          {
+            "term": "Providers form",
+            "text": "if you fill them in: your organisation's name and your message."
+          }
+        ],
+        "after": "That is all. We don't ask for your name, your phone number or an account."
+      },
+      {
+        "id": "not-collect",
+        "title": "What we don't collect",
+        "items": [
+          {
+            "text": "No analytics, advertising or social-media trackers."
+          },
+          {
+            "text": "No session recording. Error reports never include what you typed into a form."
+          },
+          {
+            "text": "Your photo in the contributor frame tool never leaves your browser. The frame is composed and downloaded on your device, and nothing is uploaded."
+          }
+        ]
+      },
+      {
+        "id": "use",
+        "title": "How we use it",
+        "paragraphs": [
+          "We use your email address to tell you about the launch or progress you signed up for, and, on the providers form, to reply to you. We use the language you were reading in to write to you in that language.",
+          "We process this data on the basis of your consent, which you give by submitting the form. You can withdraw it at any time. We never sell your data, and we never share it with anyone for their marketing."
+        ]
+      },
+      {
+        "id": "processors",
+        "title": "Who handles it for us",
+        "paragraphs": [
+          "We rely on a small number of service providers, each handling only what its job needs:"
+        ],
+        "items": [
+          {
+            "term": "Supabase",
+            "text": "stores the sign-up form submissions in our database."
+          },
+          {
+            "term": "Cloudflare",
+            "text": "hosts the website. Like any host, it processes each request, including your IP address, to deliver the page and protect it from abuse."
+          },
+          {
+            "term": "Sentry",
+            "text": "receives error reports so we can fix what breaks. It is configured to exclude your IP address, cookies and form contents, and email addresses are removed before a report is sent."
+          },
+          {
+            "term": "Google Fonts",
+            "text": "serves the site's typefaces. Your browser fetches them from Google's servers, which receive your IP address and browser details as part of that request."
+          }
+        ],
+        "after": "Some of these providers may process data on servers outside Egypt, under their own data-protection terms."
+      },
+      {
+        "id": "browser",
+        "title": "Cookies and your browser",
+        "paragraphs": [
+          "We don't set cookies. Cloudflare may set a strictly necessary security cookie to tell people from bots.",
+          "The links page remembers whether you chose the light or dark theme, in your browser's local storage. That setting never leaves your device, and clearing your browser data removes it."
+        ]
+      },
+      {
+        "id": "retention",
+        "title": "How long we keep it",
+        "paragraphs": [
+          "We keep a sign-up until you ask us to delete it, or until we no longer need it for the purpose you signed up for, whichever comes first. Sentry deletes error reports automatically after its retention period."
+        ]
+      },
+      {
+        "id": "security",
+        "title": "How we protect it",
+        "paragraphs": [
+          "Everything travels over HTTPS. The public side of the website can add a sign-up but cannot read the list back, and access to the list is limited to the Balsm team members who need it."
+        ]
+      },
+      {
+        "id": "rights",
+        "title": "Your rights",
+        "paragraphs": [
+          "Under Egypt's Personal Data Protection Law (Law No. 151 of 2020), and similar laws where you live, you can ask to see the data we hold about you, correct it, delete it, or withdraw your consent.",
+          "To do any of these, email us from the address you signed up with, and we will act on it within 30 days. You can also correct your details at any time by submitting the same form again with the same email address.",
+          "If you believe we have mishandled your data, you have the right to complain to Egypt's Personal Data Protection Center."
+        ]
+      },
+      {
+        "id": "children",
+        "title": "Children",
+        "paragraphs": [
+          "This website is not aimed at children, and we don't knowingly collect data from anyone under 18. If you believe a child has signed up, email us and we will delete it."
+        ]
+      },
+      {
+        "id": "changes",
+        "title": "Changes to this policy",
+        "paragraphs": [
+          "If what we collect or how we use it changes, we will update this page and the date at the top before the change takes effect."
+        ]
+      }
+    ],
+    "contact": {
+      "title": "Questions or requests",
+      "body": "Write to us about anything on this page, or to access, correct or delete your data.",
+      "email": "privacy@balsm.health"
+    }
+  },
+  "termsMeta": {
+    "title": "Terms and conditions — Balsm",
+    "description": "The terms for using Balsm — the website, the Balsm app, Balsm Pro and Balsm Cloud. Not medical advice, adults only, your information stays yours."
+  },
+  "terms": {
+    "breadcrumb": "Terms and conditions",
+    "hero": {
+      "eyebrow": "Terms and conditions",
+      "title": "What we promise, and what we ask.",
+      "subtitle": "The terms for using Balsm: the website, the Balsm app, Balsm Pro and Balsm Cloud. Written plainly, with the most important parts first.",
+      "updated": "Last updated: 30 September 2026"
+    },
+    "tocLabel": "On this page",
+    "sections": [
+      {
+        "id": "about",
+        "title": "About these terms",
+        "paragraphs": [
+          "These terms apply to all of Balsm: the balsm.health website, the Balsm app, Balsm Pro and Balsm Cloud (together, “the services”). By using the services you agree to these terms and to our privacy policy. If you don't agree, please don't use them.",
+          "Balsm is an open-source healthcare technology project based in Egypt. In these terms, “Balsm”, “we” and “us” mean the Balsm team that runs the services."
+        ]
+      },
+      {
+        "id": "medical",
+        "title": "Not medical advice, and not an emergency service",
+        "items": [
+          {
+            "text": "Balsm helps you organise your health information. It does not diagnose, treat or give medical advice, and it doesn't replace a doctor, pharmacist or other qualified professional."
+          },
+          {
+            "text": "Always follow your healthcare provider's instructions about your medications and care. Reminders in the app are an aid, not a guarantee: a notification can be delayed or missed if your device is off, silenced or has notifications turned off."
+          },
+          {
+            "text": "In an emergency, call your local emergency number straight away: 123 in Egypt, 997 in Saudi Arabia, 998 in the UAE."
+          }
+        ]
+      },
+      {
+        "id": "eligibility",
+        "title": "Who can use Balsm",
+        "paragraphs": [
+          "You must be 18 or older to create an account. Features that let parents or guardians manage a family member's health will come with their own terms.",
+          "If you use Balsm Pro for a clinic, pharmacy or other organisation, you confirm you are authorised to do so. That organisation is responsible for how it uses Balsm Pro and for the patient records it keeps, including meeting the healthcare and data-protection laws that apply to it."
+        ]
+      },
+      {
+        "id": "account",
+        "title": "Your account",
+        "paragraphs": [
+          "Keep access to your email, Google or Apple account secure, because it is how you sign in to Balsm. You are responsible for what happens under your account. If you think someone else has accessed it, sign out your other devices from the app and tell us straight away."
+        ]
+      },
+      {
+        "id": "your-information",
+        "title": "Your information",
+        "items": [
+          {
+            "text": "You own the information you add to Balsm. You give us only the permissions we need to store it, sync it and show it back to you, as described in our privacy policy."
+          },
+          {
+            "text": "You are responsible for keeping it accurate. Add information about other people, such as emergency contacts or members of your care team, only when you have a good reason to, and with their permission where it is needed."
+          },
+          {
+            "text": "When you share an emergency card, anyone with the link or QR code can read it until it expires or you revoke it. Share it only with people, and in places, you trust."
+          }
+        ]
+      },
+      {
+        "id": "acceptable-use",
+        "title": "Acceptable use",
+        "paragraphs": [
+          "When you use Balsm, don't:"
+        ],
+        "items": [
+          {
+            "text": "break the law, or use Balsm to harm anyone;"
+          },
+          {
+            "text": "access, or try to access, another person's account or data;"
+          },
+          {
+            "text": "overload, disrupt or try to break the security of our services, except through responsible disclosure to security@balsm.health;"
+          },
+          {
+            "text": "upload malicious code, or create accounts by automated means;"
+          },
+          {
+            "text": "pretend to be a healthcare provider, or anyone else, when you are not."
+          }
+        ]
+      },
+      {
+        "id": "open-source",
+        "title": "Open source",
+        "paragraphs": [
+          "Balsm's source code is published under the GNU Affero General Public License v3.0 with additional terms. Your rights to use, copy, change and share the code come from that licence, not from these terms, which cover your use of the services we run.",
+          "The licence doesn't let you rebrand Balsm or present it as your own, and it doesn't give you the right to use the Balsm name or logo in a way that suggests you are us or that we endorse you."
+        ]
+      },
+      {
+        "id": "third-parties",
+        "title": "Other companies' services",
+        "paragraphs": [
+          "Some features rely on services from other companies, such as signing in with Google or Apple, or backing up to Google Drive or iCloud. Their own terms apply when you use them. Links to other websites are provided for convenience, and we are not responsible for their content."
+        ]
+      },
+      {
+        "id": "availability",
+        "title": "Availability and changes to the services",
+        "paragraphs": [
+          "Some of the services are still in development, and we will keep improving them. We may add, change or remove features, and we will give you notice before a change that significantly affects you. Paid plans, such as parts of Balsm Cloud, will have their own terms that you will see and accept before you pay."
+        ]
+      },
+      {
+        "id": "disclaimers",
+        "title": "Disclaimers",
+        "paragraphs": [
+          "We work hard to keep Balsm reliable and accurate, but the services are provided “as is” and “as available”. To the extent the law allows, we don't promise that they will be uninterrupted, free of errors, or suitable for a particular purpose. Keep your own backup of information that matters to you."
+        ]
+      },
+      {
+        "id": "liability",
+        "title": "Limits on our liability",
+        "paragraphs": [
+          "To the extent the law allows, Balsm is not liable for indirect or consequential losses, or for decisions about your health made on the basis of information in the services.",
+          "Nothing in these terms limits liability that the law does not allow to be limited, such as liability for death or personal injury caused by negligence, or for fraud, and nothing in them takes away your rights as a consumer under the law where you live."
+        ]
+      },
+      {
+        "id": "ending",
+        "title": "Ending your use",
+        "paragraphs": [
+          "You can stop using Balsm and delete your account at any time; our privacy policy explains what happens to your data. We may suspend or close an account that seriously or repeatedly breaks these terms, and we will tell you why unless the law prevents us."
+        ]
+      },
+      {
+        "id": "changes",
+        "title": "Changes to these terms",
+        "paragraphs": [
+          "If we change these terms, we will update this page and the date at the top. For significant changes, we will tell you in the app before they take effect. If you keep using Balsm after that, you accept the updated terms."
+        ]
+      },
+      {
+        "id": "law",
+        "title": "Governing law",
+        "paragraphs": [
+          "These terms are governed by the laws of Egypt, and disputes will be heard by the competent courts in Cairo. If you live in another country, you keep the protections the law there gives you as a consumer."
+        ]
+      }
+    ],
+    "contact": {
+      "title": "Questions about these terms",
+      "body": "Write to us about anything on this page.",
+      "email": "legal@balsm.health"
+    }
   }
 }
