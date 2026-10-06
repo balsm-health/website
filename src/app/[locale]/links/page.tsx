@@ -72,6 +72,12 @@ const links: LinkItem[] = [
     url: 'https://github.com/balsm-health',
   },
   {
+    key: 'discord',
+    label: { en: 'Discord', ar: 'ديسكورد' },
+    description: { en: 'Join our community on Discord', ar: 'انضم إلى مجتمعنا على ديسكورد' },
+    url: 'https://discord.gg/cNd7QBU26a',
+  },
+  {
     key: 'qabilah',
     label: { en: 'Qabilah', ar: 'قبيلة' },
     description: { en: 'Connect with us on Qabilah', ar: 'تواصل معنا على قبيلة' },
@@ -126,6 +132,8 @@ function getIcon(key: string, theme: Theme): ReactNode {
       return <SocialLogo platform="patreon" className={theme === 'dark' ? 'h-5 w-5 text-[#FF8088]' : 'h-5 w-5 text-[#FF424D]'} />;
     case 'github':
       return <SocialLogo platform="github" className={theme === 'dark' ? 'h-5 w-5 text-white' : 'h-5 w-5 text-ink-900'} />;
+    case 'discord':
+      return <SocialLogo platform="discord" className={theme === 'dark' ? 'h-5 w-5 text-[#A5B4FC]' : 'h-5 w-5 text-[#5865F2]'} />;
     case 'threads':
       return <SocialLogo platform="threads" className={theme === 'dark' ? 'h-5 w-5 text-white' : 'h-5 w-5 text-ink-900'} />;
     case 'email':
