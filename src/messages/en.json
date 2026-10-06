@@ -776,7 +776,7 @@
     "tech": {
       "eyebrow": "Tech sponsors",
       "title": "Sponsorship in service, not just cash.",
-      "desc": "Balsm is looking for technical partners who sponsor it with their services — hosting, dev tools, performance monitoring — instead of cash donations.",
+      "desc": "Balsm is looking for technical partners who sponsor it with their services — hosting, dev tools, analytics, performance monitoring — instead of cash donations.",
       "sponsors": [
         {
           "name": "Mosalam",
@@ -792,6 +792,11 @@
           "name": "Sentry",
           "desc": "Error and performance monitoring.",
           "href": ""
+        },
+        {
+          "name": "PostHog",
+          "desc": "Product analytics and session replay.",
+          "href": "https://posthog.com"
         },
         {
           "name": "Kiro",
