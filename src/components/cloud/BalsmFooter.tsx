@@ -30,7 +30,8 @@ const SOCIALS: { label: string; href: string }[] = [
   { label: 'YouTube', href: 'https://www.youtube.com/@balsm.health' },
   { label: 'TikTok', href: 'https://tiktok.com/@balsm.health' },
   { label: 'Threads', href: 'https://threads.com/@balsm.health' },
-  { label: 'WhatsApp', href: 'https://whatsapp.com/channel/0029Vb7A39V3mFY3fXXLVi46' },
+  { label: 'WhatsApp', href: 'https://wa.me/balsm.health' },
+  { label: 'WhatsApp Channel', href: 'https://whatsapp.com/channel/0029Vb7A39V3mFY3fXXLVi46' },
   { label: 'Patreon', href: 'https://patreon.com/balsm_health' },
   { label: 'Qabilah', href: 'https://qabilah.com/profile/balsm-health' },
   { label: 'Email', href: 'mailto:contact@balsm.health' },
@@ -49,6 +50,7 @@ const PLATFORM: Record<string, SocialPlatform> = {
   YouTube: 'youtube',
   TikTok: 'tiktok',
   WhatsApp: 'whatsapp',
+  'WhatsApp Channel': 'whatsapp-channel',
   Patreon: 'patreon',
 };
 
