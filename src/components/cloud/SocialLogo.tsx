@@ -16,6 +16,7 @@ export type SocialPlatform =
   | 'youtube'
   | 'tiktok'
   | 'whatsapp'
+  | 'whatsapp-channel'
   | 'patreon'
   | 'discord'
   | 'threads';
