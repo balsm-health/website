@@ -817,6 +817,11 @@
           "href": "https://cursor.com"
         },
         {
+          "name": "Claude",
+          "desc": "مساعد ذكاء اصطناعي للبرمجة والبحث والكتابة.",
+          "href": "https://claude.ai"
+        },
+        {
           "name": "GitHub",
           "desc": "استضافة الكود والتطوير التعاوني.",
           "href": "https://github.com/balsm-health"
