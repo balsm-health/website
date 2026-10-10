@@ -96,12 +96,6 @@ const links: LinkItem[] = [
     url: 'mailto:contact@balsm.health',
   },
   {
-    key: 'whatsapp_number',
-    label: { en: 'WhatsApp Number', ar: 'رقم واتساب' },
-    description: { en: 'Chat with us on WhatsApp', ar: 'تواصل معنا على واتساب' },
-    url: 'https://wa.me/201553564045',
-  },
-  {
     key: 'whatsapp_channel',
     label: { en: 'WhatsApp Channel', ar: 'قناة واتساب' },
     description: { en: 'Join our WhatsApp Channel for updates', ar: 'انضم إلى قناة واتساب للحصول على التحديثات' },
@@ -138,8 +132,6 @@ function getIcon(key: string, theme: Theme): ReactNode {
       return <SocialLogo platform="threads" className={theme === 'dark' ? 'h-5 w-5 text-white' : 'h-5 w-5 text-ink-900'} />;
     case 'email':
       return <MailFilled className={theme === 'dark' ? 'h-5 w-5 text-[#FCA5A5]' : 'h-5 w-5 text-[#DC2626]'} />;
-    case 'whatsapp_number':
-      return <SocialLogo platform="whatsapp" className={theme === 'dark' ? 'h-5 w-5 text-[#4ADE80]' : 'h-5 w-5 text-[#16A34A]'} />;
     case 'whatsapp_channel':
       return <img src="/whatsapp-channels.svg" alt="WhatsApp Channels" className={theme === 'dark' ? 'h-5 w-5 object-contain brightness-0 invert' : 'h-5 w-5 object-contain'} />;
     case 'qabilah':
