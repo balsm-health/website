@@ -65,13 +65,7 @@ const nextConfig: NextConfig = {
   // Enable strict mode for better error handling
   reactStrictMode: true,
   async redirects() {
-    return [
-      { source: '/apps/balsm', destination: '/apps/balsm/', permanent: false },
-      // Short link we control for the @balsm.health WhatsApp username. Temporary
-      // (307) so browsers don't cache it — wa.me username links are new and the
-      // target may need to change.
-      { source: '/whatsapp', destination: 'https://wa.me/balsm.health', permanent: false },
-    ];
+    return [{ source: '/apps/balsm', destination: '/apps/balsm/', permanent: false }];
   },
   async headers() {
     return [
