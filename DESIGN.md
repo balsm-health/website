@@ -270,8 +270,9 @@ the moment you do.
 Tailwind v4 otherwise resolves `dark:` to `prefers-color-scheme`, which
 disagreed with the `.dark { --color-*: … }` token block this codebase themes
 through: on an OS set to dark, `/links` rendered dark card surfaces while its
-own switch said light. `/links` is the only file using `dark:` utilities and
-the only one toggling the class.
+own switch said light. Since the Links.dc.html port, `/links` is light-only like
+every other page, so no file currently uses `dark:` utilities or toggles the
+class — the variant stays wired for whichever surface adds dark mode next.
 
 ## Bans
 

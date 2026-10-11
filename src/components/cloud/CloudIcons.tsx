@@ -57,6 +57,7 @@ export const Github = icon('github');
 export const ArrowLeft = icon('arrow-left');
 export const ArrowUpLeft = icon('arrow-up-left');
 export const Smartphone = icon('smartphone');
+export const ContactRound = icon('contact-round');
 export const FileX = icon('file-x');
 export const Lock = icon('lock');
 export const CloudOff = icon('cloud-off');
