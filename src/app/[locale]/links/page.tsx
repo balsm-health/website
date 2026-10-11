@@ -1,289 +1,299 @@
-"use client";
+'use client';
 
-import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
-import SocialLogo from '@/components/cloud/SocialLogo';
-import { Globe, MailFilled, MoonFilled, SunFilled, Users } from '@/components/cloud/CloudIcons';
+import { useEffect, useRef, useState, useSyncExternalStore, useTransition } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import { Link, usePathname, useRouter } from '@/i18n/navigation';
+import SocialLogo, { type SocialPlatform } from '@/components/cloud/SocialLogo';
+import { ArrowUpRight, AtSign, Check, CodeXml, ContactRound, Globe, Mail, Smartphone } from '@/components/cloud/CloudIcons';
+import { C, FONT } from '@/components/cloud/theme';
 
-type Locale = 'en' | 'ar';
-type Theme = 'light' | 'dark';
+// Port of Links.dc.html. Literal values below are the design's own and have no
+// token yet; everything that matches a token uses it.
+const L = {
+  motto: '#01A88B',      // hue-as-text: 2.88:1 — the documented palette exception (PRODUCT.md § Accessibility)
+  badgeText: '#0B4C94',
+  chipBg: '#EEF5FF',
+  chipIcon: '#1F2D3D',   // ink-800
+  arrow: '#8A97A6',
+  shadow: '0 1px 2px rgba(20,32,43,.04)',
+} as const;
 
-type LinkItem = {
+type Platform = 'ios' | 'android' | 'other';
+
+type Row = {
   key: string;
-  label: Record<Locale, string>;
-  description: Record<Locale, string>;
-  url: string;
+  label: string;
+  // Handle or short description under the label; a translation key when it's prose.
+  sub: string | { t: 'whatsappChannel' | 'discord' };
+  href: string;
+  icon: ReactNode;
+  trailing?: 'mail';
 };
 
-const links: LinkItem[] = [
-  {
-    key: 'website',
-    label: { en: 'Website', ar: 'الموقع' },
-    description: { en: 'Visit our main website', ar: 'تصفح موقعنا' },
-    url: 'https://balsm.health',
-  },
-  {
-    key: 'linkedin',
-    label: { en: 'LinkedIn', ar: 'لينكدإن' },
-    description: { en: 'Follow us on LinkedIn', ar: 'تابعنا على لينكدإن' },
-    url: 'https://www.linkedin.com/company/balsm-health',
-  },
-  {
-    key: 'x',
-    label: { en: 'X (Twitter)', ar: 'تويتر (X)' },
-    description: { en: 'Follow us on X (Twitter)', ar: 'تابعنا على تويتر (X)' },
-    url: 'https://x.com/balsm_health',
-  },
-  {
-    key: 'facebook',
-    label: { en: 'Facebook', ar: 'فيسبوك' },
-    description: { en: 'Like our Facebook page', ar: 'أعجب بصفحتنا على فيسبوك' },
-    url: 'https://facebook.com/balsm.health',
-  },
-  {
-    key: 'instagram',
-    label: { en: 'Instagram', ar: 'انستجرام' },
-    description: { en: 'Follow us on Instagram', ar: 'تابعنا على انستجرام' },
-    url: 'https://instagram.com/balsm.health',
-  },
-  {
-    key: 'youtube',
-    label: { en: 'YouTube', ar: 'يوتيوب' },
-    description: { en: 'Subscribe to our YouTube channel', ar: 'اشترك في قناتنا على يوتيوب' },
-    url: 'https://www.youtube.com/@balsm.health',
-  },
-  {
-    key: 'tiktok',
-    label: { en: 'TikTok', ar: 'تيك توك' },
-    description: { en: 'Follow us on TikTok', ar: 'تابعنا على تيك توك' },
-    url: 'https://tiktok.com/@balsm.health',
-  },
-  {
-    key: 'patreon',
-    label: { en: 'Patreon', ar: 'باتريون' },
-    description: { en: 'Support us on Patreon', ar: 'ادعمنا على باتريون' },
-    url: 'https://patreon.com/balsm_health',
-  },
-  {
-    key: 'github',
-    label: { en: 'GitHub', ar: 'جيت هب' },
-    description: { en: 'View our GitHub organization', ar: 'شاهد مشاريعنا على جيت هب' },
-    url: 'https://github.com/balsm-health',
-  },
-  {
-    key: 'discord',
-    label: { en: 'Discord', ar: 'ديسكورد' },
-    description: { en: 'Join our community on Discord', ar: 'انضم إلى مجتمعنا على ديسكورد' },
-    url: 'https://discord.gg/cNd7QBU26a',
-  },
-  {
-    key: 'qabilah',
-    label: { en: 'Qabilah', ar: 'قبيلة' },
-    description: { en: 'Connect with us on Qabilah', ar: 'تواصل معنا على قبيلة' },
-    url: 'https://qabilah.com/profile/balsm-health',
-  },
-  {
-    key: 'threads',
-    label: { en: 'Threads', ar: 'ثريدز' },
-    description: { en: 'Follow us on Threads', ar: 'تابعنا على ثريدز' },
-    url: 'https://threads.com/@balsm.health',
-  },
-  {
-    key: 'email',
-    label: { en: 'Email', ar: 'البريد الإلكتروني' },
-    description: { en: 'Contact us by email', ar: 'راسلنا عبر البريد الإلكتروني' },
-    url: 'mailto:contact@balsm.health',
-  },
-  {
-    key: 'whatsapp',
-    label: { en: 'WhatsApp', ar: 'واتساب' },
-    description: { en: 'Chat with us on WhatsApp: @balsm.health', ar: 'تواصل معنا على واتساب: \u200E@balsm.health' },
-    url: 'https://wa.me/balsm.health',
-  },
-  {
-    key: 'whatsapp_channel',
-    label: { en: 'WhatsApp Channel', ar: 'قناة واتساب' },
-    description: { en: 'Join our WhatsApp Channel for updates', ar: 'انضم إلى قناة واتساب للحصول على التحديثات' },
-    url: 'https://whatsapp.com/channel/0029Vb7A39V3mFY3fXXLVi46',
-  },
+const logo = (platform: SocialPlatform) => <SocialLogo platform={platform} size={22} />;
+const line = (Icon: typeof Globe) => <Icon style={{ width: 22, height: 22 }} />;
+
+const FOLLOW: Row[] = [
+  { key: 'github', label: 'GitHub', sub: 'balsm-health', href: 'https://github.com/balsm-health', icon: logo('github') },
+  { key: 'discord', label: 'Discord', sub: { t: 'discord' }, href: 'https://discord.gg/cNd7QBU26a', icon: logo('discord') },
+  { key: 'linkedin', label: 'LinkedIn', sub: 'balsm-health', href: 'https://www.linkedin.com/company/balsm-health', icon: logo('linkedin') },
+  { key: 'x', label: 'X', sub: '@balsm_health', href: 'https://x.com/balsm_health', icon: logo('x') },
+  { key: 'facebook', label: 'Facebook', sub: 'balsm.health', href: 'https://facebook.com/balsm.health', icon: logo('facebook') },
+  { key: 'instagram', label: 'Instagram', sub: '@balsm.health', href: 'https://instagram.com/balsm.health', icon: logo('instagram') },
+  { key: 'youtube', label: 'YouTube', sub: '@balsm.health', href: 'https://www.youtube.com/@balsm.health', icon: logo('youtube') },
+  { key: 'tiktok', label: 'TikTok', sub: '@balsm.health', href: 'https://tiktok.com/@balsm.health', icon: logo('tiktok') },
+  { key: 'threads', label: 'Threads', sub: '@balsm.health', href: 'https://threads.com/@balsm.health', icon: line(AtSign) },
+  { key: 'whatsapp_channel', label: 'WhatsApp', sub: { t: 'whatsappChannel' }, href: 'https://whatsapp.com/channel/0029Vb7A39V3mFY3fXXLVi46', icon: logo('whatsapp-channel') },
+  { key: 'patreon', label: 'Patreon', sub: 'balsm_health', href: 'https://patreon.com/balsm_health', icon: logo('patreon') },
+  { key: 'qabilah', label: 'Qabilah', sub: 'balsm-health', href: 'https://qabilah.com/profile/balsm-health', icon: line(Globe) },
 ];
 
-function getIcon(key: string, theme: Theme): ReactNode {
-  // High contrast icons for both themes
-  const iconClass = theme === 'dark' ? 'h-5 w-5 text-white bg-white/10 p-1 rounded-md' : 'h-5 w-5 text-ink-900 bg-ink-100 p-1 rounded-md';
+const CONTACT: Row[] = [
+  { key: 'email', label: 'Email', sub: 'contact@balsm.health', href: 'mailto:contact@balsm.health', icon: line(Mail), trailing: 'mail' },
+  { key: 'whatsapp', label: 'WhatsApp', sub: '@balsm.health', href: 'https://wa.me/balsm.health', icon: logo('whatsapp') },
+];
 
-  switch (key) {
-    case 'website':
-      return <Globe className={theme === 'dark' ? 'h-5 w-5 text-emerald-400' : 'h-5 w-5 text-emerald-600'} />;
-    case 'linkedin':
-      return <SocialLogo platform="linkedin" className={theme === 'dark' ? 'h-5 w-5 text-[#7AB7FF]' : 'h-5 w-5 text-[#0A66C2]'} />;
-    case 'x':
-      return <SocialLogo platform="x" className={theme === 'dark' ? 'h-5 w-5 text-white' : 'h-5 w-5 text-ink-900'} />;
-    case 'facebook':
-      return <SocialLogo platform="facebook" className={theme === 'dark' ? 'h-5 w-5 text-[#8AB4F8]' : 'h-5 w-5 text-[#1877F2]'} />;
-    case 'instagram':
-      return <SocialLogo platform="instagram" className={theme === 'dark' ? 'h-5 w-5 text-[#F472B6]' : 'h-5 w-5 text-[#E1306C]'} />;
-    case 'youtube':
-      return <SocialLogo platform="youtube" className={theme === 'dark' ? 'h-5 w-5 text-[#FF6B6B]' : 'h-5 w-5 text-[#FF0000]'} />;
-    case 'tiktok':
-      return <SocialLogo platform="tiktok" className={theme === 'dark' ? 'h-5 w-5 text-white' : 'h-5 w-5 text-ink-900'} />;
-    case 'patreon':
-      return <SocialLogo platform="patreon" className={theme === 'dark' ? 'h-5 w-5 text-[#FF8088]' : 'h-5 w-5 text-[#FF424D]'} />;
-    case 'github':
-      return <SocialLogo platform="github" className={theme === 'dark' ? 'h-5 w-5 text-white' : 'h-5 w-5 text-ink-900'} />;
-    case 'discord':
-      return <SocialLogo platform="discord" className={theme === 'dark' ? 'h-5 w-5 text-[#A5B4FC]' : 'h-5 w-5 text-[#5865F2]'} />;
-    case 'threads':
-      return <SocialLogo platform="threads" className={theme === 'dark' ? 'h-5 w-5 text-white' : 'h-5 w-5 text-ink-900'} />;
-    case 'email':
-      return <MailFilled className={theme === 'dark' ? 'h-5 w-5 text-[#FCA5A5]' : 'h-5 w-5 text-[#DC2626]'} />;
-    case 'whatsapp':
-      return <SocialLogo platform="whatsapp" className={theme === 'dark' ? 'h-5 w-5 text-[#4ADE80]' : 'h-5 w-5 text-[#16A34A]'} />;
-    case 'whatsapp_channel':
-      return <img src="/whatsapp-channels.svg" alt="WhatsApp Channels" className={theme === 'dark' ? 'h-5 w-5 object-contain brightness-0 invert' : 'h-5 w-5 object-contain'} />;
-    case 'qabilah':
-      // Placeholder until a licensed Qabilah mark lands in public/ — the file
-      // this used to point at (/qabilah-logo.svg) was never in the repo, so the
-      // row rendered a broken image. Swap this back to an <img> once the real
-      // asset is available.
-      return <Users className={theme === 'dark' ? 'h-5 w-5 text-[#5EEAD4]' : 'h-5 w-5 text-[#0D9488]'} />;
-    default:
-      return null;
+// ── vCard ────────────────────────────────────────────────────────────────────
+
+// Escapes a vCard 3.0 text value (RFC 2426 §4).
+const esc = (s: string) => s.replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n');
+
+async function photoBase64(): Promise<string | null> {
+  try {
+    const blob = await (await fetch('/apple-icon.png')).blob();
+    const dataUrl = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(blob);
+    });
+    return dataUrl.split(',')[1] ?? null;
+  } catch {
+    return null;
   }
 }
 
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') {
-    return 'light';
+async function buildVcf(): Promise<string> {
+  const lines = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'N:;Balsm;;;',
+    `FN:${esc('Balsm.health — بلسم')}`,
+    'ORG:Balsm.health',
+    `NICKNAME:${esc('بلسم')}`,
+    `TITLE:${esc('مُجتمعي. مستقل. موثوق. · Community-driven. Independent. Trusted.')}`,
+    'EMAIL;TYPE=INTERNET,WORK:contact@balsm.health',
+    'URL;TYPE=WORK:https://balsm.health',
+  ];
+  for (const row of [...FOLLOW, ...CONTACT]) {
+    if (row.href.startsWith('mailto:')) continue;
+    const item = `item${row.key.replace(/\W/g, '')}`;
+    const name = row.key === 'whatsapp_channel' ? 'WhatsApp Channel' : row.label;
+    lines.push(`${item}.URL:${row.href}`, `${item}.X-ABLabel:${esc(name)}`, `X-SOCIALPROFILE;TYPE=${row.label.toLowerCase()}:${row.href}`);
   }
-
-  const stored = window.localStorage.getItem('balsm-links-theme');
-  if (stored === 'light' || stored === 'dark') {
-    return stored;
-  }
-
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  lines.push(`NOTE:${esc('أول مبادرة مفتوحة المصدر للتقنية الصحية في الشرق الأوسط وشمال أفريقيا · MENA’s first open-source health-tech initiative. رعايةٌ تمتد .. وأثرٌ يبقىٰ — Care that reaches, impact that lasts.')}`);
+  const photo = await photoBase64();
+  // Base64 is ASCII, so folding by characters is folding by octets (75 per line).
+  if (photo) lines.push(`PHOTO;ENCODING=b;TYPE=PNG:${photo}`.match(/.{1,74}/g)!.join('\r\n '));
+  lines.push('END:VCARD');
+  return lines.join('\r\n') + '\r\n';
 }
+
+function detectPlatform(): Platform {
+  const ua = navigator.userAgent || '';
+  // iPadOS reports a Mac UA; touch support tells them apart.
+  if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return 'ios';
+  return /Android/i.test(ua) ? 'android' : 'other';
+}
+const noSubscribe = () => () => {};
+
+// ── page ─────────────────────────────────────────────────────────────────────
 
 export default function LinksPage() {
-  const [theme, setTheme] = useState<Theme>('light');
-  // Arabic is the default locale and is served unprefixed, so only an explicit
-  // /en prefix switches this page to English.
-  const [locale, setLocale] = useState<Locale>('ar');
+  const t = useTranslations('links');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [, startTransition] = useTransition();
+  // Server render (and hydration) uses 'other'; the client snapshot then swaps
+  // in the real platform without a setState-in-effect round trip.
+  const platform = useSyncExternalStore(noSubscribe, detectPlatform, () => 'other' as Platform);
+  const [toast, setToast] = useState(false);
+  const toastTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => clearTimeout(toastTimer.current), []);
 
-  useEffect(() => {
-    setTheme(getInitialTheme());
+  const ar = locale === 'ar';
+  // Montserrat runs wider than Cairo: the English pair drops a point so
+  // "App · coming soon" stays on one line at 360px.
+  const display = ar ? FONT.cairo : FONT.display;
+  const body = ar ? FONT.arabic : FONT.body;
 
-    if (typeof window !== 'undefined') {
-      const pathLocale = window.location.pathname.split('/')[1];
-      if (pathLocale === 'en') {
-        setLocale('en');
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    window.localStorage.setItem('balsm-links-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'));
+  const flash = () => {
+    setToast(true);
+    clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(false), 4000);
   };
 
-  // Rows that render a real asset rather than an inline glyph. Filenames are
-  // lowercase on purpose: Cloudflare's asset store is case-sensitive, so a
-  // mismatch that works on a macOS dev box 404s in production.
-  const allLinks = links.map(l => ({
-    ...l,
-    image: l.key === 'website' ? '/balsm-logo.svg' :
-           l.key === 'whatsapp_channel' ? '/whatsapp-channels.svg' : null
-  }));
+  const saveContact = async () => {
+    const file = new File([await buildVcf()], 'Balsm.vcf', { type: 'text/vcard' });
+    // Android can hand the card straight to Contacts through the share sheet.
+    if (platform === 'android' && navigator.canShare?.({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], title: 'Balsm.health' });
+        return flash();
+      } catch (e) {
+        if (e instanceof DOMException && e.name === 'AbortError') return;
+      }
+    }
+    const url = URL.createObjectURL(file);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Balsm.vcf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    flash();
+  };
+
+  const setLang = (next: 'ar' | 'en') => {
+    if (next === locale) return;
+    startTransition(() => router.replace(pathname, { locale: next }));
+  };
+
+  const langButton = (code: 'ar' | 'en', label: string, text: string, font: string, size: number) => (
+    <button
+      type="button"
+      onClick={() => setLang(code)}
+      aria-label={label}
+      aria-pressed={locale === code}
+      style={{
+        minWidth: 44, height: 44, padding: '0 10px', border: 'none', borderRadius: 999, cursor: 'pointer',
+        background: locale === code ? C.white : 'transparent', color: locale === code ? C.ink : C.muted,
+        boxShadow: locale === code ? '0 1px 3px rgba(20,32,43,.14)' : 'none',
+        fontFamily: font, fontWeight: 700, fontSize: size, lineHeight: 1,
+      }}
+    >
+      {text}
+    </button>
+  );
+
+  const sectionTitle = (text: string, id: string) => (
+    <h2 id={id} style={{ margin: 0, padding: '0 4px', fontFamily: display, fontWeight: 700, fontSize: 13, color: C.ltTagText }}>{text}</h2>
+  );
+
+  const row = (r: Row) => {
+    const sub = typeof r.sub === 'string' ? r.sub : t(r.sub.t);
+    const external = r.href.startsWith('http');
+    return (
+      <li key={r.key}>
+        <a
+          href={r.href}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
+          className="links-row"
+          style={{ display: 'flex', alignItems: 'center', gap: 14, minHeight: 60, padding: '10px 14px', borderRadius: 14, boxShadow: L.shadow, textDecoration: 'none' }}
+        >
+          <span style={{ width: 40, height: 40, flex: 'none', borderRadius: 12, background: L.chipBg, color: L.chipIcon, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {r.icon}
+          </span>
+          <span style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <span style={{ fontFamily: FONT.body, fontWeight: 600, fontSize: 16 }}><bdi>{r.label}</bdi></span>
+            {/* <bdi> isolates a Latin handle inside RTL text so its "@" stays in front. */}
+            <span style={{ fontFamily: typeof r.sub === 'string' ? FONT.body : body, fontSize: 13, color: C.ltTagText, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}><bdi>{sub}</bdi></span>
+          </span>
+          {r.trailing === 'mail'
+            ? <Mail style={{ width: 18, height: 18, color: L.arrow, flex: 'none' }} />
+            : <ArrowUpRight className="chevron-end" style={{ width: 18, height: 18, color: L.arrow, flex: 'none' }} />}
+        </a>
+      </li>
+    );
+  };
+
+  const list: React.CSSProperties = { listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 };
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-text-primary)] transition-colors duration-500 selection:bg-primary/30">
-      <div className="animated-bg" aria-hidden="true">
-        <div className="blob blob-1 opacity-40 dark:opacity-20" />
-        <div className="blob blob-2 opacity-40 dark:opacity-20" />
-        <div className="blob blob-3 opacity-40 dark:opacity-20" />
-      </div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.4),_transparent_40%)] dark:bg-[radial-gradient(circle_at_top,_rgba(1,196,162,0.03),_transparent_40%)]" />
+    <div className="cloud-light" style={{ fontFamily: body, color: C.ink, background: C.bg, minHeight: '100vh', position: 'relative', overflowX: 'hidden' }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/balsm-background.png"
+        alt=""
+        aria-hidden
+        style={{ position: 'absolute', insetInline: 0, top: 0, width: '100%', height: 420, objectFit: 'cover', opacity: 0.45, pointerEvents: 'none', WebkitMaskImage: 'linear-gradient(#000 40%, transparent)', maskImage: 'linear-gradient(#000 40%, transparent)' }}
+      />
 
-      <button
-        type="button"
-        onClick={toggleTheme}
-        aria-label={theme === 'dark' ? (locale === 'ar' ? 'تبديل إلى الوضع الفاتح' : 'Switch to light mode') : (locale === 'ar' ? 'تبديل إلى الوضع الداكن' : 'Switch to dark mode')}
-        className="fixed right-6 top-6 z-50 rounded-full border border-ink-200/80 bg-white/90 p-3 shadow-xl shadow-black/5 backdrop-blur-xl transition-all hover:scale-110 hover:border-primary/40 focus:outline-none dark:border-ink-700/50 dark:bg-ink-900/90 dark:shadow-black/20"
-      >
-        {theme === 'dark' ? (
-          <SunFilled className="h-5 w-5 text-amber-400" />
-        ) : (
-          <MoonFilled className="h-5 w-5 text-primary" />
-        )}
-      </button>
-
-      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-[580px] flex-col items-center px-4 pb-16 pt-16 sm:px-6 sm:pt-20">
-        <section className="flex w-full flex-col items-center text-center">
-          <div className="group relative mb-8">
-            <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary to-emerald-400 opacity-20 blur-xl transition-all duration-500 group-hover:opacity-40 group-hover:blur-2xl" />
-            <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-white p-4 shadow-2xl transition-transform duration-500 hover:scale-105 dark:border-ink-800 dark:bg-ink-900 sm:h-32 sm:w-32">
-              <img
-                src="/balsm-logo.svg"
-                alt="Balsm Logo"
-                className="h-full w-full object-contain"
-              />
-            </div>
+      <main style={{ position: 'relative', maxWidth: 480, margin: '0 auto', padding: '16px 18px 40px', display: 'flex', flexDirection: 'column', gap: 22 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <div style={{ display: 'flex', gap: 2, padding: 3, borderRadius: 999, background: 'rgba(235,237,240,.9)' }}>
+            {langButton('ar', 'العربية', 'ع', FONT.cairo, 14)}
+            {langButton('en', 'English', 'EN', FONT.display, 13)}
           </div>
-
-          <div className="mb-20 px-4">
-            <h1 className="mb-10 text-3xl font-black tracking-tight text-wordmark transition-colors sm:text-4xl">
-              {locale === 'ar' ? 'Balsm | بلسم' : 'Balsm | بلسم'}
-            </h1>
-            <p className="mx-auto mt-8 max-w-sm px-8 text-[0.95rem] font-medium leading-relaxed text-ink-700 transition-colors dark:text-ink-300 sm:text-[1.1rem]">
-              {locale === 'ar'
-                ? 'أول منصة برمجية عربية مفتوحة المصدر لربط أركان الرعاية الصحية (مستشفيات، صيدليات، معامل). شاركنا بناء مستقبل الصحة الرقمية.'
-                : 'The first Arabic open-source healthcare software platform connecting hospitals, pharmacies, and labs. Join us in building the future of digital health.'}
-            </p>
-          </div>
-
-          <div className="mt-8 flex w-full flex-col items-center px-4 sm:px-0">
-            <nav aria-label={locale === 'ar' ? 'روابط التواصل' : 'Contact Links'} className="mb-32 flex w-full max-w-md flex-col gap-4 sm:max-w-[480px]">
-              {allLinks.map((link) => (
-                <Link
-                  key={link.url}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group relative flex min-h-[64px] w-full items-center overflow-hidden rounded-xl border border-ink-200/50 bg-white/70 p-4 shadow-sm backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:border-primary/40 hover:bg-white hover:shadow-lg dark:border-ink-800/50 dark:bg-ink-900/50 dark:hover:bg-ink-900/80 ${locale === 'ar' ? 'flex-row-reverse pl-12 pr-4' : 'flex-row pl-4 pr-12'}`}
-                >
-                  {/* Fixed Icon Slot - No overlap with text */}
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-500 group-hover:scale-110">
-                    {link.image ? (
-                      <img 
-                        src={link.image} 
-                        alt="" 
-                        className={`h-6 w-6 object-contain ${link.key === 'whatsapp_channel' && theme === 'dark' ? 'brightness-0 invert' : ''}`} 
-                      />
-                    ) : (
-                      getIcon(link.key, theme)
-                    )}
-                  </div>
-
-                  {/* Left Aligned Label - Safe from overlapping icons */}
-                  <span className={`flex-1 truncate font-bold tracking-tight text-ink-900 transition-colors group-hover:text-ink-800 dark:text-white dark:group-hover:text-primary-light text-base sm:text-lg ${locale === 'ar' ? 'mr-4 text-right' : 'ml-4 text-left'}`}>
-                    {link.label[locale]}
-                  </span>
-              </Link>
-            ))}
-          </nav>
         </div>
-      </section>
 
-      <footer className="mt-32 pb-24 text-center">
-        <Link href={`/${locale}`} className="group inline-flex items-center gap-2 rounded-full border border-ink-200/50 bg-white/50 px-8 py-3 text-sm font-semibold tracking-wide text-ink-700 shadow-sm backdrop-blur-md transition-all hover:scale-105 hover:bg-white hover:text-primary dark:border-ink-700/50 dark:bg-ink-800/50 dark:text-ink-300 dark:hover:bg-ink-800 dark:hover:text-white">
-          <img src="/balsm-logo.svg" className="h-5 w-5 transition-transform group-hover:rotate-12" alt="" />
-            {locale === 'ar' ? 'بني بحب بواسطة بلسم' : 'Built with love by Balsm'}
+        <header style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, textAlign: 'center' }}>
+          <div style={{ width: 96, height: 96, borderRadius: 28, background: C.white, boxShadow: '0 10px 30px rgba(20,32,43,.10)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/balsm-logo.svg" alt="" style={{ width: 62, height: 'auto' }} />
+          </div>
+          <h1 style={{ margin: 0, lineHeight: 0 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/balsm-wordmark.svg" alt="بلسم — Balsm.health" style={{ height: 40, width: 'auto' }} />
+          </h1>
+          <p style={{ margin: 0, fontFamily: display, fontWeight: 700, fontSize: 14, color: L.motto }}>{t('motto')}</p>
+          <p style={{ margin: 0, display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 999, background: C.blueBg, color: L.badgeText, fontFamily: display, fontWeight: 700, fontSize: 13.5 }}>
+            <CodeXml style={{ width: 16, height: 16, flex: 'none' }} />
+            <span>{t('badge')}</span>
+          </p>
+          <p style={{ margin: 0, fontSize: 15, lineHeight: 1.7, color: C.ink2, maxWidth: 360, textWrap: 'pretty' }}>{t('tagline')}</p>
+        </header>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr)', gap: 10 }}>
+          <button
+            type="button"
+            onClick={saveContact}
+            aria-describedby="links-save-hint"
+            className="links-save"
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, minHeight: 56, padding: '0 18px', border: 'none', borderRadius: 14, cursor: 'pointer', fontFamily: display, fontWeight: 700, fontSize: 16, boxShadow: '0 8px 22px rgba(18,131,255,.28)' }}
+          >
+            <ContactRound style={{ width: 22, height: 22 }} />
+            <span>{t('save')}</span>
+          </button>
+          <span id="links-save-hint" style={{ fontSize: 12.5, lineHeight: 1.6, color: C.ltTagText, textAlign: 'center' }}>{t(`saveHint.${platform}`)}</span>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: 10, marginTop: 4 }}>
+            <Link href="/" className="links-site" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 52, padding: '0 10px', borderRadius: 14, fontFamily: display, fontWeight: 700, fontSize: ar ? 15 : 14, whiteSpace: 'nowrap', textDecoration: 'none' }}>
+              <Globe style={{ width: 19, height: 19 }} />
+              <bdi>balsm.health</bdi>
+            </Link>
+            <Link href="/download" className="links-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 52, padding: '0 10px', borderRadius: 14, fontFamily: display, fontWeight: 700, fontSize: ar ? 15 : 14, whiteSpace: 'nowrap', textDecoration: 'none' }}>
+              <Smartphone style={{ width: 19, height: 19 }} />
+              <span>{t('app')}</span>
+            </Link>
+          </div>
+        </div>
+
+        <section aria-labelledby="links-follow" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {sectionTitle(t('follow'), 'links-follow')}
+          <ul style={list}>{FOLLOW.map(row)}</ul>
+        </section>
+
+        <section aria-labelledby="links-contact" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {sectionTitle(t('contact'), 'links-contact')}
+          <ul style={list}>{CONTACT.map(row)}</ul>
+        </section>
+
+        <div role="status" aria-live="polite">
+          {toast && (
+            <div style={{ position: 'fixed', insetInline: 16, bottom: 20, maxWidth: 448, margin: '0 auto', padding: '14px 16px', borderRadius: 14, background: C.ink, color: C.white, display: 'flex', alignItems: 'center', gap: 10, fontSize: 14, boxShadow: '0 12px 30px rgba(20,32,43,.25)' }}>
+              <Check style={{ width: 18, height: 18, color: C.mint, flex: 'none' }} />
+              <span>{t(platform === 'ios' ? 'saved.ios' : 'saved.other')}</span>
+            </div>
+          )}
+        </div>
+
+        <footer style={{ display: 'flex', justifyContent: 'center', paddingTop: 6 }}>
+          <Link href="/" className="links-foot" style={{ display: 'inline-flex', alignItems: 'center', minHeight: 44, fontSize: 13, textDecoration: 'none' }}>
+            <bdi>© Balsm.health</bdi>
           </Link>
         </footer>
       </main>

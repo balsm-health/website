@@ -873,6 +873,26 @@
     "title": "Balsm links — every official account",
     "description": "Every official Balsm account in one place — GitHub, LinkedIn, X, Instagram, YouTube, TikTok and more. Verify a Balsm account before you follow it."
   },
+  "links": {
+    "motto": "Community-driven. Independent. Trusted.",
+    "badge": "MENA’s first open-source health-tech initiative",
+    "tagline": "The community-driven healthcare OS for the Arab world",
+    "save": "Save Balsm to contacts",
+    "saveHint": {
+      "ios": "Opens the contact card — tap “Create New Contact”.",
+      "android": "Open the file and choose “Contacts” to save.",
+      "other": "Downloads a contact card (.vcf) for iPhone and Android."
+    },
+    "saved": {
+      "ios": "Open the card and tap “Create New Contact”.",
+      "other": "Contact card ready — open it to save."
+    },
+    "app": "App · coming soon",
+    "follow": "Follow us",
+    "contact": "Contact us",
+    "whatsappChannel": "Balsm channel",
+    "discord": "Balsm community"
+  },
   "downloadMeta": {
     "title": "Download the Balsm app",
     "description": "Get Balsm on iPhone, Android, Huawei or in your browser. Your health record goes in your pocket, and this page picks the right download for your device.",
