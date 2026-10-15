@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { SITE_URL as siteUrl, alternates, openGraph, twitter } from '@/lib/seo';
+import { DISTRIBUTION, appStoreId } from '@/lib/appDistribution';
 import './globals.css';
+
+const iosAppId = appStoreId(DISTRIBUTION.appStore);
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,6 +42,8 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
   },
   manifest: '/manifest.webmanifest',
+  // Safari's Smart App Banner on every page — "Open" if installed, "Get" if not.
+  ...(iosAppId && { itunes: { appId: iosAppId } }),
   openGraph: openGraph({
     locale: 'ar',
     title: 'بلسم — نظام التشغيل الصحي المملوك للمجتمع',
