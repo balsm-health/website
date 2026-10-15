@@ -18,7 +18,7 @@ export const APP_ID = 'app.balsm.health';
 
 export const DISTRIBUTION = {
   /** App Store listing, region-less: 'https://apps.apple.com/app/id6740000000'. */
-  appStore: null as string | null,
+  appStore: 'https://apps.apple.com/app/id6807674820' as string | null,
   /** Google Play listing: `https://play.google.com/store/apps/details?id=${APP_ID}`. */
   play: null as string | null,
   /** AppGallery listing: 'https://appgallery.huawei.com/app/C110000000'. */

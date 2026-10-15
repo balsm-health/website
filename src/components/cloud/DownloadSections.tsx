@@ -65,6 +65,7 @@ export default function DownloadSections({
   const primary = primaryChannel(view, urls);
   const others = ORDER.filter((c) => c !== primary && urls[c]);
   const pending = STORES.filter((c) => !urls[c]);
+  const live = ORDER.filter((c) => urls[c]);
   const arrowFlip = locale === 'ar' ? 'rotate(180deg)' : 'none';
 
   const label = (c: Channel, size: 'lg' | 'md') => (
@@ -89,8 +90,8 @@ export default function DownloadSections({
 
   const section: React.CSSProperties = { padding: 'clamp(44px,7vw,88px) 0 clamp(56px,8vw,104px)', background: 'linear-gradient(180deg,#E4F0FF 0%, #FAFAF7 100%)', minHeight: '70vh' };
 
-  // Pre-beta: nothing installable on this device, so collect emails for early
-  // access instead of offering a button that leads nowhere.
+  // Nothing installable on this device yet, so collect emails for early access
+  // instead of offering a button that leads nowhere.
   if (!primary) {
     return (
       <section style={section}>
@@ -107,6 +108,30 @@ export default function DownloadSections({
           <p style={{ fontSize: 'clamp(17px,1.9vw,20px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 32px', maxWidth: 640 }}>{t('beta.subtitle')}</p>
 
           <BetaSignup />
+
+          {/* Live elsewhere but not on this device (an iPhone build seen from
+              Android or a computer): link it, it may be a second device. */}
+          {live.length > 0 && (
+            <div style={{ marginTop: 44, paddingTop: 28, borderTop: `1px solid ${C.border}` }}>
+              <h2 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: C.ink, margin: '0 0 16px' }}>{t('beta.availableNow')}</h2>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                {live.map((c) => {
+                  const { Icon, size } = ICONS[c];
+                  return (
+                    <a
+                      key={c}
+                      href={urls[c]}
+                      data-channel={c}
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 11, minHeight: 52, padding: '10px 20px', borderRadius: 14, background: C.white, color: C.ink, border: `1.5px solid ${C.border}` }}
+                    >
+                      <Icon style={{ width: size, height: size, flex: 'none' }} />
+                      {label(c, 'md')}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {pending.length > 0 && (
             <div style={{ marginTop: 44, paddingTop: 28, borderTop: `1px solid ${C.border}` }}>
