@@ -10,6 +10,7 @@ import AnimatedLogo from './AnimatedLogo';
 import AppHomeScreen from './AppHomeScreen';
 import CountUp from './CountUp';
 import { captureError } from '@/lib/observability';
+import { channelUrls } from '@/lib/appDistribution';
 import {
   ArrowRight, Smartphone, ArrowUpLeft, FileX, Lock, CloudOff, HeartPulse, Network,
   Apple, Play, AppGallery,
@@ -61,6 +62,7 @@ const STORES = [
   { Icon: Play, key: 'play', size: 22 },
   { Icon: AppGallery, key: 'appGallery', size: 22 },
 ] as const;
+const STORE_URLS = channelUrls();
 const VALUE_ICONS = [GitBranch, ShieldCheck, Users, Languages, WifiOff, Gem];
 const VALUE_COLORS = [C.mint, C.aqua, C.blue, C.violet, C.mint, C.aqua];
 // Four paths — the design dropped the investor card from Home (it lives in the
@@ -247,22 +249,25 @@ export default function HomeSections() {
                 </div>
               ))}
             </div>
-            {/* Three store badges, per the design — none of them link out yet,
-                so they all point at the waitlist. */}
+            {/* Three store badges, per the design. A live store links out; the
+                rest point at the waitlist until they ship. */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-              {STORES.map(({ Icon, key, size }) => (
-                <a
-                  key={key}
-                  href="#join"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: 11, padding: '12px 20px', borderRadius: 14, background: C.ink, color: '#fff' }}
-                >
-                  <Icon style={{ width: size, height: size }} />
-                  <span style={{ textAlign: 'start', lineHeight: 1.1 }}>
-                    <span style={{ display: 'block', fontSize: 10, opacity: 0.7, fontFamily: FONT.cairo }}>{t('app.storeSoon')}</span>
-                    <span dir="ltr" style={{ display: 'block', fontSize: 17, fontWeight: 600, fontFamily: FONT.display, textAlign: 'start' }}>{t(`app.${key}`)}</span>
-                  </span>
-                </a>
-              ))}
+              {STORES.map(({ Icon, key, size }) => {
+                const url = STORE_URLS[key];
+                return (
+                  <a
+                    key={key}
+                    href={url ?? '#join'}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 11, padding: '12px 20px', borderRadius: 14, background: C.ink, color: '#fff' }}
+                  >
+                    <Icon style={{ width: size, height: size }} />
+                    <span style={{ textAlign: 'start', lineHeight: 1.1 }}>
+                      <span style={{ display: 'block', fontSize: 10, opacity: 0.7, fontFamily: FONT.cairo }}>{t(url ? 'app.storeLive' : 'app.storeSoon')}</span>
+                      <span dir="ltr" style={{ display: 'block', fontSize: 17, fontWeight: 600, fontFamily: FONT.display, textAlign: 'start' }}>{t(`app.${key}`)}</span>
+                    </span>
+                  </a>
+                );
+              })}
             </div>
           </Reveal>
 

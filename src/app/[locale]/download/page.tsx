@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import SiteShell from '@/components/cloud/SiteShell';
 import DownloadSections from '@/components/cloud/DownloadSections';
 import JsonLd from '@/components/JsonLd';
-import { DISTRIBUTION, appStoreId, channelUrls, detectPlatform, isPreBeta } from '@/lib/appDistribution';
+import { channelUrls, detectPlatform, isPreBeta } from '@/lib/appDistribution';
 import { alternates, openGraph, pageJsonLd, twitter } from '@/lib/seo';
 
 type Props = {
@@ -13,7 +13,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const appId = appStoreId(DISTRIBUTION.appStore);
   const t = await getTranslations({ locale, namespace: 'downloadMeta' });
   // Pre-beta, the link preview promises early access, not a download.
   const beta = isPreBeta(channelUrls());
@@ -25,8 +24,6 @@ export async function generateMetadata({ params }: Props) {
     alternates: alternates(locale, '/download'),
     openGraph: openGraph({ locale, title, description, path: '/download' }),
     twitter: twitter({ locale, title, description }),
-    // Safari's Smart App Banner — "Open" if installed, "Get" if not.
-    ...(appId && { itunes: { appId } }),
   };
 }
 

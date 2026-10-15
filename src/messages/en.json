@@ -280,7 +280,7 @@
       "desc": "From Balsm Pro to the care recipient app to Balsm Cloud — each works on its own, and grows stronger together.",
       "products": [
         {
-          "badge": "Building now",
+          "badge": "Now on iPhone",
           "title": "Care recipient app",
           "desc": "Your entire health journey in one place — every prescription, visit, and test. On your device, by a design that never leaves it.",
           "tags": [
@@ -313,7 +313,7 @@
     },
     "app": {
       "eyebrow": "For care recipients",
-      "badge": "Building now",
+      "badge": "Now on iPhone",
       "title": "Your health, finally in its rightful place.",
       "desc": "Carry your complete health record in your pocket — in Arabic, on your device, going nowhere you didn't choose.",
       "bullets": [
@@ -354,6 +354,7 @@
       "appStore": "App Store",
       "play": "Google Play",
       "storeSoon": "Coming soon on",
+      "storeLive": "Download on the",
       "appGallery": "AppGallery"
     },
     "values": {
@@ -887,7 +888,7 @@
       "ios": "Open the card and tap “Create New Contact”.",
       "other": "Contact card ready — open it to save."
     },
-    "app": "App · coming soon",
+    "app": "Get the app",
     "follow": "Follow us",
     "contact": "Contact us",
     "whatsappChannel": "Balsm channel",
@@ -895,7 +896,7 @@
   },
   "downloadMeta": {
     "title": "Download the Balsm app",
-    "description": "Get Balsm on iPhone, Android, Huawei or in your browser. Your health record goes in your pocket, and this page picks the right download for your device.",
+    "description": "Get the Balsm app on iPhone today, with Android, Huawei and the web on the way. Your health record goes in your pocket, and this page picks the right download for your device.",
     "betaTitle": "Balsm app beta: get early access",
     "betaDescription": "The Balsm patient app beta is almost here. Leave your email and we'll send you early access as soon as it opens."
   },
@@ -952,7 +953,8 @@
       "errorInvalid": "Enter a valid email to continue.",
       "errorGeneric": "Something went wrong. Please try again.",
       "privacy": "Your email stays yours. We use it only to invite you to the beta, and we'll never share it.",
-      "launching": "Launching on"
+      "launching": "Launching on",
+      "availableNow": "Available now on"
     }
   },
   "faq": {
