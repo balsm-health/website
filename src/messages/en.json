@@ -280,7 +280,7 @@
       "desc": "From Balsm Pro to the care recipient app to Balsm Cloud — each works on its own, and grows stronger together.",
       "products": [
         {
-          "badge": "Now on iPhone",
+          "badge": "Now on iPhone and Android",
           "title": "Care recipient app",
           "desc": "Your entire health journey in one place — every prescription, visit, and test. On your device, by a design that never leaves it.",
           "tags": [
@@ -313,7 +313,7 @@
     },
     "app": {
       "eyebrow": "For care recipients",
-      "badge": "Now on iPhone",
+      "badge": "Now on iPhone and Android",
       "title": "Your health, finally in its rightful place.",
       "desc": "Carry your complete health record in your pocket — in Arabic, on your device, going nowhere you didn't choose.",
       "bullets": [
@@ -896,7 +896,7 @@
   },
   "downloadMeta": {
     "title": "Download the Balsm app",
-    "description": "Get the Balsm app on iPhone today, with Android, Huawei and the web on the way. Your health record goes in your pocket, and this page picks the right download for your device.",
+    "description": "Get the Balsm app on iPhone and Android today, with Huawei and the web on the way. Your health record goes in your pocket, and this page picks the right download for your device.",
     "betaTitle": "Balsm app beta: get early access",
     "betaDescription": "The Balsm patient app beta is almost here. Leave your email and we'll send you early access as soon as it opens."
   },
