@@ -5,6 +5,7 @@
  * back to one source of truth.
  *
  *   public/og-image.png     1200x630  link-preview card (Chrome screenshot)
+ *   public/og-image-app.png 1200x630  /download store card (Chrome screenshot)
  *   public/icon-512.png     512x512   PWA / <link rel=icon>
  *   public/icon-192.png     192x192   PWA
  *   public/apple-icon.png   180x180   iOS home screen (opaque, per Apple)
@@ -94,10 +95,12 @@ function ico(pngs) {
 // Headless Chrome rather than sharp for this one: the card carries Arabic
 // text, and Chrome is the only thing here that shapes it correctly and can
 // pull the same webfonts the site uses.
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+
+const lockupSrc = () => `data:image/svg+xml;base64,${LOCKUP.toString('base64')}`;
 
 function ogCardHtml() {
-  const lockup = `data:image/svg+xml;base64,${LOCKUP.toString('base64')}`;
+  const lockup = lockupSrc();
   return `<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -155,10 +158,77 @@ function ogCardHtml() {
 </html>`;
 }
 
-function renderOgCard(out) {
+// Store badges: the site's own Apple / Play glyphs (public/icons), drawn white
+// on ink like the badges on Home and /download.
+const glyph = (name) =>
+  readFileSync(pub(`icons/${name}.svg`), 'utf8')
+    .replace(/<\/?g[^>]*>/g, '')
+    .replace('stroke="currentColor"', 'stroke="#FFFFFF"');
+
+/**
+ * The /download card. That URL is what the app's share sheet prints, so its
+ * preview says "get the app", not the brand statement every other page shows.
+ */
+function ogAppCardHtml() {
+  const lockup = lockupSrc();
+  const badge = (icon, kicker, name) => `
+    <span class="badge">${glyph(icon)}<span><small>${kicker}</small><b>${name}</b></span></span>`;
+  return `<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@500;600;700&display=block">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px; background: ${BG};
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 30px; position: relative; overflow: hidden;
+  }
+  body::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(760px 420px at 50% -12%, rgba(18,131,255,.12), transparent 70%),
+      radial-gradient(620px 380px at 92% 112%, rgba(1,196,162,.11), transparent 70%);
+  }
+  img { width: 400px; height: auto; display: block; position: relative; }
+  h1 {
+    font: 800 54px/1.4 'Cairo', sans-serif; color: ${INK};
+    position: relative; text-align: center;
+  }
+  p {
+    font: 600 26px/1.4 'Montserrat', sans-serif; color: ${MUTED};
+    position: relative; letter-spacing: .01em; direction: ltr; margin-top: -14px;
+  }
+  .stores { display: flex; gap: 18px; position: relative; direction: ltr; margin-top: 8px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 14px 28px 14px 22px; border-radius: 18px; background: ${INK}; color: #fff;
+  }
+  .badge svg { width: 38px; height: 38px; flex: none; }
+  .badge small { display: block; font: 500 15px/1.2 'Montserrat', sans-serif; opacity: .75; }
+  .badge b { display: block; font: 600 27px/1.15 'Montserrat', sans-serif; }
+  footer {
+    position: absolute; inset: auto 0 0 0; height: 8px;
+    background: linear-gradient(90deg, #01C4A2, #02BBB5, #1283FF, #724DD0);
+  }
+</style>
+</head>
+<body>
+  <img src="${lockup}" alt="">
+  <h1>سجلّك الصحي في جيبك</h1>
+  <p>Your health record, in your pocket</p>
+  <div class="stores">${badge('apple', 'Download on the', 'App Store')}${badge('play', 'Get it on', 'Google Play')}
+  </div>
+  <footer></footer>
+</body>
+</html>`;
+}
+
+function renderOgCard(out, cardHtml = ogCardHtml()) {
   const dir = mkdtempSync(join(tmpdir(), 'balsm-og-'));
   const html = join(dir, 'card.html');
-  writeFileSync(html, ogCardHtml());
+  writeFileSync(html, cardHtml);
   try {
     execFileSync(
       CHROME,
@@ -199,10 +269,13 @@ writeFileSync(
 );
 
 renderOgCard(pub('og-image.png'));
+renderOgCard(pub('og-image-app.png'), ogAppCardHtml());
 
-const { width, height } = await sharp(pub('og-image.png')).metadata();
-if (width !== 1200 || height !== 630) {
-  throw new Error(`og-image.png is ${width}x${height}, expected 1200x630`);
+for (const card of ['og-image.png', 'og-image-app.png']) {
+  const { width, height } = await sharp(pub(card)).metadata();
+  if (width !== 1200 || height !== 630) {
+    throw new Error(`${card} is ${width}x${height}, expected 1200x630`);
+  }
 }
 
-console.log('wrote og-image.png icon-512.png icon-192.png apple-icon.png favicon.ico');
+console.log('wrote og-image.png og-image-app.png icon-512.png icon-192.png apple-icon.png favicon.ico');

@@ -53,19 +53,27 @@ const OG_IMAGE_ALT = {
   en: 'Balsm — the community-owned healthcare OS. Arabic-first, offline-ready, open source.',
 } as const;
 
+const OG_APP_IMAGE_ALT = {
+  ar: 'تطبيق بلسم — سجلّك الصحي في جيبك. متاح على App Store وGoogle Play.',
+  en: 'The Balsm app — your health record, in your pocket. On the App Store and Google Play.',
+} as const;
+
+/** `brand` is the site-wide card; `app` is the store card for /download. */
+export type OgCard = 'brand' | 'app';
+
 /**
- * One card for the whole site, in both locales.
- *
- * Deliberate: the card is the brand statement, not a per-page illustration, so
- * every route previews identically and there is exactly one raster to keep
- * current. Only the alt text follows the reader's language.
+ * One brand card for the whole site, in both locales — the brand statement, not
+ * a per-page illustration. The single exception is /download: that is the URL
+ * the app's share sheet prints, so its preview shows the store badges instead.
+ * Only the alt text follows the reader's language.
  */
-export function ogImage(locale: string) {
+export function ogImage(locale: string, card: OgCard = 'brand') {
+  const alt = card === 'app' ? OG_APP_IMAGE_ALT : OG_IMAGE_ALT;
   return {
-    url: '/og-image.png',
+    url: card === 'app' ? '/og-image-app.png' : '/og-image.png',
     width: 1200,
     height: 630,
-    alt: locale === 'en' ? OG_IMAGE_ALT.en : OG_IMAGE_ALT.ar,
+    alt: locale === 'en' ? alt.en : alt.ar,
     type: 'image/png',
   };
 }
@@ -85,9 +93,10 @@ type PageSeo = {
   description: string;
   /** Route below the locale, e.g. '/providers'. Empty for the home page. */
   path?: string;
+  card?: OgCard;
 };
 
-export function openGraph({ locale, title, description, path = '' }: PageSeo) {
+export function openGraph({ locale, title, description, path = '', card }: PageSeo) {
   return {
     type: 'website' as const,
     siteName: 'Balsm',
@@ -96,11 +105,11 @@ export function openGraph({ locale, title, description, path = '' }: PageSeo) {
     url: canonicalUrl(locale, path),
     title,
     description,
-    images: [ogImage(locale)],
+    images: [ogImage(locale, card)],
   };
 }
 
-export function twitter({ locale, title, description }: Omit<PageSeo, 'path'>) {
+export function twitter({ locale, title, description, card }: Omit<PageSeo, 'path'>) {
   return {
     card: 'summary_large_image' as const,
     title,
@@ -108,7 +117,7 @@ export function twitter({ locale, title, description }: Omit<PageSeo, 'path'>) {
     // Object form, not a bare URL string, so the card carries twitter:image:alt
     // as well. X falls back to the og: tags for anything omitted here, but not
     // for alt — it reads twitter:image:alt or nothing.
-    images: [ogImage(locale)],
+    images: [ogImage(locale, card)],
     site: X_HANDLE,
     creator: X_HANDLE,
   };
