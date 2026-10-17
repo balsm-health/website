@@ -3,7 +3,7 @@
 import { useId, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { C, FONT, TEXT } from './theme';
-import { AlertCircle, Check } from './CloudIcons';
+import { AlertCircle, CheckCircle2, Lock } from './CloudIcons';
 import { captureError } from '@/lib/observability';
 
 /**
@@ -54,16 +54,12 @@ export default function BetaSignup() {
     }
   };
 
+  // Download.dc.html: one green line in place of the form, not a card.
   if (status === 'success') {
     return (
-      <div role="status" style={{ display: 'flex', alignItems: 'flex-start', gap: 16, background: C.white, border: `1px solid ${C.aquaBorder}`, borderRadius: 18, padding: '22px 24px', maxWidth: 560, boxShadow: '0 8px 24px rgba(20,32,43,.06)' }}>
-        <span style={{ width: 44, height: 44, borderRadius: '50%', background: C.greenBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.green, flex: 'none' }}>
-          <Check style={{ width: 24, height: 24 }} strokeWidth={2.5} />
-        </span>
-        <div>
-          <div style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 20, color: C.ink, margin: '2px 0 4px' }}>{t('successTitle')}</div>
-          <p style={{ fontSize: 15.5, lineHeight: 1.7, color: C.ink2, margin: 0 }}>{t('successDesc')}</p>
-        </div>
+      <div role="status" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 18px', background: '#E6F8EC', borderRadius: 14, maxWidth: 520 }}>
+        <CheckCircle2 style={{ width: 22, height: 22, color: '#1F8A47', flex: 'none' }} />
+        <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, color: '#145C30' }}>{t('success')}</span>
       </div>
     );
   }
@@ -71,8 +67,8 @@ export default function BetaSignup() {
   const invalid = status === 'error' && !!error;
 
   return (
-    <form onSubmit={submit} noValidate style={{ maxWidth: 560 }}>
-      <label htmlFor={`${id}-email`} style={{ display: 'block', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, color: C.ink2, marginBottom: 10 }}>
+    <form onSubmit={submit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 520, marginTop: 4 }}>
+      <label htmlFor={`${id}-email`} style={{ fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14, color: C.ink2 }}>
         {t('label')}
       </label>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
@@ -90,25 +86,28 @@ export default function BetaSignup() {
           disabled={status === 'loading'}
           aria-invalid={invalid}
           aria-describedby={invalid ? `${id}-error` : `${id}-privacy`}
-          // Takes the spare width beside the button; the button only fills a row
-          // of its own, i.e. once it has wrapped on a phone.
-          style={{ flex: '999 1 240px', minWidth: 0, minHeight: 56, padding: '14px 18px', borderRadius: 14, border: `1.5px solid ${invalid ? C.danger : C.borderSoft}`, background: C.white, fontFamily: FONT.body, fontSize: 16, color: C.ink, textAlign: 'left', boxSizing: 'border-box' }}
+          // An LTR address, but it sits on the reading edge of the page.
+          style={{ flex: '1 1 240px', minWidth: 0, height: 52, padding: '0 16px', borderRadius: 14, border: `1.5px solid ${invalid ? C.danger : C.borderSoft}`, background: C.white, fontFamily: FONT.body, fontSize: 16, color: C.ink, textAlign: locale === 'ar' ? 'right' : 'left', boxSizing: 'border-box' }}
         />
-        {/* Ink, not the blue petal: white on #1283FF is 3.67:1, under AA at 16px. */}
+        {/* FILL.blue with a white label — the documented exception, as .links-save. */}
         <button
           type="submit"
+          className="dl-join"
           disabled={status === 'loading'}
-          style={{ flex: '1 0 auto', minHeight: 56, padding: '14px 26px', borderRadius: 14, border: 'none', background: C.ink, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.75 : 1, boxShadow: '0 10px 24px rgba(20,32,43,.16)' }}
+          style={{ flex: '0 0 auto', height: 52, padding: '0 24px', border: 'none', borderRadius: 999, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, cursor: status === 'loading' ? 'wait' : 'pointer', opacity: status === 'loading' ? 0.75 : 1, boxShadow: '0 8px 20px rgba(18,131,255,.22)' }}
         >
           {status === 'loading' ? t('sending') : t('button')}
         </button>
       </div>
       {invalid && (
-        <div id={`${id}-error`} role="alert" style={{ display: 'flex', alignItems: 'center', gap: 7, marginTop: 12, color: TEXT.danger, fontSize: 14.5 }}>
+        <div id={`${id}-error`} role="alert" style={{ display: 'flex', alignItems: 'center', gap: 7, marginTop: 4, color: TEXT.danger, fontSize: 14.5 }}>
           <AlertCircle style={{ width: 16, height: 16, flex: 'none' }} /><span>{error}</span>
         </div>
       )}
-      <p id={`${id}-privacy`} style={{ fontSize: 13.5, lineHeight: 1.7, color: C.ink2, margin: '14px 0 0' }}>{t('privacy')}</p>
+      <div id={`${id}-privacy`} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13.5, lineHeight: 1.6, color: C.ltTagText }}>
+        <Lock style={{ width: 15, height: 15, flex: 'none', marginTop: 3 }} />
+        <span>{t('privacy')}</span>
+      </div>
     </form>
   );
 }

@@ -51,6 +51,7 @@ export const Mail = icon('mail');
 export const AtSign = icon('at-sign');
 export const Globe = icon('globe');
 export const Check = icon('check');
+export const CheckCircle2 = icon('check-circle-2');
 export const AlertCircle = icon('alert-circle');
 export const Menu = icon('menu');
 export const Github = icon('github');
