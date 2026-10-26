@@ -115,12 +115,7 @@ export default function DownloadSections({
   if (!primary) {
     return shell(
       <>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-            <div style={eyebrow}>{t('eyebrow')}</div>
-            <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12.5, padding: '4px 12px', borderRadius: 999, background: C.ink, color: C.white }}>
-              {t('beta.badge')}
-            </span>
-          </div>
+          <div style={eyebrow}>{t('eyebrow')}</div>
           <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(32px,5.2vw,58px)', lineHeight: 1.15, color: C.ink, margin: '14px 0 16px' }}>
             {t('beta.title')}
           </h1>
