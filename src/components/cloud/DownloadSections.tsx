@@ -3,7 +3,9 @@
 import { useEffect, useSyncExternalStore } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { C, FONT } from './theme';
+import AppHomeScreen from './AppHomeScreen';
 import BetaSignup from './BetaSignup';
+import Reveal from './Reveal';
 import { Apple, AppGallery, ArrowRight, Download, Globe, Play } from './CloudIcons';
 import {
   APK_RELEASE_PAGE,
@@ -50,6 +52,7 @@ export default function DownloadSections({
   choose: boolean;
 }) {
   const t = useTranslations('download');
+  const home = useTranslations('home');
   const locale = useLocale();
   // False during SSR and hydration, then the real answer — no mismatch.
   const iPad = useSyncExternalStore(noSubscribe, isIPadDesktopUA, () => false);
@@ -88,14 +91,30 @@ export default function DownloadSections({
     </span>
   );
 
-  const section: React.CSSProperties = { padding: 'clamp(44px,7vw,88px) 0 clamp(56px,8vw,104px)', background: 'linear-gradient(180deg,#E4F0FF 0%, #FAFAF7 100%)', minHeight: '70vh' };
+  // Download.dc.html: the copy column beside the app's home screen in a phone
+  // frame, on a teal wash with the slowly turning mark behind.
+  const shell = (content: React.ReactNode) => (
+    <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(44px,7vw,88px) 0 clamp(56px,8vw,104px)', background: 'linear-gradient(180deg,#E3F7F3 0%, #FAFAF7 100%)', minHeight: '70vh' }}>
+      <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', left: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
+      <div style={{ ...container, position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'clamp(40px,6vw,72px)' }}>
+        <div style={{ flex: '1 1 520px', minWidth: 0, maxWidth: 760 }}>{content}</div>
+        {/* Same phone as the Home hero (see AppHomeScreen). */}
+        <Reveal style={{ flex: '0 0 auto', margin: '0 auto', maxWidth: '100%' }}>
+          <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20,32,43,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
+            <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative' }}>
+              <AppHomeScreen label={home('app.screenAlt')} />
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
 
   // Nothing installable on this device yet, so collect emails for early access
   // instead of offering a button that leads nowhere.
   if (!primary) {
-    return (
-      <section style={section}>
-        <div style={{ ...container, maxWidth: 820 }}>
+    return shell(
+      <>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             <div style={eyebrow}>{t('eyebrow')}</div>
             <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12.5, padding: '4px 12px', borderRadius: 999, background: C.ink, color: C.white }}>
@@ -149,8 +168,7 @@ export default function DownloadSections({
               </div>
             </div>
           )}
-        </div>
-      </section>
+      </>
     );
   }
 
@@ -158,9 +176,8 @@ export default function DownloadSections({
   // store apps intercept their own URLs regardless.
   const PrimaryIcon = ICONS[primary].Icon;
 
-  return (
-    <section style={section}>
-      <div style={{ ...container, maxWidth: 820 }}>
+  return shell(
+      <>
         <div style={eyebrow}>{t('eyebrow')}</div>
         <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(32px,5.2vw,58px)', lineHeight: 1.15, color: C.ink, margin: '14px 0 16px' }}>
           {t('title')}
@@ -248,7 +265,6 @@ export default function DownloadSections({
         {view === 'desktop' && (
           <p style={{ fontSize: 15, lineHeight: 1.7, color: C.ink2, margin: '28px 0 0' }}>{t('phoneHint')}</p>
         )}
-      </div>
-    </section>
+      </>
   );
 }
