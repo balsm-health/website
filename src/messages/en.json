@@ -620,7 +620,7 @@
     "post": "Post text",
     "copy": "Copy",
     "copied": "Copied",
-    "postHint": "Download the card first, then attach it to your post. These platforms don’t accept images through a share link. The LinkedIn post names @Balsm: delete that name, type @Balsm again and pick the Balsm page from the list so the mention links. On Facebook, type @ and pick the Balsm page.",
+    "postHint": "Download the card first, then attach it to your post. These platforms don’t accept images through a share link. The LinkedIn post names @Balsm | بلسم: delete it, type @Balsm and pick “Balsm | بلسم” from the list so the mention links. On Facebook, type @ and pick the Balsm page.",
     "templates": {
       "watercolor": "Watercolor",
       "ink": "Ink",
