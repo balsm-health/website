@@ -37,7 +37,7 @@ const line = (Icon: typeof Globe) => <Icon style={{ width: 22, height: 22 }} />;
 const FOLLOW: Row[] = [
   { key: 'github', label: 'GitHub', sub: 'balsm-health', href: 'https://github.com/balsm-health', icon: logo('github') },
   { key: 'discord', label: 'Discord', sub: { t: 'discord' }, href: 'https://discord.gg/cNd7QBU26a', icon: logo('discord') },
-  { key: 'linkedin', label: 'LinkedIn', sub: 'balsm-health', href: 'https://www.linkedin.com/company/balsm-health', icon: logo('linkedin') },
+  { key: 'linkedin', label: 'LinkedIn', sub: 'balsm.health', href: 'https://www.linkedin.com/company/balsm.health', icon: logo('linkedin') },
   { key: 'x', label: 'X', sub: '@balsm_health', href: 'https://x.com/balsm_health', icon: logo('x') },
   { key: 'facebook', label: 'Facebook', sub: 'balsm.health', href: 'https://facebook.com/balsm.health', icon: logo('facebook') },
   { key: 'instagram', label: 'Instagram', sub: '@balsm.health', href: 'https://instagram.com/balsm.health', icon: logo('instagram') },
