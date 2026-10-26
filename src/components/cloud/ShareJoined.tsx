@@ -257,9 +257,11 @@ function paintCredential(ctx: CanvasRenderingContext2D, W: number, H: number, c:
   let y = py + (sq ? 38 : 30);
   ctx.font = `700 ${sq ? 26 : 22}px ${AF}`; ctx.fillStyle = '#384756';
   ctx.fillText(en ? 'I joined the Balsm community' : 'انضممتُ إلى مجتمع بلسم', tx, y);
-  const name = c.name || (en ? 'Your name' : 'اسمك');
-  ctx.fillStyle = c.name ? '#14202B' : '#9AA5B1';
-  const ns = fitFont(ctx, name, tw, sq ? 66 : 54, (k) => `800 ${k}px ${AF}`); y += ns * 1.25; ctx.fillText(name, tx, y);
+  // No name, no name line: the role moves up under the heading.
+  if (c.name) {
+    ctx.fillStyle = '#14202B';
+    const ns = fitFont(ctx, c.name, tw, sq ? 66 : 54, (k) => `800 ${k}px ${AF}`); y += ns * 1.25; ctx.fillText(c.name, tx, y);
+  }
   y += sq ? 50 : 42; ctx.font = `600 ${sq ? 27 : 23}px ${BF}`; ctx.fillStyle = acc.text; ctx.fillText(roleLine(c), tx, y);
   const d = new Date(); const dd = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
   y += sq ? 62 : 50; ctx.font = `500 ${sq ? 22 : 18}px ${BF}`; ctx.fillStyle = '#526174';
