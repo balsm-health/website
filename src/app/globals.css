@@ -1045,13 +1045,6 @@ body {
 .links-foot { color: #526174; }
 .links-foot:hover { color: #14202B; }
 
-/* /download (Download.dc.html). Same rule as /links: resting fills here so the
-   hover can win over them. */
-.dl-join { background: #1283FF; /* FILL.blue — documented exception, 3.67:1 */ color: #fff; transition: background .2s cubic-bezier(.16,1,.3,1); }
-.dl-join:hover:not(:disabled) { background: #0B6FE0; }
-.dl-store { background: #14202B; color: #fff; transition: background .2s cubic-bezier(.16,1,.3,1); }
-.dl-store:hover { background: #1F2D3D; color: #fff; }
-
 /* Cloud page is light-only by design — lock the theme tokens light even when
    the site-wide dark toggle has set `.dark` on <html>. Custom properties set on
    this closer ancestor win for the whole subtree, including the shared Footer. */

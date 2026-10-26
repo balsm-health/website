@@ -15,42 +15,20 @@ import {
   type Platform,
 } from '@/lib/appDistribution';
 
-const container: React.CSSProperties = { maxWidth: 1100, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
-// Download.dc.html sets this kicker at 13px in an emerald; emeraldDark is the
-// nearest palette member and the darker of the two.
-const eyebrow: React.CSSProperties = { fontFamily: FONT.cairo, fontWeight: 700, fontSize: 13, color: C.emeraldDark };
-const h2: React.CSSProperties = { fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(22px,2.6vw,28px)', color: C.ink, margin: 0 };
-const card: React.CSSProperties = { flex: '1 1 220px', display: 'flex', alignItems: 'center', gap: 14, padding: '12px 18px', minHeight: 64, borderRadius: 14 };
-const chip: React.CSSProperties = { padding: '4px 10px', borderRadius: 999, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12, flex: 'none' };
-const note: React.CSSProperties = { fontSize: 15, lineHeight: 1.7, color: C.ink2, margin: 0, maxWidth: 560 };
-const noteLink: React.CSSProperties = { color: C.blueDark, fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 };
+const container: React.CSSProperties = { maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' };
+// 19px bold is WCAG large text, same as every other page's kicker.
+const eyebrow: React.CSSProperties = { fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: C.blueDark, textAlign: 'start' };
 
-const ICONS: Record<Channel, { Icon: typeof Apple }> = {
-  appStore: { Icon: Apple },
-  play: { Icon: Play },
-  appGallery: { Icon: AppGallery },
-  apk: { Icon: Download },
-  web: { Icon: Globe },
+const ICONS: Record<Channel, { Icon: typeof Apple; size: number }> = {
+  appStore: { Icon: Apple, size: 24 },
+  play: { Icon: Play, size: 22 },
+  appGallery: { Icon: AppGallery, size: 22 },
+  apk: { Icon: Download, size: 22 },
+  web: { Icon: Globe, size: 22 },
 };
-
-function ChannelIcon({ channel }: { channel: Channel }) {
-  const { Icon } = ICONS[channel];
-  return <Icon style={{ width: 26, height: 26, flex: 'none' }} />;
-}
 
 const ORDER: Channel[] = ['appStore', 'play', 'appGallery', 'apk', 'web'];
 const STORES: Channel[] = ['appStore', 'play', 'appGallery'];
-
-/**
- * The store this device installs from, to tag with "for your device" even while
- * it is still a coming-soon card. A live primary channel takes precedence.
- */
-const MINE: Partial<Record<Platform, Channel>> = {
-  ios: 'appStore',
-  android: 'play',
-  huawei: 'appGallery',
-  harmony: 'appGallery',
-};
 
 /** Store names are Latin brand marks in both locales; the rest are translated. */
 const isStore = (c: Channel) => STORES.includes(c);
@@ -88,146 +66,205 @@ export default function DownloadSections({
   // A crawler gets the desktop view: it is the one that lists every option.
   const view = platform === 'bot' ? 'desktop' : platform;
   const primary = primaryChannel(view, urls);
-  const mine = primary ?? MINE[view];
-  const live = ORDER.filter((c) => urls[c]);
+  const others = ORDER.filter((c) => c !== primary && urls[c]);
   const pending = STORES.filter((c) => !urls[c]);
+  const live = ORDER.filter((c) => urls[c]);
   const arrowFlip = locale === 'ar' ? 'rotate(180deg)' : 'none';
-  // Nothing installable on this device yet, so the hero collects emails for
-  // early access instead of offering a button that leads nowhere.
-  const beta = !primary;
 
-  const name = (c: Channel, size: number) => (
-    <span
-      dir={isStore(c) ? 'ltr' : undefined}
-      style={{
-        display: 'block',
-        fontSize: size,
-        fontWeight: 700,
-        fontFamily: isStore(c) ? FONT.display : FONT.cairo,
-        // A Latin mark in its own LTR box still lines up with the RTL kicker.
-        textAlign: locale === 'ar' ? 'right' : 'left',
-      }}
-    >
-      {t(`channels.${c}.name`)}
+  const label = (c: Channel, size: 'lg' | 'md') => (
+    <span style={{ textAlign: 'start', lineHeight: 1.15 }}>
+      <span style={{ display: 'block', fontSize: size === 'lg' ? 12 : 10.5, opacity: 0.8, fontFamily: FONT.cairo }}>
+        {t(`channels.${c}.kicker`)}
+      </span>
+      <span
+        dir={isStore(c) ? 'ltr' : undefined}
+        style={{
+          display: 'block',
+          fontSize: size === 'lg' ? 21 : 17,
+          fontWeight: isStore(c) ? 600 : 700,
+          fontFamily: isStore(c) ? FONT.display : FONT.cairo,
+          textAlign: 'start',
+        }}
+      >
+        {t(`channels.${c}.name`)}
+      </span>
     </span>
   );
 
-  const apkNote = (
-    <p style={note}>
-      {t('apkNote')}{' '}
-      <a href={APK_RELEASE_PAGE} style={noteLink}>{t('apkVerify')}</a>
-    </p>
-  );
-
-  return (
-    <>
-      <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(44px,7vw,84px) 0 clamp(48px,7vw,88px)', background: 'linear-gradient(180deg,#E3F7F3 0%, #FAFAF7 100%)' }}>
-        <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', left: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
-        <div style={{ ...container, position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(380px,100%),1fr))', gap: 'clamp(36px,6vw,72px)', alignItems: 'center' }}>
-          <Reveal style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
-              <span style={eyebrow}>{t('eyebrow')}</span>
-              {beta && (
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 12px', borderRadius: 999, background: C.amberBg, color: '#7A5A0F', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12.5 }}>
-                  <span style={{ width: 7, height: 7, borderRadius: 999, background: '#E5B428' }} />
-                  {t('beta.badge')}
-                </span>
-              )}
-            </div>
-            <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(32px,5vw,56px)', lineHeight: 1.2, color: C.ink, margin: 0, textWrap: 'pretty' }}>
-              {t(beta ? 'beta.title' : 'title')}
-            </h1>
-            <p style={{ fontSize: 'clamp(16px,1.8vw,19px)', lineHeight: 1.8, color: C.ink2, margin: 0, maxWidth: 540, textWrap: 'pretty' }}>
-              {t(beta ? 'beta.subtitle' : 'subtitle')}
-            </p>
-
-            {beta ? (
-              <BetaSignup />
-            ) : (
-              // Same tab for every option: on a phone a new tab strands the
-              // user, and the store apps intercept their own URLs regardless.
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12, marginTop: 4 }}>
-                <div style={{ fontFamily: FONT.cairo, fontWeight: 600, fontSize: 14, color: C.ink2 }}>{t(`for.${view}`)}</div>
-                <a
-                  href={urls[primary]}
-                  data-channel={primary}
-                  className="dl-store"
-                  // White on the blue petal is 3.67:1, under AA for the 12px
-                  // kicker, so the primary action wears ink like the store badges.
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: 14, minHeight: 64, padding: '12px 24px', borderRadius: 16, boxShadow: '0 12px 28px rgba(20,32,43,.18)' }}
-                >
-                  <ChannelIcon channel={primary} />
-                  <span style={{ lineHeight: 1.15 }}>
-                    <span style={{ display: 'block', fontSize: 12, color: '#B7C0C9', fontFamily: FONT.cairo, textAlign: 'start' }}>{t(`channels.${primary}.kicker`)}</span>
-                    {name(primary, 20)}
-                  </span>
-                  <ArrowRight style={{ width: 20, height: 20, marginInlineStart: 6, transform: arrowFlip, flex: 'none' }} />
-                </a>
-                {primary === 'apk' && apkNote}
-                {primary === 'web' && (
-                  <p style={note}>
-                    {t('webNote')}
-                    {pending.length > 0 && <> {t('storesPending')}</>}
-                  </p>
-                )}
-              </div>
-            )}
-          </Reveal>
-
-          {/* Phone mockup — the app's home screen, drawn in markup (see AppHomeScreen). */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div style={{ width: 'min(280px,72vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20,32,43,.22)', boxSizing: 'border-box' }}>
-              <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative' }}>
-                <AppHomeScreen label={home('app.screenAlt')} />
-              </div>
+  // Download.dc.html: the copy column beside the app's home screen in a phone
+  // frame, on a teal wash with the slowly turning mark behind.
+  const shell = (content: React.ReactNode) => (
+    <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(44px,7vw,88px) 0 clamp(56px,8vw,104px)', background: 'linear-gradient(180deg,#E3F7F3 0%, #FAFAF7 100%)', minHeight: '70vh' }}>
+      <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', left: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
+      <div style={{ ...container, position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'clamp(40px,6vw,72px)' }}>
+        <div style={{ flex: '1 1 520px', minWidth: 0, maxWidth: 760 }}>{content}</div>
+        {/* Same phone as the Home hero (see AppHomeScreen). */}
+        <Reveal style={{ flex: '0 0 auto', margin: '0 auto', maxWidth: '100%' }}>
+          <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20,32,43,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
+            <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative' }}>
+              <AppHomeScreen label={home('app.screenAlt')} />
             </div>
           </div>
-        </div>
-      </section>
+        </Reveal>
+      </div>
+    </section>
+  );
 
-      <section style={{ padding: 'clamp(40px,6vw,72px) 0 clamp(56px,8vw,96px)' }}>
-        <div style={{ ...container, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(320px,100%),1fr))', gap: 'clamp(32px,5vw,56px)' }}>
+  // Nothing installable on this device yet, so collect emails for early access
+  // instead of offering a button that leads nowhere.
+  if (!primary) {
+    return shell(
+      <>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <div style={eyebrow}>{t('eyebrow')}</div>
+            <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12.5, padding: '4px 12px', borderRadius: 999, background: C.ink, color: C.white }}>
+              {t('beta.badge')}
+            </span>
+          </div>
+          <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(32px,5.2vw,58px)', lineHeight: 1.15, color: C.ink, margin: '14px 0 16px' }}>
+            {t('beta.title')}
+          </h1>
+          <p style={{ fontSize: 'clamp(17px,1.9vw,20px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 32px', maxWidth: 640 }}>{t('beta.subtitle')}</p>
+
+          <BetaSignup />
+
+          {/* Live elsewhere but not on this device (an iPhone build seen from
+              Android or a computer): link it, it may be a second device. */}
           {live.length > 0 && (
-            <Reveal style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <h2 style={h2}>{t('beta.availableNow')}</h2>
+            <div style={{ marginTop: 44, paddingTop: 28, borderTop: `1px solid ${C.border}` }}>
+              <h2 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: C.ink, margin: '0 0 16px' }}>{t('beta.availableNow')}</h2>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-                {live.map((c) => (
-                  <a key={c} href={urls[c]} data-channel={c} className="dl-store" style={{ ...card, boxShadow: '0 8px 20px rgba(20,32,43,.14)' }}>
-                    <ChannelIcon channel={c} />
-                    <span style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
-                      <span style={{ fontSize: 12, color: '#B7C0C9' }}>{t(`channels.${c}.kicker`)}</span>
-                      {name(c, 18)}
-                    </span>
-                    {c === mine && <span style={{ ...chip, background: C.emerald, color: '#06302A' }}>{t('forDevice')}</span>}
-                  </a>
-                ))}
+                {live.map((c) => {
+                  const { Icon, size } = ICONS[c];
+                  return (
+                    <a
+                      key={c}
+                      href={urls[c]}
+                      data-channel={c}
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 11, minHeight: 52, padding: '10px 20px', borderRadius: 14, background: C.white, color: C.ink, border: `1.5px solid ${C.border}` }}
+                    >
+                      <Icon style={{ width: size, height: size, flex: 'none' }} />
+                      {label(c, 'md')}
+                    </a>
+                  );
+                })}
               </div>
-              {live.includes('apk') && primary !== 'apk' && apkNote}
-            </Reveal>
+            </div>
           )}
+
           {pending.length > 0 && (
-            <Reveal style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <h2 style={h2}>{t('beta.launching')}</h2>
-              {/* Not links: there is nowhere to send anyone yet. */}
+            <div style={{ marginTop: 44, paddingTop: 28, borderTop: `1px solid ${C.border}` }}>
+              <h2 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: C.ink, margin: '0 0 16px' }}>{t('beta.launching')}</h2>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-                {pending.map((c) => (
-                  <div key={c} aria-disabled="true" style={{ ...card, background: C.white, border: '1.5px dashed #C3CAD1', color: C.ink2 }}>
-                    <ChannelIcon channel={c} />
-                    <span style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
-                      <span style={{ fontSize: 12, color: C.ltTagText }}>{t('soon')}</span>
-                      {name(c, 18)}
+                {pending.map((c) => {
+                  const { Icon, size } = ICONS[c];
+                  return (
+                    <span key={c} style={{ display: 'inline-flex', alignItems: 'center', gap: 11, minHeight: 52, padding: '10px 20px', borderRadius: 14, color: C.ink2, border: `1.5px dashed ${C.border}` }}>
+                      <Icon style={{ width: size, height: size, flex: 'none' }} />
+                      <span dir="ltr" style={{ fontSize: 17, fontWeight: 600, fontFamily: FONT.display }}>{t(`channels.${c}.name`)}</span>
                     </span>
-                    {c === mine && <span style={{ ...chip, background: C.ltTagBg, color: C.ink2 }}>{t('forDevice')}</span>}
-                  </div>
-                ))}
+                  );
+                })}
               </div>
-            </Reveal>
+            </div>
           )}
-          {view === 'desktop' && (
-            <p style={{ ...note, gridColumn: '1 / -1', maxWidth: 'none' }}>{t('phoneHint')}</p>
-          )}
-        </div>
-      </section>
-    </>
+      </>
+    );
+  }
+
+  // Same tab for every option: on a phone a new tab strands the user, and the
+  // store apps intercept their own URLs regardless.
+  const PrimaryIcon = ICONS[primary].Icon;
+
+  return shell(
+      <>
+        <div style={eyebrow}>{t('eyebrow')}</div>
+        <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(32px,5.2vw,58px)', lineHeight: 1.15, color: C.ink, margin: '14px 0 16px' }}>
+          {t('title')}
+        </h1>
+        <p style={{ fontSize: 'clamp(17px,1.9vw,20px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 32px', maxWidth: 620 }}>{t('subtitle')}</p>
+
+        {/* Recommended */}
+        <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, color: C.ink2, marginBottom: 12 }}>{t(`for.${view}`)}</div>
+        <a
+          href={urls[primary]}
+          data-channel={primary}
+          // White on the blue petal is 3.67:1, under AA for the 12px kicker, so
+          // the primary action wears ink like the home page's store badges.
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 14, minHeight: 64, padding: '14px 26px', borderRadius: 16, background: C.ink, color: '#fff', boxShadow: '0 12px 28px rgba(20,32,43,.18)' }}
+        >
+          <PrimaryIcon style={{ width: ICONS[primary].size + 4, height: ICONS[primary].size + 4, flex: 'none' }} />
+          {label(primary, 'lg')}
+          <ArrowRight style={{ width: 20, height: 20, marginInlineStart: 6, transform: arrowFlip, flex: 'none' }} />
+        </a>
+
+        {primary === 'apk' && (
+          <p style={{ fontSize: 15, lineHeight: 1.7, color: C.ink2, margin: '16px 0 0', maxWidth: 560 }}>
+            {t('apkNote')}{' '}
+            <a href={APK_RELEASE_PAGE} style={{ color: C.blueDark, fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}>
+              {t('apkVerify')}
+            </a>
+          </p>
+        )}
+        {primary === 'web' && (
+          <p style={{ fontSize: 15, lineHeight: 1.7, color: C.ink2, margin: '16px 0 0', maxWidth: 560 }}>
+            {t('webNote')}
+            {pending.length > 0 && <> {t('storesPending')}</>}
+          </p>
+        )}
+
+        {/* Everything else that is live, then the stores that aren't yet. */}
+        {(others.length > 0 || pending.length > 0) && (
+          <div style={{ marginTop: 44, paddingTop: 28, borderTop: `1px solid ${C.border}` }}>
+            <h2 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: C.ink, margin: '0 0 16px' }}>{t('otherTitle')}</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+              {others.map((c) => {
+                const { Icon, size } = ICONS[c];
+                return (
+                  <a
+                    key={c}
+                    href={urls[c]}
+                    data-channel={c}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 11, minHeight: 52, padding: '10px 20px', borderRadius: 14, background: C.white, color: C.ink, border: `1.5px solid ${C.border}` }}
+                  >
+                    <Icon style={{ width: size, height: size, flex: 'none' }} />
+                    {label(c, 'md')}
+                  </a>
+                );
+              })}
+              {/* Not links: there is nowhere to send anyone yet. */}
+              {pending.map((c) => {
+                const { Icon, size } = ICONS[c];
+                return (
+                  <span
+                    key={c}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 11, minHeight: 52, padding: '10px 20px', borderRadius: 14, background: 'transparent', color: C.ink2, border: `1.5px dashed ${C.border}` }}
+                  >
+                    <Icon style={{ width: size, height: size, flex: 'none' }} />
+                    <span style={{ textAlign: 'start', lineHeight: 1.15 }}>
+                      <span style={{ display: 'block', fontSize: 10.5, fontFamily: FONT.cairo }}>{t('soon')}</span>
+                      <span dir="ltr" style={{ display: 'block', fontSize: 17, fontWeight: 600, fontFamily: FONT.display, textAlign: 'start' }}>
+                        {t(`channels.${c}.name`)}
+                      </span>
+                    </span>
+                  </span>
+                );
+              })}
+            </div>
+            {others.includes('apk') && (
+              <p style={{ fontSize: 14, lineHeight: 1.7, color: C.ink2, margin: '14px 0 0', maxWidth: 560 }}>
+                {t('apkNote')}{' '}
+                <a href={APK_RELEASE_PAGE} style={{ color: C.blueDark, fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                  {t('apkVerify')}
+                </a>
+              </p>
+            )}
+          </div>
+        )}
+
+        {view === 'desktop' && (
+          <p style={{ fontSize: 15, lineHeight: 1.7, color: C.ink2, margin: '28px 0 0' }}>{t('phoneHint')}</p>
+        )}
+      </>
   );
 }
