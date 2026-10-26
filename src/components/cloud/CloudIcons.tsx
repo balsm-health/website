@@ -122,6 +122,12 @@ export const BadgeCheck = icon('badge-check');
 export const Frame = icon('frame');
 export const ImagePlus = icon('image-plus');
 export const Download = icon('download');
+export const PartyPopper = icon('party-popper');
+export const Share2 = icon('share-2');
+export const ZoomIn = icon('zoom-in');
+export const ZoomOut = icon('zoom-out');
+export const Move = icon('move');
+export const MessageCircle = icon('message-circle');
 // Filled glyphs used on /links. Their files set fill on the <g>, which wins
 // over the stroke defaults above.
 export const MailFilled = icon('mail-filled');
