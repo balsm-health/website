@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, useTransition } from
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import SocialLogo, { type SocialPlatform } from '@/components/cloud/SocialLogo';
-import { ArrowUpRight, AtSign, Check, CodeXml, ContactRound, Globe, Mail, Smartphone } from '@/components/cloud/CloudIcons';
+import { ArrowUpRight, AtSign, Check, CodeXml, ContactRound, Globe, Mail, PartyPopper, Smartphone } from '@/components/cloud/CloudIcons';
 import { C, FONT } from '@/components/cloud/theme';
 
 // Port of Links.dc.html. Literal values below are the design's own and have no
@@ -37,7 +37,7 @@ const line = (Icon: typeof Globe) => <Icon style={{ width: 22, height: 22 }} />;
 const FOLLOW: Row[] = [
   { key: 'github', label: 'GitHub', sub: 'balsm-health', href: 'https://github.com/balsm-health', icon: logo('github') },
   { key: 'discord', label: 'Discord', sub: { t: 'discord' }, href: 'https://discord.gg/cNd7QBU26a', icon: logo('discord') },
-  { key: 'linkedin', label: 'LinkedIn', sub: 'balsm-health', href: 'https://www.linkedin.com/company/balsm-health', icon: logo('linkedin') },
+  { key: 'linkedin', label: 'LinkedIn', sub: 'balsm.health', href: 'https://www.linkedin.com/company/balsm.health', icon: logo('linkedin') },
   { key: 'x', label: 'X', sub: '@balsm_health', href: 'https://x.com/balsm_health', icon: logo('x') },
   { key: 'facebook', label: 'Facebook', sub: 'balsm.health', href: 'https://facebook.com/balsm.health', icon: logo('facebook') },
   { key: 'instagram', label: 'Instagram', sub: '@balsm.health', href: 'https://instagram.com/balsm.health', icon: logo('instagram') },
@@ -211,6 +211,27 @@ export default function LinksPage() {
     );
   };
 
+  // Links.dc.html puts the join card among the follow rows, after the
+  // WhatsApp channel. It is a page on this site, so it opens in the same tab.
+  const joinedRow = (
+    <li key="joined">
+      <Link
+        href="/contributors/joined"
+        className="links-row"
+        style={{ display: 'flex', alignItems: 'center', gap: 14, minHeight: 60, padding: '10px 14px', borderRadius: 14, boxShadow: L.shadow, textDecoration: 'none' }}
+      >
+        <span style={{ width: 40, height: 40, flex: 'none', borderRadius: 12, background: '#E3F7F3', color: '#01A88B', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <PartyPopper style={{ width: 20, height: 20 }} />
+        </span>
+        <span style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 1 }}>
+          <span style={{ fontFamily: display, fontWeight: 700, fontSize: 16, textAlign: 'start' }}>{t('joined.title')}</span>
+          <span style={{ fontFamily: body, fontSize: 13, color: C.ltTagText, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textAlign: 'start' }}>{t('joined.sub')}</span>
+        </span>
+        <ArrowUpRight className="chevron-end" style={{ width: 18, height: 18, color: L.arrow, flex: 'none' }} />
+      </Link>
+    </li>
+  );
+
   const list: React.CSSProperties = { listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 };
 
   return (
@@ -274,7 +295,9 @@ export default function LinksPage() {
 
         <section aria-labelledby="links-follow" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {sectionTitle(t('follow'), 'links-follow')}
-          <ul style={list}>{FOLLOW.map(row)}</ul>
+          <ul style={list}>
+            {FOLLOW.map((r) => (r.key === 'whatsapp_channel' ? [row(r), joinedRow] : row(r)))}
+          </ul>
         </section>
 
         <section aria-labelledby="links-contact" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

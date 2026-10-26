@@ -1045,6 +1045,24 @@ body {
 .links-foot { color: #526174; }
 .links-foot:hover { color: #14202B; }
 
+/* /contributors/joined (Share Joined.dc.html). Resting fills live here so the
+   design's hover tints can win over them. */
+.sj-link { color: #1283FF; transition: color .2s cubic-bezier(.16,1,.3,1); }
+.sj-link:hover { color: #0B6FE0; }
+.sj-input { border: 1.5px solid #DBDFE3; outline: none; transition: border-color .2s cubic-bezier(.16,1,.3,1); }
+.sj-input:focus, .sj-input:focus-within { border-color: #1283FF; }
+.sj-primary { background: #1283FF; /* FILL.blue — documented exception, 3.67:1 */ color: #fff; transition: background .2s cubic-bezier(.16,1,.3,1); }
+.sj-primary:hover { background: #0B6FE0; }
+.sj-outline { background: #fff; transition: background .2s cubic-bezier(.16,1,.3,1); }
+.sj-outline:hover { background: #F4F3EC; }
+.sj-ghost { background: transparent; transition: background .2s cubic-bezier(.16,1,.3,1); }
+.sj-ghost:hover { background: #F4F3EC; }
+.sj-danger:hover { background: #FBEDEB; }
+.sj-copy { background: #E8F2FF; transition: background .2s cubic-bezier(.16,1,.3,1); }
+.sj-copy:hover { background: #D6E8FF; }
+.sj-share { background: #F4F3EC; color: #14202B; transition: background .2s cubic-bezier(.16,1,.3,1); }
+.sj-share:hover { background: #EBEAE1; color: #14202B; }
+
 /* Cloud page is light-only by design — lock the theme tokens light even when
    the site-wide dark toggle has set `.dark` on <html>. Custom properties set on
    this closer ancestor win for the whole subtree, including the shared Footer. */

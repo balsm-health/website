@@ -7,11 +7,7 @@ import { C, DISPLAY, FONT } from './theme';
 import Reveal from './Reveal';
 import AnimatedLogo from './AnimatedLogo';
 import SocialLogo from './SocialLogo';
-import {
-  Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft, ArrowUpRight,
-  CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug,
-  BadgeCheck, Frame,
-} from './CloudIcons';
+import { Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft, ArrowUpRight, CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug, BadgeCheck, Frame, PartyPopper, Share2 } from './CloudIcons';
 import { FILTER_LABELS, GITHUB_ORG_URL, githubIssuesUrl, type GithubIssue, type IssueFilter } from '@/lib/github';
 
 type Card = { title: string; desc: string };
@@ -234,7 +230,7 @@ export default function ContributorsSections({
             </a>
           </Reveal>
 
-          <Reveal style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 18, background: C.white, border: `1px solid ${C.border}`, borderRadius: 16, padding: '22px 26px', marginBottom: 44 }}>
+          <Reveal style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 18, background: C.white, border: `1px solid ${C.border}`, borderRadius: 16, padding: '22px 26px', marginBottom: 14 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               <div style={{ width: 48, height: 48, borderRadius: 14, background: C.violetBg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.violet, flex: 'none' }}>
                 <BadgeCheck style={{ width: 24, height: 24 }} />
@@ -244,8 +240,23 @@ export default function ContributorsSections({
                 <div style={{ fontFamily: FONT.arabic, fontSize: 14, color: C.ink2, marginTop: 2 }}>{t('frame.desc')}</div>
               </div>
             </div>
-            <Link href="/contributors/frame" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, flex: 'none', minHeight: 44 }}>
+            <Link href="/contributors/frame" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', padding: '11px 20px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, flex: 'none', minHeight: 44 }}>
               <Frame style={{ width: 16, height: 16 }} />{t('frame.cta')}
+            </Link>
+          </Reveal>
+
+          <Reveal style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 18, background: C.white, border: `1px solid ${C.border}`, borderRadius: 16, padding: '22px 26px', marginBottom: 44 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <div style={{ width: 48, height: 48, borderRadius: 14, background: '#E3F7F3', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#01A88B', flex: 'none' }}>
+                <PartyPopper style={{ width: 24, height: 24 }} />
+              </div>
+              <div>
+                <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, color: C.ink }}>{t('joined.title')}</div>
+                <div style={{ fontFamily: FONT.arabic, fontSize: 14, color: C.ink2, marginTop: 2 }}>{t('joined.desc')}</div>
+              </div>
+            </div>
+            <Link href="/contributors/joined" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', padding: '11px 20px', borderRadius: 999, background: C.ink, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, flex: 'none', minHeight: 44 }}>
+              <Share2 style={{ width: 16, height: 16 }} />{t('joined.cta')}
             </Link>
           </Reveal>
 
