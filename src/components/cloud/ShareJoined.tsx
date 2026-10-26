@@ -377,21 +377,18 @@ function paint(ctx: CanvasRenderingContext2D, W: number, H: number, tpl: Templat
 
 // ── Post text ───────────────────────────────────────────────────────────────
 
-const FOLLOW = 'LinkedIn: linkedin.com/company/balsm.health\nFacebook: facebook.com/balsm.health\nInstagram: @balsm.health\nX: @balsm_health\nWhatsApp: whatsapp.com/channel/0029Vb7A39V3mFY3fXXLVi46';
-
 /**
  * `linkedin` names the page, "Balsm | بلسم" on LinkedIn, where the community is mentioned. A
  * share link can only prefill plain text, so this is where the reader turns it
  * into a real mention: LinkedIn links one only when it is picked from the @
- * suggestions in its own editor (the post hint says so). The mention stands in
- * for the follow list there, so the LinkedIn version leaves those links out.
+ * suggestions in its own editor (the post hint says so).
  */
 const LINKEDIN_PAGE = '@Balsm | بلسم';
 
 function defaultPost(en: boolean, roleAr: string, roleEn: string, github: string, url: string, linkedin = false) {
   const gh = github ? `github.com/${github}\n` : '';
-  if (en) return `I joined the ${linkedin ? LINKEDIN_PAGE : 'Balsm'} community to contribute to ${roleEn.toLowerCase()}.\nTogether we're building an open-source healthcare OS for the Arab world: community-driven, independent, trusted.\n${gh}Join us: ${url}\n\n${linkedin ? '' : `Follow Balsm:\n${FOLLOW}\n\n`}#Balsm #OpenSource`;
-  return `انضممتُ إلى مجتمع ${linkedin ? LINKEDIN_PAGE : 'بلسم'} لأساهم في ${roleAr}.\nنبني معاً نظاماً صحياً مفتوح المصدر للعالم العربي: مُجتمعي. مستقل. موثوق.\n${gh}انضمّ إلينا: ${url}\n\n${linkedin ? '' : `تابِع بلسم:\n${FOLLOW}\n\n`}#بلسم #Balsm #مفتوح_المصدر`;
+  if (en) return `I joined the ${linkedin ? LINKEDIN_PAGE : 'Balsm'} community to contribute to ${roleEn.toLowerCase()}.\nTogether we're building an open-source healthcare OS for the Arab world: community-driven, independent, trusted.\n${gh}Join us: ${url}\n\n#Balsm #OpenSource`;
+  return `انضممتُ إلى مجتمع ${linkedin ? LINKEDIN_PAGE : 'بلسم'} لأساهم في ${roleAr}.\nنبني معاً نظاماً صحياً مفتوح المصدر للعالم العربي: مُجتمعي. مستقل. موثوق.\n${gh}انضمّ إلينا: ${url}\n\n#بلسم #Balsm #مفتوح_المصدر`;
 }
 
 // ── UI ──────────────────────────────────────────────────────────────────────
