@@ -662,7 +662,12 @@
       "copy": "Copy",
       "copied": "Copied",
       "ctaRoles": "Explore ways to contribute",
-      "callout": "Every contribution — code, design or marketing — may one day reach someone you love."
+      "callout": "Every contribution — code, design or marketing — may one day reach someone you love.",
+      "discord": {
+        "title": "Join the Balsm community on",
+        "desc": "Where contributors meet: questions, discussions and daily reviews.",
+        "cta": "Join the server"
+      }
     },
     "stats": [
       {
@@ -704,6 +709,7 @@
       "title": "The ecosystem outlasts any product.",
       "desc": "Join the developers, designers, health professionals and everyone who believes in the first open source healthcare technology ecosystem owned by the Arab world.",
       "ctaGit": "Contribute on GitHub",
+      "ctaDiscord": "Join on",
       "ctaDonate": "Support Balsm"
     },
     "roles": {
@@ -1015,7 +1021,6 @@
     "soon": "Coming soon on",
     "phoneHint": "On your phone? Open balsm.health/download there and it picks the right download for you.",
     "beta": {
-      "badge": "Beta · coming very soon",
       "title": "The Balsm beta is almost here.",
       "subtitle": "Your health record in your pocket: Arabic-first, works offline, and your data stays on your device. Leave your email and we'll send you early access the moment the beta opens.",
       "label": "Email address",

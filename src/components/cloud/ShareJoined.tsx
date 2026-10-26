@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { C, FONT } from './theme';
@@ -384,12 +384,11 @@ function paint(ctx: CanvasRenderingContext2D, W: number, H: number, tpl: Templat
  * suggestions in its own editor (the post hint says so).
  */
 const LINKEDIN_PAGE = '@Balsm | بلسم';
-const SITE = 'https://balsm.health';
 
 function defaultPost(en: boolean, roleAr: string, roleEn: string, github: string, url: string, linkedin = false) {
   const gh = github ? `github.com/${github}\n` : '';
-  if (en) return `I joined the ${linkedin ? LINKEDIN_PAGE : 'Balsm'} community to contribute to ${roleEn.toLowerCase()}.\nTogether we're building an open-source healthcare OS for the Arab world: community-driven, independent, trusted.\n${gh}Join us: ${url}\n${SITE}\n\n#Balsm #OpenSource`;
-  return `انضممتُ إلى مجتمع ${linkedin ? LINKEDIN_PAGE : 'بلسم'} لأساهم في ${roleAr}.\nنبني معاً نظاماً صحياً مفتوح المصدر للعالم العربي: مُجتمعي. مستقل. موثوق.\n${gh}انضمّ إلينا: ${url}\n${SITE}\n\n#بلسم #Balsm #مفتوح_المصدر`;
+  if (en) return `I joined the ${linkedin ? LINKEDIN_PAGE : 'Balsm'} community to contribute to ${roleEn.toLowerCase()}.\nTogether we're building an open-source healthcare OS for the Arab world: community-driven, independent, trusted.\n${gh}Join us: ${url}\n\n#Balsm #OpenSource`;
+  return `انضممتُ إلى مجتمع ${linkedin ? LINKEDIN_PAGE : 'بلسم'} لأساهم في ${roleAr}.\nنبني معاً نظاماً صحياً مفتوح المصدر للعالم العربي: مُجتمعي. مستقل. موثوق.\n${gh}انضمّ إلينا: ${url}\n\n#بلسم #Balsm #مفتوح_المصدر`;
 }
 
 // ── UI ──────────────────────────────────────────────────────────────────────
@@ -439,6 +438,7 @@ export default function ShareJoined({ shareUrl }: { shareUrl: string }) {
   const circleRef = useRef<Circle | null>(null);
   const dragRef = useRef<{ x: number; y: number; ox: number; oy: number; k: number } | null>(null);
   const copyTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const postRef = useRef<HTMLTextAreaElement>(null);
 
   const format = FORMATS.find((f) => f.id === formatId) ?? FORMATS[0];
   const accent = ACCENTS.find((a) => a.id === accentId) ?? ACCENTS[0];
@@ -448,6 +448,18 @@ export default function ShareJoined({ shareUrl }: { shareUrl: string }) {
   const post = postText ?? defaultPost(en, roleAr, roleEn, gh, shareUrl);
   // Text the reader has edited is theirs on every platform, LinkedIn included.
   const linkedinPost = postText ?? defaultPost(en, roleAr, roleEn, gh, shareUrl, true);
+
+  // The post box is as tall as its text, so no blank rows trail the post.
+  // Refit when the text changes or the column's width rewraps it.
+  useLayoutEffect(() => {
+    const el = postRef.current;
+    if (!el) return;
+    const fit = () => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight}px`; };
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el.parentElement ?? el);
+    return () => ro.disconnect();
+  }, [post]);
 
   // Brand art and card fonts first, or the first paint uses fallbacks.
   useEffect(() => {
@@ -738,7 +750,7 @@ export default function ShareJoined({ shareUrl }: { shareUrl: string }) {
                 <span>{copied ? t('copied') : t('copy')}</span>
               </button>
             </div>
-            <textarea id="sj-post" value={post} onChange={(e) => setPostText(e.target.value)} rows={12} style={{ width: '100%', resize: 'vertical', border: 'none', outline: 'none', padding: 0, fontFamily: en ? FONT.body : FONT.arabic, fontSize: 15, lineHeight: 1.75, color: C.ink, background: 'transparent' }} />
+            <textarea id="sj-post" ref={postRef} value={post} onChange={(e) => setPostText(e.target.value)} rows={4} style={{ width: '100%', resize: 'none', overflow: 'hidden', border: 'none', outline: 'none', padding: 0, fontFamily: en ? FONT.body : FONT.arabic, fontSize: 15, lineHeight: 1.75, color: C.ink, background: 'transparent' }} />
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, paddingTop: 6, borderTop: `1px solid ${C.borderHair}` }}>
               {links.map((l) => (
                 <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" className="sj-share" style={shareLink}>

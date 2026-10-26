@@ -6,7 +6,8 @@ import { Link } from '@/i18n/navigation';
 import { C, DISPLAY, FONT } from './theme';
 import Reveal from './Reveal';
 import AnimatedLogo from './AnimatedLogo';
-import { Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft, CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug, BadgeCheck, Frame, PartyPopper, Share2 } from './CloudIcons';
+import SocialLogo from './SocialLogo';
+import { Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft, ArrowUpRight, CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug, BadgeCheck, Frame, PartyPopper, Share2 } from './CloudIcons';
 import { FILTER_LABELS, GITHUB_ORG_URL, githubIssuesUrl, type GithubIssue, type IssueFilter } from '@/lib/github';
 
 type Card = { title: string; desc: string };
@@ -109,7 +110,7 @@ export default function ContributorsSections({
             </h1>
             <p style={{ fontSize: 'clamp(17px,1.9vw,21px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 28px', maxWidth: 620 }}>{t('hero.subtitle')}</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center' }}>
-              <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(114,77,208,.28)' }}>
+              <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, whiteSpace: 'nowrap', boxShadow: '0 12px 28px rgba(114,77,208,.28)' }}>
                 <Github style={{ width: 20, height: 20 }} /><span dir="ltr">{t('hero.ctaStar')}</span>
               </a>
               <div style={{ display: 'flex', alignItems: 'stretch', maxWidth: '100%', background: C.ink, borderRadius: 14, overflow: 'hidden', boxShadow: '0 4px 14px rgba(20, 32, 43,.12)' }}>
@@ -123,10 +124,28 @@ export default function ContributorsSections({
               </a>
             </div>
             {/* "every contribution may one day reach someone you love" */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 26, padding: '14px 20px', background: C.violetBg, borderRadius: 14, maxWidth: 'fit-content' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 26, padding: '14px 20px', background: C.violetBg, borderRadius: 14, width: '100%', maxWidth: 720, boxSizing: 'border-box' }}>
               <HeartPulse style={{ width: 22, height: 22, color: C.violet, flex: 'none' }} />
               <span style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16, color: '#3D2872' }}>{t('hero.callout')}</span>
             </div>
+            {/* Discord: where contributors meet. Same width as the callout above;
+                `links-site` is the ink fill with the design's #1F2D3D hover. */}
+            <a href="https://discord.gg/cNd7QBU26a" target="_blank" rel="noopener noreferrer" className="links-site" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '16px 22px', marginTop: 14, padding: '18px 22px', borderRadius: 18, boxShadow: '0 12px 28px rgba(20,32,43,.16)', width: '100%', maxWidth: 720, boxSizing: 'border-box' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 14, minWidth: 0, flex: '1 1 300px' }}>
+                <span style={{ width: 48, height: 48, flex: 'none', borderRadius: 14, background: '#5865F2', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <SocialLogo platform="discord" size={28} />
+                </span>
+                <span style={{ display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0, flex: '1 1 auto' }}>
+                  <span style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 18 }}>
+                    {t('hero.discord.title')} <span dir="ltr" style={{ fontFamily: FONT.display, fontWeight: 700 }}>Discord</span>
+                  </span>
+                  <span style={{ fontSize: 14.5, lineHeight: 1.6, color: C.border }}>{t('hero.discord.desc')}</span>
+                </span>
+              </span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44, padding: '11px 20px', borderRadius: 999, background: '#fff', color: C.ink, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, whiteSpace: 'nowrap', flex: 'none', boxSizing: 'border-box' }}>
+                {t('hero.discord.cta')}<ArrowUpRight className="chevron-end" style={{ width: 16, height: 16 }} />
+              </span>
+            </a>
           </Reveal>
         </div>
       </section>
@@ -296,6 +315,10 @@ export default function ContributorsSections({
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center' }}>
             <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(114,77,208,.26)' }}>
               <Github style={{ width: 19, height: 19 }} />{t('cta.ctaGit')}
+            </a>
+            <a href="https://discord.gg/cNd7QBU26a" target="_blank" rel="noopener noreferrer" className="links-site" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17 }}>
+              <SocialLogo platform="discord" size={20} />
+              <span>{t('cta.ctaDiscord')} <span dir="ltr" style={{ fontFamily: FONT.display }}>Discord</span></span>
             </a>
             <Link href="/sponsor" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.white, color: C.ink, border: `1.5px solid ${C.borderSoft}`, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17 }}>
               <HeartHandshake style={{ width: 19, height: 19 }} />{t('cta.ctaDonate')}
