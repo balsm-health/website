@@ -195,6 +195,7 @@
       "title": "Community",
       "contribute": "Contribute code",
       "docs": "Documentation",
+      "joined": "Share that you joined",
       "support": "Sponsors"
     },
     "ecosystem": {
@@ -584,6 +585,70 @@
       "Aqua": "Aqua",
       "Mint": "Mint",
       "Navy": "Navy"
+    },
+    "joinedLink": "Just joined? Create and share your join card"
+  },
+  "contributorsJoinedMeta": {
+    "title": "I joined the Balsm community",
+    "description": "Joined the Balsm community? Create your card and share it with your network."
+  },
+  "contributorsJoined": {
+    "eyebrow": "Balsm community",
+    "title": "Welcome to the community. Share that you joined.",
+    "subtitle": "Create your card, download it, and post it on your accounts. Every new contributor brings us closer to open healthcare infrastructure owned by the Arab world.",
+    "frameLink": "Also add a Balsm frame to your profile photo",
+    "template": "Design",
+    "accent": "Colour",
+    "name": "Your name",
+    "namePlaceholder": "e.g. Mariam Hassan",
+    "role": "I contribute to",
+    "github": "GitHub username",
+    "optional": "(optional)",
+    "photo": "Your photo",
+    "photoAdd": "Add your photo",
+    "photoChange": "Change photo",
+    "photoDrop": "Drag and drop your photo here, or click to choose a file.",
+    "zoom": "Zoom photo",
+    "dragHint": "Drag the photo in the preview to position it.",
+    "reset": "Reset",
+    "remove": "Remove",
+    "privacy": "Your photo stays on your device. The card is made in your browser and is never uploaded to a server.",
+    "size": "Size",
+    "preview": "Join card preview",
+    "download": "Download card",
+    "share": "Share",
+    "post": "Post text",
+    "copy": "Copy",
+    "copied": "Copied",
+    "postHint": "Download the card first, then attach it to your post. These platforms don’t accept images through a share link. The LinkedIn post names @Balsm | بلسم: delete it, type @Balsm and pick “Balsm | بلسم” from the list so the mention links. On Facebook, type @ and pick the Balsm page.",
+    "templates": {
+      "watercolor": "Watercolor",
+      "ink": "Ink",
+      "panel": "Petal panel",
+      "centered": "Centered",
+      "minimal": "Minimal",
+      "halo": "Halo",
+      "credential": "Member card"
+    },
+    "accents": {
+      "violet": "Violet",
+      "aqua": "Aqua",
+      "emerald": "Emerald",
+      "blue": "Blue",
+      "mint": "Mint"
+    },
+    "roles": {
+      "code": "Engineering",
+      "design": "Design",
+      "clinical": "Clinical expertise",
+      "product": "Product",
+      "docs": "Documentation",
+      "marketing": "Marketing",
+      "community": "Community"
+    },
+    "formats": {
+      "wide": "Landscape · 1200×630",
+      "square": "Square · 1080×1080"
     }
   },
   "contributors": {
@@ -685,6 +750,11 @@
       "title": "Announce your contribution on social media",
       "desc": "Create a Balsm profile-photo frame for LinkedIn, Facebook, X, or Instagram in seconds.",
       "cta": "Create the frame"
+    },
+    "joined": {
+      "title": "Joined the community? Share the news",
+      "desc": "Make your join card with your name, photo and role, and post it with ready-made text that mentions Balsm’s accounts.",
+      "cta": "Create your card"
     },
     "dev": {
       "eyebrow": "For developers specifically",
@@ -892,7 +962,11 @@
     "follow": "Follow us",
     "contact": "Contact us",
     "whatsappChannel": "Balsm channel",
-    "discord": "Balsm community"
+    "discord": "Balsm community",
+    "joined": {
+      "title": "Joined the community? Share it",
+      "sub": "Create your join card"
+    }
   },
   "downloadMeta": {
     "title": "Download the Balsm app",

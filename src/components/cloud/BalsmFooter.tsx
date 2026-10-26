@@ -121,6 +121,7 @@ export default function BalsmFooter() {
               <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={linkStyle}><span dir="ltr">GitHub</span></a>
               <Link href="/contributors" style={linkStyle}>{t('community.contribute')}</Link>
               <Link href="/contributors" style={linkStyle}>{t('community.docs')}</Link>
+              <Link href="/contributors/joined" style={linkStyle}>{t('community.joined')}</Link>
               <Link href="/sponsor" style={linkStyle}>{t('community.support')}</Link>
             </div>
           </div>

@@ -1,9 +1,10 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { C, FONT } from './theme';
-import { Download, ImagePlus } from './CloudIcons';
+import { ArrowLeft, ArrowRight, Download, ImagePlus } from './CloudIcons';
 
 const BLANK_PIXEL = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 const PREVIEW = 340;
@@ -107,6 +108,7 @@ function photoInset(style: FrameStyle): React.CSSProperties {
 
 export default function ProfileFrameGenerator() {
   const t = useTranslations('contributorsFrame');
+  const locale = useLocale();
   const fileRef = useRef<HTMLInputElement>(null);
   const dragRef = useRef<{ startX: number; startY: number; offX: number; offY: number } | null>(null);
 
@@ -475,6 +477,10 @@ export default function ProfileFrameGenerator() {
         <p style={{ fontWeight: 400, fontSize: 16, lineHeight: 1.6, color: C.ink2, margin: 0 }}>
           {t('subtitle', { platform: activePlatform.name })}
         </p>
+        <Link href="/contributors/joined" className="sj-link" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, alignSelf: 'flex-start', minHeight: 44, marginTop: 4, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14 }}>
+          <span>{t('joinedLink')}</span>
+          {locale === 'en' ? <ArrowRight style={{ width: 16, height: 16 }} /> : <ArrowLeft style={{ width: 16, height: 16 }} />}
+        </Link>
       </div>
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }} role="group" aria-label={t('platform')}>
