@@ -110,7 +110,7 @@ Anything not on this list is not Balsm.
 
 - GitHub — https://github.com/balsm-health
 - Discord — https://discord.gg/cNd7QBU26a
-- LinkedIn — https://www.linkedin.com/company/balsm-health
+- LinkedIn — https://www.linkedin.com/company/balsm.health
 - X — https://x.com/balsm_health
 - Facebook — https://facebook.com/balsm.health
 - Instagram — https://instagram.com/balsm.health
