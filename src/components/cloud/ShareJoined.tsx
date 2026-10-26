@@ -377,10 +377,16 @@ function paint(ctx: CanvasRenderingContext2D, W: number, H: number, tpl: Templat
 
 const FOLLOW = 'LinkedIn: linkedin.com/company/balsm.health\nFacebook: facebook.com/balsm.health\nInstagram: @balsm.health\nX: @balsm_health\nWhatsApp: whatsapp.com/channel/0029Vb7A39V3mFY3fXXLVi46';
 
-function defaultPost(en: boolean, roleAr: string, roleEn: string, github: string, url: string) {
+/**
+ * `linkedin` names the page as `@Balsm` where the community is mentioned. A
+ * share link can only prefill plain text, so this is where the reader turns it
+ * into a real mention: LinkedIn links one only when it is picked from the @
+ * suggestions in its own editor (the post hint says so).
+ */
+function defaultPost(en: boolean, roleAr: string, roleEn: string, github: string, url: string, linkedin = false) {
   const gh = github ? `github.com/${github}\n` : '';
-  if (en) return `I joined the Balsm community to contribute to ${roleEn.toLowerCase()}.\nTogether we're building an open-source healthcare OS for the Arab world: community-driven, independent, trusted.\n${gh}Join us: ${url}\n\nFollow Balsm:\n${FOLLOW}\n\n#Balsm #OpenSource`;
-  return `انضممتُ إلى مجتمع بلسم لأساهم في ${roleAr}.\nنبني معاً نظاماً صحياً مفتوح المصدر للعالم العربي: مُجتمعي. مستقل. موثوق.\n${gh}انضمّ إلينا: ${url}\n\nتابِع بلسم:\n${FOLLOW}\n\n#بلسم #Balsm #مفتوح_المصدر`;
+  if (en) return `I joined the ${linkedin ? '@Balsm' : 'Balsm'} community to contribute to ${roleEn.toLowerCase()}.\nTogether we're building an open-source healthcare OS for the Arab world: community-driven, independent, trusted.\n${gh}Join us: ${url}\n\nFollow Balsm:\n${FOLLOW}\n\n#Balsm #OpenSource`;
+  return `انضممتُ إلى مجتمع ${linkedin ? '@Balsm' : 'بلسم'} لأساهم في ${roleAr}.\nنبني معاً نظاماً صحياً مفتوح المصدر للعالم العربي: مُجتمعي. مستقل. موثوق.\n${gh}انضمّ إلينا: ${url}\n\nتابِع بلسم:\n${FOLLOW}\n\n#بلسم #Balsm #مفتوح_المصدر`;
 }
 
 // ── UI ──────────────────────────────────────────────────────────────────────
@@ -437,6 +443,8 @@ export default function ShareJoined({ shareUrl }: { shareUrl: string }) {
   const roleAr = t(`roles.${role}`);
   const gh = github.trim();
   const post = postText ?? defaultPost(en, roleAr, roleEn, gh, shareUrl);
+  // Text the reader has edited is theirs on every platform, LinkedIn included.
+  const linkedinPost = postText ?? defaultPost(en, roleAr, roleEn, gh, shareUrl, true);
 
   // Brand art and card fonts first, or the first paint uses fallbacks.
   useEffect(() => {
@@ -550,7 +558,7 @@ export default function ShareJoined({ shareUrl }: { shareUrl: string }) {
 
   const enc = encodeURIComponent;
   const links = [
-    { label: 'LinkedIn', href: `https://www.linkedin.com/feed/?shareActive=true&text=${enc(post)}` },
+    { label: 'LinkedIn', href: `https://www.linkedin.com/feed/?shareActive=true&text=${enc(linkedinPost)}` },
     { label: 'X', href: `https://x.com/intent/post?text=${enc(post)}` },
     { label: 'WhatsApp', href: `https://wa.me/?text=${enc(post)}`, icon: true },
     { label: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${enc(shareUrl)}` },
