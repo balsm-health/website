@@ -384,12 +384,11 @@ function paint(ctx: CanvasRenderingContext2D, W: number, H: number, tpl: Templat
  * suggestions in its own editor (the post hint says so).
  */
 const LINKEDIN_PAGE = '@Balsm | بلسم';
-const SITE = 'https://balsm.health';
 
 function defaultPost(en: boolean, roleAr: string, roleEn: string, github: string, url: string, linkedin = false) {
   const gh = github ? `github.com/${github}\n` : '';
-  if (en) return `I joined the ${linkedin ? LINKEDIN_PAGE : 'Balsm'} community to contribute to ${roleEn.toLowerCase()}.\nTogether we're building an open-source healthcare OS for the Arab world: community-driven, independent, trusted.\n${gh}Join us: ${url}\n${SITE}\n\n#Balsm #OpenSource`;
-  return `انضممتُ إلى مجتمع ${linkedin ? LINKEDIN_PAGE : 'بلسم'} لأساهم في ${roleAr}.\nنبني معاً نظاماً صحياً مفتوح المصدر للعالم العربي: مُجتمعي. مستقل. موثوق.\n${gh}انضمّ إلينا: ${url}\n${SITE}\n\n#بلسم #Balsm #مفتوح_المصدر`;
+  if (en) return `I joined the ${linkedin ? LINKEDIN_PAGE : 'Balsm'} community to contribute to ${roleEn.toLowerCase()}.\nTogether we're building an open-source healthcare OS for the Arab world: community-driven, independent, trusted.\n${gh}Join us: ${url}\n\n#Balsm #OpenSource`;
+  return `انضممتُ إلى مجتمع ${linkedin ? LINKEDIN_PAGE : 'بلسم'} لأساهم في ${roleAr}.\nنبني معاً نظاماً صحياً مفتوح المصدر للعالم العربي: مُجتمعي. مستقل. موثوق.\n${gh}انضمّ إلينا: ${url}\n\n#بلسم #Balsm #مفتوح_المصدر`;
 }
 
 // ── UI ──────────────────────────────────────────────────────────────────────
