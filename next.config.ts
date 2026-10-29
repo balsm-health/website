@@ -100,8 +100,9 @@ export default withSentryConfig(configWithIntl, {
   sourcemaps: { disable: !process.env.SENTRY_AUTH_TOKEN },
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  // Route Sentry events through a first-party path to dodge ad blockers.
-  tunnelRoute: '/monitoring',
+  // No tunnelRoute: this deployment runs on Cloudflare Workers via OpenNext,
+  // which doesn't serve @sentry/nextjs's auto-generated tunnel handler, so a
+  // configured tunnel path 404s on every envelope (see BALSM-WEBSITE-B).
   disableLogger: true,
 });
 
