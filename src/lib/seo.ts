@@ -65,14 +65,14 @@ export type OgCard = 'brand' | 'app';
  * One brand card for the whole site, in both locales — the brand statement, not
  * a per-page illustration. The single exception is /download: that is the URL
  * the app's share sheet prints, so its preview shows the app's home screen and
- * the store badges instead, in the reader's language (og-image-app.png is
- * Arabic, og-image-app-en.png English). The brand card is bilingual, so only
+ * the store badges instead, in the reader's language (og-app-ar.png is
+ * Arabic, og-app-en.png English). The brand card is bilingual, so only
  * its alt text follows the locale.
  */
 export function ogImage(locale: string, card: OgCard = 'brand') {
   const alt = card === 'app' ? OG_APP_IMAGE_ALT : OG_IMAGE_ALT;
   return {
-    url: card === 'app' ? (locale === 'en' ? '/og-image-app-en.png' : '/og-image-app.png') : '/og-image.png',
+    url: card === 'app' ? (locale === 'en' ? '/og-app-en.png' : '/og-app-ar.png') : '/og-image.png',
     width: 1200,
     height: 630,
     alt: locale === 'en' ? alt.en : alt.ar,

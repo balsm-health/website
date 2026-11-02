@@ -5,8 +5,12 @@
  * back to one source of truth.
  *
  *   public/og-image.png     1200x630  link-preview card (Chrome screenshot)
- *   public/og-image-app.png    1200x630  /download store card, Arabic (Chrome screenshot)
- *   public/og-image-app-en.png 1200x630  /en/download store card, English
+ *   public/og-app-ar.png    1200x630  /download store card, Arabic (Chrome screenshot)
+ *   public/og-app-en.png    1200x630  /en/download store card, English
+ *
+ * Social apps cache a preview by image URL for days, so when an app card
+ * changes enough to matter, give it a new file name (and update src/lib/seo.ts)
+ * rather than overwriting it in place.
  *   public/icon-512.png     512x512   PWA / <link rel=icon>
  *   public/icon-192.png     192x192   PWA
  *   public/apple-icon.png   180x180   iOS home screen (opaque, per Apple)
@@ -313,14 +317,14 @@ writeFileSync(
 );
 
 renderOgCard(pub('og-image.png'));
-renderOgCard(pub('og-image-app.png'), ogAppCardHtml('ar'));
-renderOgCard(pub('og-image-app-en.png'), ogAppCardHtml('en'));
+renderOgCard(pub('og-app-ar.png'), ogAppCardHtml('ar'));
+renderOgCard(pub('og-app-en.png'), ogAppCardHtml('en'));
 
-for (const card of ['og-image.png', 'og-image-app.png', 'og-image-app-en.png']) {
+for (const card of ['og-image.png', 'og-app-ar.png', 'og-app-en.png']) {
   const { width, height } = await sharp(pub(card)).metadata();
   if (width !== 1200 || height !== 630) {
     throw new Error(`${card} is ${width}x${height}, expected 1200x630`);
   }
 }
 
-console.log('wrote og-image.png og-image-app.png og-image-app-en.png icon-512.png icon-192.png apple-icon.png favicon.ico');
+console.log('wrote og-image.png og-app-ar.png og-app-en.png icon-512.png icon-192.png apple-icon.png favicon.ico');
