@@ -7,7 +7,7 @@ import { C, DISPLAY, FILL, FONT, ON, TEXT } from './theme';
 import { useInView } from './useReveal';
 import Reveal from './Reveal';
 import AnimatedLogo from './AnimatedLogo';
-import AppHomeScreen from './AppHomeScreen';
+import AppPhone from './AppPhone';
 import CountUp from './CountUp';
 import { captureError } from '@/lib/observability';
 import { channelUrls } from '@/lib/appDistribution';
@@ -271,13 +271,9 @@ export default function HomeSections() {
             </div>
           </Reveal>
 
-          {/* Phone mockup — the app's home screen, drawn in markup (see AppHomeScreen). */}
+          {/* Phone mockup — a capture of the app's home screen (see AppPhone). */}
           <Reveal style={{ flex: '0 0 auto', margin: '0 auto', maxWidth: '100%' }}>
-            <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20, 32, 43,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
-              <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative' }}>
-                <AppHomeScreen label={t('app.screenAlt')} />
-              </div>
-            </div>
+            <AppPhone label={t('app.screenAlt')} lazy />
           </Reveal>
         </div>
       </section>

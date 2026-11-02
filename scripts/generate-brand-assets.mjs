@@ -5,7 +5,12 @@
  * back to one source of truth.
  *
  *   public/og-image.png     1200x630  link-preview card (Chrome screenshot)
- *   public/og-image-app.png 1200x630  /download store card (Chrome screenshot)
+ *   public/og-app-ar.png    1200x630  /download store card, Arabic (Chrome screenshot)
+ *   public/og-app-en.png    1200x630  /en/download store card, English
+ *
+ * Social apps cache a preview by image URL for days, so when an app card
+ * changes enough to matter, give it a new file name (and update src/lib/seo.ts)
+ * rather than overwriting it in place.
  *   public/icon-512.png     512x512   PWA / <link rel=icon>
  *   public/icon-192.png     192x192   PWA
  *   public/apple-icon.png   180x180   iOS home screen (opaque, per Apple)
@@ -167,58 +172,101 @@ const glyph = (name) =>
 
 /**
  * The /download card. That URL is what the app's share sheet prints, so its
- * preview says "get the app", not the brand statement every other page shows.
+ * preview says "get the app", not the brand statement every other page shows,
+ * and shows the app itself: the home-screen capture the site's phone mockup
+ * uses (public/app/home-{ar,en}.webp), in the same iPhone frame. One card per
+ * locale, so the screenshot and headline match the reader's language.
  */
-function ogAppCardHtml() {
+const APP_CARD_COPY = {
+  ar: { dir: 'rtl', title: 'سجلّك الصحي في جيبك', sub: 'Your health record, in your pocket', subDir: 'ltr' },
+  en: { dir: 'ltr', title: 'Your health record, in your pocket', sub: 'سجلّك الصحي في جيبك', subDir: 'rtl' },
+};
+
+function ogAppCardHtml(locale = 'ar') {
   const lockup = lockupSrc();
+  const copy = APP_CARD_COPY[locale];
+  const screen = `data:image/webp;base64,${readFileSync(pub(`app/home-${locale}.webp`)).toString('base64')}`;
   const badge = (icon, kicker, name) => `
     <span class="badge">${glyph(icon)}<span><small>${kicker}</small><b>${name}</b></span></span>`;
   return `<!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="${locale}" dir="${copy.dir}">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@500;600;700&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@500;600;700;800&family=IBM+Plex+Sans:wght@600&display=block">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: 1200px; height: 630px; background: ${BG};
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 30px; position: relative; overflow: hidden;
+    display: flex; align-items: center; gap: 56px; padding: 0 84px;
+    position: relative; overflow: hidden;
   }
   body::before {
     content: ''; position: absolute; inset: 0;
     background:
-      radial-gradient(760px 420px at 50% -12%, rgba(18,131,255,.12), transparent 70%),
+      radial-gradient(640px 420px at 22% 18%, rgba(131,80,222,.12), transparent 70%),
       radial-gradient(620px 380px at 92% 112%, rgba(1,196,162,.11), transparent 70%);
   }
-  img { width: 400px; height: auto; display: block; position: relative; }
+  .copy { flex: 1; min-width: 0; position: relative; display: flex; flex-direction: column; align-items: flex-start; }
+  .lockup { width: 300px; height: auto; display: block; }
   h1 {
-    font: 800 54px/1.4 'Cairo', sans-serif; color: ${INK};
-    position: relative; text-align: center;
+    font: 800 ${locale === 'ar' ? '58px/1.35' : '52px/1.15'} ${locale === 'ar' ? "'Cairo'" : "'Montserrat'"}, sans-serif; color: ${INK};
+    margin-top: 34px; letter-spacing: ${locale === 'ar' ? '0' : '-0.015em'};
   }
   p {
-    font: 600 26px/1.4 'Montserrat', sans-serif; color: ${MUTED};
-    position: relative; letter-spacing: .01em; direction: ltr; margin-top: -14px;
+    font: ${copy.subDir === 'ltr' ? "600 24px/1.4 'Montserrat'" : "700 26px/1.5 'Cairo'"}, sans-serif; color: ${MUTED};
+    direction: ${copy.subDir}; margin-top: 12px;
   }
-  .stores { display: flex; gap: 18px; position: relative; direction: ltr; margin-top: 8px; }
+  .stores { display: flex; gap: 16px; direction: ltr; margin-top: 36px; }
   .badge {
-    display: inline-flex; align-items: center; gap: 14px;
-    padding: 14px 28px 14px 22px; border-radius: 18px; background: ${INK}; color: #fff;
+    display: inline-flex; align-items: center; gap: 13px;
+    padding: 13px 26px 13px 20px; border-radius: 16px; background: ${INK}; color: #fff;
   }
-  .badge svg { width: 38px; height: 38px; flex: none; }
-  .badge small { display: block; font: 500 15px/1.2 'Montserrat', sans-serif; opacity: .75; }
-  .badge b { display: block; font: 600 27px/1.15 'Montserrat', sans-serif; }
+  .badge svg { width: 34px; height: 34px; flex: none; }
+  .badge small { display: block; font: 500 14px/1.2 'Montserrat', sans-serif; opacity: .75; }
+  .badge b { display: block; font: 600 24px/1.15 'Montserrat', sans-serif; }
+  /* Phone: same frame as src/components/cloud/AppPhone.tsx, scaled to 1.12x,
+     running off the bottom edge so the screen reads at link-preview size. */
+  .phone {
+    flex: none; position: relative; align-self: flex-start; margin-top: 64px;
+    width: 314px; border-radius: 49px; background: ${INK}; padding: 12px;
+    box-shadow: 0 34px 80px rgba(20,32,43,.24);
+  }
+  .screen { position: relative; width: 100%; aspect-ratio: 393 / 852; border-radius: 38px; background: #fff; overflow: hidden; }
+  .screen > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .status {
+    position: absolute; top: 0; left: 0; right: 0; height: 49px; display: flex; align-items: center;
+    justify-content: space-between; padding: 0 25px 0 29px; color: ${INK};
+  }
+  .status .time { font: 600 13.5px 'IBM Plex Sans', sans-serif; letter-spacing: -0.01em; direction: ltr; }
+  .status .icons { display: flex; align-items: center; gap: 4.5px; direction: ltr; }
+  .island { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 31%; height: 27px; border-radius: 999px; background: #0B1218; }
   footer {
-    position: absolute; inset: auto 0 0 0; height: 8px;
+    position: absolute; inset: auto 0 0 0; height: 8px; z-index: 2;
     background: linear-gradient(90deg, #01C4A2, #02BBB5, #1283FF, #724DD0);
   }
 </style>
 </head>
 <body>
-  <img src="${lockup}" alt="">
-  <h1>سجلّك الصحي في جيبك</h1>
-  <p>Your health record, in your pocket</p>
-  <div class="stores">${badge('apple', 'Download on the', 'App Store')}${badge('play', 'Get it on', 'Google Play')}
+  <div class="copy">
+    <img class="lockup" src="${lockup}" alt="">
+    <h1>${copy.title}</h1>
+    <p>${copy.sub}</p>
+    <div class="stores">${badge('apple', 'Download on the', 'App Store')}${badge('play', 'Get it on', 'Google Play')}
+    </div>
+  </div>
+  <div class="phone">
+    <div class="screen">
+      <img src="${screen}" alt="">
+      <div class="status">
+        <span class="time">9:41</span>
+        <span class="icons">
+          <svg viewBox="0 0 18 12" width="17" height="11"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="currentColor"/><rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+          <svg viewBox="0 0 16 12" width="15" height="11"><path d="M8 11.5l2.4-2.9a3.6 3.6 0 0 0-4.8 0z M8 4.6c1.6 0 3.1.6 4.2 1.6l1.5-1.8A8.6 8.6 0 0 0 8 2.2a8.6 8.6 0 0 0-5.7 2.2l1.5 1.8A6.3 6.3 0 0 1 8 4.6z" fill="currentColor"/></svg>
+          <svg viewBox="0 0 27 13" width="24" height="11"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2.5" y="2.5" width="18" height="8" rx="2" fill="currentColor"/><path d="M24.5 4.5v4a2 2 0 0 0 0-4z" fill="currentColor" fill-opacity=".45"/></svg>
+        </span>
+      </div>
+      <div class="island"></div>
+    </div>
   </div>
   <footer></footer>
 </body>
@@ -269,13 +317,14 @@ writeFileSync(
 );
 
 renderOgCard(pub('og-image.png'));
-renderOgCard(pub('og-image-app.png'), ogAppCardHtml());
+renderOgCard(pub('og-app-ar.png'), ogAppCardHtml('ar'));
+renderOgCard(pub('og-app-en.png'), ogAppCardHtml('en'));
 
-for (const card of ['og-image.png', 'og-image-app.png']) {
+for (const card of ['og-image.png', 'og-app-ar.png', 'og-app-en.png']) {
   const { width, height } = await sharp(pub(card)).metadata();
   if (width !== 1200 || height !== 630) {
     throw new Error(`${card} is ${width}x${height}, expected 1200x630`);
   }
 }
 
-console.log('wrote og-image.png og-image-app.png icon-512.png icon-192.png apple-icon.png favicon.ico');
+console.log('wrote og-image.png og-app-ar.png og-app-en.png icon-512.png icon-192.png apple-icon.png favicon.ico');

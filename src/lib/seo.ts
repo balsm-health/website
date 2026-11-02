@@ -54,8 +54,8 @@ const OG_IMAGE_ALT = {
 } as const;
 
 const OG_APP_IMAGE_ALT = {
-  ar: 'تطبيق بلسم — سجلّك الصحي في جيبك. متاح على App Store وGoogle Play.',
-  en: 'The Balsm app — your health record, in your pocket. On the App Store and Google Play.',
+  ar: 'تطبيق بلسم — سجلّك الصحي في جيبك، بجانب الشاشة الرئيسية للتطبيق. متاح على App Store وGoogle Play.',
+  en: "The Balsm app — your health record, in your pocket, beside the app's home screen. On the App Store and Google Play.",
 } as const;
 
 /** `brand` is the site-wide card; `app` is the store card for /download. */
@@ -64,13 +64,15 @@ export type OgCard = 'brand' | 'app';
 /**
  * One brand card for the whole site, in both locales — the brand statement, not
  * a per-page illustration. The single exception is /download: that is the URL
- * the app's share sheet prints, so its preview shows the store badges instead.
- * Only the alt text follows the reader's language.
+ * the app's share sheet prints, so its preview shows the app's home screen and
+ * the store badges instead, in the reader's language (og-app-ar.png is
+ * Arabic, og-app-en.png English). The brand card is bilingual, so only
+ * its alt text follows the locale.
  */
 export function ogImage(locale: string, card: OgCard = 'brand') {
   const alt = card === 'app' ? OG_APP_IMAGE_ALT : OG_IMAGE_ALT;
   return {
-    url: card === 'app' ? '/og-image-app.png' : '/og-image.png',
+    url: card === 'app' ? (locale === 'en' ? '/og-app-en.png' : '/og-app-ar.png') : '/og-image.png',
     width: 1200,
     height: 630,
     alt: locale === 'en' ? alt.en : alt.ar,
