@@ -3,7 +3,7 @@
 import { useEffect, useSyncExternalStore } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { C, FONT } from './theme';
-import AppHomeScreen from './AppHomeScreen';
+import AppPhone from './AppPhone';
 import BetaSignup from './BetaSignup';
 import Reveal from './Reveal';
 import { Apple, AppGallery, ArrowRight, Download, Globe, Play } from './CloudIcons';
@@ -98,13 +98,9 @@ export default function DownloadSections({
       <img src="/balsm-logo.svg" alt="" aria-hidden style={{ position: 'absolute', left: -100, top: -80, width: 320, opacity: 0.1, animation: 'balsm-spin 80s linear infinite', pointerEvents: 'none' }} />
       <div style={{ ...container, position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: 'clamp(40px,6vw,72px)' }}>
         <div style={{ flex: '1 1 520px', minWidth: 0, maxWidth: 760 }}>{content}</div>
-        {/* Same phone as the Home hero (see AppHomeScreen). */}
+        {/* Same phone as the Home app section (see AppPhone). */}
         <Reveal style={{ flex: '0 0 auto', margin: '0 auto', maxWidth: '100%' }}>
-          <div style={{ width: 'min(280px,74vw)', aspectRatio: '280 / 560', borderRadius: 42, background: C.ink, padding: 11, boxShadow: '0 30px 70px rgba(20,32,43,.22)', boxSizing: 'border-box', animation: 'balsm-float 6s ease-in-out infinite' }}>
-            <div style={{ width: '100%', height: '100%', borderRadius: 32, background: C.bg, overflow: 'hidden', position: 'relative' }}>
-              <AppHomeScreen label={home('app.screenAlt')} />
-            </div>
-          </div>
+          <AppPhone label={home('app.screenAlt')} />
         </Reveal>
       </div>
     </section>
