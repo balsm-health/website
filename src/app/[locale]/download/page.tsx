@@ -56,7 +56,7 @@ export default async function DownloadPage({ params, searchParams }: Props) {
   });
 
   return (
-    <SiteShell>
+    <SiteShell active="products">
       <DownloadSections platform={platform} urls={urls} choose={choose} />
       <JsonLd data={jsonLd} />
     </SiteShell>

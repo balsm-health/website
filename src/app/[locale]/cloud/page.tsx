@@ -40,7 +40,7 @@ export default async function CloudPage({ params }: Props) {
   });
 
   return (
-    <SiteShell active="cloud">
+    <SiteShell active="products">
       <CloudHero />
       <CloudFeatures />
       <CloudMap />

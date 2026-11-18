@@ -36,7 +36,7 @@ export default async function ProvidersPage({ params }: Props) {
   });
 
   return (
-    <SiteShell active="providers">
+    <SiteShell active="products">
       <ProvidersSections />
       <JsonLd data={jsonLd} />
     </SiteShell>

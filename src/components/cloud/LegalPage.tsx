@@ -62,7 +62,7 @@ export default async function LegalPage({ locale, ns, embed }: { locale: string;
       {/* HERO */}
       <section style={{ padding: `clamp(${embed ? 28 : 44}px,7vw,${embed ? 48 : 84}px) 0 clamp(28px,4vw,44px)`, background: `linear-gradient(180deg,${C.blueBg} 0%, ${C.bg} 100%)` }}>
         <div style={column}>
-          {/* 19px bold is WCAG large text — see the eyebrow note in SponsorSections. */}
+          {/* 19px bold is WCAG large text — see the eyebrow note in PartnersSections. */}
           <div style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: DISPLAY.blue }}>{t('hero.eyebrow')}</div>
           <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(32px,5vw,54px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 16px' }}>
             {t('hero.title')}
