@@ -1,0 +1,80 @@
+/* Marketplace.dc.html's page stylesheet (the mk-* classes), ported as a CSS
+   module: hover, focus and aria-state styles can't be inline styles. Colours
+   are the design's literal values; the neutrals are the ink-* ramp. */
+
+.view { animation: mk-enter 240ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.pop { animation: mk-pop 260ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes mk-enter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes mk-pop { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes mk-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.card { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(20, 32, 43, .09); border-color: #C4CAD1; }
+
+.pill { min-height: 44px; padding: 9px 15px; border-radius: 999px; border: 1.5px solid #DBDFE3; background: #fff; color: #384756; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; }
+.pill:hover { border-color: #B4BCC5; color: #14202B; }
+.pill[aria-pressed='true'] { background: #14202B; border-color: #14202B; color: #fff; }
+
+.thumb { border: 2px solid transparent; }
+.thumb[aria-pressed='true'] { border-color: #1283FF; }
+
+.label { display: block; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 14px; color: #14202B; margin-bottom: 6px; }
+.input { width: 100%; min-height: 48px; padding: 13px 15px; border-radius: 12px; border: 1.5px solid #DBDFE3; background: #fff; font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: 15.5px; color: #14202B; outline: none; box-sizing: border-box; }
+.input:focus, .input:focus-visible { outline: none; border-color: #1283FF; box-shadow: 0 0 0 3px rgba(18, 131, 255, .15); }
+.hint { font-size: 13px; color: #5F6B77; margin-top: 6px; }
+.err { font-size: 13px; color: #9E3125; margin-top: 6px; }
+
+.primary { width: 100%; min-height: 48px; padding: 14px; border: none; border-radius: 12px; background: #1283FF; color: #fff; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; box-shadow: 0 10px 24px rgba(18, 131, 255, .22); }
+.primary:hover { background: #0F6BCC; }
+.ghost { min-height: 44px; padding: 12px 20px; border-radius: 12px; border: 1.5px solid #DBDFE3; background: #fff; color: #14202B; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; }
+.ghost:hover { border-color: #B4BCC5; }
+.sso { width: 100%; min-height: 48px; padding: 13px; border-radius: 12px; border: 1.5px solid #DBDFE3; background: #fff; color: #14202B; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.sso:hover { background: #F6F7F8; }
+
+/* Small text buttons and chip "×" keep their drawn size but get a 44px hit area. */
+.hit { position: relative; }
+.hit::after { content: ''; position: absolute; inset: 50% auto auto 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
+
+.ws { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px; border: 1.5px solid #DBDFE3; border-radius: 18px; background: #fff; cursor: pointer; text-align: start; font: inherit; color: inherit; }
+.ws:hover { border-color: #B4BCC5; }
+.ws[aria-checked='true'] { border-color: #1283FF; background: #F7FAFE; box-shadow: 0 0 0 3px rgba(18, 131, 255, .12); }
+.dot { width: 18px; height: 18px; flex: none; border-radius: 50%; border: 2px solid #C4CAD1; }
+.ws[aria-checked='true'] .dot { border: 6px solid #1283FF; }
+
+.handle { display: flex; align-items: center; border: 1.5px solid #DBDFE3; border-radius: 12px; background: #fff; }
+.handle input:focus-visible { box-shadow: none !important; outline: none; }
+.handle:focus-within { border-color: #1283FF; box-shadow: 0 0 0 3px rgba(18, 131, 255, .15); }
+
+.tab { flex: 1; min-height: 44px; padding: 10px; border: none; border-radius: 9px; background: transparent; color: #384756; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 14.5px; cursor: pointer; }
+.tab[aria-selected='true'] { background: #fff; color: #14202B; box-shadow: 0 1px 3px rgba(20, 32, 43, .12); }
+
+.box { background: #fff; border: 1px solid #DBDFE3; border-radius: 20px; padding: clamp(18px, 3vw, 26px); }
+.h2 { font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 19px; margin: 0 0 14px; color: #14202B; }
+
+.drop { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 26px; border: 2px dashed #C4CAD1; border-radius: 16px; background: #FAFAF7; cursor: pointer; text-align: center; }
+.drop:hover, .drop:focus-within { border-color: #1283FF; background: #F1F6FC; }
+.mini { flex: 1; min-height: 40px; padding: 8px 6px; border: none; background: #fff; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 12.5px; color: #384756; cursor: pointer; }
+.mini:hover { background: #F6F7F8; }
+
+.wsbtn { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border: 1.5px solid #DBDFE3; border-radius: 12px; background: #fff; cursor: pointer; font: inherit; color: inherit; transition: border-color .15s ease, box-shadow .15s ease; }
+.wsbtn:hover { border-color: #C4CAD1; }
+.wsbtn[aria-expanded='true'] { border-color: #1283FF; box-shadow: 0 0 0 3px rgba(18, 131, 255, .15); }
+.wsav { width: 34px; height: 34px; flex: none; border-radius: 10px; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 15px; }
+.wsmenu { position: absolute; top: calc(100% + 6px); inset-inline: 0; z-index: 41; background: #fff; border: 1px solid #DBDFE3; border-radius: 14px; box-shadow: 0 20px 50px rgba(20, 32, 43, .14); padding: 6px; }
+.wslist { max-height: 240px; overflow: auto; }
+.wssearch { display: flex; align-items: center; gap: 8px; padding: 0 10px; margin: 0 0 6px; border: 1.5px solid #DBDFE3; border-radius: 10px; background: #FAFAF7; }
+.wssearch:focus-within { border-color: #1283FF; box-shadow: 0 0 0 3px rgba(18, 131, 255, .15); background: #fff; }
+.wssearch input { flex: 1; min-width: 0; min-height: 44px; padding: 10px 0; border: none; outline: none; background: transparent; font: inherit; font-size: 14.5px; color: #14202B; }
+.wssearch input:focus-visible { box-shadow: none !important; outline: none; }
+.wsopt { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 48px; padding: 9px 10px; border: none; border-radius: 10px; background: transparent; cursor: pointer; font: inherit; color: inherit; }
+.wsopt:hover, .wsopt:focus-visible { background: #F6F7F8; }
+.wsopt[aria-selected='true'] { background: #F1F6FC; }
+
+@media (min-width: 900px) { .sticky { position: sticky; top: 96px; } }
+
+.srOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .wsbtn, .card:hover { transition: none; transform: none; }
+  .view, .pop { animation: mk-fade 160ms ease-out both; }
+}
