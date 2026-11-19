@@ -38,7 +38,7 @@
         },
         {
           "title": "Lab integration",
-          "desc": "Orders and results over FHIR — landing in the care recipient's record directly and accurately."
+          "desc": "Orders and results over FHIR — reaching the care recipient’s record directly and accurately."
         },
         {
           "title": "Ecosystem analytics",
@@ -120,7 +120,7 @@
         "somalia": "Somalia",
         "djibouti": "Djibouti"
       },
-      "mapLabel": "Schematic map of the Arab world: Egypt as the launch focus, the Gulf states in the Phase 2 vision, and the remaining Arab countries in the long-term vision."
+      "mapLabel": "Schematic map of the Arab world: Egypt as the launch focus, the Gulf states in the Phase 3 vision, and the remaining Arab countries in the long-term vision."
     },
     "invest": {
       "title": "Not a product vision. A civilizational one — with a clear business model.",
@@ -136,7 +136,7 @@
         },
         {
           "value": "GCC",
-          "label": "Phase 2 expansion — from the ocean to the Gulf"
+          "label": "Phase 3 expansion — from the Atlantic to the Gulf"
         }
       ],
       "cards": [
@@ -590,8 +590,9 @@
       ]
     },
     "offline": {
-      "quote": "“The internet will go down someday. Balsm Pro won't notice.”",
-      "desc": "It's built this way: a pharmacy in a remote village keeps dispensing medicine even through two full days of outage. Everything local, everything working. Sync waits until you choose — not before."
+      "quote": "“The internet will go down someday.\nBalsm Pro won't notice.”",
+      "desc": "It's built this way: a pharmacy in a remote village keeps dispensing medicine even through two full days of outage. Everything local, everything working. Sync waits until you choose — not before.",
+      "still": "Still working"
     },
     "pricing": {
       "eyebrow": "Own it, forever",
@@ -624,16 +625,20 @@
     "demo": {
       "title": "Be the first to try Balsm Pro.",
       "desc": "Leave your details and we'll write to you when Balsm Pro launches for your health facility.",
-      "clinicPlaceholder": "Health facility name",
+      "clinicPlaceholder": "e.g. Al Nour Pharmacy",
       "emailPlaceholder": "name@email.com",
-      "messagePlaceholder": "Message (optional)",
+      "messagePlaceholder": "What does your facility need?",
       "button": "Register interest",
       "successTitle": "We've registered your interest.",
       "successDesc": "We'll email you when Balsm Pro launches. Thank you for trusting Balsm.",
       "errorClinic": "Enter your health facility name to continue.",
       "errorInvalid": "Enter a valid email to continue.",
       "privacy": "Your data stays yours. We use it only to contact you.",
-      "errorGeneric": "Something went wrong. Please try again."
+      "errorGeneric": "Something went wrong. Please try again.",
+      "clinicLabel": "Healthcare facility name *",
+      "emailLabel": "Email *",
+      "messageLabel": "Message (optional)",
+      "sending": "Sending…"
     }
   },
   "contributorsMeta": {
@@ -786,7 +791,7 @@
           "desc": "Code, roadmap, and decisions all in the open. No black box holding care recipient data."
         },
         {
-          "title": "Community-owned",
+          "title": "Community-driven",
           "desc": "Balsm isn't a company with users — it's a community with a platform. Your contribution shapes the product."
         },
         {
@@ -797,7 +802,7 @@
     },
     "cta": {
       "title": "The ecosystem outlasts any product.",
-      "desc": "Join the developers, designers, health professionals and everyone who believes in the first open source healthcare technology ecosystem owned by the Arab world.",
+      "desc": "Join the developers, designers, and healthcare professionals, and everyone who believes in the first community-driven, open-source health-tech ecosystem in the Arab world.",
       "ctaGit": "Contribute on GitHub",
       "ctaDiscord": "Join on",
       "ctaDonate": "Support Balsm"
@@ -865,6 +870,45 @@
         "starterBugs": "View all starter bugs on GitHub"
       },
       "issuesBrowse": "Browse the org on GitHub"
+    },
+    "benefits": {
+      "eyebrow": "Contributor benefits",
+      "title": "What do you gain by contributing to Balsm?",
+      "desc": "Contributing to Balsm isn't one-way volunteering. You help build health infrastructure for the region, and we make sure you come away with experience, connections and recognition that match what you gave.",
+      "cards": [
+        {
+          "title": "Real, visible experience",
+          "desc": "Public GitHub contributions to a health product people actually use — a track record that speaks for you to any employer."
+        },
+        {
+          "title": "Learn what courses don't teach",
+          "desc": "FHIR standards, offline-first, data-protection compliance and Arabic-first product building — on real problems."
+        },
+        {
+          "title": "Ongoing mentorship and review",
+          "desc": "Code and design reviews from the Balsm team and senior contributors, plus a Discord space to ask and learn."
+        },
+        {
+          "title": "Credit in your name",
+          "desc": "Your name in the contributors list and release notes, and a contribution certificate for active contributors."
+        },
+        {
+          "title": "A diverse network",
+          "desc": "Work side by side with developers, doctors, pharmacists, designers and marketers from Egypt and the Arab world."
+        },
+        {
+          "title": "A say in decisions",
+          "desc": "Join roadmap discussions and open proposals, and shape where the product goes."
+        },
+        {
+          "title": "First in line for opportunities",
+          "desc": "Active contributors are the first we reach out to when jobs, internships or paid collaborations open."
+        },
+        {
+          "title": "Tangible impact",
+          "desc": "What you build reaches real pharmacies, clinics and patients — one of them could be someone you love."
+        }
+      ]
     }
   },
   "linksMeta": {

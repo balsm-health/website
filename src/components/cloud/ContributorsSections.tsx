@@ -7,7 +7,7 @@ import { C, DISPLAY, FONT } from './theme';
 import Reveal from './Reveal';
 import AnimatedLogo from './AnimatedLogo';
 import SocialLogo from './SocialLogo';
-import { Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft, ArrowUpRight, CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug, BadgeCheck, Frame, PartyPopper, Share2 } from './CloudIcons';
+import { Github, GitBranch, Users, MapPin, Tag, HeartHandshake, Copy, Mail, HeartPulse, ArrowUpLeft, ArrowUpRight, CodeXml, BrainCircuit, PenTool, Megaphone, Scale, Stethoscope, Kanban, Bug, BadgeCheck, Frame, PartyPopper, Share2, Briefcase, GraduationCap, MessagesSquare, Award, Vote, Rocket, Sprout } from './CloudIcons';
 import { FILTER_LABELS, GITHUB_ORG_URL, githubIssuesUrl, type GithubIssue, type IssueFilter } from '@/lib/github';
 
 type Card = { title: string; desc: string };
@@ -71,6 +71,18 @@ const ROLE_ICONS = [
   { Icon: Kanban, bg: C.blueBg, color: C.blueDark },
   { Icon: Bug, bg: C.violetBg, color: C.violetDark },
 ];
+// Eight benefits, icons + colours per Contributors.dc.html. The design's -700
+// steps for aqua, amber, green and pink aren't theme tokens.
+const BENEFIT_ICONS = [
+  { Icon: Briefcase, bg: C.blueBg, color: C.blueDark },
+  { Icon: GraduationCap, bg: C.violetBg, color: C.violetDark },
+  { Icon: MessagesSquare, bg: C.aquaBg, color: '#01866F' },
+  { Icon: Award, bg: C.amberBg, color: '#8A6410' },
+  { Icon: Users, bg: C.greenBg, color: '#2A8C47' },
+  { Icon: Vote, bg: '#FCE7F1', color: '#B8336F' },
+  { Icon: Rocket, bg: C.blueBg, color: C.blueDark },
+  { Icon: Sprout, bg: C.violetBg, color: C.violetDark },
+];
 const WHY_ICONS = [
   { Icon: GitBranch, bg: C.violetBg, color: C.violet },
   { Icon: Users, bg: C.greenBg, color: C.green },
@@ -88,6 +100,7 @@ export default function ContributorsSections({
   const stats = t.raw('stats') as Stat[];
   const whyCards = t.raw('why.cards') as Card[];
   const roles = t.raw('roles.cards') as Card[];
+  const benefits = t.raw('benefits.cards') as Card[];
   const [copied, setCopied] = useState(false);
 
   const copyCmd = () => {
@@ -108,7 +121,7 @@ export default function ContributorsSections({
             <h1 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(34px,5.6vw,64px)', lineHeight: 1.12, color: C.ink, margin: '14px 0 18px' }}>
               {t('hero.title1')}<br />{t('hero.title2')}
             </h1>
-            <p style={{ fontSize: 'clamp(17px,1.9vw,21px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 28px', maxWidth: 620 }}>{t('hero.subtitle')}</p>
+            <p style={{ fontSize: 'clamp(17px,1.9vw,21px)', lineHeight: 1.75, color: C.ink2, margin: '0 0 28px', maxWidth: 640 }}>{t('hero.subtitle')}</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center' }}>
               <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, whiteSpace: 'nowrap', boxShadow: '0 12px 28px rgba(114,77,208,.28)' }}>
                 <Github style={{ width: 20, height: 20 }} /><span dir="ltr">{t('hero.ctaStar')}</span>
@@ -200,6 +213,33 @@ export default function ContributorsSections({
         </div>
       </section>
 
+      {/* CONTRIBUTOR BENEFITS — the footer links here (/contributors#benefits) */}
+      <section id="benefits" style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
+        <div style={container}>
+          <Reveal style={{ display: 'flex', flexWrap: 'wrap', gap: '16px clamp(32px,6vw,88px)', alignItems: 'flex-end', marginBottom: 44 }}>
+            <div style={{ flex: '1 1 340px', minWidth: 0 }}>
+              <div style={eyebrow(C.violet)}>{t('benefits.eyebrow')}</div>
+              <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.2vw,50px)', lineHeight: 1.15, color: C.ink, margin: '12px 0 0' }}>{t('benefits.title')}</h2>
+            </div>
+            <p style={{ flex: '1.4 1 460px', minWidth: 0, fontSize: 'clamp(16px,1.7vw,19px)', lineHeight: 1.85, color: C.ink2, margin: 0 }}>{t('benefits.desc')}</p>
+          </Reveal>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(260px,100%),1fr))', gap: 16 }}>
+            {benefits.map((card, i) => {
+              const s = BENEFIT_ICONS[i];
+              return (
+                <Reveal key={i} delay={i * 60} className="balsm-lift" style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 20, padding: 26, boxShadow: '0 2px 6px rgba(20, 32, 43,.05)' }}>
+                  <div style={{ width: 46, height: 46, borderRadius: 13, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, marginBottom: 16 }}>
+                    <s.Icon style={{ width: 23, height: 23 }} />
+                  </div>
+                  <h3 style={{ fontFamily: FONT.cairo, fontWeight: 700, fontSize: 19, color: C.ink, margin: '0 0 7px' }}>{card.title}</h3>
+                  <p style={{ fontSize: 14.5, lineHeight: 1.7, color: C.ink2, margin: 0 }}>{card.desc}</p>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* WAYS TO CONTRIBUTE */}
       <section id="roles" style={{ padding: 'clamp(60px,9vw,108px) 0', background: C.white, borderTop: `1px solid ${C.borderHair}` }}>
         <div style={container}>
@@ -223,7 +263,7 @@ export default function ContributorsSections({
           </div>
 
           {/* "these are only examples" note + contact */}
-          <Reveal style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 14, background: C.bg, border: `1px solid ${C.border}`, borderRadius: 16, padding: '18px 22px', marginBottom: 44 }}>
+          <Reveal style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 14, background: C.bg, border: `1px solid ${C.border}`, borderRadius: 16, padding: '18px 22px', marginBottom: 24 }}>
             <span style={{ fontSize: 15, color: C.ink2 }}>{t('roles.note')}</span>
             <a href="mailto:contact@balsm.health" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, background: C.ink, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 14.5, flex: 'none', minHeight: 44 }}>
               <Mail style={{ width: 16, height: 16 }} />{t('roles.cta')}
@@ -311,7 +351,7 @@ export default function ContributorsSections({
             <AnimatedLogo size={60} idle="breathe" />
           </div>
           <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(28px,4.6vw,52px)', lineHeight: 1.14, color: C.ink, margin: '0 0 14px' }}>{t('cta.title')}</h2>
-          <p style={{ fontSize: 'clamp(16px,1.8vw,20px)', lineHeight: 1.8, color: C.ink2, margin: '0 auto 30px', maxWidth: 540 }}>{t('cta.desc')}</p>
+          <p style={{ fontSize: 'clamp(16px,1.8vw,20px)', lineHeight: 1.8, color: C.ink2, margin: '0 auto 30px', maxWidth: 560 }}>{t('cta.desc')}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center' }}>
             <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 30px', borderRadius: 999, background: C.violet, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17, boxShadow: '0 12px 28px rgba(114,77,208,.26)' }}>
               <Github style={{ width: 19, height: 19 }} />{t('cta.ctaGit')}
@@ -320,7 +360,7 @@ export default function ContributorsSections({
               <SocialLogo platform="discord" size={20} />
               <span>{t('cta.ctaDiscord')} <span dir="ltr" style={{ fontFamily: FONT.display }}>Discord</span></span>
             </a>
-            <Link href="/sponsor" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.white, color: C.ink, border: `1.5px solid ${C.borderSoft}`, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17 }}>
+            <Link href="/partners#partner" style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '16px 28px', borderRadius: 999, background: C.white, color: C.ink, border: `1.5px solid ${C.borderSoft}`, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 17 }}>
               <HeartHandshake style={{ width: 19, height: 19 }} />{t('cta.ctaDonate')}
             </Link>
           </div>

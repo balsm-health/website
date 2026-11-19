@@ -157,3 +157,4 @@ export const Award = icon('award');
 export const Vote = icon('vote');
 export const Rocket = icon('rocket');
 export const Sprout = icon('sprout');
+export const Wifi = icon('wifi');
