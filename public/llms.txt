@@ -40,7 +40,6 @@ exists in both — swap `https://balsm.health/x` for `https://balsm.health/en/x`
   structured description of the project, its scope, and its audience.
 - [Knowledge base](https://balsm.health/.well-known/knowledge-base.md):
   longer-form background in Markdown.
-- [FAQ](https://balsm.health/.well-known/faq.json): schema.org FAQPage data.
 - [Sitemap](https://balsm.health/sitemap.xml)
 
 ## Positioning

@@ -116,7 +116,6 @@
   "resources": {
     "llmsTxt": "https://balsm.health/llms.txt",
     "knowledgeBase": "https://balsm.health/.well-known/knowledge-base.md",
-    "faq": "https://balsm.health/.well-known/faq.json",
     "organisationData": "https://balsm.health/.well-known/ai.json",
     "sitemap": "https://balsm.health/sitemap.xml"
   },

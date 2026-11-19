@@ -211,11 +211,6 @@ export default async function LocaleLayout({ children, params }: Props) {
     ],
   };
 
-  // The FAQ schema used to be read off disk here and injected into every page,
-  // in English only, describing questions that appeared nowhere on screen —
-  // which is exactly what Google's FAQ policy prohibits. It now lives on the
-  // home page, generated from the same strings FaqSection renders.
-
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
       <head>
@@ -246,7 +241,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             the metadata API. Keeping our own tags out of it also stops browser
             extensions that inject into <head> from shifting the children React
             hydrates against — which is what produced a hydration mismatch here.
-            page.tsx already emits its FAQ block this way. */}
+            Per-page JSON-LD (components/JsonLd.tsx) follows the same pattern. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
