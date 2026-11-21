@@ -133,7 +133,7 @@ export default function BalsmFooter() {
               <Link href="/contributors" style={linkStyle}>{t('community.contribute')}</Link>
               <Link href="/contributors#benefits" style={linkStyle}>{t('community.benefits')}</Link>
               <Link href="/contributors/joined" style={linkStyle}>{t('community.joined')}</Link>
-              <Link href="/partners#partner" style={linkStyle}>{t('community.sponsors')}</Link>
+              <Link href="/partners#partner" style={linkStyle}>{t('community.partners')}</Link>
             </div>
           </div>
         </div>
