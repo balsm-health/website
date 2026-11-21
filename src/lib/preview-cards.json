@@ -1,108 +1,218 @@
 {
-  "footer": {
-    "ar": "مفتوح المصدر · Open source",
-    "en": "Open source · مفتوح المصدر"
+  "site": {
+    "tagline": {
+      "ar": "مُجتمعي، مستقل وموثوق.",
+      "en": "Community-driven, independent and trusted."
+    }
   },
   "cards": {
     "home": {
       "path": "",
-      "accent": "#02BBB5",
-      "rev": 1,
-      "ar": { "kicker": "الرئيسية", "title": "رعايةٌ تمتد .. وأثرٌ يبقى" },
-      "en": { "kicker": "Home", "title": "Care that reaches, impact that lasts" }
+      "accent": "#01C4A2",
+      "accentText": "#01866F",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "مبادرة بلسم",
+        "title": "بنية صحية مشتركة، يملكها مجتمعها.",
+        "desc": "أول منظومة مفتوحة المصدر لتقنية الرعاية الصحية في مصر والعالم العربي."
+      },
+      "en": {
+        "eyebrow": "The Balsm initiative",
+        "title": "Shared health infrastructure, owned by its community.",
+        "desc": "The first open-source healthcare technology ecosystem in Egypt and the Arab world."
+      }
     },
     "products": {
       "path": "/products",
       "accent": "#1283FF",
-      "rev": 1,
-      "ar": { "kicker": "المنتجات", "title": "منتجات متعدّدة، على نواةٍ واحدة مفتوحة." },
-      "en": { "kicker": "Products", "title": "Many products, one open core." }
+      "accentText": "#0F6BCC",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "منتجات بلسم",
+        "title": "منتجات متعدّدة، على نواةٍ واحدة مفتوحة.",
+        "desc": "تطبيق بلسم، وبلسم برو، وبلسم كونكت، وشبكة بلسم — تتكامل كلها عبر FHIR R4."
+      },
+      "en": {
+        "eyebrow": "Balsm products",
+        "title": "Many products, one open core.",
+        "desc": "Balsm App, Balsm Pro, Balsm Connect and Balsm Network, all integrated through FHIR R4."
+      }
     },
     "ecosystem": {
       "path": "/ecosystem",
-      "accent": "#724DD0",
-      "rev": 1,
-      "ar": { "kicker": "المنظومة", "title": "منظومة مفتوحة، لا منتج مغلق." },
-      "en": { "kicker": "Ecosystem", "title": "An open ecosystem, not a closed product." }
+      "accent": "#02BBB5",
+      "accentText": "#01866F",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "منظومة بلسم",
+        "title": "منظومة مفتوحة، لا منتج مغلق.",
+        "desc": "نواة مفتوحة يشغّلها كل من يحتاجها، ومعايير يفهمها كل نظام، ومجتمع يبني فوقها."
+      },
+      "en": {
+        "eyebrow": "The Balsm ecosystem",
+        "title": "An open ecosystem, not a closed product.",
+        "desc": "An open core anyone can run, standards every system understands, and a community building on top."
+      }
     },
     "partners": {
       "path": "/partners",
-      "accent": "#01C4A2",
-      "rev": 1,
-      "ar": { "kicker": "الشركاء", "title": "شركاء يؤمنون برعاية صحية مفتوحة." },
-      "en": { "kicker": "Partners", "title": "Partners who believe in open healthcare." }
+      "accent": "#E8478F",
+      "accentText": "#B8336F",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "شركاء بلسم",
+        "title": "شركاء يؤمنون برعاية صحية مفتوحة.",
+        "desc": "برامج ومؤسسات وشركات تقنية تقف معنا في بناء بنية صحية مشتركة للعالم العربي."
+      },
+      "en": {
+        "eyebrow": "Balsm partners",
+        "title": "Partners who believe in open healthcare.",
+        "desc": "Programs, institutions and tech companies building shared health infrastructure for the Arab world with us."
+      }
+    },
+    "contributors": {
+      "path": "/contributors",
+      "accent": "#724DD0",
+      "accentText": "#5C3AB0",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "ساهم معنا",
+        "title": "ابنِ البنية التحتية الصحية للعالم العربي.",
+        "desc": "مطوّرون ومصمّمون وأطباء وصيادلة ومسوّقون — لكل مهارة مكانٌ في بلسم."
+      },
+      "en": {
+        "eyebrow": "Contribute",
+        "title": "Build the Arab world’s health infrastructure.",
+        "desc": "Developers, designers, doctors, pharmacists and marketers: every skill has a place in Balsm."
+      }
     },
     "download": {
       "path": "/download",
-      "layout": "app",
-      "accent": "#724DD0",
-      "rev": 1,
+      "accent": "#1283FF",
+      "accentText": "#0F6BCC",
+      "rev": 2,
       "ar": {
-        "kicker": "تطبيق بلسم",
-        "title": "سجلّك الصحي في جيبك",
-        "alt": "تطبيق بلسم — سجلّك الصحي في جيبك، بجانب الشاشة الرئيسية للتطبيق. متاح على App Store وGoogle Play."
+        "eyebrow": "تطبيق بلسم",
+        "title": "خذ سجلّك الصحي معك.",
+        "desc": "على آيفون وأندرويد: عربيٌّ أولاً، يعمل دون إنترنت، وبياناتك تبقى على جهازك."
       },
       "en": {
-        "kicker": "The Balsm app",
-        "title": "Your health record, in your pocket",
-        "alt": "The Balsm app — your health record, in your pocket, beside the app's home screen. On the App Store and Google Play."
+        "eyebrow": "Balsm app",
+        "title": "Take your health record with you.",
+        "desc": "On iPhone and Android: Arabic-first, works offline, and your data stays on your device."
       }
     },
     "cloud": {
       "path": "/cloud",
-      "accent": "#724DD0",
-      "rev": 1,
-      "ar": { "kicker": "سحابة بلسم", "title": "حين تختار أن تتّصل." },
-      "en": { "kicker": "Balsm Cloud", "title": "When you choose to connect." }
+      "accent": "#5C3AB0",
+      "accentText": "#5C3AB0",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "سحابة بلسم",
+        "title": "سحابة بلسم — حين تختار أن تتّصل.",
+        "desc": "مزامنة الفروع، ونسخ احتياطي مُدار، وتكامل المختبرات — طبقة اختيارية والسيطرة تبقى لك."
+      },
+      "en": {
+        "eyebrow": "Balsm Cloud",
+        "title": "Balsm Cloud: connect when you choose.",
+        "desc": "Branch sync, managed backups and lab integration: an optional layer, and you stay in control."
+      }
     },
     "providers": {
       "path": "/providers",
-      "accent": "#02BBB5",
-      "rev": 1,
-      "ar": { "kicker": "لمقدّمي الرعاية", "title": "نظام لمنشأتك الصحية، ستملكه بالكامل." },
-      "en": { "kicker": "For providers", "title": "A system for your health facility, you'll own outright." }
+      "accent": "#02A39E",
+      "accentText": "#01866F",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "بلسم برو",
+        "title": "نظام لمنشأتك الصحية، ستملكه بالكامل.",
+        "desc": "للعيادات والمستشفيات والصيدليات: مستضاف ذاتياً، يعمل دون إنترنت، ومجاني للتشغيل."
+      },
+      "en": {
+        "eyebrow": "Balsm Pro",
+        "title": "A system for your facility that you fully own.",
+        "desc": "For clinics, hospitals and pharmacies: self-hosted, works offline, and free to run."
+      }
     },
-    "contributors": {
-      "path": "/contributors",
-      "accent": "#55D77F",
-      "rev": 1,
-      "ar": { "kicker": "للمساهمين", "title": "ابنِ البنية التحتية الصحية للعالم العربي." },
-      "en": { "kicker": "For contributors", "title": "Build the healthcare infrastructure for the Arab world." }
-    },
-    "contributors-frame": {
-      "path": "/contributors/frame",
-      "accent": "#55D77F",
-      "rev": 1,
-      "ar": { "kicker": "إطار صورة الملف الشخصي", "title": "أطّر صورة ملفك الشخصي بعلامة بلسم." },
-      "en": { "kicker": "Profile frame", "title": "Frame your profile photo with the Balsm mark." }
-    },
-    "contributors-joined": {
+    "joined": {
       "path": "/contributors/joined",
-      "accent": "#55D77F",
-      "rev": 1,
-      "ar": { "kicker": "مجتمع بلسم", "title": "انضممتُ إلى مجتمع بلسم." },
-      "en": { "kicker": "Balsm community", "title": "I joined the Balsm community." }
+      "accent": "#724DD0",
+      "accentText": "#5C3AB0",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "مجتمع بلسم",
+        "title": "انضممتُ إلى مجتمع بلسم.",
+        "desc": "أنشئ بطاقة انضمامك باسمك ودورك، وشاركها مع شبكتك."
+      },
+      "en": {
+        "eyebrow": "Balsm community",
+        "title": "I joined the Balsm community.",
+        "desc": "Create your join card with your name and role, and share it with your network."
+      }
+    },
+    "frame": {
+      "path": "/contributors/frame",
+      "accent": "#1283FF",
+      "accentText": "#0F6BCC",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "مجتمع بلسم",
+        "title": "أطّر صورة ملفك الشخصي بعلامة بلسم.",
+        "desc": "إطار جاهز للينكدإن وفيسبوك وX وإنستغرام، يُنشأ داخل متصفحك."
+      },
+      "en": {
+        "eyebrow": "Balsm community",
+        "title": "Frame your profile photo with Balsm.",
+        "desc": "A ready frame for LinkedIn, Facebook, X and Instagram, made right in your browser."
+      }
     },
     "links": {
       "path": "/links",
-      "accent": "#1283FF",
-      "rev": 1,
-      "ar": { "kicker": "روابط بلسم", "title": "كل حسابات بلسم الرسمية، في مكان واحد." },
-      "en": { "kicker": "Balsm links", "title": "Every official Balsm account, in one place." }
+      "accent": "#0F8F7E",
+      "accentText": "#01866F",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "روابط بلسم",
+        "title": "كل حسابات بلسم الرسمية، في مكان واحد.",
+        "desc": "جيت هب، لينكدإن، إكس، إنستجرام، يوتيوب، تيك توك وغيرها. تحقّق من الحساب قبل أن تتابعه."
+      },
+      "en": {
+        "eyebrow": "Balsm links",
+        "title": "Every official Balsm account, in one place.",
+        "desc": "GitHub, LinkedIn, X, Instagram, YouTube, TikTok and more. Verify a Balsm account before you follow it."
+      }
     },
     "privacy": {
       "path": "/privacy",
-      "accent": "#01C4A2",
-      "rev": 1,
-      "ar": { "kicker": "سياسة الخصوصية", "title": "بياناتك تبقى لك." },
-      "en": { "kicker": "Privacy policy", "title": "Your data stays yours." }
+      "accent": "#14202B",
+      "accentText": "#384756",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "سياسة الخصوصية",
+        "title": "بياناتك تبقى لك.",
+        "desc": "لا بيانات صحية، لا أدوات تتبّع، لا بيع للبيانات — وكيف تطلب تصحيح بياناتك أو حذفها."
+      },
+      "en": {
+        "eyebrow": "Privacy policy",
+        "title": "Your data stays yours.",
+        "desc": "No health data, no trackers, no selling — and how to have your data corrected or deleted."
+      }
     },
     "terms": {
       "path": "/terms",
-      "accent": "#1283FF",
-      "rev": 1,
-      "ar": { "kicker": "الشروط والأحكام", "title": "ما نلتزم به، وما نطلبه منك." },
-      "en": { "kicker": "Terms and conditions", "title": "What we promise, and what we ask." }
+      "accent": "#14202B",
+      "accentText": "#384756",
+      "rev": 2,
+      "ar": {
+        "eyebrow": "الشروط والأحكام",
+        "title": "ما نلتزم به، وما نطلبه منك.",
+        "desc": "شروط استخدام بلسم: الموقع، وتطبيق بلسم، وبلسم برو، وسحابة بلسم. بلغة واضحة، والأهم أولًا."
+      },
+      "en": {
+        "eyebrow": "Terms and conditions",
+        "title": "What we promise, and what we ask.",
+        "desc": "The terms for using Balsm: the website, the Balsm app, Balsm Pro and Balsm Cloud. Written plainly, most important first."
+      }
     }
   }
 }

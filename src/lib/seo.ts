@@ -41,7 +41,6 @@ const X_HANDLE = '@balsm_health';
 
 export type PreviewCard = keyof typeof previewCards.cards;
 type CardEntry = (typeof previewCards.cards)[PreviewCard];
-type CardCopy = { kicker: string; title: string; alt?: string };
 
 const CARDS = previewCards.cards as Record<PreviewCard, CardEntry>;
 
@@ -51,27 +50,28 @@ export function cardForPath(path: string): PreviewCard {
   return hit ?? 'home';
 }
 
+/** A route's share copy — eyebrow, title, description — in the reader's language. */
+function cardCopy(locale: string, card: PreviewCard) {
+  return CARDS[card][locale === 'en' ? 'en' : 'ar'];
+}
+
 /**
  * The link-preview image for a route, in the reader's language.
  *
  * Alt text describes what the card shows — on a social timeline the card is
- * the whole post, and this is the only version a screen reader reaches. An
- * entry can override it with `alt` (the /download card does, because it shows
- * the app's home screen and the store badges, not just a headline).
+ * the whole post, and this is the only version a screen reader reaches.
  *
  * `?v=<rev>` is part of the URL because social apps cache previews by URL for
  * days: bumping `rev` in preview-cards.json is what makes them refetch.
  */
 export function ogImage(locale: string, path = '', card: PreviewCard = cardForPath(path)) {
   const lang = locale === 'en' ? 'en' : 'ar';
-  const entry = CARDS[card];
-  const copy = entry[lang] as CardCopy;
-  const brand = lang === 'en' ? 'Balsm' : 'بلسم';
+  const copy = cardCopy(locale, card);
   return {
-    url: `/og/${card}-${lang}.png?v=${entry.rev}`,
+    url: `/og/${card}-${lang}.png?v=${CARDS[card].rev}`,
     width: 1200,
     height: 630,
-    alt: copy.alt ?? `${brand} — ${copy.kicker}: ${copy.title}`,
+    alt: `${copy.eyebrow} — ${copy.title} ${copy.desc}`,
     type: 'image/png',
   };
 }
@@ -87,15 +87,20 @@ export function canonicalUrl(locale: string, path = '') {
 
 type PageSeo = {
   locale: string;
-  title: string;
-  description: string;
   /** Route below the locale, e.g. '/providers'. Empty for the home page. */
   path?: string;
   /** Overrides the card `path` would pick. */
   card?: PreviewCard;
 };
 
-export function openGraph({ locale, title, description, path = '', card }: PageSeo) {
+/**
+ * The share title and description come from the route's preview card, not the
+ * page's <title>: the card copy is written for a feed (title ≤ 60, description
+ * ≤ 155 characters, per the design's Link Previews page) and matches what the
+ * image says, so the post reads as one thing.
+ */
+export function openGraph({ locale, path = '', card = cardForPath(path) }: PageSeo) {
+  const { title, desc } = cardCopy(locale, card);
   return {
     type: 'website' as const,
     siteName: 'Balsm',
@@ -103,16 +108,17 @@ export function openGraph({ locale, title, description, path = '', card }: PageS
     alternateLocale: locale === 'ar' ? ['en_US'] : ['ar_EG'],
     url: canonicalUrl(locale, path),
     title,
-    description,
+    description: desc,
     images: [ogImage(locale, path, card)],
   };
 }
 
-export function twitter({ locale, title, description, path = '', card }: PageSeo) {
+export function twitter({ locale, path = '', card = cardForPath(path) }: PageSeo) {
+  const { title, desc } = cardCopy(locale, card);
   return {
     card: 'summary_large_image' as const,
     title,
-    description,
+    description: desc,
     // Object form, not a bare URL string, so the card carries twitter:image:alt
     // as well. X falls back to the og: tags for anything omitted here, but not
     // for alt — it reads twitter:image:alt or nothing.

@@ -49,11 +49,13 @@ Full walkthrough incl. first-time Cloudflare setup: [docs/CLOUDFLARE_DEPLOYMENT.
 ## Link previews
 
 Every route has its own share card (`og:image` / `twitter:image`), one per
-locale, in `public/og/<card>-<locale>.png`. All of it is driven by
-[`src/lib/preview-cards.json`](src/lib/preview-cards.json): per route, the
-`path`, the dot colour (`accent`), the Arabic and English `kicker` and `title`, an
-optional `alt`, an optional `layout` (`"app"` is the store card with the phone),
-and a `rev`.
+locale, in `public/og/<card>-<locale>.png`, in the style of the design's Link
+Previews page. All of it is driven by
+[`src/lib/preview-cards.json`](src/lib/preview-cards.json). Per route it holds
+the `path`, the panel colour `accent` and the eyebrow's darker `accentText`, an
+`ar` and `en` block of `eyebrow`, `title` (≤ 60 characters) and `desc`
+(≤ 155), and a `rev`; `site.tagline` is the line at the foot of every card.
+The same title and description are the page's `og:title` / `og:description`.
 
 ```bash
 # 1. edit the route's entry in src/lib/preview-cards.json, and bump its "rev"
@@ -65,6 +67,7 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000 npm run dev
 node scripts/preview-cards.mjs
 ```
 
+The card is drawn by `scripts/og-card.js`, the design's own painter.
 `src/lib/seo.ts` picks a page's card from the path it passes to `openGraph()`
 and `twitter()`, so a page needs no card wiring of its own; a route with no
 entry gets the home card. Social apps cache previews by URL for days, and

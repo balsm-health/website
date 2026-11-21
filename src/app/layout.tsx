@@ -44,16 +44,8 @@ export const metadata: Metadata = {
   manifest: '/manifest.webmanifest',
   // Safari's Smart App Banner on every page — "Open" if installed, "Get" if not.
   ...(iosAppId && { itunes: { appId: iosAppId } }),
-  openGraph: openGraph({
-    locale: 'ar',
-    title: 'بلسم — نظام التشغيل الصحي المملوك للمجتمع',
-    description: 'أول نظام تشغيل صحي مملوك للمجتمع في العالم العربي — عربيٌّ أولاً، يعمل بلا إنترنت، ومفتوح المصدر بالكامل. من مصر، إلى كل العالم العربي.',
-  }),
-  twitter: twitter({
-    locale: 'ar',
-    title: 'بلسم — نظام التشغيل الصحي المملوك للمجتمع',
-    description: 'أول نظام تشغيل صحي مملوك للمجتمع في العالم العربي — عربيٌّ أولاً، يعمل بلا إنترنت، ومفتوح المصدر بالكامل. من مصر، إلى كل العالم العربي.',
-  }),
+  openGraph: openGraph({ locale: 'ar' }),
+  twitter: twitter({ locale: 'ar' }),
   robots: {
     index: true,
     follow: true,
