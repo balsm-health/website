@@ -255,7 +255,7 @@
     ],
     "promo": {
       "kicker": "The Balsm initiative",
-      "title": "Shared health infrastructure, owned by its community.",
+      "title": "Integrated health infrastructure, owned by its community.",
       "cta": "Read about the pillars"
     }
   },
@@ -1287,7 +1287,7 @@
     "hero": {
       "eyebrow": "Partners",
       "title": "Partners who believe in open healthcare.",
-      "subtitle": "Balsm isn't built alone. These programs, institutions and companies stand with us in building shared health infrastructure for the Arab world."
+      "subtitle": "Balsm isn't built alone. These programs, institutions and companies stand with us in building integrated health infrastructure for the Arab world."
     },
     "programs": {
       "eyebrow": "Programs and their partners",
@@ -1399,7 +1399,7 @@
   },
   "partnersMeta": {
     "title": "Balsm partners",
-    "description": "Balsm isn't built alone. These programs, institutions and companies stand with us in building shared health infrastructure for the Arab world."
+    "description": "Balsm isn't built alone. These programs, institutions and companies stand with us in building integrated health infrastructure for the Arab world."
   },
   "products": {
     "breadcrumb": {

@@ -10,16 +10,16 @@
       "path": "",
       "accent": "#01C4A2",
       "accentText": "#01866F",
-      "rev": 6,
+      "rev": 7,
       "ar": {
         "eyebrow": "مبادرة بلسم",
         "title": "المبادرة العربية الأولى في تقنية الرعاية الصحية مفتوحة المصدر.",
-        "desc": "بنية صحية مشتركة يملكها مجتمعها — من مصر، إلى كل الشرق الأوسط وشمال أفريقيا."
+        "desc": "بنية صحية متكاملة يملكها مجتمعها، وبياناتك تبقى لك."
       },
       "en": {
         "eyebrow": "The Balsm initiative",
         "title": "MENA’s first open-source health-tech initiative.",
-        "desc": "Shared health infrastructure, owned by its community — from Egypt, to the whole Arab world."
+        "desc": "Integrated health infrastructure, owned by its community, and your data stays yours."
       }
     },
     "products": {
@@ -58,16 +58,16 @@
       "path": "/partners",
       "accent": "#E8478F",
       "accentText": "#B8336F",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "شركاء بلسم",
         "title": "شركاء يؤمنون برعاية صحية مفتوحة.",
-        "desc": "برامج ومؤسسات وشركات تقنية تقف معنا في بناء بنية صحية مشتركة للعالم العربي."
+        "desc": "برامج ومؤسسات وشركات تقنية تقف معنا في بناء بنية صحية متكاملة للعالم العربي."
       },
       "en": {
         "eyebrow": "Balsm partners",
         "title": "Partners who believe in open healthcare.",
-        "desc": "Programs, institutions and tech companies building shared health infrastructure for the Arab world with us."
+        "desc": "Programs, institutions and tech companies building integrated health infrastructure for the Arab world with us."
       }
     },
     "contributors": {
