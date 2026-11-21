@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props) {
     description,
     alternates: alternates(locale, '/contributors'),
     openGraph: openGraph({ locale, title, description, path: '/contributors' }),
-    twitter: twitter({ locale, title, description }),
+    twitter: twitter({ locale, title, description, path: '/contributors' }),
   };
 }
 

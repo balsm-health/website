@@ -1,0 +1,108 @@
+{
+  "footer": {
+    "ar": "مفتوح المصدر · Open source",
+    "en": "Open source · مفتوح المصدر"
+  },
+  "cards": {
+    "home": {
+      "path": "",
+      "accent": "#02BBB5",
+      "rev": 1,
+      "ar": { "kicker": "الرئيسية", "title": "رعايةٌ تمتد .. وأثرٌ يبقى" },
+      "en": { "kicker": "Home", "title": "Care that reaches, impact that lasts" }
+    },
+    "products": {
+      "path": "/products",
+      "accent": "#1283FF",
+      "rev": 1,
+      "ar": { "kicker": "المنتجات", "title": "منتجات متعدّدة، على نواةٍ واحدة مفتوحة." },
+      "en": { "kicker": "Products", "title": "Many products, one open core." }
+    },
+    "ecosystem": {
+      "path": "/ecosystem",
+      "accent": "#724DD0",
+      "rev": 1,
+      "ar": { "kicker": "المنظومة", "title": "منظومة مفتوحة، لا منتج مغلق." },
+      "en": { "kicker": "Ecosystem", "title": "An open ecosystem, not a closed product." }
+    },
+    "partners": {
+      "path": "/partners",
+      "accent": "#01C4A2",
+      "rev": 1,
+      "ar": { "kicker": "الشركاء", "title": "شركاء يؤمنون برعاية صحية مفتوحة." },
+      "en": { "kicker": "Partners", "title": "Partners who believe in open healthcare." }
+    },
+    "download": {
+      "path": "/download",
+      "layout": "app",
+      "accent": "#724DD0",
+      "rev": 1,
+      "ar": {
+        "kicker": "تطبيق بلسم",
+        "title": "سجلّك الصحي في جيبك",
+        "alt": "تطبيق بلسم — سجلّك الصحي في جيبك، بجانب الشاشة الرئيسية للتطبيق. متاح على App Store وGoogle Play."
+      },
+      "en": {
+        "kicker": "The Balsm app",
+        "title": "Your health record, in your pocket",
+        "alt": "The Balsm app — your health record, in your pocket, beside the app's home screen. On the App Store and Google Play."
+      }
+    },
+    "cloud": {
+      "path": "/cloud",
+      "accent": "#724DD0",
+      "rev": 1,
+      "ar": { "kicker": "سحابة بلسم", "title": "حين تختار أن تتّصل." },
+      "en": { "kicker": "Balsm Cloud", "title": "When you choose to connect." }
+    },
+    "providers": {
+      "path": "/providers",
+      "accent": "#02BBB5",
+      "rev": 1,
+      "ar": { "kicker": "لمقدّمي الرعاية", "title": "نظام لمنشأتك الصحية، ستملكه بالكامل." },
+      "en": { "kicker": "For providers", "title": "A system for your health facility, you'll own outright." }
+    },
+    "contributors": {
+      "path": "/contributors",
+      "accent": "#55D77F",
+      "rev": 1,
+      "ar": { "kicker": "للمساهمين", "title": "ابنِ البنية التحتية الصحية للعالم العربي." },
+      "en": { "kicker": "For contributors", "title": "Build the healthcare infrastructure for the Arab world." }
+    },
+    "contributors-frame": {
+      "path": "/contributors/frame",
+      "accent": "#55D77F",
+      "rev": 1,
+      "ar": { "kicker": "إطار صورة الملف الشخصي", "title": "أطّر صورة ملفك الشخصي بعلامة بلسم." },
+      "en": { "kicker": "Profile frame", "title": "Frame your profile photo with the Balsm mark." }
+    },
+    "contributors-joined": {
+      "path": "/contributors/joined",
+      "accent": "#55D77F",
+      "rev": 1,
+      "ar": { "kicker": "مجتمع بلسم", "title": "انضممتُ إلى مجتمع بلسم." },
+      "en": { "kicker": "Balsm community", "title": "I joined the Balsm community." }
+    },
+    "links": {
+      "path": "/links",
+      "accent": "#1283FF",
+      "rev": 1,
+      "ar": { "kicker": "روابط بلسم", "title": "كل حسابات بلسم الرسمية، في مكان واحد." },
+      "en": { "kicker": "Balsm links", "title": "Every official Balsm account, in one place." }
+    },
+    "privacy": {
+      "path": "/privacy",
+      "accent": "#01C4A2",
+      "rev": 1,
+      "ar": { "kicker": "سياسة الخصوصية", "title": "بياناتك تبقى لك." },
+      "en": { "kicker": "Privacy policy", "title": "Your data stays yours." }
+    },
+    "terms": {
+      "path": "/terms",
+      "accent": "#1283FF",
+      "rev": 1,
+      "ar": { "kicker": "الشروط والأحكام", "title": "ما نلتزم به، وما نطلبه منك." },
+      "en": { "kicker": "Terms and conditions", "title": "What we promise, and what we ask." }
+    }
+  }
+}

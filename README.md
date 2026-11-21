@@ -46,6 +46,32 @@ npm run cf-typegen       # regenerate CloudflareEnv types after wrangler.jsonc c
 
 Full walkthrough incl. first-time Cloudflare setup: [docs/CLOUDFLARE_DEPLOYMENT.md](docs/CLOUDFLARE_DEPLOYMENT.md).
 
+## Link previews
+
+Every route has its own share card (`og:image` / `twitter:image`), one per
+locale, in `public/og/<card>-<locale>.png`. All of it is driven by
+[`src/lib/preview-cards.json`](src/lib/preview-cards.json): per route, the
+`path`, the dot colour (`accent`), the Arabic and English `kicker` and `title`, an
+optional `alt`, an optional `layout` (`"app"` is the store card with the phone),
+and a `rev`.
+
+```bash
+# 1. edit the route's entry in src/lib/preview-cards.json, and bump its "rev"
+# 2. re-render (CHROME=<path> if Chrome isn't in the macOS default location)
+node scripts/generate-preview-cards.mjs            # every card
+node scripts/generate-preview-cards.mjs partners   # one card, both locales
+# 3. check every route the way Facebook, X, LinkedIn and Slack show it
+NEXT_PUBLIC_SITE_URL=http://localhost:3000 npm run dev
+node scripts/preview-cards.mjs
+```
+
+`src/lib/seo.ts` picks a page's card from the path it passes to `openGraph()`
+and `twitter()`, so a page needs no card wiring of its own; a route with no
+entry gets the home card. Social apps cache previews by URL for days, and
+`rev` is in the URL (`?v=`), so bumping it is what makes them fetch the new one.
+A new route needs a new entry; `preview-cards.mjs` then previews it and flags it
+if the page serves any other card.
+
 ## App download link (`/download`)
 
 `balsm.health/download` is the one link to share for the patient app. The app's

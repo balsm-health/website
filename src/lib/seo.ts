@@ -7,11 +7,13 @@
  * therefore builds its block through `openGraph()` below rather than writing
  * the object by hand — that is what keeps the link-preview card attached.
  *
- * The card itself is a committed raster (public/og-image.png), generated from
- * the brand SVGs by scripts/generate-brand-assets.mjs.
+ * Each route has its own card, per locale (public/og/<card>-<locale>.png),
+ * rendered by scripts/generate-preview-cards.mjs from preview-cards.json — the
+ * one place to change a page's kicker, headline, accent or alt text.
  */
 
 import { defaultLocale as DEFAULT_LOCALE } from '@/i18n/request';
+import previewCards from './preview-cards.json';
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://balsm.health';
 
@@ -37,45 +39,39 @@ export const CONTENT_REVISED = '2026-09-30';
  */
 const X_HANDLE = '@balsm_health';
 
-/**
- * Alt text for the preview card, per locale.
- *
- * This used to be the wordmark ('بلسم — Balsm.health') on every page, in Arabic
- * regardless of locale. Alt text describes what the image *shows*, and the card
- * shows a headline plus three claims — so that is what these say. It matters
- * more here than on an inline image: on a social timeline the card is the whole
- * post, and this string is the only version of it a screen reader reaches.
- *
- * Keep these in step with the card copy in scripts/generate-brand-assets.mjs.
- */
-const OG_IMAGE_ALT = {
-  ar: 'بلسم — نظام التشغيل الصحي المملوك للمجتمع. عربيٌّ أولاً، يعمل بلا إنترنت، مفتوح المصدر.',
-  en: 'Balsm — the community-owned healthcare OS. Arabic-first, offline-ready, open source.',
-} as const;
+export type PreviewCard = keyof typeof previewCards.cards;
+type CardEntry = (typeof previewCards.cards)[PreviewCard];
+type CardCopy = { kicker: string; title: string; alt?: string };
 
-const OG_APP_IMAGE_ALT = {
-  ar: 'تطبيق بلسم — سجلّك الصحي في جيبك، بجانب الشاشة الرئيسية للتطبيق. متاح على App Store وGoogle Play.',
-  en: "The Balsm app — your health record, in your pocket, beside the app's home screen. On the App Store and Google Play.",
-} as const;
+const CARDS = previewCards.cards as Record<PreviewCard, CardEntry>;
 
-/** `brand` is the site-wide card; `app` is the store card for /download. */
-export type OgCard = 'brand' | 'app';
+/** The card whose `path` is this route; routes without one get the home card. */
+export function cardForPath(path: string): PreviewCard {
+  const hit = (Object.keys(CARDS) as PreviewCard[]).find((k) => CARDS[k].path === path);
+  return hit ?? 'home';
+}
 
 /**
- * One brand card for the whole site, in both locales — the brand statement, not
- * a per-page illustration. The single exception is /download: that is the URL
- * the app's share sheet prints, so its preview shows the app's home screen and
- * the store badges instead, in the reader's language (og-app-ar.png is
- * Arabic, og-app-en.png English). The brand card is bilingual, so only
- * its alt text follows the locale.
+ * The link-preview image for a route, in the reader's language.
+ *
+ * Alt text describes what the card shows — on a social timeline the card is
+ * the whole post, and this is the only version a screen reader reaches. An
+ * entry can override it with `alt` (the /download card does, because it shows
+ * the app's home screen and the store badges, not just a headline).
+ *
+ * `?v=<rev>` is part of the URL because social apps cache previews by URL for
+ * days: bumping `rev` in preview-cards.json is what makes them refetch.
  */
-export function ogImage(locale: string, card: OgCard = 'brand') {
-  const alt = card === 'app' ? OG_APP_IMAGE_ALT : OG_IMAGE_ALT;
+export function ogImage(locale: string, path = '', card: PreviewCard = cardForPath(path)) {
+  const lang = locale === 'en' ? 'en' : 'ar';
+  const entry = CARDS[card];
+  const copy = entry[lang] as CardCopy;
+  const brand = lang === 'en' ? 'Balsm' : 'بلسم';
   return {
-    url: card === 'app' ? (locale === 'en' ? '/og-app-en.png' : '/og-app-ar.png') : '/og-image.png',
+    url: `/og/${card}-${lang}.png?v=${entry.rev}`,
     width: 1200,
     height: 630,
-    alt: locale === 'en' ? alt.en : alt.ar,
+    alt: copy.alt ?? `${brand} — ${copy.kicker}: ${copy.title}`,
     type: 'image/png',
   };
 }
@@ -95,7 +91,8 @@ type PageSeo = {
   description: string;
   /** Route below the locale, e.g. '/providers'. Empty for the home page. */
   path?: string;
-  card?: OgCard;
+  /** Overrides the card `path` would pick. */
+  card?: PreviewCard;
 };
 
 export function openGraph({ locale, title, description, path = '', card }: PageSeo) {
@@ -107,11 +104,11 @@ export function openGraph({ locale, title, description, path = '', card }: PageS
     url: canonicalUrl(locale, path),
     title,
     description,
-    images: [ogImage(locale, card)],
+    images: [ogImage(locale, path, card)],
   };
 }
 
-export function twitter({ locale, title, description, card }: Omit<PageSeo, 'path'>) {
+export function twitter({ locale, title, description, path = '', card }: PageSeo) {
   return {
     card: 'summary_large_image' as const,
     title,
@@ -119,7 +116,7 @@ export function twitter({ locale, title, description, card }: Omit<PageSeo, 'pat
     // Object form, not a bare URL string, so the card carries twitter:image:alt
     // as well. X falls back to the og: tags for anything omitted here, but not
     // for alt — it reads twitter:image:alt or nothing.
-    images: [ogImage(locale, card)],
+    images: [ogImage(locale, path, card)],
     site: X_HANDLE,
     creator: X_HANDLE,
   };

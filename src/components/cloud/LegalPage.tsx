@@ -44,7 +44,7 @@ export async function legalMetadata(locale: string, ns: LegalNamespace, embed: b
     description,
     alternates: alternates(locale, path),
     openGraph: openGraph({ locale, title, description, path }),
-    twitter: twitter({ locale, title, description }),
+    twitter: twitter({ locale, title, description, path }),
     ...(embed ? { robots: { index: false, follow: false } } : {}),
   };
 }

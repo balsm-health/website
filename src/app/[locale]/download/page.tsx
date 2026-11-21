@@ -18,14 +18,15 @@ export async function generateMetadata({ params }: Props) {
   const beta = isPreBeta(channelUrls());
   const title = t(beta ? 'betaTitle' : 'title');
   const description = t(beta ? 'betaDescription' : 'description');
-  // The store card only once there is a store to show.
-  const card = beta ? undefined : 'app';
+  // The route's own card shows the store badges, so only once there is a
+  // store to show; before that, the home card.
+  const card = beta ? 'home' : undefined;
   return {
     title,
     description,
     alternates: alternates(locale, '/download'),
     openGraph: openGraph({ locale, title, description, path: '/download', card }),
-    twitter: twitter({ locale, title, description, card }),
+    twitter: twitter({ locale, title, description, path: '/download', card }),
   };
 }
 

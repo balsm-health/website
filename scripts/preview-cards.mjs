@@ -23,9 +23,17 @@
  * This script flags that case rather than letting it pass silently.
  */
 import { execFileSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { fileURLToPath } from 'node:url';
+
+// Every route with a card, from the same file src/lib/seo.ts and
+// scripts/generate-preview-cards.mjs read — so a new route is previewed, and
+// its card checked, as soon as it has an entry there.
+const CARDS = JSON.parse(
+  readFileSync(join(dirname(fileURLToPath(import.meta.url)), '../src/lib/preview-cards.json'), 'utf8')
+).cards;
 
 const argv = process.argv.slice(2);
 const baseIdx = argv.indexOf('--base');
@@ -42,18 +50,7 @@ const routes = argv.filter((a, i) => a.startsWith('/') && (baseIdx < 0 || i !== 
 
 const ROUTES = routes.length
   ? routes
-  : [
-      '',
-      '/products',
-      '/ecosystem',
-      '/partners',
-      '/download',
-      '/cloud',
-      '/providers',
-      '/contributors',
-      '/contributors/joined',
-      '/links',
-    ].flatMap((p) => [
+  : Object.values(CARDS).flatMap(({ path: p }) => [
       p || '/',
       `/en${p}`,
     ]);
@@ -164,6 +161,18 @@ function issues(r) {
     }
     if (host && !m['og:image'].startsWith(BASE)) {
       out.push(`og:image points off-host (${host}) — set NEXT_PUBLIC_SITE_URL`);
+    }
+  }
+  // The card must be the one preview-cards.json gives this route, in this
+  // route's language — a page that dropped its `path` from openGraph()/twitter()
+  // silently falls back to the home card.
+  const en = r.route === '/en' || r.route.startsWith('/en/');
+  const path = en ? r.route.slice(3) : r.route === '/' ? '' : r.route;
+  const key = Object.keys(CARDS).find((k) => CARDS[k].path === path);
+  if (key) {
+    const want = `/og/${key}-${en ? 'en' : 'ar'}.png`;
+    for (const t of ['og:image', 'twitter:image']) {
+      if (m[t] && !m[t].includes(want)) out.push(`${t} is not ${want}`);
     }
   }
   if (m['og:image:alt'] && m['og:image:alt'] === m['og:title']) {
