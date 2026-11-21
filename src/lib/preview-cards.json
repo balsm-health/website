@@ -10,7 +10,7 @@
       "path": "",
       "accent": "#01C4A2",
       "accentText": "#01866F",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "مبادرة بلسم",
         "title": "بنية صحية مشتركة، يملكها مجتمعها.",
@@ -26,7 +26,7 @@
       "path": "/products",
       "accent": "#1283FF",
       "accentText": "#0F6BCC",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "منتجات بلسم",
         "title": "منتجات متعدّدة، على نواةٍ واحدة مفتوحة.",
@@ -42,7 +42,7 @@
       "path": "/ecosystem",
       "accent": "#02BBB5",
       "accentText": "#01866F",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "منظومة بلسم",
         "title": "منظومة مفتوحة، لا منتج مغلق.",
@@ -58,7 +58,7 @@
       "path": "/partners",
       "accent": "#E8478F",
       "accentText": "#B8336F",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "شركاء بلسم",
         "title": "شركاء يؤمنون برعاية صحية مفتوحة.",
@@ -74,7 +74,7 @@
       "path": "/contributors",
       "accent": "#724DD0",
       "accentText": "#5C3AB0",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "ساهم معنا",
         "title": "ابنِ البنية التحتية الصحية للعالم العربي.",
@@ -90,7 +90,7 @@
       "path": "/download",
       "accent": "#1283FF",
       "accentText": "#0F6BCC",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "تطبيق بلسم",
         "title": "خذ سجلّك الصحي معك.",
@@ -106,7 +106,7 @@
       "path": "/cloud",
       "accent": "#5C3AB0",
       "accentText": "#5C3AB0",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "سحابة بلسم",
         "title": "سحابة بلسم — حين تختار أن تتّصل.",
@@ -122,7 +122,7 @@
       "path": "/providers",
       "accent": "#02A39E",
       "accentText": "#01866F",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "بلسم برو",
         "title": "نظام لمنشأتك الصحية، ستملكه بالكامل.",
@@ -138,7 +138,7 @@
       "path": "/contributors/joined",
       "accent": "#724DD0",
       "accentText": "#5C3AB0",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "مجتمع بلسم",
         "title": "انضممتُ إلى مجتمع بلسم.",
@@ -154,7 +154,7 @@
       "path": "/contributors/frame",
       "accent": "#1283FF",
       "accentText": "#0F6BCC",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "مجتمع بلسم",
         "title": "أطّر صورة ملفك الشخصي بعلامة بلسم.",
@@ -170,7 +170,7 @@
       "path": "/links",
       "accent": "#0F8F7E",
       "accentText": "#01866F",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "روابط بلسم",
         "title": "كل حسابات بلسم الرسمية، في مكان واحد.",
@@ -186,7 +186,7 @@
       "path": "/privacy",
       "accent": "#14202B",
       "accentText": "#384756",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "سياسة الخصوصية",
         "title": "بياناتك تبقى لك.",
@@ -202,7 +202,7 @@
       "path": "/terms",
       "accent": "#14202B",
       "accentText": "#384756",
-      "rev": 2,
+      "rev": 3,
       "ar": {
         "eyebrow": "الشروط والأحكام",
         "title": "ما نلتزم به، وما نطلبه منك.",

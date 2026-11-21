@@ -44,6 +44,12 @@ const ORIGIN = 'https://balsm.health';
 const FONTS =
   'https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&family=Montserrat:wght@700;800&display=block';
 
+// Every face og-card.js draws with, per locale.
+const FACES_BY_LOCALE = {
+  ar: ['700 26px Cairo', '800 64px Cairo', '400 26px "IBM Plex Sans Arabic"', '600 21px "IBM Plex Sans Arabic"', '500 20px "IBM Plex Mono"'],
+  en: ['700 22px Montserrat', '800 58px Montserrat', '400 25px "IBM Plex Sans"', '600 19px "IBM Plex Sans"', '500 20px "IBM Plex Mono"'],
+};
+
 const svg = (f) => `data:image/svg+xml;base64,${readFileSync(pub(f)).toString('base64')}`;
 const IMAGES = {
   logo: svg('balsm-logo-horizontal.svg'),
@@ -55,6 +61,7 @@ const IMAGES = {
 const shownPath = (card, locale) => (locale === 'en' ? `/en${card.path}` : card.path || '/');
 
 function cardHtml(card, locale) {
+  const FACES = FACES_BY_LOCALE[locale];
   const data = {
     card: { ...card[locale], accent: card.accent, accentText: card.accentText, path: shownPath(card, locale) },
     opts: { lang: locale, origin: ORIGIN, tagline: config.site.tagline[locale] },
@@ -73,7 +80,14 @@ function cardHtml(card, locale) {
 <script>
   const data = ${JSON.stringify(data)};
   const load = (src) => new Promise((r) => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = src; });
-  Promise.all([BalsmOgCard.fonts(), document.fonts.ready])
+  // Google Fonts splits each family by script (unicode-range), and the
+  // browser only fetches a subset for text that needs it. document.fonts.load()
+  // without text samples Latin, so Cairo's and Plex Arabic's Arabic subsets
+  // were never fetched and the canvas drew the system fallback. Load every
+  // face the painter uses with the card's own text instead.
+  const text = [data.card.eyebrow, data.card.title, data.card.desc, data.opts.tagline, data.card.path].join(' ');
+  const faces = ${JSON.stringify(FACES)};
+  Promise.all(faces.map((f) => document.fonts.load(f, text)))
     .then(() => Promise.all(Object.entries(data.images).map(([k, src]) => load(src).then((i) => [k, i]))))
     .then((pairs) => {
       const ctx = document.querySelector('canvas').getContext('2d');
