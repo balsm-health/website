@@ -10,16 +10,16 @@
       "path": "",
       "accent": "#01C4A2",
       "accentText": "#01866F",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "مبادرة بلسم",
-        "title": "بنية صحية مشتركة، يملكها مجتمعها.",
-        "desc": "أول منظومة مفتوحة المصدر لتقنية الرعاية الصحية في مصر والعالم العربي."
+        "title": "أول مبادرة مفتوحة المصدر للتقنية الصحية في العالم العربي.",
+        "desc": "بنية صحية مشتركة يملكها مجتمعها — من مصر، إلى كل الشرق الأوسط وشمال أفريقيا."
       },
       "en": {
         "eyebrow": "The Balsm initiative",
-        "title": "Shared health infrastructure, owned by its community.",
-        "desc": "The first open-source healthcare technology ecosystem in Egypt and the Arab world."
+        "title": "MENA’s first open-source health-tech initiative.",
+        "desc": "Shared health infrastructure, owned by its community — from Egypt, to the whole Arab world."
       }
     },
     "products": {
