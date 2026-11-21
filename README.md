@@ -63,7 +63,7 @@ The same title and description are the page's `og:title` / `og:description`.
 node scripts/generate-preview-cards.mjs            # every card
 node scripts/generate-preview-cards.mjs partners   # one card, both locales
 # 3. check every route the way Facebook, X, LinkedIn and Slack show it
-NEXT_PUBLIC_SITE_URL=http://localhost:3000 npm run dev
+npm run dev
 node scripts/preview-cards.mjs
 ```
 
@@ -72,6 +72,9 @@ The card is drawn by `scripts/og-card.js`, the design's own painter.
 and `twitter()`, so a page needs no card wiring of its own; a route with no
 entry gets the home card. Social apps cache previews by URL for days, and
 `rev` is in the URL (`?v=`), so bumping it is what makes them fetch the new one.
+Card images resolve against the host the page was served from (balsm.health,
+stg.balsm.health, a `*.workers.dev` preview, localhost; anything else falls
+back to `NEXT_PUBLIC_SITE_URL`), so a branch preview shows its own cards.
 A new route needs a new entry; `preview-cards.mjs` then previews it and flags it
 if the page serves any other card.
 

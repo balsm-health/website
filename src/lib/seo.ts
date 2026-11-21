@@ -17,6 +17,31 @@ import previewCards from './preview-cards.json';
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://balsm.health';
 
+// Hosts whose own origin may stand in for SITE_URL when resolving relative
+// metadata URLs (the preview-card images). Anything else, including a forged
+// Host header, falls back to SITE_URL.
+const TRUSTED_HOST = /^(?:balsm\.health|stg\.balsm\.health|[a-z0-9-]+\.balsm\.workers\.dev|localhost(?::\d+)?|127\.0\.0\.1(?::\d+)?)$/;
+
+/**
+ * The origin to resolve relative metadata URLs against: the host this request
+ * came in on, when it is one of ours, else SITE_URL.
+ *
+ * Preview builds (one *.workers.dev host per branch) have no SITE_URL of their
+ * own, so the card images resolved to https://balsm.health/og/… — files that
+ * only exist there once the branch is merged — and WhatsApp, finding no image,
+ * fell back to the site icon. Canonical, hreflang and og:url are built from
+ * SITE_URL explicitly (canonicalUrl below), so this moves only the images.
+ */
+export function metadataOrigin(host: string | null): URL {
+  if (host && TRUSTED_HOST.test(host)) {
+    // Every deployed host is HTTPS-only; don't trust a forwarded scheme header
+    // that may be absent at the edge and would leave crawlers an http:// image.
+    const local = host.startsWith('localhost') || host.startsWith('127.');
+    return new URL(`${local ? 'http' : 'https'}://${host}`);
+  }
+  return new URL(SITE_URL);
+}
+
 /**
  * When the site's *content* last changed — not when it was last built.
  *

@@ -14,13 +14,9 @@
  * one is slow and easy to get wrong (see --base below). This needs no network
  * beyond the dev server itself.
  *
- * IMPORTANT: metadataBase comes from NEXT_PUBLIC_SITE_URL, so a dev server
- * started without it emits absolute production image URLs and you end up
- * previewing the live card. Start the server as:
- *
- *   NEXT_PUBLIC_SITE_URL=http://localhost:3000 npm run dev
- *
- * This script flags that case rather than letting it pass silently.
+ * Card images resolve against the host the page was requested on (see
+ * metadataOrigin in src/lib/seo.ts), so a plain `npm run dev` previews the
+ * local cards. If an image still points elsewhere, this script flags it.
  */
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
