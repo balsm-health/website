@@ -37,12 +37,23 @@ const BASE = (baseIdx >= 0 ? argv[baseIdx + 1] : 'http://localhost:3000').replac
 // Guard on `baseIdx >= 0`: with no --base, indexOf returns -1 and a bare
 // `i !== baseIdx + 1` reads as `i !== 0`, which silently drops the first route
 // argument — so `… /providers` previewed nothing it was asked for and fell
-// through to all twelve defaults.
+// through to all the defaults.
 const routes = argv.filter((a, i) => a.startsWith('/') && (baseIdx < 0 || i !== baseIdx + 1));
 
 const ROUTES = routes.length
   ? routes
-  : ['', '/cloud', '/providers', '/contributors', '/sponsor', '/links'].flatMap((p) => [
+  : [
+      '',
+      '/products',
+      '/ecosystem',
+      '/partners',
+      '/download',
+      '/cloud',
+      '/providers',
+      '/contributors',
+      '/contributors/joined',
+      '/links',
+    ].flatMap((p) => [
       p || '/',
       `/en${p}`,
     ]);
