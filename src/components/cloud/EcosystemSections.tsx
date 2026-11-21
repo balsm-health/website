@@ -184,22 +184,6 @@ export default function EcosystemSections() {
         </div>
       </section>
 
-      {/* MARKETPLACE CTA */}
-      <section style={{ padding: '0 0 clamp(48px,7vw,80px)', background: C.white }}>
-        <div style={container}>
-          <Link href="/marketplace" className="balsm-lift" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '18px 32px', padding: 'clamp(24px,4vw,36px)', borderRadius: 24, background: `linear-gradient(135deg,${C.aquaBg},${C.blueBg})`, border: `1px solid ${C.aquaBorder}` }}>
-            <div style={{ flex: '1 1 420px', minWidth: 0 }}>
-              <div style={eyebrow(EMERALD_TEXT)}>{t('market.eyebrow')}</div>
-              <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(24px,3.2vw,34px)', color: C.ink, margin: '8px 0 8px' }}>{t('market.title')}</h2>
-              <p style={{ fontSize: 16, lineHeight: 1.75, color: C.ink2, margin: 0 }}>{t('market.desc')}</p>
-            </div>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 26px', borderRadius: 999, background: C.dark, color: C.white, fontFamily: FONT.cairo, fontWeight: 700, fontSize: 16 }}>
-              {t('market.cta')}<ArrowLeft style={{ width: 18, height: 18, ...flip }} />
-            </span>
-          </Link>
-        </div>
-      </section>
-
       {/* ROADMAP / REACH */}
       <section id="roadmap" style={{ padding: 'clamp(56px,8vw,100px) 0', background: C.bg, borderTop: `1px solid ${C.borderHair}`, scrollMarginTop: 80 }}>
         <div style={{ ...container, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(380px,100%),1fr))', gap: 20 }}>

@@ -4,19 +4,17 @@ import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import { C, FONT } from './theme';
-import type { NavAccount } from './navAccount';
 import {
   ArrowLeft, BadgeCheck, ChevronDown, ChevronLeft, Compass, Eye, Gem, Github, HandCoins, HandHelping,
   Handshake, Layers, Mail, MapIcon, Menu, Scale, TrendingUp, Users,
 } from './CloudIcons';
 
-export type NavKey = 'home' | 'products' | 'ecosystem' | 'market' | 'partners' | 'contributors';
+export type NavKey = 'home' | 'products' | 'ecosystem' | 'partners' | 'contributors';
 
 // Top-level links after the Initiative menu, in BalsmNavV2.dc.html order.
 const LINKS: { key: Exclude<NavKey, 'home'>; href: string }[] = [
   { key: 'products', href: '/products' },
   { key: 'ecosystem', href: '/ecosystem' },
-  { key: 'market', href: '/marketplace' },
   { key: 'partners', href: '/partners' },
   { key: 'contributors', href: '/contributors' },
 ];
@@ -67,11 +65,6 @@ const MOBILE_EXTRA: { tab: 'governance' | 'support'; index: number }[] = [
 
 const DESKTOP_MIN = 1181;
 
-function initials(name: string) {
-  const first = name.trim().split(/\s+/).filter(Boolean)[0];
-  return first ? first[0].toUpperCase() : '؟';
-}
-
 function MenuLink({ item, children, ...rest }: { item: MenuItem; children: React.ReactNode } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>) {
   if (item.external) {
     const newTab = item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {};
@@ -80,7 +73,7 @@ function MenuLink({ item, children, ...rest }: { item: MenuItem; children: React
   return <Link href={item.href} {...rest}>{children}</Link>;
 }
 
-export default function BalsmNav({ active, account }: { active?: NavKey; account?: NavAccount }) {
+export default function BalsmNav({ active }: { active?: NavKey }) {
   const t = useTranslations('nav');
   const locale = useLocale();
   const router = useRouter();
@@ -92,7 +85,6 @@ export default function BalsmNav({ active, account }: { active?: NavKey; account
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [userOpen, setUserOpen] = useState(false);
   const [tab, setTab] = useState(0);
 
   useEffect(() => {
@@ -104,10 +96,10 @@ export default function BalsmNav({ active, account }: { active?: NavKey; account
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { setMenuOpen(false); setUserOpen(false); }
+      if (e.key === 'Escape') { setMenuOpen(false); }
     };
     const onDoc = (e: MouseEvent) => {
-      if (headerRef.current && !headerRef.current.contains(e.target as Node)) { setMenuOpen(false); setUserOpen(false); }
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) { setMenuOpen(false); }
     };
     document.addEventListener('keydown', onKey);
     document.addEventListener('click', onDoc);
@@ -137,20 +129,12 @@ export default function BalsmNav({ active, account }: { active?: NavKey; account
     clearTimeout(leaveTimer.current);
     setMenuOpen(false);
     setMobileOpen(false);
-    setUserOpen(false);
   }, []);
 
   const setLang = (next: 'ar' | 'en') => {
     if (next === locale) return;
     startTransition(() => router.replace(pathname, { locale: next }));
   };
-
-  const call = (fn?: () => void) => () => { setUserOpen(false); fn?.(); };
-
-  const userName = (account?.userName || '').trim();
-  const userEmail = (account?.userEmail || '').trim();
-  const signedIn = !!(userName || userEmail);
-  const shownName = userName || userEmail;
 
   const langBtn = (isOn: boolean): React.CSSProperties => ({
     minWidth: 44, height: 44, padding: '0 10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
@@ -163,24 +147,6 @@ export default function BalsmNav({ active, account }: { active?: NavKey; account
     desc: t(`${tabKey}.${i}.desc`),
   });
 
-  const avatar = (size: number, font: number) => (
-    <span
-      aria-hidden
-      style={{
-        width: size, height: size, flex: 'none', borderRadius: '50%', background: 'linear-gradient(135deg,#1283FF,#724DD0)', color: C.white,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT.cairo, fontWeight: 800, fontSize: font,
-      }}
-    >
-      {initials(shownName)}
-    </span>
-  );
-
-  const groupLabel: React.CSSProperties = { padding: '4px 12px 6px', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 12, color: '#5F6B77' };
-  const subLine: React.CSSProperties = { display: 'block', fontWeight: 400, fontSize: 12, color: '#5F6B77' };
-  const rule = <div style={{ height: 1, background: C.borderHair, margin: '6px 0' }} />;
-
-  const companies = account?.companies ?? [];
-  const orgs = account?.orgs ?? [];
   const activeTab = TABS[tab];
 
   return (
@@ -255,87 +221,6 @@ export default function BalsmNav({ active, account }: { active?: NavKey; account
               EN
             </button>
           </div>
-
-          {!signedIn && (account?.onSignIn ? (
-            <button type="button" onClick={call(account.onSignIn)} className="bn2-login">{t('signIn')}</button>
-          ) : (
-            <Link href="/marketplace" className="bn2-login">{t('signIn')}</Link>
-          ))}
-
-          {signedIn && (
-            <div style={{ position: 'relative' }}>
-              <button
-                type="button"
-                onClick={() => { setUserOpen((v) => !v); setMenuOpen(false); }}
-                aria-haspopup="menu"
-                aria-expanded={userOpen}
-                aria-label={t('account.label', { name: shownName })}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 6, minHeight: 44, padding: '3px 8px 3px 3px', border: `1.5px solid ${C.border}`, borderRadius: 999, background: C.white, cursor: 'pointer' }}
-              >
-                {avatar(36, 15)}
-                <ChevronDown style={{ width: 15, height: 15, color: '#5F6B77' }} />
-              </button>
-              {userOpen && (
-                <div
-                  role="menu"
-                  className="bn2-usermenu"
-                  style={{ position: 'absolute', top: 'calc(100% + 8px)', insetInlineEnd: 0, width: 260, background: C.white, border: `1px solid ${C.border}`, borderRadius: 16, boxShadow: '0 20px 50px rgba(20,32,43,.14)', padding: 8, zIndex: 60 }}
-                >
-                  <div style={{ display: 'flex', gap: 10, alignItems: 'center', padding: '10px 10px 12px', borderBottom: `1px solid ${C.borderHair}`, marginBottom: 6 }}>
-                    {avatar(40, 16)}
-                    <span style={{ minWidth: 0 }}>
-                      <span dir="auto" style={{ display: 'block', fontFamily: FONT.cairo, fontWeight: 700, fontSize: 15, color: C.ink, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{shownName}</span>
-                      <span dir="ltr" style={{ display: 'block', fontSize: 12.5, color: '#5F6B77', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{userEmail}</span>
-                    </span>
-                  </div>
-
-                  {account?.hasCompany ? (
-                    <>
-                      <div style={groupLabel}>{t('account.workspaces')}</div>
-                      {companies.map((co, i) => (
-                        <button key={`${co.name}-${i}`} type="button" role="menuitemradio" aria-checked={!!co.active} onClick={call(() => account.onSwitchCompany?.(i))} className="bn2-mi bn2-co" style={{ justifyContent: 'space-between', gap: 8 }}>
-                          <span style={{ minWidth: 0 }}>
-                            <span style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{co.name}</span>
-                            {co.handle && <span dir="ltr" style={{ display: 'block', fontFamily: FONT.mono, fontWeight: 500, fontSize: 12, color: '#5F6B77', textAlign: 'start' }}>{co.handle}</span>}
-                            <span style={subLine}>{co.roleLabel} · {co.count ?? ''} {t('account.orgsCount')}</span>
-                          </span>
-                          <span className="bn2-dot" aria-hidden />
-                        </button>
-                      ))}
-                      <button type="button" role="menuitem" onClick={call(account.onAddCompany)} className="bn2-mi" style={{ color: C.blueDark }}>{t('account.createWorkspace')}</button>
-                      {rule}
-                      <div style={groupLabel}>{t('account.actingAs')}</div>
-                      {orgs.length > 0 ? orgs.map((og, i) => (
-                        <button key={`${og.name}-${i}`} type="button" role="menuitemradio" aria-checked={!!og.active} onClick={call(() => account.onSwitchOrg?.(i))} className="bn2-mi bn2-co" style={{ justifyContent: 'space-between', gap: 8 }}>
-                          <span style={{ minWidth: 0 }}>
-                            <span style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{og.name}</span>
-                            <span style={subLine}>{og.typeLabel} · {og.statusLabel}</span>
-                          </span>
-                          <span className="bn2-dot" aria-hidden />
-                        </button>
-                      )) : (
-                        <button type="button" role="menuitem" onClick={call(account.onWorkspace)} className="bn2-mi" style={{ color: C.blueDark }}>{t('account.addOrg')}</button>
-                      )}
-                      {account.canList && (
-                        <>
-                          {rule}
-                          <button type="button" role="menuitem" onClick={call(account.onMine)} className="bn2-mi">{t('account.mine')}</button>
-                          <button type="button" role="menuitem" onClick={call(account.onNewListing)} className="bn2-mi">{t('account.newListing')}</button>
-                        </>
-                      )}
-                      <button type="button" role="menuitem" onClick={call(account.onWorkspace)} className="bn2-mi">{t('account.workspaceOrgs')}</button>
-                      <button type="button" role="menuitem" onClick={call(account.onTeam)} className="bn2-mi">{t('account.team')}</button>
-                    </>
-                  ) : (
-                    <button type="button" role="menuitem" onClick={call(account?.onAddCompany)} className="bn2-mi">{t('account.addYourOrg')}</button>
-                  )}
-                  <button type="button" role="menuitem" onClick={call(account?.onAccount)} className="bn2-mi">{t('account.myAccount')}</button>
-                  <Link role="menuitem" href="/marketplace" onClick={() => setUserOpen(false)} className="bn2-mi">{t('account.marketplace')}</Link>
-                  <button type="button" role="menuitem" onClick={call(account?.onSignOut)} className="bn2-mi" style={{ color: '#9E3125', borderTop: `1px solid ${C.borderHair}`, marginTop: 6, borderRadius: '0 0 10px 10px' }}>{t('account.signOut')}</button>
-                </div>
-              )}
-            </div>
-          )}
 
           <button
             type="button"

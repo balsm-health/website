@@ -12,7 +12,6 @@ const routes: { path: string; priority: number }[] = [
   { path: '/contributors/joined', priority: 0.6 },
   { path: '/products', priority: 0.9 },
   { path: '/ecosystem', priority: 0.8 },
-  { path: '/marketplace', priority: 0.8 },
   { path: '/partners', priority: 0.8 },
   { path: '/download', priority: 0.7 },
   { path: '/links', priority: 0.5 },

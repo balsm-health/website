@@ -29,8 +29,6 @@ const CONTENT_SECURITY_POLICY = [
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: https:",
   "connect-src 'self' https:",
-  // Marketplace listings embed their intro video from YouTube's no-cookie host.
-  "frame-src https://www.youtube-nocookie.com",
   "frame-ancestors 'none'",
 ].join('; ');
 
