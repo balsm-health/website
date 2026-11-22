@@ -2,7 +2,6 @@
 
 import { useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { usePathname } from '@/i18n/navigation';
 import { FONT } from './theme';
 
 type Kind = 'news' | 'wait';
@@ -11,7 +10,7 @@ type Status = 'idle' | 'loading' | 'error' | 'done';
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Off makes the block waitlist-only (no Newsletter / Waitlist switch). On needs
-// the newsletter_subscribers table (supabase/migrations/20261122_*.sql).
+// join_list and the waiting_list.newsletter flag (supabase/migrations/20261122_waiting_list_newsletter_flag.sql).
 const NEWSLETTER_ENABLED = true;
 
 // Visually hidden but read by screen readers (the design labels the fields
@@ -27,7 +26,6 @@ const srOnly: React.CSSProperties = { position: 'absolute', width: 1, height: 1,
 export default function FooterSignup() {
   const t = useTranslations('siteFooter.newsletter');
   const locale = useLocale();
-  const pathname = usePathname();
   const [kind, setKind] = useState<Kind>(NEWSLETTER_ENABLED ? 'news' : 'wait');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -56,7 +54,7 @@ export default function FooterSignup() {
         ? await fetch('/api/newsletter', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: v, locale, page: pathname }),
+            body: JSON.stringify({ email: v, locale }),
           })
         : await fetch('/api/waitlist', {
             method: 'POST',

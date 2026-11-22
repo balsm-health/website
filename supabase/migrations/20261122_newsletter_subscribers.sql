@@ -1,3 +1,5 @@
+-- SUPERSEDED: newsletter sign-ups now live on waiting_list (newsletter flag),
+-- and 20261122_waiting_list_newsletter_flag.sql folds this table in and drops it.
 -- Newsletter sign-ups from the site footer (POST /api/newsletter).
 -- Applied on 2026-11-22 as migration "newsletter_subscribers" to both Balsm-Dev-Db
 -- (ecsokheoaqbdrcenpgiy) and Prod (rkgeuweihteaflkiasue).

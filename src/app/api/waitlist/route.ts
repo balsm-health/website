@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import * as Sentry from '@sentry/cloudflare';
-import { getSupabase, getSupabaseAdmin, missingSupabaseConfig } from '@/lib/supabase';
+import { getSupabase, missingSupabaseConfig } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
@@ -80,49 +80,32 @@ export async function POST(request: Request) {
       insertData.organization = organization.trim().slice(0, LIMITS.organization);
     }
 
-    // No .select() on either path. Returning the inserted row sends
-    // `Prefer: return=representation`, and Postgres requires a SELECT policy to
-    // return it — so an insert-only table rejects the whole statement with
-    // 42501. Production only avoided that because it grants anon SELECT, which
-    // also exposes every signup email. Nothing consumes the id, so don't ask
-    // for it.
-    //
-    // Upsert when the service role is configured, so someone who signs up again
-    // can correct their details — a plain insert hits the UNIQUE(email)
-    // constraint and silently discards whatever they just typed. The anon
-    // client can't do this: an upsert needs UPDATE, and granting that to the
-    // publishable key would let anyone overwrite a row by guessing its email.
-    // Without the secret we fall back to insert-only, which still works.
-    const admin = getSupabaseAdmin();
-    const { error } = admin
-      ? await admin.from('waiting_list').upsert([insertData], { onConflict: 'email' })
-      : await supabase.from('waiting_list').insert([insertData]);
+    // Through the join_list database function rather than an insert: the
+    // table is UNIQUE(email) and also holds newsletter sign-ups, so someone
+    // who is already on it (on the waitlist, or newsletter-only) is merged
+    // into their existing row instead of hitting a duplicate. The public key
+    // has no UPDATE on the table, so the merge has to live in the function.
+    // Schema: supabase/migrations/20261122_waiting_list_newsletter_flag.sql.
+    const { error } = await supabase.rpc('join_list', {
+      p_email: insertData.email,
+      p_list: 'waitlist',
+      p_locale: insertData.locale,
+      p_source: insertData.source,
+      p_message: insertData.message ?? null,
+      p_organization: insertData.organization ?? null,
+    });
 
     if (error) {
-      // Check for duplicate email - PostgreSQL unique constraint violation
-      // Can be error.code '23505' or message containing 'duplicate' or 'unique'
-      const isDuplicate =
-        error.code === '23505' ||
-        error.message?.toLowerCase().includes('duplicate') ||
-        error.message?.toLowerCase().includes('unique') ||
-        error.details?.toLowerCase().includes('already exists');
-
-      if (isDuplicate) {
-        return NextResponse.json(
-          { error: 'Email already registered', code: 'duplicate' },
-          { status: 409 }
-        );
+      // join_list raises 22023 for input it refuses; everything else is ours.
+      if (error.code === '22023') {
+        return NextResponse.json({ error: 'Invalid email format', code: 'invalid' }, { status: 400 });
       }
-
       // Capture the DB failure (no PII — email is not attached to the event).
-      Sentry.captureException(new Error(`waitlist insert failed: ${error.code || 'unknown'}`), {
+      Sentry.captureException(new Error(`waitlist join failed: ${error.code || 'unknown'}`), {
         extra: { code: error.code, locale, source: insertData.source },
       });
-      // Generic body. Postgres puts the offending row's values in `details` on
-      // a constraint violation, so returning it echoed the submitter's own
-      // email and organization back in a 500 — and `message` leaks column and
-      // constraint names. Sentry above already has the code and context; the
-      // caller gets nothing it can act on anyway.
+      // Generic body: Postgres error details can echo the submitter's own
+      // values and leak column names. Sentry above already has the context.
       return NextResponse.json(
         { error: 'Failed to register', code: 'server_error' },
         { status: 500 }
