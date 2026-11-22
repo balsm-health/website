@@ -1,4 +1,5 @@
--- Applied to the project on 2026-11-22 as migration "lock_down_public_api".
+-- Applied to Balsm-Dev-Db (ecsokheoaqbdrcenpgiy) on 2026-11-22 as migration
+-- "lock_down_public_api". Prod got 20261122_lock_down_waiting_list.sql.
 -- Clears both Supabase security-advisor warnings and the waiting_list
 -- over-exposure. The site only ever inserts through the public keys
 -- (/api/waitlist, /api/newsletter); reading is for the service role.

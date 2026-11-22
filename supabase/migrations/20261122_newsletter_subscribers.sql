@@ -1,5 +1,6 @@
 -- Newsletter sign-ups from the site footer (POST /api/newsletter).
--- Applied to the project on 2026-11-22 as migration "newsletter_subscribers".
+-- Applied on 2026-11-22 as migration "newsletter_subscribers" to both Balsm-Dev-Db
+-- (ecsokheoaqbdrcenpgiy) and Prod (rkgeuweihteaflkiasue).
 -- Separate from waiting_list: that table is UNIQUE(email) and CHECKs `source`,
 -- so a newsletter row there would overwrite or be rejected alongside a
 -- waitlist row for the same person.
