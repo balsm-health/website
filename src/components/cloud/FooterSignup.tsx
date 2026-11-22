@@ -10,10 +10,9 @@ type Status = 'idle' | 'loading' | 'error' | 'done';
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// The newsletter choice is hidden for now; the block is waitlist-only. Turning
-// this on brings back the Newsletter / Waitlist switch, and needs
-// supabase/migrations/20261122_newsletter_subscribers.sql run first.
-const NEWSLETTER_ENABLED = false;
+// Off makes the block waitlist-only (no Newsletter / Waitlist switch). On needs
+// the newsletter_subscribers table (supabase/migrations/20261122_*.sql).
+const NEWSLETTER_ENABLED = true;
 
 // Visually hidden but read by screen readers (the design labels the fields
 // this way: the placeholder alone is not a label).
