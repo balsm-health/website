@@ -55,9 +55,10 @@ Previews page. All of it is driven by
 the `path`, the panel colour `accent` and the eyebrow's darker `accentText`, an
 `ar` and `en` block of `eyebrow`, `title` (≤ 60 characters) and `desc`
 (≤ 155), and a `rev`; `site.tagline` is the line at the foot of every card.
-`"layout": "app"` (used by `/download`) swaps in the App Store card: the
-app's home screen in a phone frame with the store badges, headed by each
-locale's `headline` (falling back to `title`).
+`"layout": "app"` (used by `/download`) swaps in the app card: the same
+panel-and-strip frame, with the app's home screen in a tilted phone in the
+panel, each locale's `headline` (falling back to `title`), its `chips`, and
+the store badges.
 The same title and description are the page's `og:title` / `og:description`.
 
 ```bash

@@ -91,18 +91,28 @@
       "layout": "app",
       "accent": "#1283FF",
       "accentText": "#0F6BCC",
-      "rev": 4,
+      "rev": 5,
       "ar": {
         "eyebrow": "تطبيق بلسم",
         "title": "خذ سجلّك الصحي معك.",
         "desc": "على آيفون وأندرويد: عربيٌّ أولاً، يعمل دون إنترنت، وبياناتك تبقى على جهازك.",
-        "headline": "سجلّك الصحي في جيبك"
+        "headline": "سجلّك الصحي في جيبك",
+        "chips": [
+          "عربيٌّ أولاً",
+          "يعمل دون إنترنت",
+          "بياناتك على جهازك"
+        ]
       },
       "en": {
-        "eyebrow": "Balsm app",
+        "eyebrow": "The Balsm app",
         "title": "Take your health record with you.",
         "desc": "On iPhone and Android: Arabic-first, works offline, and your data stays on your device.",
-        "headline": "Your health record, in your pocket"
+        "headline": "Your health record, in your pocket",
+        "chips": [
+          "Arabic-first",
+          "Works offline",
+          "Data stays on device"
+        ]
       }
     },
     "providers": {

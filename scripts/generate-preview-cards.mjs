@@ -42,7 +42,7 @@ const LOCALES = ['ar', 'en'];
 const ORIGIN = 'https://balsm.health';
 
 const FONTS =
-  'https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&family=Montserrat:wght@700;800&display=block';
+  'https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Montserrat:wght@500;600;700;800&display=block';
 
 // Every face og-card.js draws with, per locale.
 const FACES_BY_LOCALE = {
@@ -99,127 +99,93 @@ function cardHtml(card, locale) {
 }
 
 /* -------------------------------------------- the /download phone card -- */
-// `"layout": "app"` swaps the design's card for the App Store card: the app's
-// home screen in a phone frame, the headline (`headline`, else `title`) with
-// the other locale's headline beneath, and the store badges. It is plain HTML,
-// not canvas, so Chrome fetches the Arabic font subsets for the text itself.
+// `"layout": "app"` swaps the design's card for the app card. Same frame as
+// the others — a panel in the route's colour (left in Arabic, right in
+// English) and the petal strip — but the panel holds the app's home screen
+// (public/app/home-{ar,en}.webp) in a tilted phone instead of the brand disc.
+// The text side carries the eyebrow, `headline` (else `title`) with the other
+// locale's headline beneath, the route's `chips`, and the store badges. Plain
+// HTML rather than canvas, so Chrome fetches the Arabic font subsets itself.
 
-// Cloud palette — mirrors src/components/cloud/theme.ts
-const BG = '#FAFAF7';
-const INK = '#14202B';
-const MUTED = '#526174'; // ink-600: the small print still has to read at thumbnail size
-
-const lockup = IMAGES.logo;
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const other = (locale) => (locale === 'ar' ? 'en' : 'ar');
-const fontFor = (locale, weight, size, lh) =>
-  locale === 'ar' ? `${weight} ${size}px/${lh} 'Cairo', sans-serif` : `${weight} ${size}px/${lh} 'Montserrat', sans-serif`;
 
-const SHELL_CSS = `
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 1200px; height: 630px; background: ${BG}; position: relative; overflow: hidden; }
-  body::before {
-    content: ''; position: absolute; inset: 0;
-    background:
-      radial-gradient(760px 460px at 0% 100%, rgba(1,196,162,.07), transparent 70%),
-      radial-gradient(640px 420px at 0% 0%, rgba(18,131,255,.06), transparent 70%);
-  }
-  footer {
-    position: absolute; inset: auto 0 0 0; height: 8px; z-index: 2;
-    background: linear-gradient(90deg, #01C4A2, #02BBB5, #1283FF, #724DD0);
-  }`;
+/** Mixes a hex colour toward black (f < 0) or white (f > 0). */
+function shade(hex, f) {
+  const n = parseInt(hex.slice(1), 16);
+  const ch = [n >> 16, (n >> 8) & 255, n & 255].map((v) => Math.round(f < 0 ? v * (1 + f) : v + (255 - v) * f));
+  return `#${ch.map((v) => v.toString(16).padStart(2, '0')).join('')}`;
+}
 
-// Store badges: the site's own Apple / Play glyphs (public/icons), drawn white
-// on ink like the badges on /download.
-const glyph = (name) =>
+// Store badges and chip ticks: the site's own glyphs (public/icons).
+const glyph = (name, color) =>
   readFileSync(pub(`icons/${name}.svg`), 'utf8')
     .replace(/<\/?g[^>]*>/g, '')
-    .replace('stroke="currentColor"', 'stroke="#FFFFFF"');
+    .replace('stroke="currentColor"', `stroke="${color}"`);
 
-/**
- * The /download card. That URL is what the app's share sheet prints, so its
- * preview shows the app itself — the home-screen capture the site's phone
- * mockup uses (public/app/home-{ar,en}.webp), in the same iPhone frame — and
- * the store badges.
- */
 function appCardHtml(card, locale) {
+  const ar = locale === 'ar';
   const main = card[locale];
-  const alt = card[other(locale)];
-  const dir = locale === 'ar' ? 'rtl' : 'ltr';
+  const alt = card[ar ? 'en' : 'ar'];
+  const acc = card.accent;
   const screen = `data:image/webp;base64,${readFileSync(pub(`app/home-${locale}.webp`)).toString('base64')}`;
-  const badge = (icon, kicker, name) => `
-    <span class="badge">${glyph(icon)}<span><small>${kicker}</small><b>${name}</b></span></span>`;
+  const panel = ar ? 'left' : 'right';
+  const start = ar ? 'right' : 'left';
+  const badge = (icon, kicker, name) =>
+    `<span class="badge">${glyph(icon, '#FFFFFF')}<span><small>${kicker}</small><b>${name}</b></span></span>`;
+  const tick = glyph('check', card.accentText);
   return `<!doctype html>
-<html lang="${locale}" dir="${dir}">
+<html lang="${locale}" dir="${ar ? 'rtl' : 'ltr'}">
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="${FONTS}">
-<style>${SHELL_CSS}
-  body { display: flex; align-items: center; gap: 56px; padding: 0 84px; }
-  body::before {
-    background:
-      radial-gradient(640px 420px at 22% 18%, rgba(131,80,222,.12), transparent 70%),
-      radial-gradient(620px 380px at 92% 112%, rgba(1,196,162,.11), transparent 70%);
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #FAFAF7; position: relative; font-family: ${ar ? "'IBM Plex Sans Arabic'" : "'IBM Plex Sans'"}, sans-serif; }
+  .panel {
+    position: absolute; top: 0; bottom: 0; ${panel}: 0; width: 470px; overflow: hidden;
+    background: radial-gradient(420px 360px at 50% 34%, rgba(255,255,255,.22), transparent 70%),
+      linear-gradient(160deg, ${shade(acc, -0.38)} 0%, ${acc} 58%, ${shade(acc, 0.27)} 100%);
   }
-  .copy { flex: 1; min-width: 0; position: relative; display: flex; flex-direction: column; align-items: flex-start; }
-  .lockup { width: 300px; height: auto; display: block; }
-  h1 {
-    font: ${fontFor(locale, 800, locale === 'ar' ? 58 : 52, locale === 'ar' ? 1.35 : 1.15)}; color: ${INK};
-    margin-top: 34px; letter-spacing: ${locale === 'ar' ? '0' : '-0.015em'};
-  }
-  p {
-    font: ${other(locale) === 'en' ? "600 24px/1.4 'Montserrat'" : "700 26px/1.5 'Cairo'"}, sans-serif; color: ${MUTED};
-    direction: ${other(locale) === 'ar' ? 'rtl' : 'ltr'}; margin-top: 12px;
-  }
-  .stores { display: flex; gap: 16px; direction: ltr; margin-top: 36px; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 13px;
-    padding: 13px 26px 13px 20px; border-radius: 16px; background: ${INK}; color: #fff;
-  }
-  .badge svg { width: 34px; height: 34px; flex: none; }
-  .badge small { display: block; font: 500 14px/1.2 'Montserrat', sans-serif; opacity: .75; }
-  .badge b { display: block; font: 600 24px/1.15 'Montserrat', sans-serif; }
-  /* Same frame as src/components/cloud/AppPhone.tsx, scaled to 1.12x, running
-     off the bottom edge so the screen reads at link-preview size. */
+  .panel .mark { position: absolute; width: 560px; opacity: .12; ${panel}: -150px; bottom: -170px; }
+  .panel .ring { position: absolute; width: 420px; height: 420px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.18); left: 25px; top: 40px; }
   .phone {
-    flex: none; position: relative; align-self: flex-start; margin-top: 64px;
-    width: 314px; border-radius: 49px; background: ${INK}; padding: 12px;
-    box-shadow: 0 34px 80px rgba(20,32,43,.24);
+    position: absolute; ${panel}: 92px; top: 118px; width: 290px; border-radius: 46px; background: #0E1822; padding: 11px;
+    transform: rotate(${ar ? -6 : 6}deg); box-shadow: 0 40px 80px rgba(4,30,70,.45), 0 0 0 1.5px rgba(255,255,255,.12) inset;
   }
-  .screen { position: relative; width: 100%; aspect-ratio: 393 / 852; border-radius: 38px; background: #fff; overflow: hidden; }
-  .screen > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  .status {
-    position: absolute; top: 0; left: 0; right: 0; height: 49px; display: flex; align-items: center;
-    justify-content: space-between; padding: 0 25px 0 29px; color: ${INK};
-  }
-  .status .time { font: 600 13.5px 'IBM Plex Sans', sans-serif; letter-spacing: -0.01em; direction: ltr; }
-  .status .icons { display: flex; align-items: center; gap: 4.5px; direction: ltr; }
-  .island { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 31%; height: 27px; border-radius: 999px; background: #0B1218; }
+  .screen { position: relative; width: 100%; aspect-ratio: 393 / 852; border-radius: 36px; background: #fff; overflow: hidden; }
+  .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .island { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 31%; height: 25px; border-radius: 999px; background: #0B1218; }
+  .col { position: absolute; top: 0; bottom: 0; ${start}: 0; width: 730px; padding: 56px 64px 0; display: flex; flex-direction: column; align-items: flex-start; }
+  .logo { height: 56px; width: auto; display: block; }
+  .eyebrow { margin-top: 40px; font: ${ar ? "700 24px/1.2 'Cairo'" : "500 19px/1.2 'IBM Plex Sans'"}, sans-serif; color: ${card.accentText}; letter-spacing: ${ar ? '0' : '.14em'}; text-transform: uppercase; }
+  h1 { margin-top: 10px; font: ${ar ? "800 60px/1.5 'Cairo'" : "800 56px/1.12 'Montserrat'"}, sans-serif; color: #14202B; letter-spacing: ${ar ? '0' : '-.02em'}; max-width: ${ar ? 620 : 600}px; text-wrap: balance; }
+  .sub { margin-top: ${ar ? 18 : 16}px; font: ${ar ? "500 25px/1.4 'IBM Plex Sans'" : "600 27px/1.5 'IBM Plex Sans Arabic'"}, sans-serif; color: #526174; direction: ${ar ? 'ltr' : 'rtl'}; }
+  .chips { display: flex; gap: 10px; margin-top: 26px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px; background: ${shade(acc, 0.88)}; color: ${shade(acc, -0.4)}; font: 600 ${ar ? '19px' : '17px'}/1 ${ar ? "'IBM Plex Sans Arabic'" : "'IBM Plex Sans'"}, sans-serif; }
+  .chip svg { width: 17px; height: 17px; flex: none; }
+  .stores { position: absolute; bottom: 62px; ${start}: 64px; display: flex; align-items: center; gap: 14px; direction: ltr; }
+  .badge { display: inline-flex; align-items: center; gap: 11px; padding: 11px 22px 11px 16px; border-radius: 14px; background: #14202B; color: #fff; }
+  .badge svg { width: 28px; height: 28px; flex: none; }
+  .badge small { display: block; font: 500 12px/1.2 'Montserrat', sans-serif; opacity: .75; }
+  .badge b { display: block; font: 600 20px/1.15 'Montserrat', sans-serif; }
+  .url { position: absolute; top: 76px; ${panel}: 534px; font: 500 19px/1 'IBM Plex Mono', monospace; color: #5F6B77; direction: ltr; }
+  .strip { position: absolute; bottom: 0; ${start}: 0; width: 730px; height: 10px; display: flex; }
+  .strip i { flex: 1; }
 </style>
 </head>
 <body>
-  <div class="copy">
-    <img class="lockup" src="${lockup}" alt="">
+  <div class="panel"><div class="ring"></div><img class="mark" src="${IMAGES.mark}" alt=""></div>
+  <div class="phone"><div class="screen"><img src="${screen}" alt=""><div class="island"></div></div></div>
+  <div class="col">
+    <img class="logo" src="${IMAGES.logo}" alt="">
+    <div class="eyebrow">${esc(main.eyebrow)}</div>
     <h1>${esc(main.headline ?? main.title)}</h1>
-    <p>${esc(alt.headline ?? alt.title)}</p>
-    <div class="stores">${badge('apple', 'Download on the', 'App Store')}${badge('play', 'Get it on', 'Google Play')}
-    </div>
+    <div class="sub">${esc(alt.headline ?? alt.title)}</div>
+    <div class="chips">${(main.chips ?? []).map((c) => `<span class="chip">${tick}${esc(c)}</span>`).join('')}</div>
   </div>
-  <div class="phone">
-    <div class="screen">
-      <img src="${screen}" alt="">
-      <div class="status">
-        <span class="time">9:41</span>
-        <span class="icons">
-          <svg viewBox="0 0 18 12" width="17" height="11"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="currentColor"/><rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
-          <svg viewBox="0 0 16 12" width="15" height="11"><path d="M8 11.5l2.4-2.9a3.6 3.6 0 0 0-4.8 0z M8 4.6c1.6 0 3.1.6 4.2 1.6l1.5-1.8A8.6 8.6 0 0 0 8 2.2a8.6 8.6 0 0 0-5.7 2.2l1.5 1.8A6.3 6.3 0 0 1 8 4.6z" fill="currentColor"/></svg>
-          <svg viewBox="0 0 27 13" width="24" height="11"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2.5" y="2.5" width="18" height="8" rx="2" fill="currentColor"/><path d="M24.5 4.5v4a2 2 0 0 0 0-4z" fill="currentColor" fill-opacity=".45"/></svg>
-        </span>
-      </div>
-      <div class="island"></div>
-    </div>
-  </div>
-  <footer></footer>
+  <div class="stores">${badge('apple', 'Download on the', 'App Store')}${badge('play', 'Get it on', 'Google Play')}</div>
+  <div class="url">${esc(`balsm.health${shownPath(card, locale)}`)}</div>
+  <div class="strip"><i style="background:#02BBB5"></i><i style="background:#1283FF"></i><i style="background:#01C4A2"></i><i style="background:#724DD0"></i><i style="background:#55D77F"></i></div>
 </body>
 </html>`;
 }
