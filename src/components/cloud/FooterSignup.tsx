@@ -10,6 +10,11 @@ type Status = 'idle' | 'loading' | 'error' | 'done';
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// The newsletter choice is hidden for now; the block is waitlist-only. Turning
+// this on brings back the Newsletter / Waitlist switch, and needs
+// supabase/migrations/20261122_newsletter_subscribers.sql run first.
+const NEWSLETTER_ENABLED = false;
+
 // Visually hidden but read by screen readers (the design labels the fields
 // this way: the placeholder alone is not a label).
 const srOnly: React.CSSProperties = { position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap' };
@@ -24,7 +29,7 @@ export default function FooterSignup() {
   const t = useTranslations('siteFooter.newsletter');
   const locale = useLocale();
   const pathname = usePathname();
-  const [kind, setKind] = useState<Kind>('news');
+  const [kind, setKind] = useState<Kind>(NEWSLETTER_ENABLED ? 'news' : 'wait');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<Status>('idle');
@@ -106,7 +111,7 @@ export default function FooterSignup() {
     >
       <div style={{ flex: '1 1 320px', minWidth: 0 }}>
         <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(20px,2.4vw,26px)', lineHeight: 1.3, color: '#fff', margin: 0 }}>{t('title')}</h2>
-        <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,.7)', margin: '8px 0 0' }}>{t('desc')}</p>
+        <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,.7)', margin: '8px 0 0' }}>{t(NEWSLETTER_ENABLED ? 'desc' : 'descWait')}</p>
       </div>
 
       <div style={{ flex: '1 1 400px', minWidth: 0 }}>
@@ -117,6 +122,7 @@ export default function FooterSignup() {
           </div>
         ) : (
           <>
+            {NEWSLETTER_ENABLED && (
             <div role="radiogroup" aria-label={t('kind')} style={{ display: 'inline-flex', gap: 2, padding: 3, marginBottom: 10, borderRadius: 999, background: 'rgba(255,255,255,.08)' }}>
               {(['news', 'wait'] as const).map((k, i) => (
                 <button
@@ -135,6 +141,7 @@ export default function FooterSignup() {
                 </button>
               ))}
             </div>
+            )}
 
             <form onSubmit={submit} noValidate style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
               <label htmlFor="bf-email" style={srOnly}>{t('email')}</label>

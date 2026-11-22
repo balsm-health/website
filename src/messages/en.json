@@ -138,7 +138,8 @@
       "doneNews": "You're subscribed. We'll only send the Balsm news that matters.",
       "doneWait": "You're on the waitlist. We'll email you as soon as accounts and the marketplace open.",
       "invalid": "Enter a valid email address to continue.",
-      "error": "We couldn't send that just now. Please try again in a moment."
+      "error": "We couldn't send that just now. Please try again in a moment.",
+      "descWait": "Join the waitlist to be first to try accounts and the systems marketplace when they launch."
     }
   },
   "homeMeta": {
