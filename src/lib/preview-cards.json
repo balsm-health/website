@@ -26,16 +26,16 @@
       "path": "/products",
       "accent": "#1283FF",
       "accentText": "#0F6BCC",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "منتجات بلسم",
         "title": "منتجات متعدّدة، على نواةٍ واحدة مفتوحة.",
-        "desc": "تطبيق بلسم، وبلسم برو، وبلسم كونكت، وشبكة بلسم — تتكامل كلها عبر FHIR R4."
+        "desc": "تطبيق بلسم، وبلسم برو، وبلسم كونكت، وسحابة بلسم — تتكامل كلها عبر FHIR R4."
       },
       "en": {
         "eyebrow": "Balsm products",
         "title": "Many products, one open core.",
-        "desc": "Balsm App, Balsm Pro, Balsm Connect and Balsm Network, all integrated through FHIR R4."
+        "desc": "Balsm App, Balsm Pro, Balsm Connect and Balsm Cloud, all integrated through FHIR R4."
       }
     },
     "ecosystem": {

@@ -79,7 +79,7 @@ export default function ProductsSections() {
                 </a>
               ))}
             </div>
-            <a href="#network" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '8px 16px', borderRadius: 16, padding: '16px 18px', background: C.violetBg, border: `1px solid ${VIOLET_EDGE}` }}>
+            <a href="#cloud" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '8px 16px', borderRadius: 16, padding: '16px 18px', background: C.violetBg, border: `1px solid ${VIOLET_EDGE}` }}>
               <span style={tileName}>{t('stack.network.name')}</span>
               <span style={{ fontSize: 13.5, color: C.ink2 }}>{t('stack.network.desc')}</span>
             </a>
@@ -181,7 +181,7 @@ export default function ProductsSections() {
               </div>
             </Reveal>
           </div>
-          <div id="network" style={{ scrollMarginTop: 80 }}>
+          <div id="cloud" style={{ scrollMarginTop: 80 }}>
             <Reveal style={{ height: '100%', boxSizing: 'border-box', borderRadius: 24, padding: 'clamp(28px,4vw,40px)', background: `linear-gradient(160deg,${C.violetBg},#fff 75%)`, border: `1px solid ${VIOLET_EDGE}` }}>
               <span style={badge(C.white, C.violetDark, VIOLET_EDGE)}>{t('network.badge')}</span>
               <div style={{ width: 52, height: 52, borderRadius: 15, background: C.violet, display: 'flex', alignItems: 'center', justifyContent: 'center', color: ON.violet, margin: '20px 0 18px' }}>

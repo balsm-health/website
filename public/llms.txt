@@ -24,7 +24,7 @@ exists in both — swap `https://balsm.health/x` for `https://balsm.health/en/x`
   clinics, hospitals, pharmacies, and medical-supply stores — the day-to-day
   clinical, dispensing, inventory and management work.
 - [Products](https://balsm.health/products): the Balsm app, Balsm Pro,
-  Balsm Connect and Balsm Network (the optional hosted layer: branch sync,
+  Balsm Connect and Balsm Cloud (the optional hosted layer: branch sync,
   managed backups, lab integration via FHIR), all on one open core.
 - [Contributors](https://balsm.health/contributors): how to join. Eight
   contributor roles, not only engineering — clinical, design, translation,

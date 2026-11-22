@@ -121,7 +121,7 @@ export default function BalsmFooter() {
             <div style={colWrap}>
               <Link href="/download" style={linkStyle}>{t('products.app')}</Link>
               <Link href="/products#pro" style={linkStyle}>{t('products.pro')}</Link>
-              <Link href="/products#network" style={linkStyle}>{t('products.network')}</Link>
+              <Link href="/products#cloud" style={linkStyle}>{t('products.network')}</Link>
               <Link href="/providers" style={linkStyle}>{t('products.providers')}</Link>
             </div>
           </div>

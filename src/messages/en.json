@@ -112,7 +112,7 @@
       "title": "Products",
       "app": "The Balsm app",
       "pro": "Balsm PRO",
-      "network": "Balsm Network",
+      "network": "Balsm Cloud",
       "providers": "For providers"
     },
     "community": {
@@ -243,7 +243,7 @@
       "cards": [
         {
           "title": "Products",
-          "desc": "The Balsm app for patients, Balsm PRO for facilities, Balsm Connect and Balsm Network.",
+          "desc": "The Balsm app for patients, Balsm PRO for facilities, Balsm Connect and Balsm Cloud.",
           "cta": "See the products"
         },
         {
@@ -427,7 +427,7 @@
       },
       "cloud": {
         "badge": "Optional",
-        "title": "Balsm Network",
+        "title": "Balsm Cloud",
         "price": "Usage-based",
         "features": [
           "Cross-branch sync",
@@ -435,7 +435,7 @@
           "FHIR lab integration",
           "Priority support"
         ],
-        "cta": "Explore Balsm Network"
+        "cta": "Explore Balsm Cloud"
       }
     },
     "demo": {
@@ -1258,7 +1258,7 @@
         "for": "For partners and integrators"
       },
       "network": {
-        "name": "Balsm Network",
+        "name": "Balsm Cloud",
         "desc": "Optional cloud layer: branch sync, backups and integrations"
       },
       "core": {
@@ -1324,7 +1324,7 @@
     },
     "network": {
       "badge": "On the roadmap",
-      "title": "Balsm Network",
+      "title": "Balsm Cloud",
       "desc": "The optional managed cloud — branch sync, backups and lab integrations. Subscribe when you choose; it funds maintenance of the open core."
     },
     "next": {
@@ -1335,7 +1335,7 @@
   },
   "productsMeta": {
     "title": "Balsm products — many products, one open core",
-    "description": "Balsm App, Balsm Pro, Balsm Connect and Balsm Network, all integrated through FHIR R4."
+    "description": "Balsm App, Balsm Pro, Balsm Connect and Balsm Cloud, all integrated through FHIR R4."
   },
   "ecosystem": {
     "breadcrumb": {
@@ -1365,7 +1365,7 @@
           "tags": []
         },
         {
-          "name": "Balsm Network",
+          "name": "Balsm Cloud",
           "desc": "An optional cloud layer for branch sync, backups and integrations.",
           "tags": [
             "Optional",
@@ -1391,8 +1391,8 @@
       },
       "cloud": {
         "title": "Managed cloud",
-        "desc": "A Balsm Network subscription under the Balsm Commercial License — we run, update and back up; you focus on care.",
-        "cta": "Explore Balsm Network"
+        "desc": "A Balsm Cloud subscription under the Balsm Commercial License — we run, update and back up; you focus on care.",
+        "cta": "Explore Balsm Cloud"
       }
     },
     "who": {

@@ -192,7 +192,7 @@ export default function ProvidersSections() {
                   <div key={f} style={{ display: 'flex', gap: 9, alignItems: 'center' }}><Check style={{ width: 18, height: 18, color: C.blue }} />{f}</div>
                 ))}
               </div>
-              <Link href="/products#network" style={{ display: 'block', textAlign: 'center', marginTop: 24, padding: 13, borderRadius: 999, background: FILL.blue, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>{t('pricing.cloud.cta')}</Link>
+              <Link href="/products#cloud" style={{ display: 'block', textAlign: 'center', marginTop: 24, padding: 13, borderRadius: 999, background: FILL.blue, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>{t('pricing.cloud.cta')}</Link>
             </Reveal>
           </div>
         </div>
