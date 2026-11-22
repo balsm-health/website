@@ -50,7 +50,7 @@ export async function POST(request: Request) {
 
     // Anything not in this list would fail the table's CHECK constraint and
     // surface as an opaque 500, so an unknown value falls back to the default.
-    const SOURCES = ['home', 'cloud', 'providers'] as const;
+    const SOURCES = ['home', 'providers'] as const;
     type Source = (typeof SOURCES)[number];
 
     // `locale` gets the same allowlist treatment as `source`. It was previously

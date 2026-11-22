@@ -5,7 +5,6 @@ import { CONTENT_REVISED, canonicalUrl } from '@/lib/seo';
 // Path (relative to /<locale>) → sitemap priority.
 const routes: { path: string; priority: number }[] = [
   { path: '', priority: 1 },
-  { path: '/cloud', priority: 0.9 },
   { path: '/providers', priority: 0.9 },
   { path: '/contributors', priority: 0.8 },
   { path: '/contributors/frame', priority: 0.6 },

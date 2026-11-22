@@ -152,7 +152,7 @@ export default function EcosystemSections() {
                 <span dir="ltr" style={{ fontFamily: FONT.mono, fontWeight: 600, fontSize: 13, padding: '4px 10px', borderRadius: 999, background: C.violetBg, color: C.violetDark }}>BCL</span>
               </div>
               <p style={{ fontSize: 15.5, lineHeight: 1.75, color: C.ink2, margin: '0 0 14px' }}>{t('licensing.cloud.desc')}</p>
-              <Link href="/cloud" style={textLink(C.violetDark)}>
+              <Link href="/products#network" style={textLink(C.violetDark)}>
                 {t('licensing.cloud.cta')}<ArrowLeft style={{ width: 16, height: 16, ...flip }} />
               </Link>
             </Reveal>

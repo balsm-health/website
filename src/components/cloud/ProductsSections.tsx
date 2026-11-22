@@ -188,10 +188,7 @@ export default function ProductsSections() {
                 <Cloud style={{ width: 25, height: 25 }} />
               </div>
               <h2 style={{ fontFamily: FONT.cairo, fontWeight: 800, fontSize: 'clamp(26px,3.4vw,36px)', color: C.ink, margin: '0 0 10px' }}>{t('network.title')}</h2>
-              <p style={{ fontSize: 16, lineHeight: 1.8, color: C.ink2, margin: '0 0 18px' }}>{t('network.desc')}</p>
-              <Link href="/cloud" style={textLink(C.violetDark, 15.5)}>
-                {t('network.cta')}<ArrowLeft style={{ width: 16, height: 16, ...flip }} />
-              </Link>
+              <p style={{ fontSize: 16, lineHeight: 1.8, color: C.ink2, margin: 0 }}>{t('network.desc')}</p>
             </Reveal>
           </div>
         </div>

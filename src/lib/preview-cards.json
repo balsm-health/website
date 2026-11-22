@@ -102,22 +102,6 @@
         "desc": "On iPhone and Android: Arabic-first, works offline, and your data stays on your device."
       }
     },
-    "cloud": {
-      "path": "/cloud",
-      "accent": "#5C3AB0",
-      "accentText": "#5C3AB0",
-      "rev": 3,
-      "ar": {
-        "eyebrow": "سحابة بلسم",
-        "title": "سحابة بلسم — حين تختار أن تتّصل.",
-        "desc": "مزامنة الفروع، ونسخ احتياطي مُدار، وتكامل المختبرات — طبقة اختيارية والسيطرة تبقى لك."
-      },
-      "en": {
-        "eyebrow": "Balsm Cloud",
-        "title": "Balsm Cloud: connect when you choose.",
-        "desc": "Branch sync, managed backups and lab integration: an optional layer, and you stay in control."
-      }
-    },
     "providers": {
       "path": "/providers",
       "accent": "#02A39E",

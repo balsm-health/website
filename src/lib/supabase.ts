@@ -86,7 +86,7 @@ export function missingSupabaseConfig(): string[] {
   return missing;
 }
 
-export type WaitlistSource = 'home' | 'cloud' | 'providers';
+export type WaitlistSource = 'home' | 'providers';
 
 export type WaitlistEntry = {
   id: string;

@@ -56,7 +56,7 @@ export default function ProvidersSections() {
     <>
       {/* HERO */}
       <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(44px,7vw,88px) 0 clamp(48px,7vw,92px)', background: 'linear-gradient(180deg,#E2F8F6 0%, #FAFAF7 100%)' }}>
-        {/* Physical `left`, matching CloudHero and the design: the bloom stays
+        {/* Physical `left`, matching the design: the bloom stays
             top-left in both directions. `insetInlineStart` flipped it to the
             right-hand corner under RTL, which is the locale that actually ships. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -192,7 +192,7 @@ export default function ProvidersSections() {
                   <div key={f} style={{ display: 'flex', gap: 9, alignItems: 'center' }}><Check style={{ width: 18, height: 18, color: C.blue }} />{f}</div>
                 ))}
               </div>
-              <Link href="/cloud" style={{ display: 'block', textAlign: 'center', marginTop: 24, padding: 13, borderRadius: 999, background: FILL.blue, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>{t('pricing.cloud.cta')}</Link>
+              <Link href="/products#network" style={{ display: 'block', textAlign: 'center', marginTop: 24, padding: 13, borderRadius: 999, background: FILL.blue, color: '#fff', fontFamily: FONT.cairo, fontWeight: 700, boxShadow: '0 10px 24px rgba(18,131,255,.24)' }}>{t('pricing.cloud.cta')}</Link>
             </Reveal>
           </div>
         </div>
