@@ -5,6 +5,7 @@ import { Link } from '@/i18n/navigation';
 import { C, FONT } from './theme';
 import { AtSign, Globe, Mail } from './CloudIcons';
 import AnimatedLogo from './AnimatedLogo';
+import FooterSignup from './FooterSignup';
 import SocialLogo, { type SocialPlatform } from './SocialLogo';
 
 const linkStyle: React.CSSProperties = {
@@ -68,6 +69,7 @@ export default function BalsmFooter() {
   return (
     <footer style={{ background: C.ink, color: '#fff', padding: 'clamp(48px,7vw,80px) 0 32px', fontFamily: FONT.arabic }}>
       <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' }}>
+        <FooterSignup />
         <div
           style={{
             display: 'grid',

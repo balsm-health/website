@@ -121,6 +121,24 @@
       "benefits": "Contributor benefits",
       "joined": "Share that you joined",
       "partners": "Partners"
+    },
+    "newsletter": {
+      "title": "Stay close to Balsm",
+      "desc": "Subscribe to the newsletter for Balsm news, or join the waitlist to be first to try accounts and the systems marketplace when they launch.",
+      "kind": "Signup type",
+      "news": "Newsletter",
+      "wait": "Waitlist",
+      "email": "Email",
+      "message": "Your message (optional)",
+      "ctaNews": "Subscribe",
+      "ctaWait": "Join the waitlist",
+      "sending": "Sending…",
+      "noteNews": "Balsm news about once a month. Unsubscribe any time.",
+      "noteWait": "We'll email you as soon as accounts and the marketplace open. We never share your email.",
+      "doneNews": "You're subscribed. We'll only send the Balsm news that matters.",
+      "doneWait": "You're on the waitlist. We'll email you as soon as accounts and the marketplace open.",
+      "invalid": "Enter a valid email address to continue.",
+      "error": "We couldn't send that just now. Please try again in a moment."
     }
   },
   "homeMeta": {
@@ -170,7 +188,7 @@
       "eyebrow": "Why an initiative?",
       "title": "Healthcare matters too much to be locked inside a closed product.",
       "p1": "Arab patients move between pharmacy, clinic and lab with no single connected record. Facilities are stuck between paper, closed local systems and foreign platforms that don't understand their context.",
-      "p2": "So we started Balsm as shared infrastructure: open code, open standards and open governance — built to outlast any single company.",
+      "p2": "So we started Balsm as integrated infrastructure: open code, open standards and open governance — built to outlast any single company.",
       "cards": [
         {
           "title": "Fragmented, locked-in data",
@@ -1413,7 +1431,7 @@
         },
         {
           "title": "Partners and supporters",
-          "desc": "Programs, institutions and tech companies funding the shared infrastructure."
+          "desc": "Programs, institutions and tech companies funding the integrated infrastructure."
         }
       ]
     },

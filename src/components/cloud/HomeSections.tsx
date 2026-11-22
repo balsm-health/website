@@ -14,9 +14,9 @@ export default function HomeSections() {
       <HomePartnersStrip />
       <HomeVision />
       <HomeMission />
+      <HomeExploreCards />
       <HomeFoundation />
       <HomeScale />
-      <HomeExploreCards />
       <HomeValues />
       <HomeWho />
       <HomeClosing />
