@@ -33,7 +33,6 @@
 - Arabic + English bilingual support
 
 ### 3. Generative Engine Optimization (GEO)
-- **FAQ structured data** - 12 comprehensive Q&As
 - **Knowledge base** - 5000+ words, 17 sections
 - **Statistics** - Market data with sources
 - **Comparisons** - Balsm vs competitors
@@ -56,7 +55,6 @@ website/
 ├── public/
 │   ├── .well-known/
 │   │   ├── ai.json                  # AI metadata (enhanced)
-│   │   ├── faq.json                 # FAQ structured data
 │   │   ├── knowledge-base.md        # Comprehensive KB
 │   │   └── security.txt             # Security policy
 │   ├── humans.txt
@@ -313,7 +311,6 @@ website/
 ### Quick Access URLs
 - **Website**: https://balsm.health
 - **Knowledge Base**: https://balsm.health/.well-known/knowledge-base.md
-- **FAQ**: https://balsm.health/.well-known/faq.json
 - **AI Metadata**: https://balsm.health/.well-known/ai.json
 
 ### Contact

@@ -1,44 +1,11 @@
-import { getTranslations } from 'next-intl/server';
-import SiteShell from '@/components/cloud/SiteShell';
-import SponsorSections from '@/components/cloud/SponsorSections';
-import JsonLd from '@/components/JsonLd';
-import { alternates, openGraph, pageJsonLd, twitter } from '@/lib/seo';
+import { permanentRedirect } from 'next/navigation';
+import { defaultLocale } from '@/i18n/request';
 
+// Sponsor was folded into Partners (Partners.dc.html). Keep the old path working.
 type Props = { params: Promise<{ locale: string }> };
 
-export async function generateMetadata({ params }: Props) {
+export default async function SponsorRedirect({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'sponsorMeta' });
-  const title = t('title');
-  const description = t('description');
-  return {
-    title,
-    description,
-    alternates: alternates(locale, '/sponsor'),
-    openGraph: openGraph({ locale, title, description, path: '/sponsor' }),
-    twitter: twitter({ locale, title, description }),
-  };
-}
-
-export default async function SponsorPage({ params }: Props) {
-  const { locale } = await params;
-  const nav = await getTranslations({ locale, namespace: 'nav' });
-  const meta = await getTranslations({ locale, namespace: 'sponsorMeta' });
-  const jsonLd = pageJsonLd({
-    locale,
-    path: '/sponsor',
-    title: meta('title'),
-    description: meta('description'),
-    breadcrumbs: [
-      { name: nav('home'), path: '' },
-      { name: nav('sponsor'), path: '/sponsor' },
-    ],
-  });
-
-  return (
-    <SiteShell active="sponsor">
-      <SponsorSections />
-      <JsonLd data={jsonLd} />
-    </SiteShell>
-  );
+  // Arabic is unprefixed; every other locale keeps its prefix.
+  permanentRedirect(locale === defaultLocale ? '/partners#partner' : `/${locale}/partners#partner`);
 }

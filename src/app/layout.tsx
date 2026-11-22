@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { SITE_URL as siteUrl, alternates, openGraph, twitter } from '@/lib/seo';
+import { headers } from 'next/headers';
+import { SITE_URL as siteUrl, alternates, metadataOrigin, openGraph, twitter } from '@/lib/seo';
 import { DISTRIBUTION, appStoreId } from '@/lib/appDistribution';
 import './globals.css';
 
 const iosAppId = appStoreId(DISTRIBUTION.appStore);
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+const baseMetadata: Metadata = {
   // No `template`. Every page title already carries the brand ("Balsm — …",
   // "بلسم — …"), so a '%s | Balsm' suffix rendered them as
   // "Balsm — the community-owned healthcare OS | Balsm" and spent characters
@@ -44,16 +44,8 @@ export const metadata: Metadata = {
   manifest: '/manifest.webmanifest',
   // Safari's Smart App Banner on every page — "Open" if installed, "Get" if not.
   ...(iosAppId && { itunes: { appId: iosAppId } }),
-  openGraph: openGraph({
-    locale: 'ar',
-    title: 'بلسم — نظام التشغيل الصحي المملوك للمجتمع',
-    description: 'أول نظام تشغيل صحي مملوك للمجتمع في العالم العربي — عربيٌّ أولاً، يعمل بلا إنترنت، ومفتوح المصدر بالكامل. من مصر، إلى كل العالم العربي.',
-  }),
-  twitter: twitter({
-    locale: 'ar',
-    title: 'بلسم — نظام التشغيل الصحي المملوك للمجتمع',
-    description: 'أول نظام تشغيل صحي مملوك للمجتمع في العالم العربي — عربيٌّ أولاً، يعمل بلا إنترنت، ومفتوح المصدر بالكامل. من مصر، إلى كل العالم العربي.',
-  }),
+  openGraph: openGraph({ locale: 'ar' }),
+  twitter: twitter({ locale: 'ar' }),
   robots: {
     index: true,
     follow: true,
@@ -74,6 +66,16 @@ export const metadata: Metadata = {
   alternates: alternates('ar'),
   category: 'Healthcare Technology',
 };
+
+// metadataBase follows the request's host (when it is one of ours) so card
+// images resolve on preview and staging deploys too — see metadataOrigin().
+export async function generateMetadata(): Promise<Metadata> {
+  const h = await headers();
+  return {
+    ...baseMetadata,
+    metadataBase: metadataOrigin(h.get('x-forwarded-host') ?? h.get('host')),
+  };
+}
 
 export default function RootLayout({
   children,

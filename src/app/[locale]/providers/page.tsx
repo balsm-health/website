@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: Props) {
     title,
     description,
     alternates: alternates(locale, '/providers'),
-    openGraph: openGraph({ locale, title, description, path: '/providers' }),
-    twitter: twitter({ locale, title, description }),
+    openGraph: openGraph({ locale, path: '/providers' }),
+    twitter: twitter({ locale, path: '/providers' }),
   };
 }
 
@@ -36,7 +36,7 @@ export default async function ProvidersPage({ params }: Props) {
   });
 
   return (
-    <SiteShell active="providers">
+    <SiteShell active="products">
       <ProvidersSections />
       <JsonLd data={jsonLd} />
     </SiteShell>

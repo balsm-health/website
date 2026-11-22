@@ -147,7 +147,6 @@
   "balsm:resources": {
     "llmsTxt": "https://balsm.health/llms.txt",
     "knowledgeBase": "https://balsm.health/.well-known/knowledge-base.md",
-    "faq": "https://balsm.health/.well-known/faq.json",
     "about": "https://balsm.health/about.json",
     "sitemap": "https://balsm.health/sitemap.xml"
   },

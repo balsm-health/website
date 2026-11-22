@@ -14,18 +14,22 @@
  * one is slow and easy to get wrong (see --base below). This needs no network
  * beyond the dev server itself.
  *
- * IMPORTANT: metadataBase comes from NEXT_PUBLIC_SITE_URL, so a dev server
- * started without it emits absolute production image URLs and you end up
- * previewing the live card. Start the server as:
- *
- *   NEXT_PUBLIC_SITE_URL=http://localhost:3000 npm run dev
- *
- * This script flags that case rather than letting it pass silently.
+ * Card images resolve against the host the page was requested on (see
+ * metadataOrigin in src/lib/seo.ts), so a plain `npm run dev` previews the
+ * local cards. If an image still points elsewhere, this script flags it.
  */
 import { execFileSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { fileURLToPath } from 'node:url';
+
+// Every route with a card, from the same file src/lib/seo.ts and
+// scripts/generate-preview-cards.mjs read — so a new route is previewed, and
+// its card checked, as soon as it has an entry there.
+const CARDS = JSON.parse(
+  readFileSync(join(dirname(fileURLToPath(import.meta.url)), '../src/lib/preview-cards.json'), 'utf8')
+).cards;
 
 const argv = process.argv.slice(2);
 const baseIdx = argv.indexOf('--base');
@@ -37,12 +41,12 @@ const BASE = (baseIdx >= 0 ? argv[baseIdx + 1] : 'http://localhost:3000').replac
 // Guard on `baseIdx >= 0`: with no --base, indexOf returns -1 and a bare
 // `i !== baseIdx + 1` reads as `i !== 0`, which silently drops the first route
 // argument — so `… /providers` previewed nothing it was asked for and fell
-// through to all twelve defaults.
+// through to all the defaults.
 const routes = argv.filter((a, i) => a.startsWith('/') && (baseIdx < 0 || i !== baseIdx + 1));
 
 const ROUTES = routes.length
   ? routes
-  : ['', '/cloud', '/providers', '/contributors', '/sponsor', '/links'].flatMap((p) => [
+  : Object.values(CARDS).flatMap(({ path: p }) => [
       p || '/',
       `/en${p}`,
     ]);
@@ -153,6 +157,18 @@ function issues(r) {
     }
     if (host && !m['og:image'].startsWith(BASE)) {
       out.push(`og:image points off-host (${host}) — set NEXT_PUBLIC_SITE_URL`);
+    }
+  }
+  // The card must be the one preview-cards.json gives this route, in this
+  // route's language — a page that dropped its `path` from openGraph()/twitter()
+  // silently falls back to the home card.
+  const en = r.route === '/en' || r.route.startsWith('/en/');
+  const path = en ? r.route.slice(3) : r.route === '/' ? '' : r.route;
+  const key = Object.keys(CARDS).find((k) => CARDS[k].path === path);
+  if (key) {
+    const want = `/og/${key}-${en ? 'en' : 'ar'}.png`;
+    for (const t of ['og:image', 'twitter:image']) {
+      if (m[t] && !m[t].includes(want)) out.push(`${t} is not ${want}`);
     }
   }
   if (m['og:image:alt'] && m['og:image:alt'] === m['og:title']) {

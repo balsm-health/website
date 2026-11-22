@@ -102,7 +102,7 @@ https://balsm.health/contributors and https://github.com/balsm-health.
 ## Funding
 
 Balsm is supported by sponsors rather than sold to customers. Details and the
-current backers are at https://balsm.health/sponsor.
+current backers are at https://balsm.health/partners.
 
 ## Official accounts
 

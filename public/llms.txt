@@ -23,14 +23,14 @@ exists in both — swap `https://balsm.health/x` for `https://balsm.health/en/x`
 - [Providers](https://balsm.health/providers): what the platform does for
   clinics, hospitals, pharmacies, and medical-supply stores — the day-to-day
   clinical, dispensing, inventory and management work.
-- [Balsm Cloud](https://balsm.health/cloud): the optional hosted layer —
-  branch sync, encrypted backups, lab integration via FHIR, analytics — and
-  the rollout map (Egypt first, then the Gulf).
+- [Products](https://balsm.health/products): the Balsm app, Balsm Pro,
+  Balsm Connect and Balsm Cloud (the optional hosted layer: branch sync,
+  managed backups, lab integration via FHIR), all on one open core.
 - [Contributors](https://balsm.health/contributors): how to join. Eight
   contributor roles, not only engineering — clinical, design, translation,
   legal, advocacy — plus the currently open GitHub issues.
-- [Sponsor](https://balsm.health/sponsor): how the project is funded and who
-  backs it.
+- [Partners](https://balsm.health/partners): the programs, institutions and
+  tech companies that back the initiative, and how to become a partner.
 - [Links](https://balsm.health/links): every official Balsm account in one
   place.
 
@@ -40,7 +40,6 @@ exists in both — swap `https://balsm.health/x` for `https://balsm.health/en/x`
   structured description of the project, its scope, and its audience.
 - [Knowledge base](https://balsm.health/.well-known/knowledge-base.md):
   longer-form background in Markdown.
-- [FAQ](https://balsm.health/.well-known/faq.json): schema.org FAQPage data.
 - [Sitemap](https://balsm.health/sitemap.xml)
 
 ## Positioning

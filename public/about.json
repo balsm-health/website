@@ -93,7 +93,7 @@
     "note": "Engineering is one of eight roles. Clinical review, design, translation, legal, project management, advocacy, and QA all count."
   },
   "funding": {
-    "url": "https://balsm.health/sponsor",
+    "url": "https://balsm.health/partners",
     "model": "Supported by sponsors rather than sold to customers"
   },
   "contact": {
@@ -116,7 +116,6 @@
   "resources": {
     "llmsTxt": "https://balsm.health/llms.txt",
     "knowledgeBase": "https://balsm.health/.well-known/knowledge-base.md",
-    "faq": "https://balsm.health/.well-known/faq.json",
     "organisationData": "https://balsm.health/.well-known/ai.json",
     "sitemap": "https://balsm.health/sitemap.xml"
   },

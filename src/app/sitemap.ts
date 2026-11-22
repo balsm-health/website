@@ -5,12 +5,13 @@ import { CONTENT_REVISED, canonicalUrl } from '@/lib/seo';
 // Path (relative to /<locale>) → sitemap priority.
 const routes: { path: string; priority: number }[] = [
   { path: '', priority: 1 },
-  { path: '/cloud', priority: 0.9 },
   { path: '/providers', priority: 0.9 },
   { path: '/contributors', priority: 0.8 },
   { path: '/contributors/frame', priority: 0.6 },
   { path: '/contributors/joined', priority: 0.6 },
-  { path: '/sponsor', priority: 0.8 },
+  { path: '/products', priority: 0.9 },
+  { path: '/ecosystem', priority: 0.8 },
+  { path: '/partners', priority: 0.8 },
   { path: '/download', priority: 0.7 },
   { path: '/links', priority: 0.5 },
   { path: '/privacy', priority: 0.3 },

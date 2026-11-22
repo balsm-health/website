@@ -1,7 +1,7 @@
 /**
  * Emits a JSON-LD structured-data block.
  *
- * The site-level graph and the home page's FAQ block are injected inline via
+ * The site-level graph is injected inline via
  * `dangerouslySetInnerHTML` (crawlers read ld+json from anywhere in the
  * document, and keeping our tags out of <head> avoids the hydration mismatch
  * documented in the locale layout). This wraps that same pattern so per-route

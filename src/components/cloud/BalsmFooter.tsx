@@ -5,6 +5,7 @@ import { Link } from '@/i18n/navigation';
 import { C, FONT } from './theme';
 import { AtSign, Globe, Mail } from './CloudIcons';
 import AnimatedLogo from './AnimatedLogo';
+import FooterSignup from './FooterSignup';
 import SocialLogo, { type SocialPlatform } from './SocialLogo';
 
 const linkStyle: React.CSSProperties = {
@@ -68,6 +69,7 @@ export default function BalsmFooter() {
   return (
     <footer style={{ background: C.ink, color: '#fff', padding: 'clamp(48px,7vw,80px) 0 32px', fontFamily: FONT.arabic }}>
       <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,56px)' }}>
+        <FooterSignup />
         <div
           style={{
             display: 'grid',
@@ -106,12 +108,23 @@ export default function BalsmFooter() {
           </div>
 
           <div>
-            <div style={colTitle}>{t('product.title')}</div>
+            <div style={colTitle}>{t('initiative.title')}</div>
             <div style={colWrap}>
-              <Link href="/providers" style={linkStyle}>{t('product.pos')}</Link>
-              <Link href="/#app" style={linkStyle}>{t('product.app')}</Link>
-              <Link href="/cloud" style={linkStyle}>{t('product.cloud')}</Link>
-              <Link href="/providers" style={linkStyle}>{t('product.providers')}</Link>
+              <Link href="/#mission" style={linkStyle}>{t('initiative.mission')}</Link>
+              <Link href="/#foundation" style={linkStyle}>{t('initiative.foundation')}</Link>
+              <Link href="/ecosystem#licensing" style={linkStyle}>{t('initiative.licensing')}</Link>
+              <Link href="/ecosystem#roadmap" style={linkStyle}>{t('initiative.roadmap')}</Link>
+              <Link href="/partners" style={linkStyle}>{t('initiative.partners')}</Link>
+            </div>
+          </div>
+
+          <div>
+            <div style={colTitle}>{t('products.title')}</div>
+            <div style={colWrap}>
+              <Link href="/download" style={linkStyle}>{t('products.app')}</Link>
+              <Link href="/products#pro" style={linkStyle}>{t('products.pro')}</Link>
+              <Link href="/products#cloud" style={linkStyle}>{t('products.network')}</Link>
+              <Link href="/providers" style={linkStyle}>{t('products.providers')}</Link>
             </div>
           </div>
 
@@ -120,19 +133,9 @@ export default function BalsmFooter() {
             <div style={colWrap}>
               <a href="https://github.com/balsm-health" target="_blank" rel="noopener noreferrer" style={linkStyle}><span dir="ltr">GitHub</span></a>
               <Link href="/contributors" style={linkStyle}>{t('community.contribute')}</Link>
-              <Link href="/contributors" style={linkStyle}>{t('community.docs')}</Link>
+              <Link href="/contributors#benefits" style={linkStyle}>{t('community.benefits')}</Link>
               <Link href="/contributors/joined" style={linkStyle}>{t('community.joined')}</Link>
-              <Link href="/sponsor" style={linkStyle}>{t('community.support')}</Link>
-            </div>
-          </div>
-
-          <div>
-            <div style={colTitle}>{t('ecosystem.title')}</div>
-            <div style={colWrap}>
-              <Link href="/cloud#invest" style={linkStyle}>{t('ecosystem.investors')}</Link>
-              <Link href="/cloud#join" style={linkStyle}>{t('ecosystem.join')}</Link>
-              <Link href="/sponsor" style={linkStyle}>{t('ecosystem.donate')}</Link>
-              <Link href="/" style={linkStyle}>{t('ecosystem.mission')}</Link>
+              <Link href="/partners#partner" style={linkStyle}>{t('community.partners')}</Link>
             </div>
           </div>
         </div>

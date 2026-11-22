@@ -56,9 +56,9 @@
   Content-Type: application/manifest+json
   Cache-Control: public, max-age=86400
 
-# Brand rasters (scripts/generate-brand-assets.mjs). Social crawlers fetch the
-# card cross-origin, so it needs CORS to render in some preview surfaces.
-/og-image.png
+# Link-preview cards (scripts/generate-preview-cards.mjs). Social crawlers
+# fetch them cross-origin, so they need CORS to render in some preview surfaces.
+/og/*
   Cache-Control: public, max-age=86400
   Access-Control-Allow-Origin: *
 
@@ -96,11 +96,6 @@
 
 /.well-known/knowledge-base.md
   Content-Type: text/markdown; charset=utf-8
-  Cache-Control: public, max-age=86400
-  Access-Control-Allow-Origin: *
-
-/.well-known/faq.json
-  Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=86400
   Access-Control-Allow-Origin: *
 

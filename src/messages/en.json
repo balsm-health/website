@@ -3,408 +3,362 @@
     "title": "Balsm — the community-owned healthcare OS",
     "description": "An open source healthcare technology ecosystem for Egypt and the Arab world — Arabic-first, offline-ready, and community-owned."
   },
-  "cloudMeta": {
-    "title": "Balsm Cloud — the optional cloud layer",
-    "description": "Sync, managed backup, and lab integration on top of Balsm — only when you choose. Arabic-first, PDPL-compliant, you stay in control."
-  },
-  "cloudNav": {
-    "home": "Home",
-    "cloud": "Cloud",
-    "github": "GitHub",
-    "join": "Join the Cloud",
-    "menu": "Menu"
-  },
-  "cloud": {
-    "hero": {
-      "badge": "Balsm Cloud",
-      "roadmap": "On the roadmap",
-      "titleLine1": "Balsm Cloud —",
-      "titleLine2": "when you choose to connect.",
-      "subtitle": "The optional cloud layer on top of Balsm. Your system runs entirely on its own — the cloud adds sync, backup, and lab integration, only when you decide. You stay in control.",
-      "ctaJoin": "Join the Cloud",
-      "ctaInvest": "The vision"
-    },
-    "adds": {
-      "eyebrow": "What the cloud adds",
-      "title": "Extra power — without giving up control.",
-      "items": [
-        {
-          "title": "Branch sync",
-          "desc": "One unified record across your branches, syncing when you connect — not before."
-        },
-        {
-          "title": "Managed backup",
-          "desc": "Automatic encrypted snapshots — your data is safe, even if your device fails."
-        },
-        {
-          "title": "Lab integration",
-          "desc": "Orders and results over FHIR — landing in the care recipient's record directly and accurately."
-        },
-        {
-          "title": "Ecosystem analytics",
-          "desc": "Cross-branch dashboards — clearer decisions with live data."
-        },
-        {
-          "title": "Priority support",
-          "desc": "A team that knows Balsm by heart, in Arabic, when you need it."
-        },
-        {
-          "title": "Freedom to leave",
-          "desc": "Entirely optional. Export your data and walk away whenever you want — no lock-in."
-        }
-      ]
-    },
-    "map": {
-      "eyebrow": "Geographic vision",
-      "title": "From Egypt first, to the ocean and the Gulf.",
-      "desc": "Balsm starts in Egypt first. Balsm Cloud is designed to grow with it across the Arab world — country by country, when the time is right, not before.",
-      "note": "Illustrative growth map — Egypt is the first launch market; the rest is a future vision that hasn't started yet.",
-      "seaRed": "Red Sea",
-      "gccLabel": "Gulf states",
-      "egyptFocus": "Launch focus",
-      "launch": {
-        "title": "Launch",
-        "desc": "Balsm starts in Egypt — across 27 governorates, all at once.",
-        "tag": "Egypt"
-      },
-      "phase2": {
-        "title": "Phase 2 vision — the Cloud",
-        "desc": "As Balsm Cloud expands, the Gulf states are the next destination.",
-        "tags": [
-          "Saudi Arabia",
-          "UAE",
-          "Qatar",
-          "Kuwait",
-          "Bahrain",
-          "Oman"
-        ]
-      },
-      "longterm": {
-        "title": "Long-term vision",
-        "desc": "From the Atlantic to the Arabian Sea — the same Balsm, when each country's time comes.",
-        "tags": [
-          "Morocco",
-          "Mauritania",
-          "Algeria",
-          "Tunisia",
-          "Libya",
-          "Sudan",
-          "Palestine",
-          "Jordan",
-          "Lebanon",
-          "Syria",
-          "Iraq",
-          "Yemen"
-        ]
-      },
-      "countries": {
-        "egypt": "Egypt",
-        "saudi": "Saudi Arabia",
-        "uae": "UAE",
-        "qatar": "Qatar",
-        "kuwait": "Kuwait",
-        "bahrain": "Bahrain",
-        "oman": "Oman",
-        "morocco": "Morocco",
-        "mauritania": "Mauritania",
-        "algeria": "Algeria",
-        "tunisia": "Tunisia",
-        "libya": "Libya",
-        "sudan": "Sudan",
-        "palestine": "Palestine",
-        "jordan": "Jordan",
-        "lebanon": "Lebanon",
-        "syria": "Syria",
-        "iraq": "Iraq",
-        "yemen": "Yemen",
-        "somalia": "Somalia",
-        "djibouti": "Djibouti"
-      },
-      "mapLabel": "Schematic map of the Arab world: Egypt as the launch focus, the Gulf states in the Phase 2 vision, and the remaining Arab countries in the long-term vision."
-    },
-    "invest": {
-      "title": "Not a product vision. A civilizational one — with a clear business model.",
-      "desc": "Balsm is the first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world. The infrastructure is open and free, so it spreads on care recipient demand — and revenue comes from the optional cloud layer, a network effect that's hard to displace.",
-      "stats": [
-        {
-          "value": "+100M",
-          "label": "care recipients in the target Egyptian market"
-        },
-        {
-          "value": "27",
-          "label": "governorates — simultaneous launch across all of Egypt"
-        },
-        {
-          "value": "GCC",
-          "label": "Phase 2 expansion — from the ocean to the Gulf"
-        }
-      ],
-      "cards": [
-        {
-          "title": "Bottom-up adoption",
-          "desc": "Care recipient demand pulls in providers — adoption is a network effect, not a sales problem."
-        },
-        {
-          "title": "Recurring revenue",
-          "desc": "Cloud-layer subscriptions, usage-based — margins improve with scale."
-        },
-        {
-          "title": "Defensive moat",
-          "desc": "Arabic-first, PDPL-compliant, and locally owned — hard for a foreign competitor to replicate."
-        }
-      ],
-      "cta": "Contact the team"
-    },
-    "join": {
-      "title": "Join the cloud early.",
-      "desc": "Register your interest in the cloud layer, and we'll email you when sign-ups open in your region.",
-      "entityPlaceholder": "Health facility name",
-      "placeholder": "name@email.com",
-      "messagePlaceholder": "Message (optional)",
-      "button": "Join now",
-      "successTitle": "We've registered your interest.",
-      "successDesc": "We'll reach out when the cloud launches in your region. Thank you for your trust.",
-      "errorInvalid": "Enter a valid email to continue.",
-      "errorEntity": "Enter your health facility name to continue.",
-      "errorGeneric": "Something went wrong. Please try again.",
-      "privacy": "Your email stays yours. We'll never share it."
-    }
-  },
   "nav": {
     "home": "Home",
     "providers": "For providers",
     "contributors": "For contributors",
-    "cloud": "Cloud",
     "sponsor": "Sponsors",
     "github": "GitHub",
-    "join": "Join the Cloud",
-    "menu": "Menu"
+    "menu": "Menu",
+    "main": "Main",
+    "links": {
+      "initiative": "Initiative",
+      "products": "Products",
+      "ecosystem": "Ecosystem",
+      "partners": "Partners",
+      "contributors": "Contribute"
+    },
+    "tabs": {
+      "about": "About the initiative",
+      "governance": "Governance & standards",
+      "support": "Support & funding"
+    },
+    "about": [
+      {
+        "title": "Our vision",
+        "desc": "Connected care for everyone in the Arab world."
+      },
+      {
+        "title": "Our mission",
+        "desc": "Why we started Balsm, and what we're building."
+      },
+      {
+        "title": "Our values",
+        "desc": "Community-owned, independent and trusted."
+      },
+      {
+        "title": "Foundation layer",
+        "desc": "Five pillars that keep the core trustworthy."
+      },
+      {
+        "title": "Why this can scale",
+        "desc": "How every deployment and partner compounds."
+      },
+      {
+        "title": "Who works with Balsm",
+        "desc": "Paths for governments, funders and developers."
+      }
+    ],
+    "governance": [
+      {
+        "title": "Governance & licensing",
+        "desc": "AGPL v3 for self-hosting, BCL for the cloud."
+      },
+      {
+        "title": "Open standards",
+        "desc": "FHIR R4 and OpenID Connect from the first line."
+      },
+      {
+        "title": "Roadmap",
+        "desc": "21 public phases in four tiers."
+      },
+      {
+        "title": "Code & docs",
+        "desc": "Everything is open on GitHub."
+      }
+    ],
+    "support": [
+      {
+        "title": "Support the initiative",
+        "desc": "Sponsor with services or funding."
+      },
+      {
+        "title": "How to fund us",
+        "desc": "Grants and programs that fund the shared core."
+      },
+      {
+        "title": "Partners and supporters",
+        "desc": "Who stands behind the initiative."
+      },
+      {
+        "title": "Contact us",
+        "desc": "contact@balsm.health"
+      }
+    ],
+    "promo": {
+      "kicker": "The Balsm initiative",
+      "title": "Integrated health infrastructure, owned by its community.",
+      "cta": "Read about the pillars"
+    }
   },
   "siteFooter": {
     "blurb": "The first open source healthcare technology ecosystem in Egypt and the Arab world.",
     "motto": "Community-driven. Independent. Trusted.",
     "follow": "Follow us",
-    "product": {
-      "title": "Product",
-      "pos": "Balsm Pro app",
-      "app": "Care recipient app",
-      "cloud": "Balsm Cloud",
+    "copyright": "© 2026 Balsm",
+    "pdpl": "PDPL-compliant",
+    "tagline": "Wherever you are — the same Balsm, the same reliability.",
+    "privacy": "Privacy policy",
+    "terms": "Terms",
+    "initiative": {
+      "title": "Initiative",
+      "mission": "Our mission",
+      "foundation": "Foundation layer",
+      "licensing": "Governance & licensing",
+      "roadmap": "Roadmap",
+      "partners": "Partners"
+    },
+    "products": {
+      "title": "Products",
+      "app": "The Balsm app",
+      "pro": "Balsm PRO",
+      "network": "Balsm Cloud",
       "providers": "For providers"
     },
     "community": {
       "title": "Community",
       "contribute": "Contribute code",
-      "docs": "Documentation",
+      "benefits": "Contributor benefits",
       "joined": "Share that you joined",
-      "support": "Sponsors"
+      "partners": "Partners"
     },
-    "ecosystem": {
-      "title": "Ecosystem",
-      "investors": "For investors",
-      "join": "Join the Cloud",
-      "donate": "Sponsors",
-      "mission": "Our mission"
-    },
-    "copyright": "© 2026 Balsm",
-    "pdpl": "PDPL-compliant",
-    "tagline": "Wherever you are — the same Balsm, the same reliability.",
-    "privacy": "Privacy policy",
-    "terms": "Terms"
+    "newsletter": {
+      "title": "Stay close to Balsm",
+      "desc": "Subscribe to the newsletter for Balsm news, or join the waitlist to be first to try accounts and the systems marketplace when they launch.",
+      "kind": "Signup type",
+      "news": "Newsletter",
+      "wait": "Waitlist",
+      "email": "Email",
+      "message": "Your message (optional)",
+      "ctaNews": "Subscribe",
+      "ctaWait": "Join the waitlist",
+      "sending": "Sending…",
+      "noteNews": "Balsm news about once a month. Unsubscribe any time.",
+      "noteWait": "We'll email you as soon as accounts and the marketplace open. We never share your email.",
+      "doneNews": "You're subscribed. We'll only send the Balsm news that matters.",
+      "doneWait": "You're on the waitlist. We'll email you as soon as accounts and the marketplace open.",
+      "invalid": "Enter a valid email address to continue.",
+      "error": "We couldn't send that just now. Please try again in a moment.",
+      "descWait": "Join the waitlist to be first to try accounts and the systems marketplace when they launch."
+    }
   },
   "homeMeta": {
     "title": "Balsm — the community-owned healthcare OS",
-    "description": "The first open source healthcare technology ecosystem in Egypt and the Arab world — a community-driven health OS. Arabic-first, offline-ready, fully open source."
+    "description": "Integrated health infrastructure, owned by its community, and your data stays yours."
   },
   "home": {
     "hero": {
-      "badge": "Community-driven. Independent. Trusted.",
+      "badge": "Community-owned, independent and trusted.",
       "title1": "Care that reaches ..",
       "title2": "impact that lasts",
-      "subtitle": "The first open source initiative for a healthcare technology ecosystem in Egypt and the Arab world — a community-driven health OS, Arabic-first, and offline-ready.",
+      "subtitle": "The first open-source initiative for a health-tech ecosystem in Egypt and the MENA region — a community-driven healthcare OS, Arabic-first, and working offline.",
       "tagline": "From Egypt, to the whole Arab world.",
-      "ctaJoin": "Join the Cloud",
-      "ctaApp": "Join the waitlist",
-      "ctaCode": "Explore the code"
+      "ctaExplore": "Explore the ecosystem",
+      "ctaPartner": "Become a partner",
+      "ctaCode": "Contribute code"
     },
-    "stats": [
-      {
-        "value": "27",
-        "label": "target Egyptian governorates"
-      },
-      {
-        "value": "100%",
-        "label": "open source"
-      },
-      {
-        "value": "0",
-        "label": "cost to self-host"
-      },
-      {
-        "value": "FHIR",
-        "label": "open global standards"
-      }
-    ],
-    "problem": {
-      "eyebrow": "The problem",
-      "title": "A fragmented health system — and your data lost between its cracks.",
-      "desc": "The Arab care recipient moves between pharmacy, clinic, and lab with no single connected record. And the existing options each fail, in their own way.",
+    "partners": {
+      "title": "Backed by partners who believe in open healthcare",
+      "all": "All partners",
+      "tech": "And technology supporters"
+    },
+    "vision": {
+      "eyebrow": "Our vision",
+      "title": "Connected healthcare for everyone in the Arab world, wherever they are.",
+      "desc": "One health record that follows the care recipient between pharmacy, clinic and lab, and health facilities running systems they own, in their language and context, even when the internet drops.",
       "cards": [
         {
-          "title": "Paper and WhatsApp",
-          "desc": "Free and familiar — but no continuity, no security, no record that lasts. Data is lost with the first prescription."
+          "title": "A connected record",
+          "desc": "Follows the care recipient across facilities."
         },
         {
-          "title": "Legacy local systems",
-          "desc": "Arabic, but closed, expensive, and unable to work offline. They trap you without giving you ownership of your data."
+          "title": "Facilities own their systems",
+          "desc": "No lock-in to a single vendor."
         },
         {
-          "title": "Foreign cloud platforms",
-          "desc": "Powerful, but built abroad, blind to your context, and placing Arab health data on distant servers."
+          "title": "Arabic-first",
+          "desc": "In language, context and terminology."
         },
         {
-          "title": "Poor-quality products",
-          "desc": "Apps shipped in a hurry — buggy and badly designed, losing the trust of anyone who tries them."
-        },
-        {
-          "title": "Data lock-in",
-          "desc": "Moving from one system to another is near impossible — closed formats and limited export keep your data hostage with a single vendor."
-        },
-        {
-          "title": "Weak support",
-          "desc": "When something breaks, nobody answers — no support line, no response, no fix until you have lost time and trust."
+          "title": "Works offline",
+          "desc": "In villages and in emergencies."
         }
       ]
     },
-    "how": {
-      "eyebrow": "How Balsm works",
-      "title": "One system. Two apps, and an optional cloud.",
-      "desc": "From Balsm Pro to the care recipient app to Balsm Cloud — each works on its own, and grows stronger together.",
-      "products": [
+    "mission": {
+      "eyebrow": "Why an initiative?",
+      "title": "Healthcare matters too much to be locked inside a closed product.",
+      "p1": "Arab patients move between pharmacy, clinic and lab with no single connected record. Facilities are stuck between paper, closed local systems and foreign platforms that don't understand their context.",
+      "p2": "So we started Balsm as integrated infrastructure: open code, open standards and open governance — built to outlast any single company.",
+      "cards": [
         {
-          "badge": "Now on iPhone and Android",
-          "title": "Care recipient app",
-          "desc": "Your entire health journey in one place — every prescription, visit, and test. On your device, by a design that never leaves it.",
-          "tags": [
-            "Unified record",
-            "On your device",
-            "Self-tracking"
-          ]
+          "title": "Fragmented, locked-in data",
+          "desc": "Closed formats and limited export keep the health record hostage to one vendor."
         },
         {
-          "badge": "On the roadmap",
-          "title": "Balsm Pro app",
-          "desc": "For your clinic, hospital, pharmacy, or medical store: dispensing, inventory, care recipient files, and management — fully offline, and compliant with controlled-drugs regulations.",
-          "tags": [
-            "Every health facility",
-            "Live inventory",
-            "Controlled drugs"
-          ]
+          "title": "Built for connectivity that isn't always there",
+          "desc": "Systems that stop when the internet drops — in villages and emergencies, where care is needed most."
         },
         {
-          "badge": "On the roadmap",
-          "title": "Balsm Cloud",
-          "desc": "The optional cloud layer — cross-branch sync, backup, and lab integration. You subscribe only when you choose.",
-          "tags": [
-            "Branch sync",
-            "Backup",
-            "FHIR integration"
-          ]
+          "title": "Designed elsewhere",
+          "desc": "Arabic is an afterthought, and Arab health data sits on distant servers."
         }
       ]
     },
-    "app": {
-      "eyebrow": "For care recipients",
-      "badge": "Now on iPhone and Android",
-      "title": "Your health, finally in its rightful place.",
-      "desc": "Carry your complete health record in your pocket — in Arabic, on your device, going nowhere you didn't choose.",
-      "bullets": [
-        "Every prescription, test, and visit on one timeline",
-        "Works offline — syncs only when you choose",
-        "Your data is yours alone — no middleman, no selling, no compromise"
-      ],
-      "screenAlt": "Balsm's care recipient app — home screen",
-      "appStore": "App Store",
-      "play": "Google Play",
-      "storeSoon": "Coming soon on",
-      "storeLive": "Download on the",
-      "appGallery": "AppGallery"
+    "foundation": {
+      "eyebrow": "Foundation layer",
+      "title": "The institution around the health operating system.",
+      "desc": "Health systems need more than open code: they need governance, disciplined releases, documentation, security and an ecosystem that keeps the shared core reliable year after year.",
+      "link": "Governance & licensing",
+      "items": [
+        {
+          "title": "Core platform",
+          "desc": "Stable building blocks: a FHIR data model, offline sync, identity and permissions, audit trails, reports and extensibility."
+        },
+        {
+          "title": "Standards",
+          "desc": "FHIR R4–aligned modeling, reviewed Arabic medical terminology, and implementation guides that fit the region's health systems."
+        },
+        {
+          "title": "Quality & security",
+          "desc": "Release discipline, responsible vulnerability handling, testing and documentation standards — and patient data never leaves the facility."
+        },
+        {
+          "title": "Ecosystem",
+          "desc": "A developer community, clinical review, implementation partners, and funding paths for health infrastructure as a digital public good."
+        },
+        {
+          "title": "AI readiness",
+          "desc": "AI assistance for documentation and summaries, always human-reviewed, built on structured clinical data."
+        }
+      ]
+    },
+    "scale": {
+      "eyebrow": "Why this can scale",
+      "title": "A community initiative with product leverage.",
+      "desc": "Good tech initiatives compound: every field deployment improves the infrastructure, every partner widens distribution, and every funded release lowers the cost of the next adoption.",
+      "items": [
+        {
+          "title": "Software leverage",
+          "desc": "Every reusable module, form and integration lowers the cost of the next rollout in a new facility or governorate."
+        },
+        {
+          "title": "Open distribution",
+          "desc": "Governments, facilities, implementers and developers adopt Balsm without waiting for any vendor's permission."
+        },
+        {
+          "title": "A data foundation for AI",
+          "desc": "Assistive AI is safer on structured, interoperable, auditable health data — in Arabic."
+        },
+        {
+          "title": "Governance as a guarantee",
+          "desc": "Open governance turns open code into infrastructure institutions can rely on for years."
+        }
+      ]
+    },
+    "explore": {
+      "eyebrow": "Explore Balsm",
+      "title": "From the initiative to what it builds.",
+      "cards": [
+        {
+          "title": "Products",
+          "desc": "The Balsm app for patients, Balsm PRO for facilities, Balsm Connect and Balsm Cloud.",
+          "cta": "See the products"
+        },
+        {
+          "title": "Ecosystem",
+          "desc": "The architecture, standards, licensing model, and who builds and runs on the Balsm core.",
+          "cta": "Understand the ecosystem"
+        },
+        {
+          "title": "Partners",
+          "desc": "The programs, institutions and technology supporters behind the initiative.",
+          "cta": "Meet our partners"
+        },
+        {
+          "title": "Community",
+          "desc": "From code to design to medical content — every skill has a place in Balsm.",
+          "cta": "Join the community"
+        }
+      ]
     },
     "values": {
-      "eyebrow": "Open source",
+      "eyebrow": "What we believe",
       "words": [
-        "Community-driven.",
-        "Independent.",
-        "Trusted."
+        "Community-owned,",
+        "independent",
+        "and trusted."
       ],
       "cards": [
         {
           "title": "Openness",
-          "desc": "The code is open. The roadmap is open. The decisions are open."
+          "desc": "Open code. Open roadmap. Open decisions."
         },
         {
-          "title": "Ownership",
-          "desc": "Your data. Your infrastructure. Your rules. No lock-in."
+          "title": "Independence",
+          "desc": "A facility's data stays inside it. No lock-in, no middleman."
         },
         {
-          "title": "Community",
-          "desc": "The ecosystem outlasts any single product."
-        },
-        {
-          "title": "Arabness",
+          "title": "Authenticity",
           "desc": "Arabic isn't a translation — it's the original."
         },
         {
-          "title": "Resilience",
-          "desc": "Works in the village as well as it works in the city."
-        },
-        {
           "title": "Craft",
-          "desc": "Healthcare deserves more than just good enough."
+          "desc": "Healthcare deserves more than good enough."
         }
       ]
     },
-    "paths": {
-      "eyebrow": "Find your path",
-      "title": "Balsm is built for you — whatever your role.",
+    "who": {
+      "eyebrow": "Who works with Balsm",
+      "title": "Complementary roles, one shared impact.",
+      "desc": "Balsm brings together health authorities, funders, partners, volunteers and care providers, so each can contribute their expertise and resources toward a shared goal.",
       "cards": [
         {
-          "title": "Care recipient",
-          "desc": "Carry your complete health record in your pocket.",
-          "cta": "Join the waitlist"
+          "title": "Governments & health authorities",
+          "desc": "Own, adapt and scale digital health infrastructure locally.",
+          "cta": "Talk to us"
         },
         {
-          "title": "Provider",
-          "desc": "Run your health facility on a system you own.",
-          "cta": "For providers"
+          "title": "Funders",
+          "desc": "Back the shared core instead of one-off software projects that are delivered and forgotten.",
+          "cta": "Support the initiative"
         },
         {
-          "title": "Contribute your skill",
-          "desc": "From code to design, marketing and healthcare — there is a role for everyone.",
+          "title": "Hospitals & health facilities",
+          "desc": "Run practical pharmacy, clinic and hospital workflows without license lock-in.",
+          "cta": "Balsm for providers"
+        },
+        {
+          "title": "Implementation partners",
+          "desc": "Localize Balsm for your clients and send improvements back to the core for everyone.",
+          "cta": "Become an implementer"
+        },
+        {
+          "title": "Developers",
+          "desc": "Build open-source health infrastructure that's actually used in the field.",
           "cta": "Start contributing"
         },
         {
-          "title": "Supporter",
-          "desc": "Fund healthcare infrastructure open to everyone.",
-          "cta": "Support Balsm"
+          "title": "Clinicians",
+          "desc": "Shape workflows, forms, safety standards and how the AI assistant documents.",
+          "cta": "Share your expertise"
         }
       ]
     },
-    "join": {
-      "title": "Join Balsm Cloud.",
-      "desc": "Be among the first to build, run, or support the first community-driven healthcare OS for the Arab world. We'll email you when your region launches.",
-      "placeholder": "name@email.com",
-      "messagePlaceholder": "Message (optional)",
-      "button": "Join now",
-      "successTitle": "Welcome to Balsm.",
-      "successDesc": "We've registered your request, and we'll reach out when your region launches.",
-      "errorInvalid": "Enter a valid email to continue.",
-      "errorGeneric": "Something went wrong. Please try again.",
-      "privacy": "Your email stays yours. We'll never share it — a promise, not a policy."
+    "cta": {
+      "title": "Build the Arab world's open health infrastructure with us.",
+      "desc": "Whether you're an institution, a health facility or a developer — there's a place for you in Balsm.",
+      "partner": "Become a partner",
+      "support": "Support the initiative",
+      "contact": "Contact us"
+    },
+    "app": {
+      "screenAlt": "Balsm's care recipient app — home screen"
     }
   },
   "providersMeta": {
     "title": "Balsm for providers — own your system",
-    "description": "Point of sale, inventory, dispensing, and management for clinics, hospitals, pharmacies, and medical stores — self-hosted, PDPL-compliant, free forever, no lock-in."
+    "description": "For clinics, hospitals and pharmacies: self-hosted, works offline, and free to run."
   },
   "providers": {
     "hero": {
@@ -471,8 +425,9 @@
       ]
     },
     "offline": {
-      "quote": "“The internet will go down someday. Balsm Pro won't notice.”",
-      "desc": "It's built this way: a pharmacy in a remote village keeps dispensing medicine even through two full days of outage. Everything local, everything working. Sync waits until you choose — not before."
+      "quote": "“The internet will go down someday.\nBalsm Pro won't notice.”",
+      "desc": "It's built this way: a pharmacy in a remote village keeps dispensing medicine even through two full days of outage. Everything local, everything working. Sync waits until you choose — not before.",
+      "still": "Still working"
     },
     "pricing": {
       "eyebrow": "Own it, forever",
@@ -499,31 +454,35 @@
           "FHIR lab integration",
           "Priority support"
         ],
-        "cta": "Learn about the cloud"
+        "cta": "Explore Balsm Cloud"
       }
     },
     "demo": {
       "title": "Be the first to try Balsm Pro.",
       "desc": "Leave your details and we'll write to you when Balsm Pro launches for your health facility.",
-      "clinicPlaceholder": "Health facility name",
+      "clinicPlaceholder": "e.g. Al Nour Pharmacy",
       "emailPlaceholder": "name@email.com",
-      "messagePlaceholder": "Message (optional)",
+      "messagePlaceholder": "What does your facility need?",
       "button": "Register interest",
       "successTitle": "We've registered your interest.",
       "successDesc": "We'll email you when Balsm Pro launches. Thank you for trusting Balsm.",
       "errorClinic": "Enter your health facility name to continue.",
       "errorInvalid": "Enter a valid email to continue.",
       "privacy": "Your data stays yours. We use it only to contact you.",
-      "errorGeneric": "Something went wrong. Please try again."
+      "errorGeneric": "Something went wrong. Please try again.",
+      "clinicLabel": "Healthcare facility name *",
+      "emailLabel": "Email *",
+      "messageLabel": "Message (optional)",
+      "sending": "Sending…"
     }
   },
   "contributorsMeta": {
     "title": "Contribute to Balsm — build in the open",
-    "description": "Balsm is fully open source — the code, the roadmap, and the decisions. Built in Egypt, for the whole Arab world. Come build in the open."
+    "description": "Developers, designers, doctors, pharmacists and marketers: every skill has a place in Balsm."
   },
   "contributorsFrameMeta": {
     "title": "Social profile frame — Balsm",
-    "description": "Upload a headshot, drag to reposition, and download a framed PNG with the Balsm mark — sized for LinkedIn, Facebook, X, or Instagram."
+    "description": "A ready frame for LinkedIn, Facebook, X and Instagram, made right in your browser."
   },
   "contributorsFrame": {
     "eyebrow": "Social profile frame",
@@ -561,7 +520,7 @@
   },
   "contributorsJoinedMeta": {
     "title": "I joined the Balsm community",
-    "description": "Joined the Balsm community? Create your card and share it with your network."
+    "description": "Create your join card with your name and role, and share it with your network."
   },
   "contributorsJoined": {
     "eyebrow": "Balsm community",
@@ -667,7 +626,7 @@
           "desc": "Code, roadmap, and decisions all in the open. No black box holding care recipient data."
         },
         {
-          "title": "Community-owned",
+          "title": "Community-driven",
           "desc": "Balsm isn't a company with users — it's a community with a platform. Your contribution shapes the product."
         },
         {
@@ -678,7 +637,7 @@
     },
     "cta": {
       "title": "The ecosystem outlasts any product.",
-      "desc": "Join the developers, designers, health professionals and everyone who believes in the first open source healthcare technology ecosystem owned by the Arab world.",
+      "desc": "Join the developers, designers, and healthcare professionals, and everyone who believes in the first community-driven, open-source health-tech ecosystem in the Arab world.",
       "ctaGit": "Contribute on GitHub",
       "ctaDiscord": "Join on",
       "ctaDonate": "Support Balsm"
@@ -746,173 +705,43 @@
         "starterBugs": "View all starter bugs on GitHub"
       },
       "issuesBrowse": "Browse the org on GitHub"
-    }
-  },
-  "donateMeta": {
-    "title": "Support Balsm — fund healthcare owned by everyone",
-    "description": "Balsm is open source and free forever. Your donation keeps it that way — funding development, Arabic medical terminology, and offline infrastructure."
-  },
-  "donate": {
-    "hero": {
-      "eyebrow": "Support Balsm",
-      "title1": "Fund healthcare",
-      "title2": "owned by everyone.",
-      "subtitle": "Balsm is open source and free forever. Your donation keeps it that way — funding development, Arabic medical terminology, and the offline infrastructure for those who need it most."
     },
-    "card": {
-      "monthly": "Monthly",
-      "once": "One-time",
-      "customPlaceholder": "Other amount",
-      "secure": "Secure · transparent · goes entirely to the ecosystem",
-      "chooseAmount": "Choose an amount to support",
-      "supportPrefix": "Support",
-      "egp": "EGP",
-      "perMonth": " / month",
-      "thankTitle": "Thank you. Truly.",
-      "thankDesc": "Your support builds healthcare infrastructure owned by the community — from Egypt to the whole Arab world. We'll send you a receipt and updates on your impact.",
-      "impacts": {
-        "none": "Choose an amount to see its impact on the ecosystem.",
-        "tier1": "Covers a rural pharmacy's dispensing receipts for a full month, in Arabic.",
-        "tier2": "Supports translating and reviewing new Arabic medical terminology in the system.",
-        "tier3": "Funds running Balsm in a remote village clinic for a full month.",
-        "tier4": "Contributes to building offline sync infrastructure for a whole governorate."
-      }
-    },
-    "where": {
-      "eyebrow": "Where it goes",
-      "title": "Every pound has a clear impact.",
+    "benefits": {
+      "eyebrow": "Contributor benefits",
+      "title": "What do you gain by contributing to Balsm?",
+      "desc": "Contributing to Balsm isn't one-way volunteering. You help build health infrastructure for the region, and we make sure you come away with experience, connections and recognition that match what you gave.",
       "cards": [
         {
-          "title": "Open source development",
-          "desc": "Keeps the code free and open forever — and funds the features the community asks for."
+          "title": "Real, visible experience",
+          "desc": "Public GitHub contributions to a health product people actually use — a track record that speaks for you to any employer."
         },
         {
-          "title": "Arabic medical terminology",
-          "desc": "Authentic Arabic for every term — not a translation, but precise medical language written to be understood."
+          "title": "Learn what courses don't teach",
+          "desc": "FHIR standards, offline-first, data-protection compliance and Arabic-first product building — on real problems."
         },
         {
-          "title": "Offline infrastructure",
-          "desc": "Brings Balsm to villages and less-connected areas — where care is needed most."
-        }
-      ]
-    },
-    "other": {
-      "title": "Money isn't the only support.",
-      "cards": [
-        {
-          "title": "Contribute code",
-          "desc": "Your time and skill are worth more than any amount.",
-          "cta": "For contributors"
+          "title": "Ongoing mentorship and review",
+          "desc": "Code and design reviews from the Balsm team and senior contributors, plus a Discord space to ask and learn."
         },
         {
-          "title": "Become a provider",
-          "desc": "Run Balsm in your healthcare facility.",
-          "cta": "For providers"
+          "title": "Credit in your name",
+          "desc": "Your name in the contributors list and release notes, and a contribution certificate for active contributors."
         },
         {
-          "title": "Spread the word",
-          "desc": "Share Balsm with anyone who cares about care.",
-          "cta": "GitHub"
-        }
-      ]
-    }
-  },
-  "sponsorMeta": {
-    "title": "Sponsor Balsm — fund healthcare owned by everyone",
-    "description": "Balsm is open source and free forever. Sponsor it with your services — hosting, dev tools, monitoring — to keep it that way."
-  },
-  "sponsor": {
-    "hero": {
-      "eyebrow": "Sponsor Balsm",
-      "title1": "Sponsor healthcare",
-      "title2": "owned by everyone.",
-      "subtitle": "Balsm is open source and free forever. Sponsoring it in kind keeps it that way — hosting, developer tooling and performance monitoring that carry Balsm to those who need it most.",
-      "callout": "Your support, in any form, may one day reach someone you love."
-    },
-    "tech": {
-      "eyebrow": "Tech sponsors",
-      "title": "Sponsorship in service, not just cash.",
-      "desc": "Balsm is looking for technical partners who sponsor it with their services — hosting, dev tools, analytics, performance monitoring — instead of cash donations.",
-      "sponsors": [
-        {
-          "name": "Mosalam",
-          "desc": "Hosting and technical solutions.",
-          "href": "https://mosalam.com/"
+          "title": "A diverse network",
+          "desc": "Work side by side with developers, doctors, pharmacists, designers and marketers from Egypt and the Arab world."
         },
         {
-          "name": "AWS",
-          "desc": "Cloud hosting and infrastructure.",
-          "href": ""
+          "title": "A say in decisions",
+          "desc": "Join roadmap discussions and open proposals, and shape where the product goes."
         },
         {
-          "name": "Sentry",
-          "desc": "Error and performance monitoring.",
-          "href": ""
+          "title": "First in line for opportunities",
+          "desc": "Active contributors are the first we reach out to when jobs, internships or paid collaborations open."
         },
         {
-          "name": "PostHog",
-          "desc": "Product analytics and session replay.",
-          "href": "https://posthog.com"
-        },
-        {
-          "name": "Kiro",
-          "desc": "AI-powered development environment.",
-          "href": ""
-        },
-        {
-          "name": "Cursor",
-          "desc": "AI-powered, agentic development environment.",
-          "href": "https://cursor.com"
-        },
-        {
-          "name": "Claude",
-          "desc": "AI assistant for coding, research and writing.",
-          "href": "https://claude.ai"
-        },
-        {
-          "name": "GitHub",
-          "desc": "Code hosting and collaborative development.",
-          "href": "https://github.com/balsm-health"
-        }
-      ],
-      "note": "Represent a tech company? Sponsor Balsm with your service instead of a cash donation.",
-      "cta": "Offer sponsorship"
-    },
-    "where": {
-      "eyebrow": "Where the support goes",
-      "title": "Every sponsorship has a clear impact.",
-      "cards": [
-        {
-          "title": "Open source development",
-          "desc": "Keeps the code free and open forever — and funds the features the community asks for."
-        },
-        {
-          "title": "Arabic medical terminology",
-          "desc": "Authentic Arabic for every term — not a translation, but precise medical language written to be understood."
-        },
-        {
-          "title": "Offline infrastructure",
-          "desc": "Brings Balsm to villages and less-connected areas — where care is needed most."
-        }
-      ]
-    },
-    "other": {
-      "title": "Support Balsm in other ways.",
-      "cards": [
-        {
-          "title": "Contribute code",
-          "desc": "Your time and skill are worth more than any amount.",
-          "cta": "For contributors"
-        },
-        {
-          "title": "Become a provider",
-          "desc": "Run Balsm in your healthcare facility.",
-          "cta": "For providers"
-        },
-        {
-          "title": "Spread the word",
-          "desc": "Share Balsm with anyone who cares about care.",
-          "cta": "GitHub"
+          "title": "Tangible impact",
+          "desc": "What you build reaches real pharmacies, clinics and patients — one of them could be someone you love."
         }
       ]
     }
@@ -947,7 +776,7 @@
   },
   "downloadMeta": {
     "title": "Download the Balsm app",
-    "description": "Get the Balsm app on iPhone and Android today, with Huawei and the web on the way. Your health record goes in your pocket, and this page picks the right download for your device.",
+    "description": "On iPhone and Android: Arabic-first, works offline, and your data stays on your device.",
     "betaTitle": "Balsm app beta: get early access",
     "betaDescription": "The Balsm patient app beta is almost here. Leave your email and we'll send you early access as soon as it opens."
   },
@@ -1006,48 +835,6 @@
       "launching": "Launching on",
       "availableNow": "Available now on"
     }
-  },
-  "faq": {
-    "eyebrow": "Questions",
-    "title": "What people ask about Balsm",
-    "items": [
-      {
-        "q": "What is Balsm?",
-        "a": "Balsm is a community-owned healthcare operating system for the Arab world — Arabic-first, offline-ready, and fully open source. It connects the parts of care that usually cannot talk to each other: clinics, pharmacies, and labs. It is being built in Egypt, for the whole Arab region."
-      },
-      {
-        "q": "Is Balsm open source?",
-        "a": "Yes. The code is public for inspection and contribution, and the project is developed in the open on GitHub. The specific licence will be announced before launch."
-      },
-      {
-        "q": "Who owns Balsm?",
-        "a": "The community that uses it. Balsm is built to be governed by its users rather than owned by a vendor — that is the point of the project, and open source is the mechanism that makes it enforceable rather than a promise."
-      },
-      {
-        "q": "Does Balsm work without an internet connection?",
-        "a": "Yes. Balsm is designed offline-first, so a pharmacy on an unreliable connection works the same as one in a capital city. Care does not stop when connectivity does, and data syncs once the connection returns."
-      },
-      {
-        "q": "Which countries does Balsm serve?",
-        "a": "Egypt is the launch market. The Gulf states — Saudi Arabia, the UAE, Qatar, Kuwait, Bahrain and Oman — are the Phase 2 vision, with the rest of the Arab world in the long-term vision."
-      },
-      {
-        "q": "What is Balsm Cloud, and is it required?",
-        "a": "Balsm Cloud is an optional hosted layer that adds branch sync, encrypted backups, lab integration over FHIR, and analytics. It is optional by design: Balsm runs without it, and you can export your data and leave at any time."
-      },
-      {
-        "q": "How is care recipient data protected?",
-        "a": "Data is encrypted, access is controlled and audited, and the system is built so a practice keeps custody of its own records. Because the code is open, these claims can be inspected rather than taken on trust. No compliance certifications have been announced yet."
-      },
-      {
-        "q": "Has Balsm launched, and what does it cost?",
-        "a": "Not yet — Balsm is pre-launch and is being built in the open. No pricing has been announced. The clearest way to follow progress, or influence it, is the GitHub organisation."
-      },
-      {
-        "q": "How can I contribute?",
-        "a": "Engineering is only one of eight contributor roles. Clinical review, design, translation, legal, project management, advocacy and QA all move the project forward. The Contributors page lists the roles and the currently open issues."
-      }
-    ]
   },
   "privacyMeta": {
     "title": "Privacy policy — Balsm",
@@ -1345,5 +1132,329 @@
       "body": "Write to us about anything on this page.",
       "email": "legal@balsm.health"
     }
+  },
+  "partners": {
+    "breadcrumb": "Partners",
+    "hero": {
+      "eyebrow": "Partners",
+      "title": "Partners who believe in open healthcare.",
+      "subtitle": "Balsm isn't built alone. These programs, institutions and companies stand with us in building integrated health infrastructure for the Arab world."
+    },
+    "programs": {
+      "eyebrow": "Programs and their partners",
+      "title": "Programs Balsm grew in, and the partners behind them.",
+      "partnersTitle": "Program partners"
+    },
+    "shift": {
+      "tag": "Innovation program",
+      "org": "e& egypt Foundation",
+      "desc": "An innovation challenge empowering startups in digital health and women's health in Egypt.",
+      "meta": {
+        "digital": "Digital health",
+        "women": "Women's health"
+      },
+      "partnersCount": "5 partners",
+      "sponsorsTitle": "Challenge sponsors",
+      "sponsorsCount": "7 sponsors",
+      "items": {
+        "eand": {
+          "role": "Corporate sponsor",
+          "sub": "e& egypt Foundation",
+          "desc": "e& egypt's community foundation, and sponsor of The Shift."
+        },
+        "etisalatBusiness": {
+          "role": "Corporate partner",
+          "sub": "Etisalat Business",
+          "desc": "e& egypt's business solutions arm, and a partner supporting the program."
+        },
+        "flat6labs": {
+          "role": "Accelerator",
+          "sub": "The program's acceleration partner",
+          "desc": "One of the region's most active early-stage investors, running the program and accelerating participating startups."
+        },
+        "unfpa": {
+          "role": "UN agency",
+          "sub": "United Nations Population Fund",
+          "desc": "The UN agency for sexual and reproductive health and maternal health."
+        },
+        "norway": {
+          "role": "International partner",
+          "sub": "Royal Norwegian Embassy in Cairo",
+          "desc": "An international supporter of digital health and women's health innovation in the challenge."
+        }
+      }
+    },
+    "growth": {
+      "tag": "Startup growth program",
+      "desc": "Empowering Egypt's next generation of founders, tech innovators and game-changing startups.",
+      "meta": {
+        "entrepreneurship": "Entrepreneurship",
+        "tech": "Technology"
+      },
+      "partnersCount": "2 partners",
+      "items": {
+        "odc": {
+          "role": "Organizer",
+          "sub": "Orange Digital Center — Egypt",
+          "desc": "Free digital training, a coding school, a FabLab and the Orange Fab accelerator for startups."
+        },
+        "career180": {
+          "role": "Powered by",
+          "sub": "An Egyptian career development platform",
+          "desc": "Learning and career guidance connecting young talent with jobs and in-demand skills."
+        }
+      }
+    },
+    "tech": {
+      "eyebrow": "Technology supporters",
+      "title": "Companies supporting Balsm with their services.",
+      "desc": "Hosting, developer tools and monitoring — support that keeps the core free and open.",
+      "items": {
+        "aws": "Cloud hosting and infrastructure.",
+        "claude": "AI assistant for building and developing Balsm.",
+        "github": "Code hosting and collaborative development.",
+        "sentry": "Error and performance monitoring.",
+        "mosalam": "Hosting and technology solutions.",
+        "kiro": "AI-powered development environment.",
+        "googleCloud": "Google Cloud's startup program.",
+        "posthog": "Product analytics and user experience insights.",
+        "cursor": "AI code editor.",
+        "manus": "An AI agent that gets tasks done.",
+        "impostarz": "A simple AI accounting tool for small businesses."
+      }
+    },
+    "become": {
+      "eyebrow": "Become a partner",
+      "title": "Four ways to partner with Balsm.",
+      "desc": "Pick what fits your organization, and get in touch to start.",
+      "cards": {
+        "funding": {
+          "title": "Funding partner",
+          "desc": "Grants and programs funding development and deployment of the open core."
+        },
+        "pilot": {
+          "title": "Pilot partner",
+          "desc": "Health facilities and public bodies leading the first field pilots."
+        },
+        "tech": {
+          "title": "Technology partner",
+          "desc": "Hosting, tools and services in place of cash donations."
+        },
+        "academic": {
+          "title": "Academic and medical partner",
+          "desc": "Universities and syndicates reviewing Arabic medical content and training staff."
+        }
+      },
+      "cta": "Get in touch to partner"
+    }
+  },
+  "partnersMeta": {
+    "title": "Balsm partners",
+    "description": "Programs, institutions and tech companies building integrated health infrastructure for the Arab world with us."
+  },
+  "products": {
+    "breadcrumb": {
+      "home": "Home",
+      "page": "Products"
+    },
+    "hero": {
+      "eyebrow": "Products",
+      "title": "Many products, one open core.",
+      "subtitle": "Every Balsm product works on its own and connects to the rest over FHIR R4 — from the patient's pocket to the hospital lab."
+    },
+    "stack": {
+      "heading": "How the products fit together",
+      "app": {
+        "name": "The Balsm app",
+        "for": "For patients"
+      },
+      "pro": {
+        "name": "Balsm PRO",
+        "for": "For health facilities"
+      },
+      "connect": {
+        "name": "Balsm Connect",
+        "for": "For partners and integrators"
+      },
+      "network": {
+        "name": "Balsm Cloud",
+        "desc": "Optional cloud layer: branch sync, backups and integrations"
+      },
+      "core": {
+        "name": "The open Balsm core",
+        "offline": "Works offline",
+        "selfHosted": "Self-hosted"
+      }
+    },
+    "app": {
+      "eyebrow": "For patients",
+      "badge": "Beta",
+      "title": "The Balsm app",
+      "desc": "Your complete health record in your pocket — prescriptions, visits, lab results and self-tracking. In Arabic, offline, with your data on your device.",
+      "bullets": [
+        "One timeline for your whole health journey",
+        "Share securely with your doctor via QR code",
+        "On phone, tablet, web and desktop"
+      ],
+      "motherChild": {
+        "title": "Mother & Child release",
+        "desc": "A pregnancy emergency card, antenatal log, week-by-week guidance and child vaccination records."
+      },
+      "cta": "Get the app",
+      "screenAlt": "Balsm app home screen"
+    },
+    "pro": {
+      "eyebrow": "For health facilities",
+      "badge": "On the roadmap",
+      "title": "Balsm PRO",
+      "desc": "One app with permission-gated modules — runs fully offline inside your facility and syncs when connected.",
+      "modules": [
+        {
+          "title": "Pharmacies",
+          "desc": "Dispensing, live inventory and controlled drugs."
+        },
+        {
+          "title": "Clinics",
+          "desc": "Appointments, records and e-prescriptions."
+        },
+        {
+          "title": "Hospitals",
+          "desc": "Departments, admissions and care coordination."
+        },
+        {
+          "title": "Labs",
+          "desc": "Orders, results and device integration."
+        },
+        {
+          "title": "Blood banks",
+          "desc": "Donors, units and traceability."
+        }
+      ],
+      "cta": "Balsm for providers"
+    },
+    "connect": {
+      "badge": "On the roadmap",
+      "title": "Balsm Connect",
+      "desc": "The partner app: for organizations that connect with facilities and patients on Balsm, with clear permissions and open standards.",
+      "chips": [
+        "Open integration",
+        "Fine-grained permissions"
+      ]
+    },
+    "network": {
+      "badge": "On the roadmap",
+      "title": "Balsm Cloud",
+      "desc": "The optional managed cloud — branch sync, backups and lab integrations. Subscribe when you choose; it funds maintenance of the open core."
+    },
+    "next": {
+      "title": "How is all this built?",
+      "desc": "The architecture, standards and licensing behind Balsm's products.",
+      "cta": "Explore the ecosystem"
+    }
+  },
+  "productsMeta": {
+    "title": "Balsm products — many products, one open core",
+    "description": "Balsm App, Balsm Pro, Balsm Connect and Balsm Cloud, all integrated through FHIR R4."
+  },
+  "ecosystem": {
+    "breadcrumb": {
+      "home": "Home",
+      "page": "Ecosystem"
+    },
+    "hero": {
+      "eyebrow": "Ecosystem",
+      "title": "An open ecosystem, not a closed product.",
+      "subtitle": "An open core anyone can run, standards every system understands, and a community building on top — that is the Balsm ecosystem."
+    },
+    "architecture": {
+      "eyebrow": "Architecture",
+      "title": "Your system inside your facility; cloud connection is your call.",
+      "desc": "Balsm runs on a private server inside your facility, even without an internet connection. When needed, you can turn on the cloud connection to sync branches, while patient data stays inside the facility.",
+      "tiers": [
+        {
+          "name": "Devices",
+          "desc": "Balsm apps on phone, tablet, web and desktop, from one codebase.",
+          "tags": [
+            "Works offline"
+          ]
+        },
+        {
+          "name": "Facility server",
+          "desc": "One workspace per server, hosted inside the facility, which fully owns its data.",
+          "tags": []
+        },
+        {
+          "name": "Balsm Cloud",
+          "desc": "An optional cloud layer for branch sync, backups and integrations.",
+          "tags": [
+            "Optional",
+            "Multi-tenant"
+          ]
+        }
+      ]
+    },
+    "standards": {
+      "eyebrow": "Standards",
+      "title": "Built on open standards, from the first line.",
+      "desc": "No proprietary formats, no lock-in. What's written in Balsm can be read by any system that speaks FHIR.",
+      "dpg": "Digital Public Good track"
+    },
+    "licensing": {
+      "eyebrow": "Licensing model",
+      "title": "Open forever. Sustainable by design.",
+      "desc": "Balsm staying open source is non-negotiable. The managed cloud is what funds maintenance of the shared core.",
+      "selfHosted": {
+        "title": "Self-hosted",
+        "desc": "Completely free. Run Balsm on your servers, modify it, and share your improvements with the community.",
+        "costLabel": "License cost"
+      },
+      "cloud": {
+        "title": "Managed cloud",
+        "desc": "A Balsm Cloud subscription under the Balsm Commercial License — we run, update and back up; you focus on care.",
+        "cta": "Explore Balsm Cloud"
+      }
+    },
+    "who": {
+      "eyebrow": "Who takes part",
+      "title": "An ecosystem built by many, not one company.",
+      "cards": [
+        {
+          "title": "Health facilities",
+          "desc": "Run Balsm and shape the roadmap with their needs."
+        },
+        {
+          "title": "Contributors",
+          "desc": "Developers, designers and medical writers improving the core."
+        },
+        {
+          "title": "Implementation partners",
+          "desc": "Deploy and support Balsm locally in every governorate and country."
+        },
+        {
+          "title": "Partners and supporters",
+          "desc": "Programs, institutions and tech companies funding the integrated infrastructure."
+        }
+      ]
+    },
+    "roadmap": {
+      "eyebrow": "Roadmap",
+      "title": "A public, 21-phase roadmap.",
+      "desc": "Organized in four tiers, starting with the patient app and extending to facilities and the network.",
+      "cta": "Follow it on GitHub"
+    },
+    "reach": {
+      "eyebrow": "Reach",
+      "title": "From Egypt, to the whole Arab world.",
+      "desc": "We start with real-world deployment in Egypt, then the Gulf and the rest of the region.",
+      "regions": [
+        "Egypt",
+        "The Gulf",
+        "MENA"
+      ]
+    }
+  },
+  "ecosystemMeta": {
+    "title": "The Balsm ecosystem — open, not a closed product",
+    "description": "An open core anyone can run, standards every system understands, and a community building on top."
   }
 }

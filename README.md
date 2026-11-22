@@ -46,6 +46,42 @@ npm run cf-typegen       # regenerate CloudflareEnv types after wrangler.jsonc c
 
 Full walkthrough incl. first-time Cloudflare setup: [docs/CLOUDFLARE_DEPLOYMENT.md](docs/CLOUDFLARE_DEPLOYMENT.md).
 
+## Link previews
+
+Every route has its own share card (`og:image` / `twitter:image`), one per
+locale, in `public/og/<card>-<locale>.png`, in the style of the design's Link
+Previews page. All of it is driven by
+[`src/lib/preview-cards.json`](src/lib/preview-cards.json). Per route it holds
+the `path`, the panel colour `accent` and the eyebrow's darker `accentText`, an
+`ar` and `en` block of `eyebrow`, `title` (≤ 60 characters) and `desc`
+(≤ 155), and a `rev`; `site.tagline` is the line at the foot of every card.
+`"layout": "app"` (used by `/download`) swaps in the app card: the same
+panel-and-strip frame, with the app's home screen in a tilted phone in the
+panel, each locale's `headline` (falling back to `title`), its `chips`, and
+the store badges.
+The same title and description are the page's `og:title` / `og:description`.
+
+```bash
+# 1. edit the route's entry in src/lib/preview-cards.json, and bump its "rev"
+# 2. re-render (CHROME=<path> if Chrome isn't in the macOS default location)
+node scripts/generate-preview-cards.mjs            # every card
+node scripts/generate-preview-cards.mjs partners   # one card, both locales
+# 3. check every route the way Facebook, X, LinkedIn and Slack show it
+npm run dev
+node scripts/preview-cards.mjs
+```
+
+The card is drawn by `scripts/og-card.js`, the design's own painter.
+`src/lib/seo.ts` picks a page's card from the path it passes to `openGraph()`
+and `twitter()`, so a page needs no card wiring of its own; a route with no
+entry gets the home card. Social apps cache previews by URL for days, and
+`rev` is in the URL (`?v=`), so bumping it is what makes them fetch the new one.
+Card images resolve against the host the page was served from (balsm.health,
+stg.balsm.health, a `*.workers.dev` preview, localhost; anything else falls
+back to `NEXT_PUBLIC_SITE_URL`), so a branch preview shows its own cards.
+A new route needs a new entry; `preview-cards.mjs` then previews it and flags it
+if the page serves any other card.
+
 ## App download link (`/download`)
 
 `balsm.health/download` is the one link to share for the patient app. The app's
