@@ -166,7 +166,7 @@ function issues(r) {
   const path = en ? r.route.slice(3) : r.route === '/' ? '' : r.route;
   const key = Object.keys(CARDS).find((k) => CARDS[k].path === path);
   if (key) {
-    const want = `/og/${key}-${en ? 'en' : 'ar'}.png`;
+    const want = `/og/${key}-${en ? 'en' : 'ar'}.jpg`;
     for (const t of ['og:image', 'twitter:image']) {
       if (m[t] && !m[t].includes(want)) out.push(`${t} is not ${want}`);
     }
