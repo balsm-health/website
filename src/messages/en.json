@@ -120,7 +120,8 @@
       "contribute": "Contribute code",
       "benefits": "Contributor benefits",
       "joined": "Share that you joined",
-      "partners": "Partners"
+      "partners": "Partners",
+      "help": "Help center"
     },
     "newsletter": {
       "title": "Stay close to Balsm",
@@ -1456,5 +1457,163 @@
   "ecosystemMeta": {
     "title": "The Balsm ecosystem — open, not a closed product",
     "description": "An open core anyone can run, standards every system understands, and a community building on top."
+  },
+  "support": {
+    "hero": {
+      "eyebrow": "Help center",
+      "title": "How can we help?",
+      "desc": "Answers about the Balsm app, account deletion and reporting a problem. Can’t find what you need? Our team is one message away.",
+      "searchLabel": "Search the FAQ",
+      "searchPlaceholder": "Search: delete account, share record, offline…",
+      "linkDelete": "Delete account request",
+      "linkReport": "Report a problem",
+      "linkApp": "Get the app"
+    },
+    "faq": {
+      "topicsLabel": "Topics",
+      "title": "Frequently asked questions",
+      "results": "Search results",
+      "showAll": "Show all questions",
+      "empty": "We couldn’t find an answer to your search.",
+      "emptyCta": "Send us your question",
+      "items": [
+        {
+          "topic": "start",
+          "q": "What is the Balsm app?",
+          "a": "Balsm is a personal health record in Arabic: your prescriptions, visits, lab results and self-tracking on one timeline. It works offline and your data stays on your device."
+        },
+        {
+          "topic": "start",
+          "q": "Which devices does the app run on?",
+          "a": "Balsm is available now on iPhone and Android, and is coming soon to Huawei AppGallery. Get it from the Download page."
+        },
+        {
+          "topic": "start",
+          "q": "Does the app work offline?",
+          "a": "Yes. Balsm is designed to work without an internet connection, so you can open your record and add to it any time."
+        },
+        {
+          "topic": "start",
+          "q": "Is the app free?",
+          "a": "Yes, the Balsm app is free for care recipients."
+        },
+        {
+          "topic": "record",
+          "q": "What can I record in Balsm?",
+          "a": "Prescriptions and medicines, visits, lab results and daily readings such as blood pressure, sugar and weight, all on one timeline of your health journey."
+        },
+        {
+          "topic": "record",
+          "q": "Can I manage my family members’ records?",
+          "a": "This is on the roadmap. Follow what’s new by subscribing to the newsletter at the bottom of the page."
+        },
+        {
+          "topic": "share",
+          "q": "How do I share my record with my doctor?",
+          "a": "Create a sharing QR code in the app and show it to your doctor. You choose what is shared, and you can stop sharing at any time."
+        },
+        {
+          "topic": "mother",
+          "q": "What does the Mother & Child release include?",
+          "a": "A pregnancy emergency card, an antenatal log, week-by-week guidance and child vaccination records."
+        },
+        {
+          "topic": "mother",
+          "q": "Does the app remind me of my child’s vaccinations?",
+          "a": "You can record your child’s vaccinations manually today; a built-in vaccination schedule is coming in a later release."
+        },
+        {
+          "topic": "privacy",
+          "q": "Where is my health data stored?",
+          "a": "Your health data is stored on your device. Balsm is built so your information stays under your control, and it complies with Egypt’s Personal Data Protection Law."
+        },
+        {
+          "topic": "privacy",
+          "q": "Does Balsm sell or share my data?",
+          "a": "No. We don’t sell your data or share it with anyone. Only what you choose to share with your doctor is shared."
+        },
+        {
+          "topic": "privacy",
+          "q": "Is Balsm’s code open source?",
+          "a": "Yes. Balsm is an open-source initiative and its code is available to anyone on GitHub."
+        },
+        {
+          "topic": "account",
+          "q": "How do I delete my account and data?",
+          "a": "From the app’s settings, or send a deletion request from the “Delete account” section on this page. We’ll ask you to confirm by email first."
+        },
+        {
+          "topic": "account",
+          "q": "I changed my phone. How do I move my data?",
+          "a": "Write to us from the contact form on this page with your old and new phone models, and we’ll guide you step by step."
+        }
+      ]
+    },
+    "emergency": {
+      "title": "In a medical emergency",
+      "before": "call an ambulance right away on",
+      "after": "in Egypt, or your country’s emergency number. Balsm helps you organise your health information; it doesn’t replace a doctor."
+    },
+    "delete": {
+      "eyebrow": "Account & data",
+      "title": "Request account and data deletion",
+      "desc": "You can delete your account inside the app, or send the request here if you can no longer access it.",
+      "step1": "Enter the email address linked to your account.",
+      "step2": "We email you to confirm you own the account.",
+      "step3": "Once confirmed, we delete the account and its data on our servers and notify you.",
+      "deviceNote": "Data stored only on your device is removed by deleting the app or from its settings.",
+      "doneTitle": "We’ve received your request.",
+      "doneDesc": "We’ll send a confirmation email to your address. Open it and confirm so we can start the deletion.",
+      "email": "Account email",
+      "reason": "Reason for deleting",
+      "ack": "I understand that deleting my account is permanent and can’t be undone.",
+      "cta": "Send deletion request",
+      "emailErr": "Enter your account email correctly.",
+      "ackErr": "Confirm that you understand deletion is permanent."
+    },
+    "contact": {
+      "eyebrow": "Contact us",
+      "title": "Write to us, or report a problem.",
+      "desc": "Describe what happened, and your device if it’s a technical problem. Please don’t include sensitive medical information.",
+      "emailTitle": "Email",
+      "discordTitle": "Balsm community on",
+      "discordDesc": "Questions and discussions with the team and community.",
+      "doneTitle": "Your message is in.",
+      "doneDesc": "We’ll reply to your email as soon as we can.",
+      "again": "Send another message",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "device": "Device and operating system",
+      "devicePlaceholder": "e.g. iPhone 15, iOS 18",
+      "message": "Your message",
+      "cta": "Send message",
+      "emailErr": "Enter a valid email so we can reply.",
+      "msgErr": "Write your message (at least 10 characters)."
+    },
+    "form": {
+      "optional": "(optional)",
+      "sending": "Sending…",
+      "error": "Couldn’t send. Try again, or email us at contact@balsm.health."
+    },
+    "topics": {
+      "start": "Getting started",
+      "record": "Your health record",
+      "share": "Sharing with your doctor",
+      "mother": "Mother & child",
+      "privacy": "Privacy & data",
+      "account": "Account"
+    },
+    "subjects": {
+      "bug": "Technical problem",
+      "account": "Account",
+      "privacy": "Privacy",
+      "idea": "Suggestion",
+      "other": "Other"
+    }
+  },
+  "supportMeta": {
+    "title": "How can we help? — Balsm help center",
+    "description": "Answers about the Balsm app, account deletion requests, reporting a problem and contacting the Balsm team."
   }
 }
