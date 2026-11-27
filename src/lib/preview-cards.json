@@ -210,6 +210,22 @@
         "title": "What we promise, and what we ask.",
         "desc": "The terms for using Balsm: the website, the Balsm app, Balsm Pro and Balsm Cloud. Written plainly, most important first."
       }
+    },
+    "support": {
+      "path": "/support",
+      "accent": "#1283FF",
+      "accentText": "#0F6BCC",
+      "rev": 1,
+      "ar": {
+        "eyebrow": "مركز المساعدة",
+        "title": "كيف نساعدك؟",
+        "desc": "أسئلة شائعة عن تطبيق بلسم، وطلب حذف الحساب، والإبلاغ عن مشكلة، والتواصل مع فريق بلسم."
+      },
+      "en": {
+        "eyebrow": "Help center",
+        "title": "How can we help?",
+        "desc": "Answers about the Balsm app, account deletion requests, reporting a problem and contacting the Balsm team."
+      }
     }
   }
 }
