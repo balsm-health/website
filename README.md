@@ -49,17 +49,19 @@ Full walkthrough incl. first-time Cloudflare setup: [docs/CLOUDFLARE_DEPLOYMENT.
 ## Link previews
 
 Every route has its own share card (`og:image` / `twitter:image`), one per
-locale, in `public/og/<card>-<locale>.png`, in the style of the design's Link
-Previews page. All of it is driven by
+locale, in `public/og/<card>-<locale>.jpg`. All of it is driven by
 [`src/lib/preview-cards.json`](src/lib/preview-cards.json). Per route it holds
-the `path`, the panel colour `accent` and the eyebrow's darker `accentText`, an
-`ar` and `en` block of `eyebrow`, `title` (≤ 60 characters) and `desc`
-(≤ 155), and a `rev`; `site.tagline` is the line at the foot of every card.
-`"layout": "app"` (used by `/download`) swaps in the app card: the same
-panel-and-strip frame, with the app's home screen in a tilted phone in the
-panel, each locale's `headline` (falling back to `title`), its `chips`, and
-the store badges.
-The same title and description are the page's `og:title` / `og:description`.
+the `path`, the background colour `accent` and the eyebrow's darker
+`accentText`, an `ar` and `en` block of `eyebrow`, `title` (≤ 60 characters)
+and `desc` (≤ 155), and a `rev`. The same title and description are the page's
+`og:title` / `og:description`. `"layout": "app"` (used by `/download`) shows
+the locale's `headline` (falling back to `title`) over the app's home screen,
+with the store badges either side.
+
+The cards are centre-safe: WhatsApp often shows a link as a square thumbnail
+cut from the middle of the image, so everything the card says sits in a white
+card filling exactly that square. They're JPEGs (about 40–70 KB), which makes
+WhatsApp likelier to show the large banner at all.
 
 ```bash
 # 1. edit the route's entry in src/lib/preview-cards.json, and bump its "rev"
@@ -71,7 +73,6 @@ npm run dev
 node scripts/preview-cards.mjs
 ```
 
-The card is drawn by `scripts/og-card.js`, the design's own painter.
 `src/lib/seo.ts` picks a page's card from the path it passes to `openGraph()`
 and `twitter()`, so a page needs no card wiring of its own; a route with no
 entry gets the home card. Social apps cache previews by URL for days, and

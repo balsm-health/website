@@ -7,7 +7,7 @@
  * therefore builds its block through `openGraph()` below rather than writing
  * the object by hand — that is what keeps the link-preview card attached.
  *
- * Each route has its own card, per locale (public/og/<card>-<locale>.png),
+ * Each route has its own card, per locale (public/og/<card>-<locale>.jpg),
  * rendered by scripts/generate-preview-cards.mjs from preview-cards.json — the
  * one place to change a page's kicker, headline, accent or alt text.
  */
@@ -93,11 +93,11 @@ export function ogImage(locale: string, path = '', card: PreviewCard = cardForPa
   const lang = locale === 'en' ? 'en' : 'ar';
   const copy = cardCopy(locale, card);
   return {
-    url: `/og/${card}-${lang}.png?v=${CARDS[card].rev}`,
+    url: `/og/${card}-${lang}.jpg?v=${CARDS[card].rev}`,
     width: 1200,
     height: 630,
     alt: `${copy.eyebrow} — ${copy.title} ${copy.desc}`,
-    type: 'image/png',
+    type: 'image/jpeg',
   };
 }
 

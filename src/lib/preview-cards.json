@@ -1,16 +1,10 @@
 {
-  "site": {
-    "tagline": {
-      "ar": "مُجتمعي، مستقل وموثوق.",
-      "en": "Community-driven, independent and trusted."
-    }
-  },
   "cards": {
     "home": {
       "path": "",
       "accent": "#01C4A2",
       "accentText": "#01866F",
-      "rev": 7,
+      "rev": 8,
       "ar": {
         "eyebrow": "مبادرة بلسم",
         "title": "المبادرة العربية الأولى في تقنية الرعاية الصحية مفتوحة المصدر.",
@@ -26,7 +20,7 @@
       "path": "/products",
       "accent": "#1283FF",
       "accentText": "#0F6BCC",
-      "rev": 4,
+      "rev": 5,
       "ar": {
         "eyebrow": "منتجات بلسم",
         "title": "منتجات متعدّدة، على نواةٍ واحدة مفتوحة.",
@@ -42,7 +36,7 @@
       "path": "/ecosystem",
       "accent": "#02BBB5",
       "accentText": "#01866F",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "منظومة بلسم",
         "title": "منظومة مفتوحة، لا منتج مغلق.",
@@ -58,7 +52,7 @@
       "path": "/partners",
       "accent": "#E8478F",
       "accentText": "#B8336F",
-      "rev": 4,
+      "rev": 5,
       "ar": {
         "eyebrow": "شركاء بلسم",
         "title": "شركاء يؤمنون برعاية صحية مفتوحة.",
@@ -74,7 +68,7 @@
       "path": "/contributors",
       "accent": "#724DD0",
       "accentText": "#5C3AB0",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "ساهم معنا",
         "title": "ابنِ البنية التحتية الصحية للعالم العربي.",
@@ -91,35 +85,25 @@
       "layout": "app",
       "accent": "#1283FF",
       "accentText": "#0F6BCC",
-      "rev": 5,
+      "rev": 6,
       "ar": {
         "eyebrow": "تطبيق بلسم",
         "title": "خذ سجلّك الصحي معك.",
         "desc": "على آيفون وأندرويد: عربيٌّ أولاً، يعمل دون إنترنت، وبياناتك تبقى على جهازك.",
-        "headline": "سجلّك الصحي في جيبك",
-        "chips": [
-          "عربيٌّ أولاً",
-          "يعمل دون إنترنت",
-          "بياناتك على جهازك"
-        ]
+        "headline": "سجلّك الصحي في جيبك"
       },
       "en": {
         "eyebrow": "The Balsm app",
         "title": "Take your health record with you.",
         "desc": "On iPhone and Android: Arabic-first, works offline, and your data stays on your device.",
-        "headline": "Your health record, in your pocket",
-        "chips": [
-          "Arabic-first",
-          "Works offline",
-          "Data stays on device"
-        ]
+        "headline": "Your health record, in your pocket"
       }
     },
     "providers": {
       "path": "/providers",
       "accent": "#02A39E",
       "accentText": "#01866F",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "بلسم برو",
         "title": "نظام لمنشأتك الصحية، ستملكه بالكامل.",
@@ -135,7 +119,7 @@
       "path": "/contributors/joined",
       "accent": "#724DD0",
       "accentText": "#5C3AB0",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "مجتمع بلسم",
         "title": "انضممتُ إلى مجتمع بلسم.",
@@ -151,7 +135,7 @@
       "path": "/contributors/frame",
       "accent": "#1283FF",
       "accentText": "#0F6BCC",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "مجتمع بلسم",
         "title": "أطّر صورة ملفك الشخصي بعلامة بلسم.",
@@ -167,7 +151,7 @@
       "path": "/links",
       "accent": "#0F8F7E",
       "accentText": "#01866F",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "روابط بلسم",
         "title": "كل حسابات بلسم الرسمية، في مكان واحد.",
@@ -183,7 +167,7 @@
       "path": "/privacy",
       "accent": "#14202B",
       "accentText": "#384756",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "سياسة الخصوصية",
         "title": "بياناتك تبقى لك.",
@@ -199,7 +183,7 @@
       "path": "/terms",
       "accent": "#14202B",
       "accentText": "#384756",
-      "rev": 3,
+      "rev": 4,
       "ar": {
         "eyebrow": "الشروط والأحكام",
         "title": "ما نلتزم به، وما نطلبه منك.",
